@@ -10,4 +10,22 @@ Estimation du poids
 (50-80g)x4  moteurs
 10gx4       ESD
 450g        Batterie (estimation d'une batterie 4 cellules, 5000 mAh)
-100g        Electronique
+100g        PCB, microcontorlleur, senseurs
+100g        camera (GOPRO, mais on peut aller dans qqch de beaucoup plus léger!)
+
+Conservative total weight:
+1610g
+
+Not considered important weight
+- Gimbal
+
+
+Normalement on veut 2 fois plus de trust que de poid.
+Thrust requis:
+~3200g = 800g/moteur
+
+Quelques moteurs cheaps à comparer:
+http://www.ebay.com/itm/Emax-MT2213-935KV-2212-Brushless-Motor-CW-CCW-F-DJI-X525-Quadcopter-Multirotor-/331321364260
+
+
+
