@@ -1,15 +1,18 @@
 Matériel           Responsable
 
-Batterie             Juan
+Batteries             Juan
 Frame             Simon/Isabelle
 Hélices           Simon/Isabelle  
 Moteurs             Simon/Juan
-Microcontrolleur    
-PCB
-Manette
-LED
+Microcontrolleur    Simon  
+PCB                 Juan
+Manette             Simon
+LED                 Juan
+Accéléromètre/      Juan
+
+
 
 Optionnel
 
 Caméra
-accéléromètre
+AI
