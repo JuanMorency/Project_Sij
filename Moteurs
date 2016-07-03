@@ -13,14 +13,14 @@ Estimation du poids
 100g        PCB, microcontorlleur, senseurs
 100g        camera (GOPRO, mais on peut aller dans qqch de beaucoup plus léger!)
 
-Conservative total weight:
+Poids total (conservateur):
 1610g
 
-Not considered important weight
+Non-considéré
 - Gimbal
 
 
-Normalement on veut 2 fois plus de trust que de poid.
+Normalement on veut 2 fois plus de thrust que de poid.
 Thrust requis:
 ~3200g = 800g/moteur
 
