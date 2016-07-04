@@ -1,1 +1,13 @@
+J'ai lu que la configuration idéale pour un drone est:
+
+un microcontrolleur qui roule avec des intterupts ou un RTOS pour:
+- IMU
+- contrôle des moteurs
+- PID controller
+
+Un microcontrolleur plus puissant ou basé sur un OS comme un Raspberry Pi pour:
+- Communication
+- Navigation haut niveau
+- Analyse vidéo
+- Autonomie
 
