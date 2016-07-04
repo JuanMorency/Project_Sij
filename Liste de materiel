@@ -9,11 +9,12 @@ Microcontrolleur    Simon
 PCB                 Juan
 Manette             Simon
 LED                 Juan
-Accéléromètre/      Juan
+IMU                 Juan
+GPS
+RF transmitter
 
 
 
 Optionnel
 
 Caméra
-AI
