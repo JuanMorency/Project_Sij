@@ -11,3 +11,15 @@ Un microcontrolleur plus puissant ou basé sur un OS comme un Raspberry Pi pour:
 - Analyse vidéo
 - Autonomie
 
+Je pense aussi qu'il va être plus facile de s'acheter un microcontrolleur et de le faire intéragir avec pleins d'autres chips comme:
+- IMU
+- GPS
+- Power management
+- RF trans/récep
+- Wi-fi
+On peut surement avoir des free samples pour des IC comme ça. Ensuite il s'agit de tout mettre sur un PCB
+
+Idées pour le petit microcontrolleur:
+
+- ARM based MCU avec RTOS (Juan a un peu d'expérience)
+- Microchip 
