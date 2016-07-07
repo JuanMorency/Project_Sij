@@ -22,4 +22,9 @@ On peut surement avoir des free samples pour des IC comme ça. Ensuite il s'agit
 Idées pour le petit microcontrolleur:
 
 - ARM based MCU avec RTOS (Juan a un peu d'expérience)
-- Microchip 
+- Microchip
+- Atmel AVR (Simon a pas pire d'expérience)
+Pour le code, les 2 supportent asm mais AVR est moins pain in the ass (mais anyway c'est pas vraiment pertinent d'utiliser asm).
+Si on utilise C/C++, le compilateur de AVR est gcc (gratuit et plus optimisé que celui des PIC de Microchip) alors que le compilateur
+de Microchip est soit payant ou pas optimisé. Aussi ce C/C++ compilé par gcc est universel (compatible avec TOUT!) ce qui n'est pas
+le cas de MPLab (Microchip).
