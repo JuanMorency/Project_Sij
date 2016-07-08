@@ -5,17 +5,14 @@ Frame               Simon/Isabelle
 Hélices             Simon/Isabelle  
 Moteurs             Simon/Juan
 ESC                 Simon/Juan
-Microcontrolleur    Simon  
-PCB                 Juan
-Manette             Simon
-
+Microcontrolleur    Simon
 LED                 Juan
 IMU                 Juan
 http://www.robotshop.com/en/imu-10-dof-16g-3-axis-accelerometer-2000-gyro-magnetometer-barometer.html
 http://www.robotshop.com/en/10dof-altimu-10-gyro-accelerometercompassaltimeter.html
 GPS
-RF transmitter
-
+RF transmitter/receiver
+http://www.hobbyking.com/hobbyking/store/__8338__Hobby_King_2_4Ghz_4Ch_Tx_Rx_V2_Mode_2_.html
 
 
 Optionnel
