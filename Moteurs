@@ -8,13 +8,13 @@ Estimation du poids
 
 415g        frame (pour les drones 500mm - 650mm de diamètre avec jambes d'attérissage)
 66gx4=264g  moteurs
-30gx4=120g  ESD
-450g        Batterie (estimation d'une batterie 4 cellules, 5000 mAh)
-100g        PCB, microcontorlleur, senseurs
+12gx4=48g  ESD
+318g        Batterie (estimation d'une batterie 4 cellules, 5000 mAh)
+100g        PCB, microcontorlleur
 100g        camera (GOPRO, mais on peut aller dans qqch de beaucoup plus léger!)
-
+3g          IMU board
 Poids total (conservateur):
-1610g
+1048 + custom PCB + board
 
 Non-considéré
 - Gimbal
@@ -22,9 +22,6 @@ Non-considéré
 
 Normalement on veut 2 fois plus de thrust que de poid.
 Thrust requis:
-~3200g = 800g/moteur
-
-Quelques moteurs cheaps à comparer:
-http://www.hobbyking.com/hobbyking/store/__25081__NTM_Prop_Drive_Series_28_30S_900kv_270w_short_shaft_version_.html
+~2500g = 625g/moteur
 
 
