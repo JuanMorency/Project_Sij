@@ -6,9 +6,9 @@ http://www.dronetrest.com/t/how-to-choose-the-right-motor-for-your-multicopter-d
 Estimation du poids
 
 
-400-600g    frame (pour les drones 500mm - 650mm de diamètre avec jambes d'attérissage)
-(50-80g)x4  moteurs
-10gx4       ESD
+415g        frame (pour les drones 500mm - 650mm de diamètre avec jambes d'attérissage)
+66gx4=264g  moteurs
+30gx4=120g  ESD
 450g        Batterie (estimation d'une batterie 4 cellules, 5000 mAh)
 100g        PCB, microcontorlleur, senseurs
 100g        camera (GOPRO, mais on peut aller dans qqch de beaucoup plus léger!)
@@ -25,7 +25,6 @@ Thrust requis:
 ~3200g = 800g/moteur
 
 Quelques moteurs cheaps à comparer:
-http://www.ebay.com/itm/Emax-MT2213-935KV-2212-Brushless-Motor-CW-CCW-F-DJI-X525-Quadcopter-Multirotor-/331321364260
-
+http://www.hobbyking.com/hobbyking/store/__25081__NTM_Prop_Drive_Series_28_30S_900kv_270w_short_shaft_version_.html
 
 
