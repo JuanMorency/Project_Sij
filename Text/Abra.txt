@@ -1,0 +1,16 @@
+Boutons reset
+LEDs
+piezo
+Headers *infinity
+Crystal
+Fils
+Solder
+Resistances
+Capacitors
+Solder sucker
+lacet de cuivre
+programmeur
+régulateur de tension
+Switch
+fuses 
+vis
