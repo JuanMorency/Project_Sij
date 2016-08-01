@@ -1,2 +1,16 @@
-Relay
-heatsink relay
+For regulators
+0.1uF cap
+0.22uF cap
+10uF tantalum cap
+10uF cap
+121 ohm res
+other resistors between 121 and 5K 
+
+for monitoring
+1 milliohm res
+100 ohm res *8
+1 Kohm res  
+10 uF cap
+1uF cap *9
+0.1uF cap *2
+4.7 uF cap

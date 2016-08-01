@@ -1,0 +1,4 @@
+Faire un symbol et un schematic pour le LM7805 
+http://www.ti.com/general/docs/lit/getliterature.tsp?genericPartNumber=lm7805c&fileType=pdf
+
+Faire une liste de toutes les composantes électroniques qu'on a besoin pour le PCB

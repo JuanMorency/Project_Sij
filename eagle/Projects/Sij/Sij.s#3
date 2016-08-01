@@ -835,88 +835,94 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="132.08" y1="101.6" x2="114.3" y2="101.6" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$5" class="0">
+<net name="PWMB4" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC0A/OC1C/PCINT7)PB7"/>
 <wire x1="63.5" y1="99.06" x2="76.2" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$6" class="0">
+<net name="PWMB3" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC1B/PCINT6)PB6"/>
 <wire x1="63.5" y1="96.52" x2="76.2" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$7" class="0">
+<net name="PWMB2" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC1A/PCINT5)PB5"/>
 <wire x1="63.5" y1="93.98" x2="76.2" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$8" class="0">
+<net name="PWMB1" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC2A/PCINT4)PB4"/>
 <wire x1="63.5" y1="91.44" x2="76.2" y2="91.44" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$9" class="0">
+<net name="PWME3" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC3C/INT5)PE5"/>
 <wire x1="63.5" y1="25.4" x2="76.2" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$10" class="0">
+<net name="PWME2" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC3B/INT4)PE4"/>
 <wire x1="63.5" y1="22.86" x2="76.2" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$11" class="0">
+<net name="PWME1" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="(OC3A/AIN1)PE3"/>
 <wire x1="63.5" y1="20.32" x2="76.2" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$12" class="0">
+<net name="PWMH4" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PH6(OC2B)"/>
 <wire x1="-7.62" y1="-12.7" x2="-20.32" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$13" class="0">
+<net name="PWMH3" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PH5(OC4C)"/>
 <wire x1="-7.62" y1="-15.24" x2="-20.32" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$14" class="0">
+<net name="PWMH2" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PH4(OC4B)"/>
 <wire x1="-7.62" y1="-17.78" x2="-20.32" y2="-17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$15" class="0">
+<net name="PWMH1" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PH3(OC4A)"/>
 <wire x1="-7.62" y1="-20.32" x2="-20.32" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$16" class="0">
+<net name="PWML1" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PL3(OC5A)"/>
 <wire x1="-7.62" y1="48.26" x2="-20.32" y2="48.26" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$17" class="0">
+<net name="PWML2" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PL4(OC5B)"/>
 <wire x1="-7.62" y1="50.8" x2="-20.32" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$18" class="0">
+<net name="PWML3" class="0">
 <segment>
 <pinref part="U1" gate="1" pin="PL5(OC5C)"/>
 <wire x1="-7.62" y1="53.34" x2="-20.32" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMG1" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC0B)PG5"/>
+<wire x1="63.5" y1="-15.24" x2="76.2" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
