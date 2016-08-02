@@ -675,11 +675,11 @@ design rules under a new name.</description>
 <elements>
 <element name="ESC1" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="3.81" y="7.62"/>
 <element name="ESC2" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="3.81" y="72.39"/>
-<element name="ESC3" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="95.25" y="7.62"/>
-<element name="ESC4" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="96.52" y="71.12"/>
-<element name="ICSP" library="SparkFun-Connectors" package="2X03" value="" x="31.75" y="39.37" rot="R90"/>
-<element name="U1" library="SparkFun-DigitalIC" package="TQFP100" value="ATMEGA2560AU" x="55.88" y="39.37">
-<attribute name="PROD_ID" value="IC-10040" x="55.88" y="39.37" size="1.778" layer="27" display="off"/>
+<element name="ESC3" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="96.52" y="7.62"/>
+<element name="ESC4" library="SparkFun-Connectors" package="AVR_ICSP" value="" x="96.52" y="72.39"/>
+<element name="ICSP" library="SparkFun-Connectors" package="2X03" value="" x="26.67" y="39.37" rot="R90"/>
+<element name="U1" library="SparkFun-DigitalIC" package="TQFP100" value="ATMEGA2560AU" x="52.07" y="39.37">
+<attribute name="PROD_ID" value="IC-10040" x="52.07" y="39.37" size="1.778" layer="27" display="off"/>
 </element>
 </elements>
 <signals>
@@ -692,7 +692,7 @@ design rules under a new name.</description>
 <signal name="GND">
 <contactref element="U1" pad="11"/>
 <contactref element="ICSP" pad="6"/>
-<wire x1="30.48" y1="41.91" x2="47.88" y2="40.37" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="41.91" x2="44.07" y2="40.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND1">
 <contactref element="U1" pad="32"/>
@@ -706,7 +706,7 @@ design rules under a new name.</description>
 <signal name="VCC">
 <contactref element="U1" pad="10"/>
 <contactref element="ICSP" pad="2"/>
-<wire x1="30.48" y1="36.83" x2="47.88" y2="40.87" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="36.83" x2="44.07" y2="40.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC1">
 <contactref element="U1" pad="31"/>
@@ -720,92 +720,92 @@ design rules under a new name.</description>
 <signal name="N$1">
 <contactref element="U1" pad="22"/>
 <contactref element="ICSP" pad="1"/>
-<wire x1="33.02" y1="36.83" x2="47.88" y2="34.87" width="0" layer="19" extent="1-1"/>
+<wire x1="27.94" y1="36.83" x2="44.07" y2="34.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="U1" pad="20"/>
 <contactref element="ICSP" pad="3"/>
-<wire x1="33.02" y1="39.37" x2="47.88" y2="35.87" width="0" layer="19" extent="1-1"/>
+<wire x1="27.94" y1="39.37" x2="44.07" y2="35.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="U1" pad="30"/>
 <contactref element="ICSP" pad="5"/>
-<wire x1="33.02" y1="41.91" x2="51.88" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="27.94" y1="41.91" x2="48.07" y2="31.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="U1" pad="21"/>
 <contactref element="ICSP" pad="4"/>
-<wire x1="30.48" y1="39.37" x2="47.88" y2="35.37" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="39.37" x2="44.07" y2="35.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMB4">
 <contactref element="U1" pad="26"/>
 <contactref element="ESC1" pad="8"/>
-<wire x1="49.88" y1="31.37" x2="5.08" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="46.07" y1="31.37" x2="5.08" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMB3">
 <contactref element="U1" pad="25"/>
 <contactref element="ESC1" pad="7"/>
-<wire x1="47.88" y1="33.37" x2="2.54" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="44.07" y1="33.37" x2="2.54" y2="5.08" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMB2">
 <contactref element="U1" pad="24"/>
 <contactref element="ESC1" pad="6"/>
-<wire x1="5.08" y1="7.62" x2="47.88" y2="33.87" width="0" layer="19" extent="1-1"/>
+<wire x1="5.08" y1="7.62" x2="44.07" y2="33.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMB1">
 <contactref element="U1" pad="23"/>
 <contactref element="ESC1" pad="5"/>
-<wire x1="47.88" y1="34.37" x2="2.54" y2="7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="44.07" y1="34.37" x2="2.54" y2="7.62" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWME3">
 <contactref element="U1" pad="7"/>
 <contactref element="ESC2" pad="6"/>
-<wire x1="5.08" y1="72.39" x2="47.88" y2="42.37" width="0" layer="19" extent="1-1"/>
+<wire x1="5.08" y1="72.39" x2="44.07" y2="42.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWME2">
 <contactref element="U1" pad="6"/>
 <contactref element="ESC2" pad="5"/>
-<wire x1="2.54" y1="72.39" x2="47.88" y2="42.87" width="0" layer="19" extent="1-1"/>
+<wire x1="2.54" y1="72.39" x2="44.07" y2="42.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWME1">
 <contactref element="U1" pad="5"/>
 <contactref element="ESC2" pad="4"/>
-<wire x1="5.08" y1="74.93" x2="47.88" y2="43.37" width="0" layer="19" extent="1-1"/>
+<wire x1="5.08" y1="74.93" x2="44.07" y2="43.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMH4">
 <contactref element="U1" pad="18"/>
 <contactref element="ESC4" pad="7"/>
-<wire x1="95.25" y1="68.58" x2="47.88" y2="36.87" width="0" layer="19" extent="1-1"/>
+<wire x1="95.25" y1="69.85" x2="44.07" y2="36.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMH3">
 <contactref element="U1" pad="17"/>
 <contactref element="ESC4" pad="6"/>
-<wire x1="97.79" y1="71.12" x2="47.88" y2="37.37" width="0" layer="19" extent="1-1"/>
+<wire x1="97.79" y1="72.39" x2="44.07" y2="37.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMH2">
 <contactref element="U1" pad="16"/>
 <contactref element="ESC4" pad="5"/>
-<wire x1="95.25" y1="71.12" x2="47.88" y2="37.87" width="0" layer="19" extent="1-1"/>
+<wire x1="95.25" y1="72.39" x2="44.07" y2="37.87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMH1">
 <contactref element="U1" pad="15"/>
 <contactref element="ESC4" pad="4"/>
-<wire x1="97.79" y1="73.66" x2="47.88" y2="38.37" width="0" layer="19" extent="1-1"/>
+<wire x1="97.79" y1="74.93" x2="44.07" y2="38.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWML1">
 <contactref element="U1" pad="38"/>
 <contactref element="ESC3" pad="4"/>
-<wire x1="96.52" y1="10.16" x2="55.88" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="97.79" y1="10.16" x2="52.07" y2="31.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWML2">
 <contactref element="U1" pad="39"/>
 <contactref element="ESC3" pad="5"/>
-<wire x1="93.98" y1="7.62" x2="56.38" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="95.25" y1="7.62" x2="52.57" y2="31.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWML3">
 <contactref element="U1" pad="40"/>
 <contactref element="ESC3" pad="6"/>
-<wire x1="96.52" y1="7.62" x2="56.88" y2="31.37" width="0" layer="19" extent="1-1"/>
+<wire x1="97.79" y1="7.62" x2="53.07" y2="31.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PWMG1">
 <contactref element="U1" pad="1"/>

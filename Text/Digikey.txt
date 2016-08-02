@@ -1,16 +1,33 @@
-For regulators
-0.1uF cap
-0.22uF cap
-10uF tantalum cap
-10uF cap
-121 ohm res
-other resistors between 121 and 5K 
+0.1uF cap *3 http://www.digikey.ca/product-detail/en/yageo/CC0603KRX7R7BB104/311-1088-1-ND/302998
+0.22uF cap *1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R71E224KA88D/490-3290-1-ND/702831
+1uF cap *9 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R61E105KA12D/490-3897-1-ND/965939
+4.7 uF cap *1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R60J475KE19D/490-3297-1-ND/702838
+10uF tantalum *1 cap http://www.digikey.ca/product-detail/en/avx-corporation/F931C106KAA/478-8235-1-ND/4005599
+10uF cap *2 http://www.digikey.ca/product-detail/en/samsung-electro-mechanics-america-inc/CL21A106KAFN3NE/1276-2890-1-ND/3890976
 
-for monitoring
-1 milliohm res
-100 ohm res *8
-1 Kohm res  
-10 uF cap
-1uF cap *9
-0.1uF cap *2
-4.7 uF cap
+1 milliohm res *1 http://www.digikey.ca/product-detail/en/stackpole-electronics-inc/CSNL1206FT1L00/CSNL1206FT1L00CT-ND/1788120
+100 ohm res *8 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07100RL/311-100HRCT-ND/729835 
+121 ohm res *2  http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07121RL/311-121HRCT-ND/729869
+200 ohm *1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07200RL/311-200GRCT-ND/729684
+363 ohm *1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07360RL/311-360GRCT-ND/729720
+1K ohm *3 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624
+
+
+
+Headers40 * 6 http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC040SAAN-RC/S1012EC-40-ND/2774814
+
+Header2 male pour ESC *4 http://www.digikey.ca/product-detail/en/te-connectivity-amp-connectors/640456-2/A1921-ND/109003
+Header2 femelle pour esc *4 http://www.digikey.ca/product-detail/en/te-connectivity-amp-connectors/3-640441-2/A30978-ND/698221
+
+JST-XH * male receptacle for battery balancing
+http://www.digikey.com/product-search/en?mpart=S7B-XH-A%28LF%29%28SN%29&vendor=455
+JST_XH female 7
+http://www.digikey.com/product-detail/en/jst-sales-america-inc/XHP-6/455-2218-ND/1651016
+male 4
+http://www.digikey.com/product-detail/en/jst-sales-america-inc/B4B-XH-A(LF)(SN)/455-2249-ND/1651047
+contact metal crimp
+http://www.digikey.com/product-detail/en/jst-sales-america-inc/SXH-001T-P0.6/455-1135-1-ND/527370
+
+
+Heat Shrink
+Header jumper 

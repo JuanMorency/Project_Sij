@@ -1,16 +1,12 @@
-Boutons reset
-LEDs
-piezo
-Headers *infinity
-Crystal
-Fils
-Solder
-Resistances
-Capacitors
-Solder sucker
-lacet de cuivre
-programmeur
-régulateur de tension
-Switch
-fuses 
 vis
+
+Header
+
+Male xt60 connector
+AWG 10 wire pour battery rouge et noir pour battery
+
+AWG 18 pour ralonge pour ESC
+
+plein de bullet connectors pour les ESC
+
+velcro pour battery
