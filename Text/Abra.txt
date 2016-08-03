@@ -1,12 +1,8 @@
 vis
 
-Header
+Header 
 
 Male xt60 connector
 AWG 10 wire pour battery rouge et noir pour battery
 
 AWG 18 pour ralonge pour ESC
-
-plein de bullet connectors pour les ESC
-
-velcro pour battery
