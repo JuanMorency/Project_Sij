@@ -11198,6 +11198,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="ICSP" library="SparkFun-Connectors" deviceset="M05X2" device="SHD"/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="ESC3" library="SparkFun-Connectors" deviceset="M05X2" device="PTH"/>
+<part name="ESC4" library="SparkFun-Connectors" deviceset="M05X2" device="PTH"/>
+<part name="ESC1" library="SparkFun-Connectors" deviceset="M05X2" device="PTH"/>
+<part name="ESC2" library="SparkFun-Connectors" deviceset="M05X2" device="PTH"/>
 <part name="Y1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US"/>
 <part name="C1" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="20pF"/>
 <part name="C2" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="20pF"/>
@@ -11298,6 +11302,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="ICSP" gate="G$1" x="106.68" y="93.98"/>
 <instance part="SUPPLY1" gate="G$1" x="152.4" y="104.14"/>
 <instance part="GND1" gate="1" x="124.46" y="83.82"/>
+<instance part="ESC3" gate="G$1" x="200.66" y="53.34"/>
+<instance part="ESC4" gate="G$1" x="210.82" y="12.7"/>
+<instance part="ESC1" gate="G$1" x="139.7" y="68.58"/>
+<instance part="ESC2" gate="G$1" x="139.7" y="15.24"/>
 <instance part="Y1" gate="G$1" x="-27.94" y="116.84" rot="R90"/>
 <instance part="C1" gate="G$1" x="-38.1" y="111.76" rot="R90"/>
 <instance part="C2" gate="G$1" x="-38.1" y="121.92" rot="R90"/>
@@ -11601,7 +11609,87 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="134.62" y1="104.14" x2="152.4" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="PWMB4" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC0A/OC1C/PCINT7)PB7"/>
+<wire x1="63.5" y1="99.06" x2="76.2" y2="99.06" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC1" gate="G$1" pin="8"/>
+<wire x1="147.32" y1="66.04" x2="160.02" y2="66.04" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMB3" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC1B/PCINT6)PB6"/>
+<wire x1="63.5" y1="96.52" x2="76.2" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC1" gate="G$1" pin="7"/>
+<wire x1="132.08" y1="66.04" x2="119.38" y2="66.04" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMB2" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC1A/PCINT5)PB5"/>
+<wire x1="63.5" y1="93.98" x2="76.2" y2="93.98" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC1" gate="G$1" pin="6"/>
+<wire x1="147.32" y1="68.58" x2="160.02" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMB1" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC2A/PCINT4)PB4"/>
+<wire x1="63.5" y1="91.44" x2="76.2" y2="91.44" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC1" gate="G$1" pin="5"/>
+<wire x1="132.08" y1="68.58" x2="119.38" y2="68.58" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWME3" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC3C/INT5)PE5"/>
+<wire x1="63.5" y1="25.4" x2="76.2" y2="25.4" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC2" gate="G$1" pin="6"/>
+<wire x1="147.32" y1="15.24" x2="160.02" y2="15.24" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWME2" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC3B/INT4)PE4"/>
+<wire x1="63.5" y1="22.86" x2="76.2" y2="22.86" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC2" gate="G$1" pin="5"/>
+<wire x1="132.08" y1="15.24" x2="119.38" y2="15.24" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWME1" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC3A/AIN1)PE3"/>
+<wire x1="63.5" y1="20.32" x2="76.2" y2="20.32" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC2" gate="G$1" pin="4"/>
+<wire x1="147.32" y1="17.78" x2="160.02" y2="17.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMH4" class="0">
+<segment>
+<pinref part="ESC4" gate="G$1" pin="7"/>
+<wire x1="203.2" y1="10.16" x2="190.5" y2="10.16" width="0.1524" layer="91"/>
+</segment>
+</net>
 <net name="PWMH3" class="0">
+<segment>
+<pinref part="ESC4" gate="G$1" pin="6"/>
+<wire x1="218.44" y1="12.7" x2="231.14" y2="12.7" width="0.1524" layer="91"/>
+</segment>
 <segment>
 <pinref part="ESC2_PWM" gate="G$1" pin="1"/>
 <wire x1="-134.62" y1="-96.52" x2="-134.62" y2="-15.24" width="0.1524" layer="91"/>
@@ -11611,6 +11699,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </net>
 <net name="PWMH2" class="0">
 <segment>
+<pinref part="ESC4" gate="G$1" pin="5"/>
+<wire x1="203.2" y1="12.7" x2="190.5" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+<segment>
 <pinref part="ESC3_PWM" gate="G$1" pin="1"/>
 <wire x1="-101.6" y1="-96.52" x2="-101.6" y2="-17.78" width="0.1524" layer="91"/>
 <pinref part="U1" gate="1" pin="PH4(OC4B)"/>
@@ -11618,6 +11710,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 </segment>
 </net>
 <net name="PWMH1" class="0">
+<segment>
+<pinref part="ESC4" gate="G$1" pin="4"/>
+<wire x1="218.44" y1="15.24" x2="231.14" y2="15.24" width="0.1524" layer="91"/>
+</segment>
 <segment>
 <pinref part="ESC1_PWM" gate="G$1" pin="1"/>
 <wire x1="-167.64" y1="-96.52" x2="-167.64" y2="-86.36" width="0.1524" layer="91"/>
@@ -11631,6 +11727,42 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="U1" gate="1" pin="PH3(OC4A)"/>
 <wire x1="-7.62" y1="-20.32" x2="-68.58" y2="-20.32" width="0.1524" layer="91"/>
 <wire x1="-68.58" y1="-96.52" x2="-68.58" y2="-20.32" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWML1" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="PL3(OC5A)"/>
+<wire x1="-7.62" y1="48.26" x2="-20.32" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC3" gate="G$1" pin="4"/>
+<wire x1="208.28" y1="55.88" x2="220.98" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWML2" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="PL4(OC5B)"/>
+<wire x1="-7.62" y1="50.8" x2="-20.32" y2="50.8" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC3" gate="G$1" pin="5"/>
+<wire x1="193.04" y1="53.34" x2="180.34" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWML3" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="PL5(OC5C)"/>
+<wire x1="-7.62" y1="53.34" x2="-20.32" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="ESC3" gate="G$1" pin="6"/>
+<wire x1="208.28" y1="53.34" x2="220.98" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="PWMG1" class="0">
+<segment>
+<pinref part="U1" gate="1" pin="(OC0B)PG5"/>
+<wire x1="63.5" y1="-15.24" x2="76.2" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
