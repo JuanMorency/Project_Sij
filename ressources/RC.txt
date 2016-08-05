@@ -1,2 +1,3 @@
 Code RC:
 http://www.avrfreaks.net/forum/linear-actuator-controller-rc-servo-system?name=PNphpBB2&file=viewtopic&t=92608
+http://blog.owenson.me/build-your-own-quadcopter-flight-controller/
