@@ -8,3 +8,5 @@ optimize grounds (seperate motor, digital, analog)
 make digikey order
 
 make SPI and I2C pins on the headers
+
+ajuster la grosseur du layout du IMU board 
