@@ -1,4 +1,4 @@
-Matériel           Responsable
+﻿Matériel           Responsable
 
 Batteries           Juan
 http://www.hobbyking.com/hobbyking/store/__84112__Multistar_LiHV_High_Capacity_5200Mah_3S_Multi_Rotor_Lipo_Pack_US_Warehouse_.html
@@ -16,7 +16,6 @@ Microcontrolleur    Simon
 http://www.digikey.ca/product-detail/en/atmel/ATMEGA2560-16AUR/ATMEGA2560-16AURCT-ND/3789436
 Breakout board pour MCU
 http://www.robotshop.com/ca/en/cytron-qfp-breakout-board-100-pins.html
-LED                 Juan
 IMU                 Juan
 http://www.robotshop.com/en/imu-10-dof-16g-3-axis-accelerometer-2000-gyro-magnetometer-barometer.html
 RF transmitter/receiver

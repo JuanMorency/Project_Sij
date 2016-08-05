@@ -1,0 +1,6 @@
+pull-up resistor value for I2C
+http://electronics.stackexchange.com/questions/1849/is-there-a-correct-resistance-value-for-i2c-pull-up-resistors
+usb programmer
+http://www.fischl.de/usbasp/
+RF controller
+http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676

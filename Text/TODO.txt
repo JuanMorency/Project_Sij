@@ -1,5 +1,10 @@
-Diode pour sélection de VCC
+LED indicators, need more?
+discuss on/off switch pour l'instant arrête juste le courant de la batterie pour les IC. Alors si le programmeur
+est branché les ICs sont on
 
-Programmeur
-	- vérifier SS slave select
+IMU
+RF controller
+optimize grounds (seperate motor, digital, analog)
+make digikey order
 
+make SPI and I2C pins on the headers

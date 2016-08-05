@@ -3928,14 +3928,12 @@ design rules under a new name.</description>
 <contactref element="BAT+" pad="P$1"/>
 <contactref element="RLED2" pad="1"/>
 <contactref element="S1" pad="2"/>
-<contactref element="S1" pad="3"/>
 <wire x1="-17.78" y1="-450.85" x2="-17.78" y2="-478.79" width="0" layer="19" extent="1-1"/>
 <wire x1="-17.78" y1="-422.91" x2="-17.78" y2="-450.85" width="0" layer="19" extent="1-1"/>
 <wire x1="-17.78" y1="-394.97" x2="-17.78" y2="-422.91" width="0" layer="19" extent="1-1"/>
 <wire x1="-17.78" y1="-349.25" x2="-17.78" y2="-394.97" width="0" layer="19" extent="1-1"/>
 <wire x1="-51.65" y1="-613.41" x2="-17.78" y2="-478.79" width="0" layer="19" extent="1-1"/>
 <wire x1="-72.39" y1="-632.46" x2="-51.65" y2="-613.41" width="0" layer="19" extent="1-1"/>
-<wire x1="-72.39" y1="-635" x2="-72.39" y2="-632.46" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

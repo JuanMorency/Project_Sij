@@ -1,0 +1,22 @@
+1. Start “Recalibrate.exe”
+2. Select serial setting and click ok
+3. Click “Startadjust”
+4. Check Led is flashing (please check led on transmitter)
+5. Place trimmers:
+	Left “Up-Down” – Up
+	Left “Left-Rigth” – Rigth
+	Rigth “Up-Down” – Up
+	Rigth “Left-Rigth” – Rigth
+6. Place stick of left end as follow  (Calibrate end points left and righ stick)
+7. Place trimmers
+	Left “Up-Down” – Down
+	Left “Left-Rigth” – Left
+	Rigth “Up-Down” – Down
+	Rigth “Left-Rigth” – Left
+
+8. Repeat step6
+9. Click “Stopadjust”
+10. Click “Open”
+11. Select in directory program file “cool.tst”
+
+12. Transmitter recalibrate!  
