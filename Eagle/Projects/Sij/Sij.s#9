@@ -15659,19 +15659,15 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0805"/>
 <part name="C_AVCC" library="SparkFun-Capacitors" deviceset="CAP" device="0603-CAP" value="0.1u"/>
 <part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="RSCL" library="resistor" deviceset="R-US_" device="R0603" value="2K"/>
+<part name="RSDA" library="resistor" deviceset="R-US_" device="R0603" value="2K"/>
+<part name="SUPPLY2" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="-167.64" y="33.02" size="1.778" layer="91">To ADC ref voltage</text>
-<text x="-187.96" y="27.94" size="1.778" layer="91">To ADC pin</text>
-<text x="-195.58" y="25.4" size="1.778" layer="91">To ADC pin</text>
-<text x="-208.28" y="22.86" size="1.778" layer="91">To GPIO pin</text>
-<text x="-241.3" y="38.1" size="1.778" layer="91">to header for 4mA 3.3V regulated
-</text>
-<text x="-248.92" y="38.1" size="1.778" layer="91">to SCL of I2C on uC</text>
-<text x="-256.54" y="35.56" size="1.778" layer="91">to SDA of I2C on uC</text>
-<text x="-220.98" y="35.56" size="1.778" layer="91">Need pull up resistors to VDD</text>
+<text x="-241.3" y="40.64" size="1.778" layer="91">to header for 4mA 3.3V regulated</text>
 <text x="-276.86" y="124.46" size="1.778" layer="91">More 5V supply 3A</text>
 <text x="-144.78" y="-134.62" size="6.4516" layer="91">ESC</text>
 <text x="-337.82" y="213.36" size="6.4516" layer="91">Power</text>
@@ -15792,6 +15788,9 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <instance part="L1" gate="G$1" x="-55.88" y="96.52" rot="R180"/>
 <instance part="C_AVCC" gate="G$1" x="-71.12" y="104.14" rot="R90"/>
 <instance part="GND14" gate="1" x="-76.2" y="93.98"/>
+<instance part="RSCL" gate="G$1" x="111.76" y="40.64" rot="R270"/>
+<instance part="RSDA" gate="G$1" x="119.38" y="43.18" rot="R270"/>
+<instance part="SUPPLY2" gate="G$1" x="114.3" y="48.26"/>
 </instances>
 <busses>
 </busses>
@@ -16114,6 +16113,15 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <wire x1="-55.88" y1="88.9" x2="-45.72" y2="88.9" width="0.1524" layer="91"/>
 <junction x="-45.72" y="88.9"/>
 </segment>
+<segment>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
+<pinref part="RSDA" gate="G$1" pin="1"/>
+<wire x1="114.3" y1="48.26" x2="119.38" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="RSCL" gate="G$1" pin="1"/>
+<wire x1="114.3" y1="48.26" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="48.26" x2="111.76" y2="45.72" width="0.1524" layer="91"/>
+<junction x="114.3" y="48.26"/>
+</segment>
 </net>
 <net name="PWMH3" class="0">
 <segment>
@@ -16286,7 +16294,10 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <net name="N$20" class="0">
 <segment>
 <pinref part="U2" gate="A" pin="ALERT"/>
-<wire x1="-287.02" y1="22.86" x2="-210.82" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-287.02" y1="22.86" x2="-88.9" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-88.9" y1="22.86" x2="-88.9" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U1" gate="1" pin="PJ7"/>
+<wire x1="-88.9" y1="12.7" x2="-7.62" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$21" class="0">
@@ -16294,9 +16305,12 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <pinref part="U2" gate="A" pin="VIOUT"/>
 <wire x1="-287.02" y1="25.4" x2="-233.68" y2="25.4" width="0.1524" layer="91"/>
 <pinref part="COUT2" gate="G$1" pin="1"/>
-<wire x1="-233.68" y1="25.4" x2="-198.12" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="17.78" x2="-233.68" y2="25.4" width="0.1524" layer="91"/>
 <junction x="-233.68" y="25.4"/>
+<wire x1="-233.68" y1="25.4" x2="-86.36" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-86.36" y1="25.4" x2="-86.36" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="U1" gate="1" pin="PK1(ADC9/PCINT17)"/>
+<wire x1="-86.36" y1="20.32" x2="-7.62" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
@@ -16304,9 +16318,12 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <pinref part="U2" gate="A" pin="VCOUT"/>
 <wire x1="-287.02" y1="27.94" x2="-248.92" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="COUT" gate="G$1" pin="1"/>
-<wire x1="-248.92" y1="27.94" x2="-190.5" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="-248.92" y1="20.32" x2="-248.92" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-248.92" y="27.94"/>
+<wire x1="-248.92" y1="27.94" x2="-83.82" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="-83.82" y1="27.94" x2="-83.82" y2="22.86" width="0.1524" layer="91"/>
+<pinref part="U1" gate="1" pin="PK2(ADC10/PCINT18)"/>
+<wire x1="-83.82" y1="22.86" x2="-7.62" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$24" class="0">
@@ -16314,21 +16331,34 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <pinref part="U2" gate="A" pin="VREF"/>
 <wire x1="-287.02" y1="33.02" x2="-261.62" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="CREF" gate="G$1" pin="1"/>
-<wire x1="-261.62" y1="33.02" x2="-170.18" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-261.62" y1="22.86" x2="-261.62" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-261.62" y="33.02"/>
+<wire x1="-261.62" y1="33.02" x2="-81.28" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="-81.28" y1="33.02" x2="-81.28" y2="25.4" width="0.1524" layer="91"/>
+<pinref part="U1" gate="1" pin="PK3(ADC11/PCINT19)"/>
+<wire x1="-81.28" y1="25.4" x2="-7.62" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$19" class="0">
+<net name="SDA" class="0">
 <segment>
 <pinref part="U2" gate="A" pin="SDA"/>
 <wire x1="-287.02" y1="35.56" x2="-259.08" y2="35.56" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U1" gate="1" pin="(SDA/INT1)PD1"/>
+<wire x1="63.5" y1="38.1" x2="119.38" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="RSDA" gate="G$1" pin="2"/>
+</segment>
 </net>
-<net name="N$25" class="0">
+<net name="SCL" class="0">
 <segment>
 <pinref part="U2" gate="A" pin="SCL"/>
-<wire x1="-287.02" y1="38.1" x2="-251.46" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-287.02" y1="38.1" x2="-259.08" y2="38.1" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="1" pin="(SCL/INT0)PD0"/>
+<wire x1="63.5" y1="35.56" x2="111.76" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="RSCL" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$26" class="0">
@@ -16709,10 +16739,4 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 </sheets>
 </schematic>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>

@@ -1,7 +1,7 @@
 cap
 20 pF cap *2 TH http://www.digikey.ca/product-detail/en/vishay-bc-components/S200K25SL0N63L6R/1265PH-ND/2356801
 20 pF cap *2 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM0335C1E200JA01D/490-9618-1-ND/4865764
-0.1uF cap *8 http://www.digikey.ca/product-detail/en/yageo/CC0603KRX7R7BB104/311-1088-1-ND/302998
+0.1uF cap *9 http://www.digikey.ca/product-detail/en/yageo/CC0603KRX7R7BB104/311-1088-1-ND/302998
 0.22uF cap *1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R71E224KA88D/490-3290-1-ND/702831
 1uF cap *9 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R61E105KA12D/490-3897-1-ND/965939
 4.7 uF cap *1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R60J475KE19D/490-3297-1-ND/702838
@@ -10,13 +10,13 @@ cap
 
 res
 1 milliohm *1 http://www.digikey.ca/product-detail/en/stackpole-electronics-inc/CSNL1206FT1L00/CSNL1206FT1L00CT-ND/1788120
-56 ohm *5 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-0756RL/311-56GRCT-ND/729754
+56 ohm *6 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-0756RL/311-56GRCT-ND/729754
 91 ohm *5 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-0791RL/311-91GRCT-ND/729787
 100 ohm *8 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07100RL/311-100HRCT-ND/729835 
 121 ohm *2  http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07121RL/311-121HRCT-ND/729869
 200 ohm *1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07200RL/311-200GRCT-ND/729684
 316 ohm *1 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07316RL/311-316HRCT-ND/730099
-363 ohm *2 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07360RL/311-360GRCT-ND/729720
+363 ohm *1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07360RL/311-360GRCT-ND/729720
 1K ohm *4 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-071KL/311-1.0KGRCT-ND/729624
 2K ohm *2 http://www.digikey.ca/product-detail/en/panasonic-electronic-components/ERJ-3EKF2001V/P2.00KHCT-ND/198219
 10k ohm *2 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-0710KL/311-10KGRCT-ND/729647
@@ -26,16 +26,16 @@ ind
 
 
 JST-XH * male receptacle for battery balancing
-http://www.digikey.com/product-search/en?mpart=S7B-XH-A%28LF%29%28SN%29&vendor=455
+http://www.digikey.ca/product-search/en?mpart=S7B-XH-A%28LF%29%28SN%29&vendor=455
 JST_XH female 7
-http://www.digikey.com/product-detail/en/jst-sales-america-inc/XHP-6/455-2218-ND/1651016
+http://www.digikey.ca/product-detail/en/jst-sales-america-inc/XHP-6/455-2218-ND/1651016
 male 4
-http://www.digikey.com/product-detail/en/jst-sales-america-inc/B4B-XH-A(LF)(SN)/455-2249-ND/1651047
+http://www.digikey.ca/product-detail/en/jst-sales-america-inc/B4B-XH-A(LF)(SN)/455-2249-ND/1651047
 contact metal crimp
-http://www.digikey.com/product-detail/en/jst-sales-america-inc/SXH-001T-P0.6/455-1135-1-ND/527370
+http://www.digikey.ca/product-detail/en/jst-sales-america-inc/SXH-001T-P0.6/455-1135-1-ND/527370
 
-headers vertical 40*6 pin http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC040SAAN-RC/S1012EC-40-ND/2774814
-
+headers vertical 40*2 pin http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC040SAAN-RC/S1012EC-40-ND/2774814
+header vertical double 40*4 *http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC020DAAN-RC/S2012EC-20-ND/2774874
 diode
 general *2 http://www.digikey.ca/product-detail/en/diodes-incorporated/1N4004-T/1N4004DICT-ND/160593
 low *1 Vdrop http://www.digikey.ca/product-detail/en/comchip-technology/CDBA340L-G/641-1258-1-ND/1963390

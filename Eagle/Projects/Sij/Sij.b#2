@@ -3097,6 +3097,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pad name="4" x="3.2512" y="-2.2606" drill="1.016" diameter="1.8796"/>
 <text x="-2.54" y="3.81" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 </package>
+<package name="BUZZER-12MM">
+<description>&lt;b&gt;BUZZER&lt;/b&gt;</description>
+<circle x="0" y="0" radius="5.9" width="0.2032" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.2032" layer="51"/>
+<pad name="-" x="-3.25" y="0" drill="0.9" diameter="1.778"/>
+<pad name="+" x="3.25" y="0" drill="0.9" diameter="1.778"/>
+<text x="-2.54" y="2.54" size="0.6096" layer="25" ratio="10">&gt;NAME</text>
+<text x="-3.175" y="-3.048" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 </library>
 <library name="SparkFun-DiscreteSemi">
@@ -3590,6 +3599,7 @@ design rules under a new name.</description>
 <element name="J_RECEIVER_SIG" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-730.25"/>
 <element name="J_RECEIVER_VCC" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-735.33"/>
 <element name="J_RECEIVER_GND" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-740.41"/>
+<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-12MM" value="BUZZERPTH" x="-120.65" y="-748.03"/>
 </elements>
 <signals>
 <signal name="GND">

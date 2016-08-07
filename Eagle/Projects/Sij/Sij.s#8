@@ -15639,7 +15639,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="U5" library="SparkFun-DigitalIC" deviceset="INVERTER" device="_SOT23-5" value="TC7SU04F"/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="Q3" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="AO3404A"/>
+<part name="Q2" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="AO3404A"/>
 <part name="RLED1" library="resistor" deviceset="R-US_" device="R0603" value="56"/>
 <part name="RLED2" library="resistor" deviceset="R-US_" device="R0603" value="316"/>
 <part name="LED1" library="led" deviceset="LED" device="CHIPLED_0805"/>
@@ -15768,7 +15768,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <instance part="U5" gate="G$1" x="-439.42" y="175.26"/>
 <instance part="SUPPLY1" gate="G$1" x="-424.18" y="180.34"/>
 <instance part="GND13" gate="1" x="-454.66" y="167.64"/>
-<instance part="Q3" gate="G$1" x="-391.16" y="170.18"/>
+<instance part="Q2" gate="G$1" x="-391.16" y="170.18"/>
 <instance part="RLED1" gate="G$1" x="-208.28" y="-15.24"/>
 <instance part="RLED2" gate="G$1" x="-208.28" y="-22.86"/>
 <instance part="LED1" gate="G$1" x="-193.04" y="-15.24" rot="R90"/>
@@ -15921,7 +15921,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <junction x="-391.16" y="154.94"/>
 <wire x1="-391.16" y1="152.4" x2="-332.74" y2="152.4" width="0.1524" layer="91"/>
 <junction x="-332.74" y="152.4"/>
-<pinref part="Q3" gate="G$1" pin="S"/>
+<pinref part="Q2" gate="G$1" pin="S"/>
 </segment>
 <segment>
 <pinref part="RIN" gate="G$1" pin="1"/>
@@ -16606,7 +16606,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <wire x1="-391.16" y1="182.88" x2="-378.46" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="-391.16" y1="175.26" x2="-391.16" y2="182.88" width="0.1524" layer="91"/>
 <junction x="-391.16" y="182.88"/>
-<pinref part="Q3" gate="G$1" pin="D"/>
+<pinref part="Q2" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="N$13" class="0">
@@ -16617,7 +16617,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <junction x="-406.4" y="170.18"/>
 <wire x1="-406.4" y1="170.18" x2="-398.78" y2="170.18" width="0.1524" layer="91"/>
 <pinref part="U5" gate="G$1" pin="Y"/>
-<pinref part="Q3" gate="G$1" pin="G"/>
+<pinref part="Q2" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="N$35" class="0">
