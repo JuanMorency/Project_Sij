@@ -3097,6 +3097,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pad name="4" x="3.2512" y="-2.2606" drill="1.016" diameter="1.8796"/>
 <text x="-2.54" y="3.81" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 </package>
+<package name="BUZZER-12MM">
+<description>&lt;b&gt;BUZZER&lt;/b&gt;</description>
+<circle x="0" y="0" radius="5.9" width="0.2032" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.2032" layer="51"/>
+<pad name="-" x="-3.25" y="0" drill="0.9" diameter="1.778"/>
+<pad name="+" x="3.25" y="0" drill="0.9" diameter="1.778"/>
+<text x="-2.54" y="2.54" size="0.6096" layer="25" ratio="10">&gt;NAME</text>
+<text x="-3.175" y="-3.048" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 </library>
 <library name="SparkFun-DiscreteSemi">
@@ -3590,6 +3599,7 @@ design rules under a new name.</description>
 <element name="J_RECEIVER_SIG" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-730.25"/>
 <element name="J_RECEIVER_VCC" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-735.33"/>
 <element name="J_RECEIVER_GND" library="SparkFun-Connectors" package="1X07" value="" x="-125.73" y="-740.41"/>
+<element name="SG1" library="SparkFun-Electromechanical" package="BUZZER-12MM" value="BUZZERPTH" x="-120.65" y="-748.03"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -3658,6 +3668,7 @@ design rules under a new name.</description>
 <contactref element="J_RECEIVER_GND" pad="4"/>
 <contactref element="J_RECEIVER_GND" pad="5"/>
 <contactref element="J_RECEIVER_GND" pad="6"/>
+<contactref element="SG1" pad="+"/>
 <wire x1="-71.12" y1="-683.48" x2="-76.2" y2="-683.48" width="0" layer="19" extent="1-1"/>
 <wire x1="-76.2" y1="-672.05" x2="-76.2" y2="-683.48" width="0" layer="19" extent="1-1"/>
 <wire x1="-76.2" y1="-660.62" x2="-76.2" y2="-672.05" width="0" layer="19" extent="1-1"/>
@@ -3675,6 +3686,7 @@ design rules under a new name.</description>
 <wire x1="-120.65" y1="-740.41" x2="-118.11" y2="-740.41" width="0" layer="19" extent="1-1"/>
 <wire x1="-123.19" y1="-740.41" x2="-120.65" y2="-740.41" width="0" layer="19" extent="1-1"/>
 <wire x1="-125.73" y1="-740.41" x2="-123.19" y2="-740.41" width="0" layer="19" extent="1-1"/>
+<wire x1="-117.4" y1="-748.03" x2="-118.11" y2="-740.41" width="0" layer="19" extent="1-1"/>
 <wire x1="-49.85" y1="-604.25" x2="-76.62" y2="-645.16" width="0" layer="19" extent="1-1"/>
 <wire x1="-46.04" y1="-603.2801" x2="-49.85" y2="-604.25" width="0" layer="19" extent="1-1"/>
 <wire x1="-44.03" y1="-598.17" x2="-46.04" y2="-603.2801" width="0" layer="19" extent="1-1"/>
@@ -4249,6 +4261,11 @@ design rules under a new name.</description>
 <contactref element="J_RECEIVER_SIG" pad="1"/>
 <contactref element="U1" pad="63"/>
 <wire x1="-125.73" y1="-730.25" x2="60.07" y2="39.37" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$55">
+<contactref element="SG1" pad="-"/>
+<contactref element="U1" pad="40"/>
+<wire x1="53.07" y1="31.37" x2="-123.9" y2="-748.03" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

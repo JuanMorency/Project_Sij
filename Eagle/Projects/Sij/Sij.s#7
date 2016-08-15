@@ -15858,6 +15858,11 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <text x="-276.86" y="-40.64" size="6.4516" layer="91">Battery</text>
 <text x="-261.62" y="180.34" size="1.778" layer="91">5V USB</text>
 <text x="-213.36" y="2.54" size="3.81" layer="91">LED indicators</text>
+<text x="160.02" y="48.26" size="3.81" layer="91">IMU</text>
+<text x="152.4" y="-20.32" size="3.81" layer="91">RF</text>
+<text x="99.06" y="109.22" size="3.81" layer="91">Programmer</text>
+<text x="7.62" y="152.4" size="3.81" layer="91">Reset</text>
+<text x="-48.26" y="154.94" size="3.81" layer="91">Crystal</text>
 </plain>
 <instances>
 <instance part="U1" gate="1" x="27.94" y="45.72"/>

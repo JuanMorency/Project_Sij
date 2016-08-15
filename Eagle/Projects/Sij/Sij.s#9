@@ -15613,7 +15613,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="U1" library="SparkFun-DigitalIC" deviceset="ATMEGA2560" device="AU"/>
 <part name="ICSP" library="SparkFun-Connectors" deviceset="M05X2" device="SHD"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="CRYSTAL" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US"/>
+<part name="CRYSTAL" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16MHz"/>
 <part name="C_CRYSTAL_1" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="20pF"/>
 <part name="C_CRYSTAL_2" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="20pF"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -15654,15 +15654,15 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="U4" library="TI" deviceset="LM7805" device=""/>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="ESC1_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
+<part name="ESC1_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R3" library="docu-dummy" deviceset="R" device=""/>
 <part name="GND-ISO1" library="SparkFun-Aesthetics" deviceset="GND-ISO" device=""/>
 <part name="GND-ISO2" library="SparkFun-Aesthetics" deviceset="GND-ISO" device=""/>
 <part name="ESC2_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
-<part name="ESC3_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
-<part name="ESC4_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH"/>
+<part name="ESC3_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
+<part name="ESC4_PWM" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="SUPPLY4" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
 <part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
@@ -15697,7 +15697,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="Q_POWER_SEL1" library="SparkFun-DiscreteSemi" deviceset="MOSFET-PCHANNEL" device=""/>
 <part name="R_PULL_UP_POWER_SEL" library="resistor" deviceset="R-US_" device="R0603" value="10K"/>
 <part name="R_PULL_DOWN_POWER_SEL" library="resistor" deviceset="R-US_" device="R0603" value="10K"/>
-<part name="D_POWER_SEL" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="SMA-ALT"/>
+<part name="D_POWER_SEL" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="SMA-ALT" value="CDBA320L"/>
 <part name="U5" library="SparkFun-DigitalIC" deviceset="INVERTER" device="_SOT23-5" value="TC7SU04F"/>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>

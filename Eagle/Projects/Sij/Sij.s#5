@@ -16106,6 +16106,7 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <part name="GND14" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY16" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="SG1" library="SparkFun-Electromechanical" deviceset="BUZZER" device="PTH"/>
+<part name="GND19" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -16267,7 +16268,8 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <instance part="J_RECEIVER_GND" gate="G$1" x="177.8" y="0" rot="MR0"/>
 <instance part="GND14" gate="1" x="167.64" y="-7.62"/>
 <instance part="SUPPLY16" gate="G$1" x="142.24" y="-7.62" rot="R180"/>
-<instance part="SG1" gate="G$1" x="73.66" y="-45.72"/>
+<instance part="SG1" gate="G$1" x="-27.94" y="50.8" rot="R90"/>
+<instance part="GND19" gate="1" x="-22.86" y="48.26"/>
 </instances>
 <busses>
 </busses>
@@ -16596,6 +16598,11 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <wire x1="172.72" y1="7.62" x2="167.64" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="167.64" y1="7.62" x2="167.64" y2="5.08" width="0.1524" layer="91"/>
 <junction x="167.64" y="5.08"/>
+</segment>
+<segment>
+<pinref part="SG1" gate="G$1" pin="1"/>
+<pinref part="GND19" gate="1" pin="GND"/>
+<wire x1="-25.4" y1="50.8" x2="-22.86" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -17528,6 +17535,13 @@ INDUCTOR POWER 3.3UH 4.0A SMD&lt;br&gt;
 <pinref part="U1" gate="1" pin="PJ0(RXD3/PCINT9)"/>
 <wire x1="-7.62" y1="-5.08" x2="-15.24" y2="-5.08" width="0.1524" layer="91"/>
 <label x="-15.24" y="-5.08" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$55" class="0">
+<segment>
+<pinref part="SG1" gate="G$1" pin="2"/>
+<pinref part="U1" gate="1" pin="PL5(OC5C)"/>
+<wire x1="-25.4" y1="53.34" x2="-7.62" y2="53.34" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
