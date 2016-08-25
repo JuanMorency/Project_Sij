@@ -4,3 +4,6 @@ usb programmer
 http://www.fischl.de/usbasp/
 RF controller
 http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
+
+fuse bits
+http://blog.louic.nl/?p=161
