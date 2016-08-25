@@ -36,6 +36,7 @@ http://www.digikey.ca/product-detail/en/jst-sales-america-inc/SXH-001T-P0.6/455-
 
 headers vertical 40*2 pin http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC040SAAN-RC/S1012EC-40-ND/2774814
 header vertical double 40*4 *http://www.digikey.ca/product-detail/en/sullins-connector-solutions/PREC020DAAN-RC/S2012EC-20-ND/2774874
+
 diode
 general *2 http://www.digikey.ca/product-detail/en/diodes-incorporated/1N4004-T/1N4004DICT-ND/160593
 low *1 Vdrop http://www.digikey.ca/product-detail/en/comchip-technology/CDBA340L-G/641-1258-1-ND/1963390
