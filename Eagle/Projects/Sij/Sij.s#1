@@ -13110,6 +13110,12 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="GND35" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY32" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="EXTRA_5V" library="SparkFun-Connectors" deviceset="M03X2" device="FEMALE" value="FEMALE 2x3"/>
+<part name="SUPPLY19" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
+<part name="SUPPLY33" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
+<part name="SUPPLY34" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
+<part name="GND22" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND36" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="GND37" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13339,6 +13345,12 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="GND35" gate="1" x="55.88" y="-96.52"/>
 <instance part="SUPPLY32" gate="G$1" x="81.28" y="-93.98" rot="R180"/>
 <instance part="EXTRA_5V" gate="G$1" x="-109.22" y="81.28"/>
+<instance part="SUPPLY19" gate="G$1" x="-40.64" y="96.52"/>
+<instance part="SUPPLY33" gate="G$1" x="-35.56" y="96.52"/>
+<instance part="SUPPLY34" gate="G$1" x="-30.48" y="96.52"/>
+<instance part="GND22" gate="1" x="-35.56" y="71.12"/>
+<instance part="GND36" gate="1" x="-40.64" y="71.12"/>
+<instance part="GND37" gate="1" x="-45.72" y="71.12"/>
 </instances>
 <busses>
 </busses>
@@ -13576,39 +13588,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <junction x="25.4" y="134.62"/>
 </segment>
 <segment>
-<pinref part="C_DECOUPLING1" gate="G$1" pin="2"/>
-<wire x1="-30.48" y1="86.36" x2="-30.48" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="U1" gate="1" pin="GND"/>
-<wire x1="-30.48" y1="83.82" x2="-7.62" y2="83.82" width="0.1524" layer="91"/>
-<pinref part="GND9" gate="1" pin="GND"/>
-<wire x1="-30.48" y1="73.66" x2="-30.48" y2="83.82" width="0.1524" layer="91"/>
-<junction x="-30.48" y="83.82"/>
-<pinref part="C_DECOUPLING2" gate="G$1" pin="2"/>
-<wire x1="-35.56" y1="83.82" x2="-35.56" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="U1" gate="1" pin="GND1"/>
-<wire x1="-35.56" y1="81.28" x2="-7.62" y2="81.28" width="0.1524" layer="91"/>
-<wire x1="-35.56" y1="81.28" x2="-35.56" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-35.56" y="81.28"/>
-<wire x1="-35.56" y1="73.66" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-30.48" y="73.66"/>
-<pinref part="C_DECOUPLING3" gate="G$1" pin="2"/>
-<wire x1="-40.64" y1="81.28" x2="-40.64" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="U1" gate="1" pin="GND2"/>
-<wire x1="-40.64" y1="78.74" x2="-7.62" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-40.64" y1="78.74" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-40.64" y="78.74"/>
-<wire x1="-40.64" y1="73.66" x2="-35.56" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-35.56" y="73.66"/>
-<pinref part="C_DECOUPLING4" gate="G$1" pin="2"/>
-<wire x1="-45.72" y1="78.74" x2="-45.72" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="U1" gate="1" pin="GND3"/>
-<wire x1="-45.72" y1="76.2" x2="-7.62" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="-45.72" y1="76.2" x2="-45.72" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-45.72" y="76.2"/>
-<wire x1="-45.72" y1="73.66" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
-<junction x="-40.64" y="73.66"/>
-</segment>
-<segment>
 <pinref part="GND13" gate="1" pin="GND"/>
 <pinref part="U5" gate="G$1" pin="GND"/>
 <wire x1="-287.02" y1="129.54" x2="-281.94" y2="129.54" width="0.1524" layer="91"/>
@@ -13785,6 +13764,42 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="60.96" y1="-93.98" x2="55.88" y2="-93.98" width="0.1524" layer="91"/>
 <pinref part="GND35" gate="1" pin="GND"/>
 </segment>
+<segment>
+<pinref part="U1" gate="1" pin="GND1"/>
+<pinref part="C_DECOUPLING2" gate="G$1" pin="2"/>
+<wire x1="-35.56" y1="83.82" x2="-35.56" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="-35.56" y1="81.28" x2="-7.62" y2="81.28" width="0.1524" layer="91"/>
+<junction x="-35.56" y="81.28"/>
+<wire x1="-35.56" y1="81.28" x2="-35.56" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="GND22" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U1" gate="1" pin="GND2"/>
+<pinref part="C_DECOUPLING3" gate="G$1" pin="2"/>
+<wire x1="-40.64" y1="81.28" x2="-40.64" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="78.74" x2="-7.62" y2="78.74" width="0.1524" layer="91"/>
+<junction x="-40.64" y="78.74"/>
+<wire x1="-40.64" y1="78.74" x2="-40.64" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="GND36" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="C_DECOUPLING4" gate="G$1" pin="2"/>
+<wire x1="-45.72" y1="78.74" x2="-45.72" y2="76.2" width="0.1524" layer="91"/>
+<pinref part="U1" gate="1" pin="GND3"/>
+<wire x1="-45.72" y1="76.2" x2="-7.62" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="-45.72" y1="76.2" x2="-45.72" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-45.72" y="76.2"/>
+<pinref part="GND37" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U1" gate="1" pin="GND"/>
+<pinref part="C_DECOUPLING1" gate="G$1" pin="2"/>
+<wire x1="-30.48" y1="86.36" x2="-30.48" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="-30.48" y1="83.82" x2="-7.62" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="GND9" gate="1" pin="GND"/>
+<wire x1="-30.48" y1="83.82" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-30.48" y="83.82"/>
+</segment>
 </net>
 <net name="VCC" class="0">
 <segment>
@@ -13820,33 +13835,12 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <junction x="-96.52" y="124.46"/>
 </segment>
 <segment>
-<pinref part="C_DECOUPLING1" gate="G$1" pin="1"/>
-<pinref part="U1" gate="1" pin="VCC"/>
-<wire x1="-30.48" y1="93.98" x2="-7.62" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-30.48" y="93.98"/>
-<pinref part="C_DECOUPLING2" gate="G$1" pin="1"/>
-<pinref part="U1" gate="1" pin="VCC1"/>
-<wire x1="-35.56" y1="91.44" x2="-7.62" y2="91.44" width="0.1524" layer="91"/>
-<wire x1="-35.56" y1="91.44" x2="-35.56" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-35.56" y="91.44"/>
-<wire x1="-35.56" y1="93.98" x2="-30.48" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="C_DECOUPLING3" gate="G$1" pin="1"/>
-<pinref part="U1" gate="1" pin="VCC2"/>
-<wire x1="-40.64" y1="88.9" x2="-7.62" y2="88.9" width="0.1524" layer="91"/>
-<wire x1="-40.64" y1="88.9" x2="-40.64" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-40.64" y="88.9"/>
-<wire x1="-40.64" y1="93.98" x2="-35.56" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-35.56" y="93.98"/>
-<pinref part="C_DECOUPLING4" gate="G$1" pin="1"/>
+<pinref part="SUPPLY6" gate="G$1" pin="VCC"/>
 <pinref part="U1" gate="1" pin="VCC3"/>
+<pinref part="C_DECOUPLING4" gate="G$1" pin="1"/>
 <wire x1="-45.72" y1="86.36" x2="-7.62" y2="86.36" width="0.1524" layer="91"/>
 <junction x="-45.72" y="86.36"/>
-<wire x1="-45.72" y1="86.36" x2="-45.72" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="-45.72" y1="93.98" x2="-40.64" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-40.64" y="93.98"/>
-<pinref part="SUPPLY6" gate="G$1" pin="VCC"/>
-<wire x1="-45.72" y1="96.52" x2="-45.72" y2="93.98" width="0.1524" layer="91"/>
-<junction x="-45.72" y="93.98"/>
+<wire x1="-45.72" y1="86.36" x2="-45.72" y2="96.52" width="0.1524" layer="91"/>
 <junction x="-45.72" y="86.36"/>
 <pinref part="L1" gate="G$1" pin="1"/>
 <wire x1="-55.88" y1="88.9" x2="-55.88" y2="86.36" width="0.1524" layer="91"/>
@@ -13960,6 +13954,30 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="PORTK" gate="G$1" pin="10"/>
 <wire x1="76.2" y1="-93.98" x2="81.28" y2="-93.98" width="0.1524" layer="91"/>
 <pinref part="SUPPLY32" gate="G$1" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="U1" gate="1" pin="VCC2"/>
+<pinref part="C_DECOUPLING3" gate="G$1" pin="1"/>
+<wire x1="-40.64" y1="88.9" x2="-7.62" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="-40.64" y1="88.9" x2="-40.64" y2="96.52" width="0.1524" layer="91"/>
+<junction x="-40.64" y="88.9"/>
+<pinref part="SUPPLY19" gate="G$1" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="C_DECOUPLING2" gate="G$1" pin="1"/>
+<pinref part="U1" gate="1" pin="VCC1"/>
+<wire x1="-35.56" y1="91.44" x2="-7.62" y2="91.44" width="0.1524" layer="91"/>
+<junction x="-35.56" y="91.44"/>
+<pinref part="SUPPLY33" gate="G$1" pin="VCC"/>
+<wire x1="-35.56" y1="91.44" x2="-35.56" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U1" gate="1" pin="VCC"/>
+<pinref part="C_DECOUPLING1" gate="G$1" pin="1"/>
+<wire x1="-30.48" y1="93.98" x2="-7.62" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="SUPPLY34" gate="G$1" pin="VCC"/>
+<wire x1="-30.48" y1="93.98" x2="-30.48" y2="96.52" width="0.1524" layer="91"/>
+<junction x="-30.48" y="93.98"/>
 </segment>
 </net>
 <net name="N$6" class="0">

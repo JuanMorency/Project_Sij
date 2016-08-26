@@ -5916,7 +5916,7 @@ http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</description>
 <dimension x1="-2.667" y1="-1.0922" x2="2.667" y2="-1.0668" x3="0" y3="-5.9182" textsize="1.27" layer="21" dtype="horizontal"/>
 </package>
 <package name="4.5MM_SQUARE">
-<smd name="IN" x="0" y="0" dx="12.7" dy="12.7" layer="1"/>
+<smd name="IN" x="0" y="0" dx="4.999990625" dy="4.999990625" layer="1"/>
 </package>
 <package name="1X06_LONGPADS">
 <wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.2032" layer="21"/>

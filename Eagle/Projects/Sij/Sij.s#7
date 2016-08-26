@@ -13662,14 +13662,14 @@ W = angled&lt;p&gt;
 <part name="C_AREF" library="SparkFun-Capacitors" deviceset="CAP" device="0603-CAP" value="0.1u"/>
 <part name="GND23" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY20" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
-<part name="R_SCK" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
-<part name="R_MOSI" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
-<part name="R_MISO" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_SCK_1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_MOSI_1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_MISO_1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
 <part name="GND11" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY21" library="SparkFun-Aesthetics" deviceset="V_USB" device=""/>
-<part name="R_SCK1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
-<part name="R_MOSI1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
-<part name="R_MISO1" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_SCK_2" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_MOSI_2" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
+<part name="R_MISO_2" library="resistor" deviceset="R-US_" device="R0603" value="500"/>
 <part name="J2" library="SparkFun-Connectors" deviceset="M03X2" device="FEMALE" value="FEMALE 2x3"/>
 </parts>
 <sheets>
@@ -13849,14 +13849,14 @@ W = angled&lt;p&gt;
 <instance part="C_AREF" gate="G$1" x="-15.24" y="109.22" rot="R270"/>
 <instance part="GND23" gate="1" x="-22.86" y="109.22" rot="R270"/>
 <instance part="SUPPLY20" gate="G$1" x="93.98" y="93.98"/>
-<instance part="R_SCK" gate="G$1" x="162.56" y="106.68"/>
-<instance part="R_MOSI" gate="G$1" x="162.56" y="114.3"/>
-<instance part="R_MISO" gate="G$1" x="162.56" y="104.14"/>
+<instance part="R_SCK_1" gate="G$1" x="162.56" y="106.68"/>
+<instance part="R_MOSI_1" gate="G$1" x="162.56" y="114.3"/>
+<instance part="R_MISO_1" gate="G$1" x="162.56" y="104.14"/>
 <instance part="GND11" gate="1" x="271.78" y="58.42"/>
 <instance part="SUPPLY21" gate="G$1" x="271.78" y="66.04"/>
-<instance part="R_SCK1" gate="G$1" x="220.98" y="63.5"/>
-<instance part="R_MOSI1" gate="G$1" x="256.54" y="63.5" rot="R180"/>
-<instance part="R_MISO1" gate="G$1" x="220.98" y="66.04"/>
+<instance part="R_SCK_2" gate="G$1" x="220.98" y="63.5"/>
+<instance part="R_MOSI_2" gate="G$1" x="256.54" y="63.5" rot="R180"/>
+<instance part="R_MISO_2" gate="G$1" x="220.98" y="66.04"/>
 <instance part="J2" gate="G$1" x="238.76" y="63.5"/>
 </instances>
 <busses>
@@ -15693,12 +15693,12 @@ W = angled&lt;p&gt;
 <label x="71.12" y="88.9" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_MISO" gate="G$1" pin="1"/>
+<pinref part="R_MISO_1" gate="G$1" pin="1"/>
 <wire x1="157.48" y1="104.14" x2="147.32" y2="104.14" width="0.1524" layer="91"/>
 <label x="147.32" y="104.14" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_MISO1" gate="G$1" pin="1"/>
+<pinref part="R_MISO_2" gate="G$1" pin="1"/>
 <wire x1="215.9" y1="66.04" x2="205.74" y2="66.04" width="0.1524" layer="91"/>
 <label x="205.74" y="66.04" size="1.778" layer="95"/>
 </segment>
@@ -15710,12 +15710,12 @@ W = angled&lt;p&gt;
 <label x="71.12" y="86.36" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_MOSI" gate="G$1" pin="1"/>
+<pinref part="R_MOSI_1" gate="G$1" pin="1"/>
 <wire x1="157.48" y1="114.3" x2="147.32" y2="114.3" width="0.1524" layer="91"/>
 <label x="147.32" y="114.3" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_MOSI1" gate="G$1" pin="1"/>
+<pinref part="R_MOSI_2" gate="G$1" pin="1"/>
 <wire x1="261.62" y1="63.5" x2="271.78" y2="63.5" width="0.1524" layer="91"/>
 <label x="271.78" y="63.5" size="1.778" layer="95" rot="R180"/>
 </segment>
@@ -15727,12 +15727,12 @@ W = angled&lt;p&gt;
 <label x="71.12" y="83.82" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_SCK" gate="G$1" pin="1"/>
+<pinref part="R_SCK_1" gate="G$1" pin="1"/>
 <wire x1="157.48" y1="106.68" x2="147.32" y2="106.68" width="0.1524" layer="91"/>
 <label x="147.32" y="106.68" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="R_SCK1" gate="G$1" pin="1"/>
+<pinref part="R_SCK_2" gate="G$1" pin="1"/>
 <wire x1="215.9" y1="63.5" x2="205.74" y2="63.5" width="0.1524" layer="91"/>
 <label x="205.74" y="63.5" size="1.778" layer="95"/>
 </segment>
@@ -15740,14 +15740,14 @@ W = angled&lt;p&gt;
 <net name="N$1" class="0">
 <segment>
 <pinref part="ICSP" gate="G$1" pin="7"/>
-<pinref part="R_SCK" gate="G$1" pin="2"/>
+<pinref part="R_SCK_1" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="106.68" x2="167.64" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="ICSP" gate="G$1" pin="9"/>
-<pinref part="R_MISO" gate="G$1" pin="2"/>
+<pinref part="R_MISO_1" gate="G$1" pin="2"/>
 <wire x1="172.72" y1="104.14" x2="167.64" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -15972,19 +15972,19 @@ W = angled&lt;p&gt;
 <net name="N$20" class="0">
 <segment>
 <wire x1="251.46" y1="63.5" x2="246.38" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="R_MOSI1" gate="G$1" pin="2"/>
+<pinref part="R_MOSI_2" gate="G$1" pin="2"/>
 <pinref part="J2" gate="G$1" pin="4"/>
 </segment>
 </net>
 <net name="N$21" class="0">
 <segment>
-<pinref part="R_SCK1" gate="G$1" pin="2"/>
+<pinref part="R_SCK_2" gate="G$1" pin="2"/>
 <wire x1="231.14" y1="63.5" x2="226.06" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
 <segment>
-<pinref part="R_MISO1" gate="G$1" pin="2"/>
+<pinref part="R_MISO_2" gate="G$1" pin="2"/>
 <wire x1="231.14" y1="66.04" x2="226.06" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
