@@ -15335,6 +15335,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="93.98" y1="-88.9" x2="88.9" y2="-88.9" width="0.1524" layer="91"/>
 <label x="88.9" y="-88.9" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="ESC4_PWM" gate="G$1" pin="1"/>
+<wire x1="-83.82" y1="-96.52" x2="-83.82" y2="-50.8" width="0.1524" layer="91"/>
+<label x="-83.82" y="-50.8" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="PL3" class="0">
 <segment>
@@ -15343,14 +15348,14 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <label x="-17.78" y="48.26" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="ESC4_PWM" gate="G$1" pin="1"/>
-<wire x1="-83.82" y1="-96.52" x2="-83.82" y2="-50.8" width="0.1524" layer="91"/>
-<label x="-83.82" y="-50.8" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="PORTL" gate="G$1" pin="4"/>
 <wire x1="109.22" y1="-86.36" x2="114.3" y2="-86.36" width="0.1524" layer="91"/>
 <label x="109.22" y="-86.36" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="ESC3_PWM" gate="G$1" pin="1"/>
+<wire x1="-116.84" y1="-96.52" x2="-116.84" y2="-50.8" width="0.1524" layer="91"/>
+<label x="-116.84" y="-50.8" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="PL2" class="0">
@@ -15358,11 +15363,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="U1" gate="1" pin="PL2(T5)"/>
 <wire x1="-7.62" y1="45.72" x2="-17.78" y2="45.72" width="0.1524" layer="91"/>
 <label x="-17.78" y="45.72" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="ESC3_PWM" gate="G$1" pin="1"/>
-<wire x1="-116.84" y1="-96.52" x2="-116.84" y2="-50.8" width="0.1524" layer="91"/>
-<label x="-116.84" y="-50.8" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="PORTL" gate="G$1" pin="3"/>
@@ -15377,11 +15377,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <label x="-17.78" y="43.18" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="ESC2_PWM" gate="G$1" pin="1"/>
-<wire x1="-149.86" y1="-96.52" x2="-149.86" y2="-50.8" width="0.1524" layer="91"/>
-<label x="-149.86" y="-50.8" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="PORTL" gate="G$1" pin="2"/>
 <wire x1="109.22" y1="-83.82" x2="114.3" y2="-83.82" width="0.1524" layer="91"/>
 <label x="109.22" y="-83.82" size="1.778" layer="95"/>
@@ -15392,13 +15387,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="U1" gate="1" pin="PL0(ICP4)"/>
 <wire x1="-7.62" y1="40.64" x2="-17.78" y2="40.64" width="0.1524" layer="91"/>
 <label x="-17.78" y="40.64" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="ESC1_PWM" gate="G$1" pin="1"/>
-<wire x1="-182.88" y1="-96.52" x2="-182.88" y2="-86.36" width="0.1524" layer="91"/>
-<wire x1="-182.88" y1="-86.36" x2="-180.34" y2="-86.36" width="0.1524" layer="91"/>
-<wire x1="-180.34" y1="-86.36" x2="-180.34" y2="-50.8" width="0.1524" layer="91"/>
-<label x="-180.34" y="-50.8" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="PORTL" gate="G$1" pin="1"/>
@@ -15573,6 +15561,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <wire x1="-5.08" y1="-88.9" x2="-10.16" y2="-88.9" width="0.1524" layer="91"/>
 <label x="-10.16" y="-88.9" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="ESC2_PWM" gate="G$1" pin="1"/>
+<wire x1="-149.86" y1="-96.52" x2="-149.86" y2="-50.8" width="0.1524" layer="91"/>
+<label x="-149.86" y="-50.8" size="1.778" layer="95"/>
+</segment>
 </net>
 <net name="PH3" class="0">
 <segment>
@@ -15584,6 +15577,13 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="PORTH" gate="G$1" pin="4"/>
 <wire x1="10.16" y1="-86.36" x2="15.24" y2="-86.36" width="0.1524" layer="91"/>
 <label x="10.16" y="-86.36" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="ESC1_PWM" gate="G$1" pin="1"/>
+<wire x1="-182.88" y1="-96.52" x2="-182.88" y2="-86.36" width="0.1524" layer="91"/>
+<wire x1="-182.88" y1="-86.36" x2="-180.34" y2="-86.36" width="0.1524" layer="91"/>
+<wire x1="-180.34" y1="-86.36" x2="-180.34" y2="-50.8" width="0.1524" layer="91"/>
+<label x="-180.34" y="-50.8" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="PF0_PF2" class="0">

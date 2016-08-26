@@ -3617,40 +3617,36 @@ design rules under a new name.</description>
 <signal name="PL5">
 <contactref element="U1" pad="40"/>
 <contactref element="PORTL" pad="6"/>
-<wire x1="50.53" y1="47.88" x2="20.32" y2="6.35" width="0" layer="19" extent="1-1"/>
+<wire x1="20.32" y1="6.35" x2="50.53" y2="47.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PL4">
 <contactref element="U1" pad="39"/>
 <contactref element="PORTL" pad="5"/>
-<wire x1="50.03" y1="47.88" x2="20.32" y2="3.81" width="0" layer="19" extent="1-1"/>
+<contactref element="ESC4_PWM" pad="1"/>
+<wire x1="20.32" y1="3.81" x2="50.03" y2="47.88" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="11.43" x2="20.32" y2="3.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PL3">
 <contactref element="U1" pad="38"/>
-<contactref element="ESC4_PWM" pad="1"/>
 <contactref element="PORTL" pad="4"/>
-<wire x1="49.53" y1="47.88" x2="3.81" y2="11.43" width="0" layer="19" extent="1-1"/>
-<wire x1="17.78" y1="6.35" x2="3.81" y2="11.43" width="0" layer="19" extent="1-1"/>
+<contactref element="ESC3_PWM" pad="1"/>
+<wire x1="49.53" y1="47.88" x2="96.52" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="17.78" y1="6.35" x2="49.53" y2="47.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PL2">
 <contactref element="U1" pad="37"/>
-<contactref element="ESC3_PWM" pad="1"/>
 <contactref element="PORTL" pad="3"/>
-<wire x1="96.52" y1="8.89" x2="17.78" y2="3.81" width="0" layer="19" extent="1-1"/>
-<wire x1="49.03" y1="47.88" x2="96.52" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="17.78" y1="3.81" x2="49.03" y2="47.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PL1">
 <contactref element="U1" pad="36"/>
-<contactref element="ESC2_PWM" pad="1"/>
 <contactref element="PORTL" pad="2"/>
-<wire x1="96.52" y1="68.58" x2="15.24" y2="6.35" width="0" layer="19" extent="1-1"/>
-<wire x1="48.53" y1="47.88" x2="96.52" y2="68.58" width="0" layer="19" extent="1-1"/>
+<wire x1="15.24" y1="6.35" x2="48.53" y2="47.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PL0">
 <contactref element="U1" pad="35"/>
-<contactref element="ESC1_PWM" pad="1"/>
 <contactref element="PORTL" pad="1"/>
-<wire x1="3.81" y1="68.58" x2="15.24" y2="3.81" width="0" layer="19" extent="1-1"/>
-<wire x1="48.03" y1="47.88" x2="3.81" y2="68.58" width="0" layer="19" extent="1-1"/>
+<wire x1="15.24" y1="3.81" x2="48.03" y2="47.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PK7">
 <contactref element="U1" pad="82"/>
@@ -3720,12 +3716,16 @@ design rules under a new name.</description>
 <signal name="PH4">
 <contactref element="U1" pad="16"/>
 <contactref element="PORTH" pad="5"/>
-<wire x1="41.53" y1="54.38" x2="3.81" y2="50.8" width="0" layer="19" extent="1-1"/>
+<contactref element="ESC2_PWM" pad="1"/>
+<wire x1="41.53" y1="54.38" x2="96.52" y2="68.58" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="50.8" x2="41.53" y2="54.38" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PH3">
 <contactref element="U1" pad="15"/>
 <contactref element="PORTH" pad="4"/>
-<wire x1="41.53" y1="54.88" x2="6.35" y2="53.34" width="0" layer="19" extent="1-1"/>
+<contactref element="ESC1_PWM" pad="1"/>
+<wire x1="6.35" y1="53.34" x2="41.53" y2="54.88" width="0" layer="19" extent="1-1"/>
+<wire x1="3.81" y1="68.58" x2="6.35" y2="53.34" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="PF0_PF2">
 <contactref element="U1" pad="97"/>
