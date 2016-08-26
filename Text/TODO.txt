@@ -11,3 +11,5 @@ ajuster la grosseur du layout du IMU board
 créer un symbole pour le RF receiver à 3x7 pins. (Simon)
 
 check inverter in power selector. might not work, might have to do a spice simulations
+
+vérifier comment les PWM fonctionne pour savoir dans quel port il faut brancher les ESC
