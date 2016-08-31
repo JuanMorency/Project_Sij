@@ -6,3 +6,5 @@ AWG 18 pour ralonge pour ESC
 
 Fer à souder 
 truc pour tenir les composantes avec pinces
+led
+résistance TH 1k 10k 100 4.7k
