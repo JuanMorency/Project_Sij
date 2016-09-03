@@ -65,20 +65,24 @@ void esc::initialize()
   //nécéssaire? déjà à 0 de base
   
   //régler TOP à 4096
-  ICR4H = 0x00;
-  ICR4L = 0x19;
-  ICR5H = 0x00;
-  ICR5L = 0x19;
+  //ICR4H = 0x10;
+  //ICR4L = 0x00;
+  //ICR5H = 0x10;
+  //ICR5L = 0x00;
+    ICR4H = 0x08;
+    ICR4L = 0x00;
+    ICR5H = 0x08;
+    ICR5L = 0x00;
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
-  OCR4AH = 0;
+  OCR4AH = 0x02;
   OCR4AL = 0;
-  OCR4BH = 0;
+  OCR4BH = 0x02;
   OCR4BL = 0;
-  OCR5AH = 0;
+  OCR5AH = 0x02;
   OCR5AL = 0;
-  OCR5BH = 0;
+  OCR5BH = 0x02;
   OCR5BL = 0;
 
   //Set Pins to output

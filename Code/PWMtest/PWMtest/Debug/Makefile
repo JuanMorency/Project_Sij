@@ -37,6 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../esc.cpp \
+../interrupt.cpp \
 ../main.cpp
 
 
@@ -47,15 +49,23 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+esc.o \
+interrupt.o \
 main.o
 
 OBJS_AS_ARGS +=  \
+esc.o \
+interrupt.o \
 main.o
 
 C_DEPS +=  \
+esc.d \
+interrupt.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
+esc.d \
+interrupt.d \
 main.d
 
 OUTPUT_FILE_PATH +=PWMtest.elf
@@ -72,6 +82,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

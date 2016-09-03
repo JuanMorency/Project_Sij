@@ -1,10 +1,12 @@
 #define F_CPU 1000000
+#define min_PWM 0x01
+#define max_PWM 0x06
 
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#include "esc.cpp"
 #include "esc.h"
+#include "interrupt.h"
 
 int main()
 {
@@ -12,48 +14,33 @@ int main()
 	esc allESC;
 	// initialize ESC
 	allESC.initialize();
+	//initialize INT
+	initializeInterrupt();
 	
 	// run forever
 	while(1)
 	{
-		// increment from 0 to 4096
-		for (uint8_t pulse_width_H = 0; pulse_width_H < 8; pulse_width_H++)
+		if (button_rising)
 		{
-			// set pulse width
-			OCR4AH = pulse_width_H;
-			OCR4BH = pulse_width_H;
-			OCR5AH = pulse_width_H;
-			OCR5BH = pulse_width_H;
-			for(uint8_t pulse_width_L = 0; pulse_width_L < 0xFF; pulse_width_L++)
-			{
-				// set pulse width
-				OCR4AH = pulse_width_L;
-				OCR4BH = pulse_width_L;
-				OCR5AH = pulse_width_L;
-				OCR5BH = pulse_width_L;
-				_delay_ms(1);
-			}
+			OCR4AH = 0x02;
+			OCR4AL = 0x80;
+			_delay_ms(1000);
+			button_rising = 0;
 		}
-		
-		// increment from 0 to 4096
-		for (uint8_t pulse_width_H = 8; pulse_width_H > 0; pulse_width_H--)
+		else if (button_falling)
 		{
-			// set pulse width
-			OCR4AH = pulse_width_H;
-			OCR4BH = pulse_width_H;
-			OCR5AH = pulse_width_H;
-			OCR5BH = pulse_width_H;
-			for(uint8_t pulse_width_L = 0xFF; pulse_width_L > 0x00; pulse_width_L--)
-			{
-				// set pulse width
-				OCR4AH = pulse_width_L;
-				OCR4BH = pulse_width_L;
-				OCR5AH = pulse_width_L;
-				OCR5BH = pulse_width_L;
-				_delay_ms(1);
-			}
+			OCR4AH = 0x03;
+			OCR4AL = 0x00;
+			_delay_ms(1000);
+			button_falling = 0;
 		}
-		// repeat this forever
+		else
+		{
+			OCR4AH = 0x02;
+			OCR4AL = 0x00;	
+		}
+
+
 	}
 	return 0;
 }
