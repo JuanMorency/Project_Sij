@@ -39,6 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../esc.cpp \
 ../interrupt.cpp \
+../lcd.cpp \
 ../main.cpp
 
 
@@ -51,21 +52,25 @@ ASM_SRCS +=
 OBJS +=  \
 esc.o \
 interrupt.o \
+lcd.o \
 main.o
 
 OBJS_AS_ARGS +=  \
 esc.o \
 interrupt.o \
+lcd.o \
 main.o
 
 C_DEPS +=  \
 esc.d \
 interrupt.d \
+lcd.d \
 main.d
 
 C_DEPS_AS_ARGS +=  \
 esc.d \
 interrupt.d \
+lcd.d \
 main.d
 
 OUTPUT_FILE_PATH +=PWMtest.elf
@@ -82,6 +87,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

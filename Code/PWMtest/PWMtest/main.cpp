@@ -5,6 +5,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <inttypes.h>
 #include "esc.h"
 #include "interrupt.h"
 
@@ -25,14 +26,14 @@ int main()
 			OCR4AH = 0x02;
 			OCR4AL = 0x80;
 			_delay_ms(1000);
-			button_rising = 0;
+			button_rising = false;
 		}
 		else if (button_falling)
 		{
 			OCR4AH = 0x03;
 			OCR4AL = 0x00;
 			_delay_ms(1000);
-			button_falling = 0;
+			button_falling = false;
 		}
 		else
 		{

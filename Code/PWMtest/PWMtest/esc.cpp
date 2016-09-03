@@ -96,5 +96,5 @@ void esc::initialize()
   TCNT5L = 0;
   
   //delay to make sure the ESC are armed before playing with the PWM
-  _delay_ms(2000);
+  _delay_ms(DELAY_ESC);
 }

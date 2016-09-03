@@ -6,5 +6,7 @@ esc.cpp
 
 interrupt.cpp
 
+lcd.cpp
+
 main.cpp
 

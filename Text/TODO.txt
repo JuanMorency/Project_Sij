@@ -10,5 +10,7 @@ créer un symbole pour le RF receiver à 3x7 pins. (Simon)
 
 check inverter in power selector. might not work, might have to do a spice simulations
 
-Vérifier si le pwm fonctionne avec un oscilloscope
+- set-up le display
+- set-up le interrupt avec la manette
+	- set up timer
 
