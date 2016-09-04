@@ -7,6 +7,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <inttypes.h>
+#include "lcd.h" //temporary for testing
 
 extern bool button_rising;
 extern bool button_falling;

@@ -4,7 +4,7 @@
 	* Description		: Header for lcd.c
 	* Author			: Auguste Lalande, Felix Dube, Juan Morency Trudel
 	* Version			: 1.0.0
-	* Date				: February, 2016
+	* Date				: last modified September 4 2016
   ******************************************************************************
   */
 
@@ -26,11 +26,8 @@
 #define DB7 PORTD7
 
 #define MAX_NUMBER_CHAR_LCD_DISPLAY 16
-#define ENABLE_TIME 400 						/* in us, don't set below ~50 or weird timing issue with display */
-#define WAIT_TIME_AFTER_RESET 2000 	/* in us, don't set below ~1000 with */
-
-/* Exported variables ------------------------------------------------------- */
-extern int lcdtimer;
+#define ENABLE_TIME 0x190 						/* 400 us, don't set below ~50 or weird timing issue with display */
+#define WAIT_TIME_AFTER_RESET 0x7D0 	/* 2000 us, don't set below ~1000 us*/
 
 void initLCD(void);
 void enable(void);
