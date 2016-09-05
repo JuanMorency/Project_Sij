@@ -12,13 +12,11 @@
 #include "esc.h"
 #include "interrupt.h"
 #include "lcd.h"
-//#include "fonction.h"
 
 int main()
 {
-	uint16_t temp = 550;
-	//char* buffers for the use of itoa
-	char str[17];
+	//char* buffers for printing stuff on the LCD
+	char buffer[20];
 	//create ESC object
 	esc allESC;
 	// initialize ESC
@@ -29,45 +27,39 @@ int main()
 	initializecounterPWMread();
 	//initialize LCD
 	initLCD(); 		/* configure LCD */
-	//LCD_WriteString("  Simon va se"); 	/* The 2 initial space are for centering */
-	//SetAdress(64); // goes to line 2 of LCD
-	//LCD_WriteString("  chier dessus"); 
-	// run forever
+	
 	while(1)
-	{
-		
+	{	
 		if (button_falling)
 		{
-			OCR4A = 1500;			
-			OCR4B = 1500;	
-			//OCR4AL = 0x00;
-			//OCR4AH = 0x03;
-			//OCR4BL = 0x00;
-			//OCR4BH = 0x03;
+			OCR4A = 1400/2;
+			OCR4B = 1400/2;
+			OCR5A = 1400/2;
+			OCR5B = 1400/2;
 			_delay_ms(1000);
 			button_falling = false;
 		}
 		else if (button_rising)
-		{		
-			//OCR4AL = 0x00;
-			//OCR4AH = 0x02;
-			//OCR4BL = 0x00;
-			//OCR4BH = 0x02;			
+		{				
 			button_rising = false;
 		}
 		else
 		{
-			OCR4A = ch_3_pw;
-			OCR4B = ch_3_pw;
-		}
+			//the divide by 2 here is required because of the way the ESC is set up
+			//when we will have a frequency of 16MHz we will actually have to multiply by 8
+			OCR4A = ch_3_pw/2;
+			OCR4B = ch_3_pw/2;
+			OCR5A = ch_3_pw/2;
+			OCR5B = ch_3_pw/2;
 			clearDisplay();
-			sprintf(str, "%u    %u     ", OCR4A, OCR4B);
-			LCD_WriteString(str);
+			sprintf(buffer, "%u    %u     ", ch_1_pw, ch_2_pw);
+			LCD_WriteString(buffer);
 			SetAdress(64); // goes to line 2 of LCD
-			sprintf(str, "%u    %u     ", ch_3_pw/2, ch_4_pw/2);
-			LCD_WriteString(str);
+			sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
+			LCD_WriteString(buffer);
 			_delay_ms(200);
-			temp++;
+		}
+
 	}
 	return 0;
 }

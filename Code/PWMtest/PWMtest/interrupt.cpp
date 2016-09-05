@@ -3,9 +3,12 @@
 /*
 Channel du radio controller
 http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
-scroll up une page
 */
 
+/*
+PCINT0 est configuré pour un bouton 
+PCINT1 est configuré pour le radio controller
+*/
 bool button_rising = false;
 bool button_falling = false;
 
@@ -28,25 +31,28 @@ void initializecounterPWMread()
 	last_ch_1 = false, last_ch_2 = false, last_ch_3 = false, last_ch_4 = false;
 	ch_1_counting = false, ch_2_counting = false, ch_3_counting = false, ch_4_counting = false;
 	ch_1_pw = 0, ch_2_pw = 0, ch_3_pw = 0, ch_4_pw = 0;
+	//counter for measuring pulse width of incoming radio signal
 	TCCR3B |= (1 << CS30); //set-up counter in normal mode with prescaler = 1
 	TIMSK3 |= (1 << TOIE3); // enable interrupt on overflow
 }
-
+//for button press
 ISR(PCINT0_vect) {
+	//read pin PB4 and if 1 this must be a rising edge change
 	if (PINB & 0b00010000) button_rising = true;
 	else button_falling = true;
-	_delay_ms(10); //debounce
+	_delay_ms(20); //debounce
 }
-
+//for reading the pwm receiver for the radio receiver
 ISR(PCINT1_vect) {
-	//LCD_WriteString("PCINT1");
 	//channel_1
 	if (PINJ & 0b00001000 && last_ch_1 == false) //Rising edge
 	{	last_ch_1 = true;
 		ch_1_counting = true;
 		//verify if there is an overflow before starting to count
-		if(timer_3_ovf) ch_1_ovf_rising = true;
-		else ch_1_ovf_rising = false;
+		if(timer_3_ovf) 
+			ch_1_ovf_rising = true;
+		else 
+			ch_1_ovf_rising = false;
 		//record the counter value for the rising edge
 		count_ch_1 = TCNT3L | TCNT3H << 8;		
 	}
@@ -61,7 +67,7 @@ ISR(PCINT1_vect) {
 			ch_1_pw = 65535 - count_ch_1 + (TCNT3L | TCNT3H << 8) + 1;				
 		ch_1_counting = false;
 		//remove the overflow flag only when no channel is counting to avoid problems 
-		//when overflow happens when 2 channels are counting
+		//when overflow happens when 2 or more channels are counting simultaneously
 		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
 	}
 	

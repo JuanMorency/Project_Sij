@@ -7,12 +7,16 @@ la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
 fréquence désiré = entre 100 et 500Hz
 Comme on veut un maximum de résolution (le plus grand top possible)
 on maximise top et on laisse prescaler à 1
-pour un Top à 4096:  1 000 000/(4096) = 244 Hz
+pour un Top à 4096:  1 000 000/(4096*2) = 122Hz
+1/122Hz = 8.192ms 
+alors si on veut entre 1 et 2 ms, il faut un signal entre 
+512 et 1024 pour OCRnX
 
 Lorsqu'on aura set le crystal Fclk_I/O = 16M
 donc on aura qu'à changer Top pour le metre à 65536
 pour avoir la même fréquence mais encore plus de résolution
-
+La valeur correspondant à 1 et 2 ms sera alors:
+8192 et 16384 respectivement
 
 Régistres (p. 154)
 
@@ -58,19 +62,10 @@ void esc::initialize()
 
   TCCR4B |= (1 << WGM43) | (1 << CS40) ;
   TCCR5B |= (1 << WGM53) | (1 << CS50) ;
-
-  //Force Output Compare disabled
-  TCCR4C = 0;
-  TCCR5C = 0;
-  //nécéssaire? déjà à 0 de base
   
   //régler TOP à 4096
-  //ICR4H = 0x10;
-  //ICR4L = 0x00;
-  //ICR5H = 0x10;
-  //ICR5L = 0x00;
-    ICR4 = 2000;
-    ICR5 = 2000;
+  ICR4 = 4096;
+  ICR5 = 4096;
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
@@ -83,12 +78,10 @@ void esc::initialize()
   DDRL |= (1<<PL4) | (1<<PL3); 
   DDRH |= (1<<PH4) | (1<<PH3);  
   
-  //Timer 4/5 set to 0
-  TCNT4H = 0;
-  TCNT4L = 0;
-  TCNT5H = 0;
-  TCNT5L = 0;
-  
   //delay to make sure the ESC are armed before playing with the PWM
   _delay_ms(DELAY_ESC);
+  
+  //Timer 4/5 set to 0
+  TCNT4 = 0;
+  TCNT5 = 0;
 }

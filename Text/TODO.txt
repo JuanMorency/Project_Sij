@@ -1,15 +1,13 @@
 
-IMU
-RF controller
-optimize grounds (seperate motor, digital, analog)
+PCB 
 
+- optimize grounds (seperate motor, digital, analog)
+- ajuster la grosseur du layout du IMU board
+- créer un symbole pour le RF receiver à 3x7 pins. (Simon)
+- check inverter in power selector. might not work, might have to do a spice simulations
+- ajouter 2 résistances pour une pin V0 pour le brightness si on branche le LCD
 
-ajuster la grosseur du layout du IMU board
-
-créer un symbole pour le RF receiver à 3x7 pins. (Simon)
-
-check inverter in power selector. might not work, might have to do a spice simulations
-
-- set-up le interrupt avec la manette
-	- set up timer
-
+- Crystal
+- Acceleromètre
+- Finir le PCB
+- Envoyer le PCB
