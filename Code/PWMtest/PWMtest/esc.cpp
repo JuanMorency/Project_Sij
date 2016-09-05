@@ -85,3 +85,8 @@ void esc::initialize()
   TCNT4 = 0;
   TCNT5 = 0;
 }
+
+void esc::set(uint16_t pwm)
+{
+	OCR4B = pwm;
+}
