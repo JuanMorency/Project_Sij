@@ -23,7 +23,7 @@ void initLCD(void){
 	//init timer for LCD control. Counts up every 1us
 	TCCR1B |= (1 << CS00); /*prescaler 1*/
 	//set pins as outputs
-	DDRD |= (1 << DDD7) | (1 << DDD6) | (1 << DDD5) | (1 << DDD4) | (1 << DDD3) | (1 << DDD2) | (1 << DDD1) | (1 << DDD0);
+	DDRK |= (1 << DDK7) | (1 << DDK6) | (1 << DDK5) | (1 << DDK4) | (1 << DDK3) | (1 << DDK2) | (1 << DDK1) | (1 << DDK0);
 	DDRL |= (1 << DDL7) | (1 << DDL6) | (1 << DDL5);
 	clearDisplay();
 	turnOn();
@@ -55,9 +55,9 @@ void LCD_WriteChar(char c){
 	for (i = 0; i < 8; i++) {
 		/* extracts a bit of the char and checks if it's 1 to set the line to high */
 		if ((c & (1 << i)) >> i == 1) {
-			PORTD |= (1 << dataPin[i]);
+			PORTK |= (1 << dataPin[i]);
 		} else {
-			PORTD &= ~(1 << dataPin[i]);
+			PORTK &= ~(1 << dataPin[i]);
 		}
 	}
 	enable();
@@ -86,14 +86,14 @@ void LCD_WriteString(char * string){
 void clearDisplay(void){
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD &= ~(1 << DB7);
-	PORTD &= ~(1 << DB6);
-	PORTD &= ~(1 << DB5);
-	PORTD &= ~(1 << DB4);
-	PORTD &= ~(1 << DB3);
-	PORTD &= ~(1 << DB2);
-	PORTD &= ~(1 << DB1);
-	PORTD |= (1 << DB0);
+	PORTK &= ~(1 << DB7);
+	PORTK &= ~(1 << DB6);
+	PORTK &= ~(1 << DB5);
+	PORTK &= ~(1 << DB4);
+	PORTK &= ~(1 << DB3);
+	PORTK &= ~(1 << DB2);
+	PORTK &= ~(1 << DB1);
+	PORTK |= (1 << DB0);
 	enable();
 	/* extra wait time from the datasheet 1.53ms */
 	TCNT1L = 0, TCNT1H = 0;
@@ -114,13 +114,13 @@ void SetAdress(int address){
   int i;
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD |= (1 << DB7);
+	PORTK |= (1 << DB7);
 	/* set DB0 to DB6 to the address of the DDRAM */
 	for (i = 0; i < 7; i++) {
 		if ((address & (1 << i)) >> i == 1) {
-			PORTD |= (1 << dataPin[i]);
+			PORTK |= (1 << dataPin[i]);
 		} else {
-			PORTD &= ~(1 << dataPin[i]);
+			PORTK &= ~(1 << dataPin[i]);
 		}
 	}
 	enable();
@@ -134,14 +134,14 @@ void SetAdress(int address){
 void returnHome(void){
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD &= ~(1 << DB7);
-	PORTD &= ~(1 << DB6);
-	PORTD &= ~(1 << DB5);
-	PORTD &= ~(1 << DB4);
-	PORTD &= ~(1 << DB3);
-	PORTD &= ~(1 << DB2);
-	PORTD |= (1 << DB1);
-	PORTD &= ~(1 << DB0);
+	PORTK &= ~(1 << DB7);
+	PORTK &= ~(1 << DB6);
+	PORTK &= ~(1 << DB5);
+	PORTK &= ~(1 << DB4);
+	PORTK &= ~(1 << DB3);
+	PORTK &= ~(1 << DB2);
+	PORTK |= (1 << DB1);
+	PORTK &= ~(1 << DB0);
 	enable();
 	/* extra wait time from the datasheet 1.53ms */
 	TCNT1L = 0, TCNT1H = 0;
@@ -167,14 +167,14 @@ void inputMode(void){
 void turnOn(void){
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD &= ~(1 << DB7);
-	PORTD &= ~(1 << DB6);
-	PORTD &= ~(1 << DB5);
-	PORTD &= ~(1 << DB4);
-	PORTD |= (1 << DB3);
-	PORTD |= (1 << DB2);
-	PORTD &= ~(1 << DB1);
-	PORTD &= ~(1 << DB0);
+	PORTK &= ~(1 << DB7);
+	PORTK &= ~(1 << DB6);
+	PORTK &= ~(1 << DB5);
+	PORTK &= ~(1 << DB4);
+	PORTK |= (1 << DB3);
+	PORTK |= (1 << DB2);
+	PORTK &= ~(1 << DB1);
+	PORTK &= ~(1 << DB0);
 	enable();
 }
 
@@ -186,14 +186,14 @@ void turnOn(void){
 void functionSet(void){
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD &= ~(1 << DB7);
-	PORTD &= ~(1 << DB6);
-	PORTD |= (1 << DB5);
-	PORTD |= (1 << DB4);
-	PORTD |= (1 << DB3);
-	PORTD &= ~(1 << DB2);
-	PORTD &= ~(1 << DB1);
-	PORTD &= ~(1 << DB0);
+	PORTK &= ~(1 << DB7);
+	PORTK &= ~(1 << DB6);
+	PORTK |= (1 << DB5);
+	PORTK |= (1 << DB4);
+	PORTK |= (1 << DB3);
+	PORTK &= ~(1 << DB2);
+	PORTK &= ~(1 << DB1);
+	PORTK &= ~(1 << DB0);
 	enable();
 }
 
@@ -206,13 +206,13 @@ void functionSet(void){
 void entryMode(void){
 	PORTL &= ~(1 << RS);
 	PORTL &= ~(1 << RW);
-	PORTD &= ~(1 << DB7);
-	PORTD &= ~(1 << DB6);
-	PORTD &= ~(1 << DB5);
-	PORTD &= ~(1 << DB4);
-	PORTD &= ~(1 << DB3);
-	PORTD |= (1 << DB2);
-	PORTD |= (1 << DB1);
-	PORTD &= ~(1 << DB0);
+	PORTK &= ~(1 << DB7);
+	PORTK &= ~(1 << DB6);
+	PORTK &= ~(1 << DB5);
+	PORTK &= ~(1 << DB4);
+	PORTK &= ~(1 << DB3);
+	PORTK |= (1 << DB2);
+	PORTK |= (1 << DB1);
+	PORTK &= ~(1 << DB0);
 	enable();
 }

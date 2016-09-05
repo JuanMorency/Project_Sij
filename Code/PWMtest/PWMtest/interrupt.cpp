@@ -1,5 +1,10 @@
 ﻿#include "interrupt.h"
 
+/*
+Channel du radio controller
+http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
+scroll up une page
+*/
 
 bool button_rising = false;
 bool button_falling = false;
@@ -34,28 +39,103 @@ ISR(PCINT0_vect) {
 }
 
 ISR(PCINT1_vect) {
-	LCD_WriteString("PCINT1");
-	//if (PINJ & 0b00001000 && last_ch_1 == false) //Rising edge
-	//{	last_ch_1 = true;
-		//ch_1_counting = true;
-		////verify if there is an overflow before starting to count
-		//if(timer_3_ovf) ch_1_ovf_rising = true;
-		//else ch_1_ovf_rising = false;
-		////record the counter value for the rising edge
-		//count_ch_1 = TCNT3L | TCNT3H << 8;		
-	//}
-	//else if (!(PINJ & 0b00001000) && last_ch_1 == true) //Falling edge
-	//{	last_ch_1 = false;
-		////subtract current counter to old one in count_ch_1 and store variable in ch_1_pw
-		////only if there is no overflow at rising and falling edge or if there is an overflow for both
-		//if((!timer_3_ovf && !ch_1_ovf_rising) || (timer_3_ovf && ch_1_ovf_rising) ) ch_1_pw = (TCNT3L | TCNT3H << 8) - count_ch_1;
-		////else there is an overflow calculate the real pulse time by adding 2^16
-		//else ch_1_pw = 65535 - count_ch_1 + (TCNT3L | TCNT3H << 8) + 1; //je pense que c'est bon mais à vérifier				
-		//ch_1_counting = false;
-		////remove the overflow flag only when no channel is counting to avoid problems 
-		////when overflow happens when 2 channels are counting
-		//if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
-	//}
+	//LCD_WriteString("PCINT1");
+	//channel_1
+	if (PINJ & 0b00001000 && last_ch_1 == false) //Rising edge
+	{	last_ch_1 = true;
+		ch_1_counting = true;
+		//verify if there is an overflow before starting to count
+		if(timer_3_ovf) ch_1_ovf_rising = true;
+		else ch_1_ovf_rising = false;
+		//record the counter value for the rising edge
+		count_ch_1 = TCNT3L | TCNT3H << 8;		
+	}
+	else if (!(PINJ & 0b00001000) && last_ch_1 == true) //Falling edge
+	{	last_ch_1 = false;
+		//subtract current counter to old one in count_ch_1 and store variable in ch_1_pw
+		//only if there is no overflow at rising and falling edge or if there is an overflow for both
+		if((!timer_3_ovf && !ch_1_ovf_rising) || (timer_3_ovf && ch_1_ovf_rising)) 
+			ch_1_pw = (TCNT3L | TCNT3H << 8) - count_ch_1;
+		//else there is an overflow calculate the real pulse time by adding 2^16
+		else 
+			ch_1_pw = 65535 - count_ch_1 + (TCNT3L | TCNT3H << 8) + 1;				
+		ch_1_counting = false;
+		//remove the overflow flag only when no channel is counting to avoid problems 
+		//when overflow happens when 2 channels are counting
+		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
+	}
+	
+	
+	//channel_2
+	if (PINJ & 0b00010000 && last_ch_2 == false) //Rising edge
+	{	last_ch_2 = true;
+		ch_2_counting = true;
+		//verify if there is an overflow before starting to count
+		if(timer_3_ovf) ch_2_ovf_rising = true;
+		else ch_2_ovf_rising = false;
+		//record the counter value for the rising edge
+		count_ch_2 = TCNT3L | TCNT3H << 8;
+	}
+	else if (!(PINJ & 0b00010000) && last_ch_2 == true) //Falling edge
+	{	last_ch_2 = false;
+		//subtract current counter to old one in count_ch_2 and store variable in ch_2_pw
+		//only if there is no overflow at rising and falling edge or if there is an overflow for both
+		if((!timer_3_ovf && !ch_2_ovf_rising) || (timer_3_ovf && ch_2_ovf_rising) ) ch_2_pw = (TCNT3L | TCNT3H << 8) - count_ch_2;
+		//else there is an overflow calculate the real pulse time by adding 2^16
+		else ch_1_pw = 65535 - count_ch_2 + (TCNT3L | TCNT3H << 8) + 1;
+		ch_2_counting = false;
+		//remove the overflow flag only when no channel is counting to avoid problems
+		//when overflow happens when 2 channels are counting
+		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
+	}
+	
+	
+	//channel_3
+	if (PINJ & 0b00100000 && last_ch_3 == false) //Rising edge
+	{	last_ch_3 = true;
+		ch_3_counting = true;
+		//verify if there is an overflow before starting to count
+		if(timer_3_ovf) ch_3_ovf_rising = true;
+		else ch_3_ovf_rising = false;
+		//record the counter value for the rising edge
+		count_ch_3 = TCNT3L | TCNT3H << 8;
+	}
+	else if (!(PINJ & 0b00100000) && last_ch_3 == true) //Falling edge
+	{	last_ch_3 = false;
+		//subtract current counter to old one in count_ch_3 and store variable in ch_3_pw
+		//only if there is no overflow at rising and falling edge or if there is an overflow for both
+		if((!timer_3_ovf && !ch_3_ovf_rising) || (timer_3_ovf && ch_3_ovf_rising) ) ch_3_pw = (TCNT3L | TCNT3H << 8) - count_ch_3;
+		//else there is an overflow calculate the real pulse time by adding 2^16
+		else ch_3_pw = 65535 - count_ch_3 + (TCNT3L | TCNT3H << 8) + 3;
+		ch_3_counting = false;
+		//remove the overflow flag only when no channel is counting to avoid problems
+		//when overflow happens when 2 channels are counting
+		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
+	}
+	
+	
+	//channel_4
+	if (PINJ & 0b01000000 && last_ch_4 == false) //Rising edge
+	{	last_ch_4 = true;
+		ch_4_counting = true;
+		//verify if there is an overflow before starting to count
+		if(timer_3_ovf) ch_4_ovf_rising = true;
+		else ch_4_ovf_rising = false;
+		//record the counter value for the rising edge
+		count_ch_4 = TCNT3L | TCNT3H << 8;
+	}
+	else if (!(PINJ & 0b01000000) && last_ch_4 == true) //Falling edge
+	{	last_ch_4 = false;
+		//subtract current counter to old one in count_ch_4 and store variable in ch_4_pw
+		//only if there is no overflow at rising and falling edge or if there is an overflow for both
+		if((!timer_3_ovf && !ch_4_ovf_rising) || (timer_3_ovf && ch_4_ovf_rising) ) ch_4_pw = (TCNT3L | TCNT3H << 8) - count_ch_4;
+		//else there is an overflow calculate the real pulse time by adding 2^16
+		else ch_4_pw = 65535 - count_ch_4 + (TCNT3L | TCNT3H << 8) + 4;
+		ch_4_counting = false;
+		//remove the overflow flag only when no channel is counting to avoid problems
+		//when overflow happens when 2 channels are counting
+		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
+	}
 	
 	//do the same for every channel when cleaned up
 	

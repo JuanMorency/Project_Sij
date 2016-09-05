@@ -16,14 +16,14 @@
 #define RS 	PORTL5
 #define RW 	PORTL6
 #define E 	PORTL7
-#define DB0 PORTD0
-#define DB1 PORTD1
-#define DB2 PORTD2
-#define DB3 PORTD3
-#define DB4 PORTD4
-#define DB5 PORTD5
-#define DB6 PORTD6
-#define DB7 PORTD7
+#define DB0 PORTK0
+#define DB1 PORTK1
+#define DB2 PORTK2
+#define DB3 PORTK3
+#define DB4 PORTK4
+#define DB5 PORTK5
+#define DB6 PORTK6
+#define DB7 PORTK7
 
 #define MAX_NUMBER_CHAR_LCD_DISPLAY 16
 #define ENABLE_TIME 0x190 						/* 400 us, don't set below ~50 or weird timing issue with display */

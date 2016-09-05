@@ -4,7 +4,7 @@
 /*
 Pour l'instant Fclk_I/O = 1M
 la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
-fréquence désiré = entre 100 et 300Hz
+fréquence désiré = entre 100 et 500Hz
 Comme on veut un maximum de résolution (le plus grand top possible)
 on maximise top et on laisse prescaler à 1
 pour un Top à 4096:  1 000 000/(4096) = 244 Hz
@@ -69,21 +69,15 @@ void esc::initialize()
   //ICR4L = 0x00;
   //ICR5H = 0x10;
   //ICR5L = 0x00;
-    ICR4H = 0x08;
-    ICR4L = 0x00;
-    ICR5H = 0x08;
-    ICR5L = 0x00;
+    ICR4 = 2000;
+    ICR5 = 2000;
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
-  OCR4AH = 0x02;
-  OCR4AL = 0;
-  OCR4BH = 0x02;
-  OCR4BL = 0;
-  OCR5AH = 0x02;
-  OCR5AL = 0;
-  OCR5BH = 0x02;
-  OCR5BL = 0;
+  OCR4A = 1200;
+  OCR4B = 1200;
+  OCR5A = 1200;
+  OCR5B = 1200;
 
   //Set Pins to output
   DDRL |= (1<<PL4) | (1<<PL3); 
