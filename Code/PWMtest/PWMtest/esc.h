@@ -11,5 +11,6 @@ class esc
 public:
   esc();
   void initialize();
+  void set(uint16_t pwm);
 };
 #endif

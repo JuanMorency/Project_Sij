@@ -84,11 +84,14 @@ void esc::initialize()
   DDRH |= (1<<PH4) | (1<<PH3);  
   
   //Timer 4/5 set to 0
-  TCNT4H = 0;
-  TCNT4L = 0;
-  TCNT5H = 0;
-  TCNT5L = 0;
+  TCNT4 = 0;
+  TCNT5 = 0;
   
   //delay to make sure the ESC are armed before playing with the PWM
   _delay_ms(DELAY_ESC);
+}
+
+void esc::set(uint16_t pwm)
+{
+	OCR4B = pwm;
 }
