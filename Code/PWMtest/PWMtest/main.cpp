@@ -38,8 +38,8 @@ int main()
 		
 		if (button_falling)
 		{
-			OCR4A = 1300;			
-			OCR4B = 1300;	
+			OCR4A = 1500;			
+			OCR4B = 1500;	
 			//OCR4AL = 0x00;
 			//OCR4AH = 0x03;
 			//OCR4BL = 0x00;
@@ -64,7 +64,7 @@ int main()
 			sprintf(str, "%u    %u     ", OCR4A, OCR4B);
 			LCD_WriteString(str);
 			SetAdress(64); // goes to line 2 of LCD
-			sprintf(str, "%u    %u     ", ch_3_pw, ch_4_pw);
+			sprintf(str, "%u    %u     ", ch_3_pw/2, ch_4_pw/2);
 			LCD_WriteString(str);
 			_delay_ms(200);
 			temp++;

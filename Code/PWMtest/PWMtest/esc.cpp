@@ -74,10 +74,10 @@ void esc::initialize()
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
-  OCR4A = 1200;
-  OCR4B = 1200;
-  OCR5A = 1200;
-  OCR5B = 1200;
+  OCR4A = 0;
+  OCR4B = 0;
+  OCR5A = 0;
+  OCR5B = 0;
 
   //Set Pins to output
   DDRL |= (1<<PL4) | (1<<PL3); 
