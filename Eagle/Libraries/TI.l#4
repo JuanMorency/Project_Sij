@@ -672,6 +672,11 @@
 </gates>
 <devices>
 <device name="" package="KTT3">
+<connects>
+<connect gate="G$1" pin="GND" pad="2 4"/>
+<connect gate="G$1" pin="IN" pad="1"/>
+<connect gate="G$1" pin="OUT" pad="3"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>

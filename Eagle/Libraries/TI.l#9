@@ -587,6 +587,13 @@
 </symbol>
 <symbol name="LM7805">
 <description>LM7805 from TI 5V LDO linear regulator</description>
+<pin name="OUT" x="15.24" y="2.54" length="middle" rot="R180"/>
+<pin name="IN" x="-15.24" y="2.54" length="middle"/>
+<pin name="GND" x="0" y="-10.16" length="middle" rot="R90"/>
+<wire x1="-10.16" y1="5.08" x2="-10.16" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-10.16" y1="-5.08" x2="10.16" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="-5.08" x2="10.16" y2="5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="5.08" x2="-10.16" y2="5.08" width="0.254" layer="94"/>
 </symbol>
 </symbols>
 <devicesets>
