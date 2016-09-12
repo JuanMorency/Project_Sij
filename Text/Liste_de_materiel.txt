@@ -41,3 +41,7 @@ Heatshrink:
 Programmeur:
 
 http://www.robotshop.com/ca/en/pololu-usb-avr-programmer-v2.html
+
+LED strip:
+
+https://www.aliexpress.com/item/individually-addressable-1m-2m-4m-5m-waterproof-ip65-ip67-5050-rgb-30-60-74-96-144/32243894576.html?spm=2114.40010208.4.16.kZwFL4

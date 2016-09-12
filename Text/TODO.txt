@@ -2,10 +2,17 @@
 PCB 
 
 - optimize grounds (seperate motor, digital, analog)
-- ajuster la grosseur du layout du IMU board
-- verify if we need filter at ADC for signals coming from power chip
+- vérifier les grounds semble avoir un problème!!
+- check if power traces are wide enough
+- vérifier les traces bottoms croisement 90 degree
+- lire recommandations PCB
+- make corners 45 degree angles
+- verify solder pours
+- optimiser les connecteurs pour les LED strips
+- vérifier quel port sur le atmega peut controller les led strips. PWM?
 
 Code
 
 - Crystal
 - Acceleromètre
+- Look into LED strips

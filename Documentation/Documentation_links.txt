@@ -7,3 +7,6 @@ http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 
 fuse bits
 http://blog.louic.nl/?p=161
+
+ADC
+http://extremeelectronics.co.in/avr-tutorials/using-adc-of-avr-microcontroller/

@@ -142,10 +142,11 @@
 <packages>
 <package name="AWG10_HOLE_PAD">
 <pad name="BAT_CONNECTOR" x="0" y="0" drill="3.048" diameter="5.334" shape="octagon"/>
-<text x="-2.54" y="3.81" size="0.8128" layer="27">&gt;VALUE</text>
+<text x="-2.54" y="3.81" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="4.5MM_SQUARE">
 <smd name="IN" x="0" y="0" dx="4.999990625" dy="4.999990625" layer="1"/>
+<text x="-2.54" y="3.81" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="1X06">
 <wire x1="11.43" y1="0.635" x2="12.065" y2="1.27" width="0.2032" layer="21"/>
@@ -980,10 +981,8 @@ Through-hole SPDT Switch&lt;br&gt;
 <pad name="1" x="0" y="4.5974" drill="2.286" diameter="3.302" shape="long" stop="no"/>
 <pad name="2" x="0" y="0" drill="2.286" diameter="3.302" shape="long" stop="no"/>
 <pad name="3" x="0" y="-4.5974" drill="2.286" diameter="3.302" shape="long" stop="no"/>
-<text x="6.9215" y="5.0165" size="1.778" layer="25" ratio="10">&gt;NAME</text>
-<text x="6.731" y="1.4605" size="1.778" layer="27" ratio="10">&gt;VALUE</text>
-<dimension x1="-6.3025" y1="7.6565" x2="-6.3025" y2="-8.228" x3="-10.16" y3="-0.28575" textsize="1.27" layer="21"/>
-<dimension x1="-4.969" y1="12.165" x2="5.207" y2="11.684" x3="0.119" y3="14.2875" textsize="1.27" layer="21" dtype="horizontal"/>
+<text x="-3.2385" y="8.8265" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-3.429" y="-9.9695" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 <wire x1="-5.0165" y1="7.8105" x2="5.207" y2="7.747" width="0.127" layer="21" curve="-180"/>
 <wire x1="5.334" y1="-8.001" x2="-4.953" y2="-8.128" width="0.127" layer="21" curve="-180"/>
 </package>
@@ -1022,7 +1021,6 @@ Through-hole SPDT Switch&lt;br&gt;
 <pad name="6" x="12.7" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="7" x="15.24" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
 <text x="-1.3462" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-1.27" y="-8.255" size="1.27" layer="27">&gt;VALUE</text>
 <rectangle x1="14.986" y1="-0.254" x2="15.494" y2="0.254" layer="51"/>
 <rectangle x1="12.446" y1="-0.254" x2="12.954" y2="0.254" layer="51"/>
 <rectangle x1="9.906" y1="-0.254" x2="10.414" y2="0.254" layer="51"/>
