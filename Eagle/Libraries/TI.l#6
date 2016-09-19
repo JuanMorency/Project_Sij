@@ -651,9 +651,9 @@
 <devices>
 <device name="" package="KTT3">
 <connects>
-<connect gate="A" pin="ADJ/GND" pad="3"/>
+<connect gate="A" pin="ADJ/GND" pad="1"/>
 <connect gate="A" pin="EPAD" pad="4"/>
-<connect gate="A" pin="INPUT" pad="1"/>
+<connect gate="A" pin="INPUT" pad="3"/>
 <connect gate="A" pin="OUTPUT" pad="2"/>
 </connects>
 <technologies>

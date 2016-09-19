@@ -2434,11 +2434,11 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </element>
 <element name="C_CRY1" library="SparkFun-Capacitors" package="0603-CAP" value="22pF" x="72.86615" y="65.08765" smashed="yes">
 <attribute name="PROD_ID" value="CAP-07876" x="72.86615" y="65.08765" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="71.97715" y="65.84965" size="0.8128" layer="20" font="vector"/>
+<attribute name="NAME" x="67.0162125" y="64.659025" size="0.8128" layer="20" font="vector"/>
 </element>
 <element name="C_CRY2" library="SparkFun-Capacitors" package="0603-CAP" value="22pF" x="72.86625" y="63.02365" smashed="yes">
 <attribute name="PROD_ID" value="CAP-07876" x="72.86625" y="63.02365" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="71.97725" y="63.78565" size="0.8128" layer="20" font="vector"/>
+<attribute name="NAME" x="66.976625" y="62.6347125" size="0.8128" layer="20" font="vector"/>
 </element>
 <element name="BQ76925" library="TI" package="PW20" value="BQ76925_PW_20" x="42.5452" y="18.8909" smashed="yes">
 <attribute name="GENERIC_PART_NUMBER" value="BQ76925" x="42.5452" y="18.8909" size="1.778" layer="27" display="off"/>
@@ -2713,14 +2713,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <element name="C_AVCC" library="SparkFun-Capacitors" package="0603-CAP" value="0.1u" x="76.31321875" y="38.1" smashed="yes" rot="R180">
 <attribute name="NAME" x="77.20221875" y="37.338" size="0.8128" layer="20" font="vector" rot="R180"/>
 </element>
-<element name="RSCL" library="resistor" package="R0603" value="2K" x="65.83591875" y="66.0408" smashed="yes" rot="R270">
-<attribute name="NAME" x="65.24545" y="63.45466875" size="0.8128" layer="20"/>
+<element name="RSCL" library="resistor" package="R0603" value="2K" x="65.95498125" y="66.0408" smashed="yes" rot="R270">
+<attribute name="NAME" x="65.25189375" y="64.8088875" size="0.8128" layer="20" rot="R90"/>
 </element>
-<element name="RSDA" library="resistor" package="R0603" value="2K" x="63.61341875" y="66.1995" smashed="yes" rot="R270">
-<attribute name="NAME" x="61.91175" y="63.61341875" size="0.8128" layer="20"/>
+<element name="RSDA" library="resistor" package="R0603" value="2K" x="63.13716875" y="66.1995" smashed="yes" rot="R270">
+<attribute name="NAME" x="62.27533125" y="64.7295625" size="0.8128" layer="20" rot="R90"/>
 </element>
 <element name="RLED7" library="resistor" package="R0603" value="" x="51.3967" y="56.98065" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="57.61565" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="58.88565" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED7" library="led" package="CHIPLED_0805" value="" x="54.887" y="56.98065" smashed="yes" rot="R90">
@@ -2728,7 +2727,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="59.52065" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED6" library="resistor" package="R0603" value="" x="51.3967" y="58.5685" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="59.2035" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="60.4735" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED6" library="led" package="CHIPLED_0805" value="" x="54.887" y="58.5685" smashed="yes" rot="R90">
@@ -2736,7 +2734,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="61.1085" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED5" library="resistor" package="R0603" value="" x="51.3967" y="60.15635" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="60.79135" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="62.06135" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED5" library="led" package="CHIPLED_0805" value="" x="54.887" y="60.15635" smashed="yes" rot="R90">
@@ -2744,7 +2741,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="62.69635" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED4" library="resistor" package="R0603" value="" x="51.3967" y="61.7442" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="62.3792" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="63.6492" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED4" library="led" package="CHIPLED_0805" value="" x="54.887" y="61.7442" smashed="yes" rot="R90">
@@ -2755,10 +2751,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="84.2845" y="56.36578125" size="0.8128" layer="20" rot="R180"/>
 </element>
 <element name="IMU_BOARD" library="custom_parts" package="1X06_LONGPADS" value="M06_IMU" x="33.5168" y="75.4402" smashed="yes">
-<attribute name="NAME" x="33.5168" y="72.3287" size="0.8128" layer="20" ratio="10" align="center-left"/>
+<attribute name="NAME" x="36.136175" y="78.281825" size="1.016" layer="20" ratio="10" align="center-left"/>
 </element>
 <element name="RLED3" library="resistor" package="R0603" value="" x="51.3967" y="63.33205" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="63.96705" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="65.23705" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED3" library="led" package="CHIPLED_0805" value="" x="54.887" y="63.33205" smashed="yes" rot="R90">
@@ -2766,7 +2761,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="65.87205" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED2" library="resistor" package="R0603" value="" x="51.4010125" y="64.8967" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5435125" y="65.5317" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0360125" y="66.8017" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED2" library="led" package="CHIPLED_0805" value="" x="54.887" y="64.9199" smashed="yes" rot="R90">
@@ -2774,7 +2768,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="67.4599" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED1" library="resistor" package="R0603" value="" x="51.3967" y="66.4680625" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="66.9443125" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="68.3730625" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED1" library="led" package="CHIPLED_0805" value="" x="54.887" y="66.4680625" smashed="yes" rot="R90">
@@ -2782,7 +2775,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="VALUE" x="56.157" y="69.0080625" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="RLED0" library="resistor" package="R0603" value="" x="51.3967" y="68.0559125" smashed="yes" rot="R180">
-<attribute name="NAME" x="48.5392" y="68.3734125" size="0.8128" layer="20" rot="R180"/>
 <attribute name="VALUE" x="52.0317" y="69.9609125" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="LED0" library="led" package="CHIPLED_0805" value="" x="54.887" y="68.0559125" smashed="yes" rot="R90">
@@ -2879,7 +2871,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <attribute name="NAME" x="0.9889875" y="33.573325" size="0.8128" layer="20" ratio="10" rot="R270"/>
 </element>
 <element name="RADIO_CONTROLLER" library="custom_parts" package="3X07" value="RF_CONTROL_3X7_CON" x="11.78685" y="75.5904" smashed="yes">
-<attribute name="NAME" x="10.44065" y="67.2592" size="0.8128" layer="20" ratio="10"/>
+<attribute name="NAME" x="12.7028375" y="77.57795" size="1.016" layer="20" ratio="10"/>
 </element>
 <element name="R_LCD1" library="resistor" package="R0603" value="2k" x="2.0683" y="62.541" smashed="yes" rot="R270">
 <attribute name="NAME" x="0.4808" y="63.9300625" size="0.8128" layer="20" rot="R270"/>
@@ -3228,7 +3220,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="72.39" y1="73.5017" x2="67.9416" y2="69.0533" width="0.1778" layer="1"/>
 <wire x1="67.9416" y1="69.0533" x2="66.3122" y2="69.0533" width="0.1778" layer="1"/>
 <wire x1="65.67721875" y1="68.54531875" x2="66.3122" y2="69.0533" width="0.1778" layer="1"/>
-<wire x1="63.61341875" y1="67.0495" x2="65.67721875" y2="67.0495" width="0.1778" layer="1"/>
+<wire x1="63.13716875" y1="67.0495" x2="65.67721875" y2="67.0495" width="0.1778" layer="1"/>
 <wire x1="46.2168" y1="75.4402" x2="47.79975" y2="73.85725" width="0.8128" layer="1"/>
 <wire x1="47.79975" y1="73.85725" x2="51.27435" y2="73.81915" width="0.8128" layer="1"/>
 <wire x1="46.2168" y1="75.4402" x2="46.2004" y2="75.4238" width="0.8128" layer="1"/>
@@ -3376,8 +3368,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="79.5087" y1="29.8144" x2="73.104375" y2="23.410075" width="0.8128" layer="16"/>
 <wire x1="73.104375" y1="23.410075" x2="73.104375" y2="16.906875" width="0.8128" layer="16"/>
 <wire x1="65.67721875" y1="67.0495" x2="65.67721875" y2="68.54531875" width="0.1778" layer="1"/>
-<wire x1="65.67721875" y1="67.0495" x2="65.83591875" y2="66.8908" width="0" layer="19" extent="1-1"/>
 <wire x1="27.07005" y1="73.03135" x2="27.02685" y2="73.0504" width="0" layer="19" extent="1-16"/>
+<wire x1="65.67721875" y1="67.0495" x2="65.83591875" y2="66.8908" width="0.1778" layer="1"/>
+<wire x1="65.83591875" y1="66.8908" x2="65.95498125" y2="66.8908" width="0.1778" layer="1"/>
 </signal>
 <signal name="N$2">
 <contactref element="PROGRAMMER10" pad="1"/>
@@ -3593,7 +3586,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="59.5125" y1="77.6043" x2="60.1473" y2="76.9695" width="0.1778" layer="1"/>
 <wire x1="60.1473" y1="76.9695" x2="60.1473" y2="75.6999" width="0.1778" layer="1"/>
 <wire x1="60.1473" y1="75.6999" x2="61.43435" y2="74.41285" width="0.1778" layer="1"/>
-<wire x1="65.85221875" y1="63.1107" x2="63.61341875" y2="65.3495" width="0.1778" layer="1"/>
 <wire x1="66.3122" y1="71.5933" x2="63.6602" y2="71.5933" width="0.1778" layer="1"/>
 <wire x1="63.6602" y1="71.5933" x2="61.43435" y2="73.81915" width="0.1778" layer="1"/>
 <wire x1="61.43435" y1="74.41285" x2="61.43435" y2="73.81915" width="0.1778" layer="1"/>
@@ -3602,10 +3594,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="41.122" y1="77.0076" x2="42.2329" y2="78.1185" width="0.1778" layer="1"/>
 <wire x1="42.2329" y1="78.1185" x2="57.7668" y2="78.0804" width="0.1778" layer="1"/>
 <wire x1="63.6602" y1="71.5933" x2="63.6583" y2="71.5933" width="0.1778" layer="1"/>
-<wire x1="63.6583" y1="71.5933" x2="62.2104" y2="70.1454" width="0.1778" layer="1"/>
-<wire x1="62.2104" y1="70.1454" x2="62.2104" y2="66.0192" width="0.1778" layer="1"/>
-<wire x1="62.2104" y1="66.0192" x2="62.8801" y2="65.3495" width="0.1778" layer="1"/>
-<wire x1="62.8801" y1="65.3495" x2="63.61341875" y2="65.3495" width="0.1778" layer="1"/>
+<wire x1="63.6583" y1="71.5933" x2="61.972275" y2="69.907275" width="0.1778" layer="1"/>
+<wire x1="61.972275" y1="69.907275" x2="61.972275" y2="66.257325" width="0.1778" layer="1"/>
+<wire x1="61.972275" y1="66.257325" x2="62.8801" y2="65.3495" width="0.1778" layer="1"/>
+<wire x1="62.8801" y1="65.3495" x2="63.13716875" y2="65.3495" width="0.1778" layer="1"/>
 <wire x1="45.3646" y1="20.515896875" x2="43.686096875" y2="20.515896875" width="0.1778" layer="1"/>
 <wire x1="43.686096875" y1="20.515896875" x2="43.6425" y2="20.4723" width="0.1778" layer="1"/>
 <via x="43.6425" y="20.4723" extent="1-16" drill="0.6" shape="octagon"/>
@@ -3619,6 +3611,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <via x="64.7496" y="56.8146" extent="1-16" drill="0.6" shape="octagon"/>
 <wire x1="64.7496" y1="56.8146" x2="65.85221875" y2="57.91503125" width="0.1778" layer="1"/>
 <wire x1="65.85221875" y1="57.91503125" x2="65.85221875" y2="58.8" width="0.1778" layer="1"/>
+<wire x1="65.85221875" y1="63.1107" x2="63.61341875" y2="65.3495" width="0.1778" layer="1"/>
+<wire x1="63.61341875" y1="65.3495" x2="63.13716875" y2="65.3495" width="0.1778" layer="1"/>
 </signal>
 <signal name="SCL">
 <contactref element="BQ76925" pad="19"/>
@@ -3633,16 +3627,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="59.6712" y1="78.0804" x2="61.39245" y2="76.35915" width="0.1778" layer="1"/>
 <wire x1="61.39245" y1="76.35915" x2="61.43435" y2="76.35915" width="0.1778" layer="1"/>
 <wire x1="66.35221875" y1="58.8" x2="66.35221875" y2="64.6745" width="0.1778" layer="1"/>
-<wire x1="66.35221875" y1="64.6745" x2="65.83591875" y2="65.1908" width="0.1778" layer="1"/>
+<wire x1="66.35221875" y1="64.6745" x2="65.95498125" y2="65.1908" width="0.1778" layer="1"/>
 <wire x1="66.3122" y1="74.1333" x2="65.72395" y2="74.1333" width="0.1778" layer="1"/>
 <wire x1="65.72395" y1="74.1333" x2="63.4981" y2="76.35915" width="0.1778" layer="1"/>
-<wire x1="65.83591875" y1="65.1908" x2="65.2606" y2="65.1908" width="0.1778" layer="1"/>
+<wire x1="65.95498125" y1="65.1908" x2="65.2606" y2="65.1908" width="0.1778" layer="1"/>
 <wire x1="65.2606" y1="65.1908" x2="64.2735" y2="66.1779" width="0.1778" layer="1"/>
-<wire x1="64.2735" y1="66.1779" x2="62.8452" y2="66.1779" width="0.1778" layer="1"/>
-<wire x1="62.8452" y1="66.1779" x2="62.6865" y2="66.3366" width="0.1778" layer="1"/>
-<wire x1="62.6865" y1="66.3366" x2="62.6865" y2="67.6062" width="0.1778" layer="1"/>
-<wire x1="62.6865" y1="67.6062" x2="63.1626" y2="68.0823" width="0.1778" layer="1"/>
-<wire x1="63.1626" y1="68.0823" x2="64.2735" y2="68.0823" width="0.1778" layer="1"/>
+<wire x1="64.2735" y1="66.1779" x2="62.5277" y2="66.1779" width="0.1778" layer="1"/>
+<wire x1="62.5277" y1="66.1779" x2="62.289625" y2="66.415975" width="0.1778" layer="1"/>
+<wire x1="62.289625" y1="66.415975" x2="62.289625" y2="67.685575" width="0.1778" layer="1"/>
+<wire x1="62.289625" y1="67.685575" x2="62.68635" y2="68.0823" width="0.1778" layer="1"/>
+<wire x1="62.68635" y1="68.0823" x2="64.2735" y2="68.0823" width="0.1778" layer="1"/>
 <wire x1="64.2735" y1="68.0823" x2="64.9083" y2="68.7171" width="0.1778" layer="1"/>
 <wire x1="64.9083" y1="68.7171" x2="64.9083" y2="70.1454" width="0.1778" layer="1"/>
 <wire x1="64.9083" y1="70.1454" x2="65.067" y2="70.3041" width="0.1778" layer="1"/>

@@ -1,15 +1,14 @@
 
 PCB 
 
-- optimize grounds (seperate motor, digital, analog)
-- vérifier les grounds semble avoir un problème!!
-- check if power traces are wide enough
 - vérifier les traces bottoms croisement 90 degree
-- lire recommandations PCB
-- make corners 45 degree angles
-- verify solder pours
-- optimiser les connecteurs pour les LED strips
-- vérifier quel port sur le atmega peut controller les led strips. PWM?
+- lire recommandations PCB http://volersystems.com/v-2010/91-pcb-layout-checklist/
+- vérifier la grosseur des mounting holes
+
+- order on http://www.pcbway.com/pcb_prototype/?adwgc=101&campaignid=172480651&adgroupid=8787904531&feeditemid=&targetid=kwd-2791600243&loc_physical_ms=9000425&matchtype=p&network=g&device=c&devicemodel=&creative=48859624171&keyword=pcb%20printing&placement=&target=&adposition=1t1&gclid=CN2_k_e1ms8CFQpahgod8BsN7w###
+- Once receive PCB check for missing components and do Digikey order 2
+
+
 
 Code
 
