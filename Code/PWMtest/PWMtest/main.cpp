@@ -32,10 +32,12 @@ int main()
 	{	
 		if (button_falling)
 		{
-			OCR4A = 1400/2;
-			OCR4B = 1400/2;
-			OCR5A = 1400/2;
-			OCR5B = 1400/2;
+			OCR4A = 1100/2;
+			OCR4B = 1100/2;
+			OCR5A = 1100/2;
+			OCR5B = 1100/2;
+			clearDisplay();
+			LCD_WriteString("Salut Ben");
 			_delay_ms(1000);
 			button_falling = false;
 		}
@@ -51,13 +53,25 @@ int main()
 			OCR4B = ch_3_pw/2;
 			OCR5A = ch_3_pw/2;
 			OCR5B = ch_3_pw/2;
+
+
+			//clearDisplay();
+			//sprintf(buffer, "%u    %u     ", ch_1_pw, ch_2_pw);
+			//LCD_WriteString(buffer);
+			//SetAdress(64);
+			//sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
+			//LCD_WriteString(buffer);
+			//_delay_ms(100);
 			clearDisplay();
-			sprintf(buffer, "%u    %u     ", ch_1_pw, ch_2_pw);
-			LCD_WriteString(buffer);
+			LCD_WriteString("   Rejouis-toi ");
 			SetAdress(64); // goes to line 2 of LCD
-			sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
-			LCD_WriteString(buffer);
-			_delay_ms(200);
+			LCD_WriteString("     Lau!");
+			_delay_ms(2000);			
+			clearDisplay();
+			LCD_WriteString("   Le meilleur");
+			SetAdress(64); // goes to line 2 of LCD
+			LCD_WriteString(" reste a venir!!");					
+			_delay_ms(3000);			
 		}
 
 	}

@@ -1,0 +1,13 @@
+
+PCB 
+
+- check status pcb http://www.pcbway.com/member/order/orderlist.aspx?type=1
+- Once receive PCB check for missing components and do Digikey order 2
+
+
+
+Code
+
+- Crystal
+- Acceleromètre
+- LED strips

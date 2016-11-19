@@ -1,0 +1,3 @@
+Put a RC low pass filter on ADC lines
+
+buy some 603 res for 2k RCL and RCA

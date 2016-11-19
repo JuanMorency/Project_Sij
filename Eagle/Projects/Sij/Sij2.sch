@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="no" active="no"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="no" active="no"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="no" active="no"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="no" active="no"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="no" active="no"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="no" active="no"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="no" active="no"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="no" active="no"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="no" active="no"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="no" active="no"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="no" active="no"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="no" active="no"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,19 +53,19 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -3048,15 +3048,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <text x="-1.016" y="3.556" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="V_BATT" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
-<symbol name="GND-ISO">
-<description>Isolated ground</description>
-<pin name="GND-ISO" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
-<wire x1="-2.032" y1="0" x2="2.032" y2="0" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-0.762" x2="1.27" y2="-0.762" width="0.254" layer="94"/>
-<wire x1="-0.508" y1="-1.524" x2="0.508" y2="-1.524" width="0.254" layer="94"/>
-<text x="2.54" y="0" size="1.778" layer="96">&gt;VALUE</text>
-<wire x1="1.27" y1="2.032" x2="1.27" y2="0.508" width="0.254" layer="94"/>
-</symbol>
 <symbol name="V_USB">
 <wire x1="0.762" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
 <wire x1="0" y1="2.54" x2="-0.762" y2="1.27" width="0.254" layer="94"/>
@@ -3096,19 +3087,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 Generic symbol for the battery input to a system.</description>
 <gates>
 <gate name="G$1" symbol="V_BATT" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="GND-ISO" prefix="GND-ISO">
-<description>Isolated ground</description>
-<gates>
-<gate name="G$1" symbol="GND-ISO" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -4404,12 +4382,8 @@ http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</description>
 <library name="custom_parts">
 <packages>
 <package name="AWG10_HOLE_PAD">
-<pad name="BAT_CONNECTOR" x="0" y="0" drill="3.048" diameter="5.334" shape="octagon"/>
-<text x="-2.54" y="3.81" size="1.27" layer="25">&gt;NAME</text>
-</package>
-<package name="4.5MM_SQUARE">
-<smd name="IN" x="0" y="0" dx="4.999990625" dy="4.999990625" layer="1"/>
-<text x="-2.54" y="3.81" size="1.27" layer="25">&gt;NAME</text>
+<pad name="BAT_CONNECTOR" x="0" y="0" drill="2.3" diameter="3.81"/>
+<text x="-2.54" y="2.54" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="1X06_LONGPADS">
 <wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.2032" layer="21"/>
@@ -4491,12 +4465,19 @@ http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</description>
 <wire x1="6.7" y1="-2.2" x2="6.7" y2="-3.3" width="0.127" layer="21"/>
 <wire x1="6.7" y1="-3.3" x2="-0.5" y2="-3.3" width="0.127" layer="21"/>
 <wire x1="-0.5" y1="-3.3" x2="-0.5" y2="-2.2" width="0.127" layer="21"/>
+<text x="0" y="3.81" size="1.27" layer="21">&gt;NAME</text>
 </package>
 <package name="PUSH_BUTTON">
-<pad name="P$BAT" x="0" y="0" drill="2.3" shape="square"/>
-<pad name="P$GND" x="0" y="-5.08" drill="2.3"/>
-<text x="3.175" y="-0.635" size="1.27" layer="25">&gt;NAME</text>
-<pad name="P$LOAD" x="0" y="-10.16" drill="2.3"/>
+<pad name="P$BAT" x="0" y="0" drill="1.54" shape="square"/>
+<pad name="P$GND" x="0" y="-3.81" drill="1.54"/>
+<text x="-8.255" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<pad name="P$LOAD" x="0" y="-7.62" drill="1.54" shape="octagon"/>
+<text x="1.905" y="-0.635" size="1.27" layer="21">1</text>
+<text x="1.905" y="-8.255" size="1.27" layer="21">2</text>
+<text x="1.905" y="-4.445" size="1.27" layer="21">3</text>
+<text x="3.048" y="-0.635" size="1.27" layer="22" rot="MR0">1</text>
+<text x="3.048" y="-8.255" size="1.27" layer="22" rot="MR0">2</text>
+<text x="3.048" y="-4.445" size="1.27" layer="22" rot="MR0">3</text>
 </package>
 </packages>
 <symbols>
@@ -4505,15 +4486,6 @@ http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</description>
 <text x="-5.08" y="7.62" size="1.778" layer="95">&gt;Name</text>
 <text x="-5.08" y="-10.16" size="1.778" layer="96">&gt;Value</text>
 <circle x="0" y="0" radius="5.6796125" width="0.254" layer="94"/>
-</symbol>
-<symbol name="SQUARE">
-<pin name="PAD" x="7.62" y="0" length="middle" rot="R180"/>
-<wire x1="2.54" y1="2.54" x2="-5.08" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="2.54" x2="-5.08" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-5.08" y1="-2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
-<text x="-5.08" y="2.54" size="1.778" layer="95">&gt;Name</text>
-<text x="-5.08" y="-5.08" size="1.778" layer="96">&gt;Value</text>
 </symbol>
 <symbol name="M06">
 <wire x1="1.27" y1="-7.62" x2="-5.08" y2="-7.62" width="0.4064" layer="94"/>
@@ -4615,21 +4587,6 @@ http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</description>
 <device name="" package="AWG10_HOLE_PAD">
 <connects>
 <connect gate="G$1" pin="0" pad="BAT_CONNECTOR"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="BULLET_PAD">
-<gates>
-<gate name="G$1" symbol="SQUARE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="4.5MM_SQUARE">
-<connects>
-<connect gate="G$1" pin="PAD" pad="IN"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -13343,20 +13300,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <description>&lt;b&gt;Mounting Holes and Pads&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
 <packages>
-<package name="2,8">
-<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 2.8 mm with drill center</description>
-<wire x1="-1.778" y1="0" x2="0" y2="-1.778" width="2.286" layer="51" curve="90" cap="flat"/>
-<wire x1="0" y1="1.778" x2="1.778" y2="0" width="2.286" layer="51" curve="-90" cap="flat"/>
-<circle x="0" y="0" radius="0.635" width="0.4572" layer="51"/>
-<circle x="0" y="0" radius="2.921" width="0.1524" layer="21"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="40"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="39"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="41"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="42"/>
-<circle x="0" y="0" radius="2.54" width="2.032" layer="43"/>
-<circle x="0" y="0" radius="1.5" width="0.2032" layer="21"/>
-<hole x="0" y="0" drill="2.8"/>
-</package>
 <package name="3,0">
 <description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.0 mm with drill center</description>
 <wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
@@ -13371,6 +13314,142 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <circle x="0" y="0" radius="1.6256" width="0.2032" layer="21"/>
 <text x="-1.27" y="-3.81" size="1.27" layer="48">3,0</text>
 <hole x="0" y="0" drill="3"/>
+</package>
+<package name="3,0-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 3.0 mm, round</description>
+<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="39"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="40"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="43"/>
+<circle x="0" y="0" radius="1.6" width="0.2032" layer="51"/>
+<pad name="B3,0" x="0" y="0" drill="3" diameter="5.842"/>
+<text x="-1.27" y="-3.81" size="1.27" layer="48">3,0</text>
+</package>
+<package name="2,8-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 2.8 mm, round</description>
+<wire x1="0" y1="2.921" x2="0" y2="2.667" width="0.0508" layer="21"/>
+<wire x1="0" y1="-2.667" x2="0" y2="-2.921" width="0.0508" layer="21"/>
+<wire x1="-1.778" y1="0" x2="0" y2="-1.778" width="2.286" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="1.778" x2="1.778" y2="0" width="2.286" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="0.635" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="2.921" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="3.175" width="0.8128" layer="39"/>
+<circle x="0" y="0" radius="3.175" width="0.8128" layer="40"/>
+<circle x="0" y="0" radius="3.175" width="0.8128" layer="43"/>
+<circle x="0" y="0" radius="1.5" width="0.2032" layer="21"/>
+<pad name="B2,8" x="0" y="0" drill="2.8" diameter="5.334"/>
+</package>
+<package name="3,2-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 3.2 mm, round</description>
+<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="3.683" width="1.27" layer="39"/>
+<circle x="0" y="0" radius="3.683" width="1.27" layer="40"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="43"/>
+<circle x="0" y="0" radius="1.7" width="0.1524" layer="21"/>
+<pad name="B3,2" x="0" y="0" drill="3.2" diameter="5.842"/>
+<text x="-1.27" y="-3.81" size="1.27" layer="48">3,2</text>
+</package>
+<package name="3,3-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 3.3 mm, round</description>
+<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="3.683" width="1.27" layer="39"/>
+<circle x="0" y="0" radius="3.683" width="1.27" layer="40"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="43"/>
+<circle x="0" y="0" radius="1.7" width="0.2032" layer="21"/>
+<pad name="B3,3" x="0" y="0" drill="3.3" diameter="5.842"/>
+</package>
+<package name="3,6-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 3.6 mm, round</description>
+<wire x1="-2.159" y1="0" x2="0" y2="-2.159" width="2.4892" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.159" x2="2.159" y2="0" width="2.4892" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="3.683" width="1.397" layer="39"/>
+<circle x="0" y="0" radius="3.683" width="1.397" layer="40"/>
+<circle x="0" y="0" radius="3.556" width="1.016" layer="43"/>
+<circle x="0" y="0" radius="1.9" width="0.2032" layer="21"/>
+<pad name="B3,6" x="0" y="0" drill="3.6" diameter="5.842"/>
+</package>
+<package name="4,1-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 4.1 mm, round</description>
+<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="4.572" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="5.08" width="2" layer="43"/>
+<circle x="0" y="0" radius="2.15" width="0.2032" layer="21"/>
+<pad name="B4,1" x="0" y="0" drill="4.1" diameter="8"/>
+</package>
+<package name="4,3-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 4.3 mm, round</description>
+<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="4.4958" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="43"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="39"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="40"/>
+<circle x="0" y="0" radius="2.25" width="0.1524" layer="21"/>
+<pad name="B4,3" x="0" y="0" drill="4.3" diameter="9"/>
+</package>
+<package name="4,5-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 4.5 mm, round</description>
+<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="4.4958" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="43"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="39"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="40"/>
+<circle x="0" y="0" radius="2.35" width="0.1524" layer="21"/>
+<pad name="B4,5" x="0" y="0" drill="4.5" diameter="9"/>
+</package>
+<package name="5,0-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 5.0 mm, round</description>
+<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="4.4958" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="43"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="39"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="40"/>
+<circle x="0" y="0" radius="2.6" width="0.1524" layer="21"/>
+<pad name="B5" x="0" y="0" drill="5" diameter="9"/>
+</package>
+<package name="5,5-PAD">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt; 5.5 mm, round</description>
+<wire x1="-2.54" y1="0" x2="0" y2="-2.54" width="3.9116" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="2.54" x2="2.54" y2="0" width="3.9116" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="4.4958" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="0.762" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="43"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="39"/>
+<circle x="0" y="0" radius="5.588" width="2" layer="40"/>
+<circle x="0" y="0" radius="2.85" width="0.1524" layer="21"/>
+<pad name="B5,5" x="0" y="0" drill="5.5" diameter="9"/>
+</package>
+<package name="2,8">
+<description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 2.8 mm with drill center</description>
+<wire x1="-1.778" y1="0" x2="0" y2="-1.778" width="2.286" layer="51" curve="90" cap="flat"/>
+<wire x1="0" y1="1.778" x2="1.778" y2="0" width="2.286" layer="51" curve="-90" cap="flat"/>
+<circle x="0" y="0" radius="0.635" width="0.4572" layer="51"/>
+<circle x="0" y="0" radius="2.921" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="2.54" width="2.032" layer="40"/>
+<circle x="0" y="0" radius="2.54" width="2.032" layer="39"/>
+<circle x="0" y="0" radius="2.54" width="2.032" layer="41"/>
+<circle x="0" y="0" radius="2.54" width="2.032" layer="42"/>
+<circle x="0" y="0" radius="2.54" width="2.032" layer="43"/>
+<circle x="0" y="0" radius="1.5" width="0.2032" layer="21"/>
+<hole x="0" y="0" drill="2.8"/>
 </package>
 <package name="3,3">
 <description>&lt;b&gt;MOUNTING HOLE&lt;/b&gt; 3.3 mm with drill center</description>
@@ -13510,6 +13589,16 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <text x="2.032" y="0.5842" size="1.778" layer="95">&gt;NAME</text>
 <text x="2.032" y="-2.4638" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
+<symbol name="MOUNT-PAD">
+<wire x1="0.254" y1="2.032" x2="2.032" y2="0.254" width="1.016" layer="94" curve="-75.749967" cap="flat"/>
+<wire x1="-2.032" y1="0.254" x2="-0.254" y2="2.032" width="1.016" layer="94" curve="-75.749967" cap="flat"/>
+<wire x1="-2.032" y1="-0.254" x2="-0.254" y2="-2.032" width="1.016" layer="94" curve="75.749967" cap="flat"/>
+<wire x1="0.254" y1="-2.032" x2="2.032" y2="-0.254" width="1.016" layer="94" curve="75.749967" cap="flat"/>
+<circle x="0" y="0" radius="1.524" width="0.0508" layer="94"/>
+<text x="2.794" y="0.5842" size="1.778" layer="95">&gt;NAME</text>
+<text x="2.794" y="-2.4638" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="MOUNT" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="MOUNT-HOLE" prefix="H">
@@ -13570,6 +13659,496 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 </device>
 </devices>
 </deviceset>
+<deviceset name="MOUNT-PAD-ROUND" prefix="H">
+<description>&lt;b&gt;MOUNTING PAD&lt;/b&gt;, round</description>
+<gates>
+<gate name="G$1" symbol="MOUNT-PAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="2.8" package="2,8-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B2,8"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3.0" package="3,0-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B3,0"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3.2" package="3,2-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B3,2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3.3" package="3,3-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B3,3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3.6" package="3,6-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B3,6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="4.1" package="4,1-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B4,1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="4.3" package="4,3-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B4,3"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="4.5" package="4,5-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B4,5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="5.0" package="5,0-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="5.5" package="5,5-PAD">
+<connects>
+<connect gate="G$1" pin="MOUNT" pad="B5,5"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="wirepad">
+<description>&lt;b&gt;Single Pads&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="1,6/0,8">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="-0.762" y1="0.762" x2="-0.508" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="0.762" x2="-0.762" y2="0.508" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="0.762" x2="0.762" y2="0.508" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="0.762" x2="0.508" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="-0.508" x2="0.762" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="-0.762" x2="0.508" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="-0.508" y1="-0.762" x2="-0.762" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="-0.762" x2="-0.762" y2="-0.508" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.635" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
+<text x="-0.762" y="1.016" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="0.6" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="1,6/0,9">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="-0.508" y1="0.762" x2="-0.762" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="0.762" x2="-0.762" y2="0.508" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="-0.508" x2="-0.762" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="-0.762" x2="-0.508" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="0.508" y1="-0.762" x2="0.762" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="-0.762" x2="0.762" y2="-0.508" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="0.508" x2="0.762" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="0.762" x2="0.508" y2="0.762" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.635" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="0.9144" diameter="1.6002" shape="octagon"/>
+<text x="-0.762" y="1.016" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="0.6" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="2,15/1,0">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.143" y1="-1.143" x2="1.143" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="1.143" y1="-1.143" x2="0.635" y2="-1.143" width="0.1524" layer="21"/>
+<wire x1="1.143" y1="0.635" x2="1.143" y2="1.143" width="0.1524" layer="21"/>
+<wire x1="1.143" y1="1.143" x2="0.635" y2="1.143" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="1.143" x2="-1.143" y2="1.143" width="0.1524" layer="21"/>
+<wire x1="-1.143" y1="1.143" x2="-1.143" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-1.143" y1="-0.635" x2="-1.143" y2="-1.143" width="0.1524" layer="21"/>
+<wire x1="-1.143" y1="-1.143" x2="-0.635" y2="-1.143" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.016" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.016" diameter="2.159" shape="octagon"/>
+<text x="-1.143" y="1.397" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="2,54/0,8">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="-1.27" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-0.762" x2="1.27" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-1.27" x2="0.762" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="-1.27" x2="-1.27" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="-0.762" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.635" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="0.8128" diameter="2.54" shape="octagon"/>
+<text x="-1.27" y="1.524" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="0.6" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="2,54/0,9">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="-1.27" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-0.762" x2="1.27" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-1.27" x2="0.762" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-0.762" y1="-1.27" x2="-1.27" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="-0.762" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="0.635" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="0.9144" diameter="2.54" shape="octagon"/>
+<text x="-1.27" y="1.524" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="0.6" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="2,54/1,0">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-0.762" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0.762" y1="-1.27" x2="1.27" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-1.27" x2="1.27" y2="-0.762" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.016" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.016" diameter="2.54" shape="octagon"/>
+<text x="-1.27" y="1.524" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="2,54/1,1">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.27" x2="0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-1.27" y2="0.762" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-1.27" y2="-0.762" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.27" x2="-0.762" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-1.27" x2="0.762" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-1.27" x2="1.27" y2="-0.762" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.016" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.1176" diameter="2.54" shape="octagon"/>
+<text x="-1.27" y="1.524" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,17/1,1">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="-1.016" x2="1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="-1.524" x2="1.016" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-1.524" x2="-1.524" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.524" x2="-1.016" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="1.524" x2="1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="1.524" x2="1.524" y2="1.016" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.1176" diameter="3.175" shape="octagon"/>
+<text x="-1.524" y="1.905" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,17/1,2">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="-1.016" x2="1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="-1.524" x2="1.016" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-1.524" x2="-1.524" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.524" x2="-1.016" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="1.524" x2="1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="1.524" x2="1.524" y2="1.016" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.1938" diameter="3.175" shape="octagon"/>
+<text x="-1.524" y="1.905" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,17/1,3">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="-1.016" x2="1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="-1.524" x2="1.016" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-1.524" x2="-1.524" y2="-1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-1.524" x2="-1.524" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.016" x2="-1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="1.524" x2="-1.016" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="1.524" x2="1.524" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="1.524" x2="1.524" y2="1.016" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.3208" diameter="3.175" shape="octagon"/>
+<text x="-1.524" y="1.905" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,81/1,1">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.905" y1="-1.27" x2="1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.905" x2="1.27" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.905" x2="-1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="-1.905" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.905" x2="-1.27" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.905" x2="1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.905" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.1176" diameter="3.81" shape="octagon"/>
+<text x="-1.905" y="2.286" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,81/1,3">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.905" y1="-1.27" x2="1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.905" x2="1.27" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.905" x2="-1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="-1.905" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.905" x2="-1.27" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.905" x2="1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.905" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.3208" diameter="3.81" shape="octagon"/>
+<text x="-1.905" y="2.286" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="3,81/1,4">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.905" y1="-1.27" x2="1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.905" x2="1.27" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-1.905" x2="-1.905" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="-1.905" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.905" x2="-1.27" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="1.905" x2="1.905" y2="1.905" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.905" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="1.27" width="0.1524" layer="51"/>
+<pad name="1" x="0" y="0" drill="1.397" diameter="3.81" shape="octagon"/>
+<text x="-1.905" y="2.286" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="0" y="1.2" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="4,16O1,6">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<pad name="1" x="0" y="0" drill="1.6002" diameter="4.1656" shape="octagon"/>
+<text x="0" y="0" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="-2.1" y="2.2" size="1.27" layer="25">&gt;NAME</text>
+</package>
+<package name="5-1,8">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.1684" y1="2.794" x2="-1.1684" y2="2.794" width="0.1524" layer="21"/>
+<wire x1="-1.1684" y1="-2.794" x2="-1.1684" y2="2.794" width="0.1524" layer="21"/>
+<wire x1="-1.1684" y1="-2.794" x2="1.1684" y2="-2.794" width="0.1524" layer="21"/>
+<wire x1="1.1684" y1="2.794" x2="1.1684" y2="-2.794" width="0.1524" layer="21"/>
+<smd name="1" x="0" y="0" dx="1.8288" dy="5.08" layer="1"/>
+<text x="-1.524" y="-2.54" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="-0.1" y="2.8" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="5-2,5">
+<description>&lt;b&gt;THROUGH-HOLE PAD&lt;/b&gt;</description>
+<wire x1="1.524" y1="2.794" x2="-1.524" y2="2.794" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-2.794" x2="-1.524" y2="2.794" width="0.1524" layer="21"/>
+<wire x1="-1.524" y1="-2.794" x2="1.524" y2="-2.794" width="0.1524" layer="21"/>
+<wire x1="1.524" y1="2.794" x2="1.524" y2="-2.794" width="0.1524" layer="21"/>
+<smd name="1" x="0" y="0" dx="2.54" dy="5.08" layer="1"/>
+<text x="-1.778" y="-2.54" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="-0.1" y="2.8" size="0.0254" layer="27">&gt;VALUE</text>
+</package>
+<package name="SMD1,27-2,54">
+<description>&lt;b&gt;SMD PAD&lt;/b&gt;</description>
+<smd name="1" x="0" y="0" dx="1.27" dy="2.54" layer="1"/>
+<text x="0" y="0" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="-0.8" y="-2.4" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+</package>
+<package name="SMD2,54-5,08">
+<description>&lt;b&gt;SMD PAD&lt;/b&gt;</description>
+<smd name="1" x="0" y="0" dx="2.54" dy="5.08" layer="1"/>
+<text x="0" y="0" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="-1.5" y="-2.5" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+</package>
+</packages>
+<symbols>
+<symbol name="PAD">
+<wire x1="-1.016" y1="1.016" x2="1.016" y2="-1.016" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-1.016" x2="1.016" y2="1.016" width="0.254" layer="94"/>
+<text x="-1.143" y="1.8542" size="1.778" layer="95">&gt;NAME</text>
+<text x="-1.143" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="P" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="WIREPAD" prefix="PAD">
+<description>&lt;b&gt;Wire PAD&lt;/b&gt; connect wire on PCB</description>
+<gates>
+<gate name="G$1" symbol="PAD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="1,6/0,8" package="1,6/0,8">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="1,6/0,9" package="1,6/0,9">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2,15/1,0" package="2,15/1,0">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2,54/0,8" package="2,54/0,8">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2,54/0,9" package="2,54/0,9">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2,54/1,0" package="2,54/1,0">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2,54/1,1" package="2,54/1,1">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,17/1,1" package="3,17/1,1">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,17/1,2" package="3,17/1,2">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,17/1,3" package="3,17/1,3">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,81/1,1" package="3,81/1,1">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,81/1,3" package="3,81/1,3">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3,81/1,4" package="3,81/1,4">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="4,16O1,6" package="4,16O1,6">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD5-1,8" package="5-1,8">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD5-2,5" package="5-2,5">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD1,27-254" package="SMD1,27-2,54">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="SMD2,54-5,08" package="SMD2,54-5,08">
+<connects>
+<connect gate="G$1" pin="P" pad="1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -13585,7 +14164,9 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="ATMEGA2560" library="SparkFun-DigitalIC" deviceset="ATMEGA2560" device="AU"/>
 <part name="PROGRAMMER10" library="SparkFun-Connectors" deviceset="M05X2" device="PTH"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="16MHZ" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16MHz"/>
+<part name="16MHZ" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16MHz">
+<attribute name="DATASHEET" value="https://cdn-shop.adafruit.com/product-files/2215/2215datasheet.pdf"/>
+</part>
 <part name="C_CRY1" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="22pF"/>
 <part name="C_CRY2" library="SparkFun-Capacitors" deviceset="22PF-50V-5%(0603)" device="" value="22pF"/>
 <part name="GND2" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -13617,34 +14198,37 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="COUT2" library="SparkFun-Capacitors" deviceset="1.0UF-16V-10%(0603)" device="" value="1.0uF"/>
 <part name="BAT-MONIT" library="JST-XH_HEADERS" deviceset="7_PIN_JST-XH" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="LM7805" library="TI" deviceset="LM7805" device=""/>
+<part name="LM7805" library="TI" deviceset="LM7805" device="">
+<attribute name="DATASHEET" value="pdf"/>
+</part>
 <part name="GND8" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="ESC_BL" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="SUPPLY3" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
 <part name="GND10" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND-ISO1" library="SparkFun-Aesthetics" deviceset="GND-ISO" device=""/>
 <part name="ESC_FL" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="ESC_FR" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="ESC_BR" library="SparkFun-Connectors" deviceset="M02" device="PTH" value="640455 TE connectivity"/>
 <part name="SUPPLY5" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
 <part name="SUPPLY6" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="SUPPLY7" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
-<part name="BAT_IN+" library="custom_parts" deviceset="AWG_10_HOLE_PAD" device=""/>
-<part name="BAT_IN-" library="custom_parts" deviceset="AWG_10_HOLE_PAD" device=""/>
-<part name="BAT+3" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT-4" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT+4" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT-2" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT+1" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT-3" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT+2" library="custom_parts" deviceset="BULLET_PAD" device=""/>
-<part name="BAT-1" library="custom_parts" deviceset="BULLET_PAD" device=""/>
+<part name="BAT_IN+" library="custom_parts" deviceset="AWG_10_HOLE_PAD" device="">
+<attribute name="AWG_RATING" value="12"/>
+</part>
+<part name="BAT_IN-" library="custom_parts" deviceset="AWG_10_HOLE_PAD" device="">
+<attribute name="AWG_RATING" value="12"/>
+</part>
 <part name="CI_78" library="SparkFun-Capacitors" deviceset="0.22UF-25V-10%(0603)" device="" value="0.22uF"/>
 <part name="CO_78" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
 <part name="RSENSE" library="resistor" deviceset="R-US_" device="R1206" value="1m"/>
-<part name="D_PD_RES" library="diode" deviceset="1N4004" device=""/>
-<part name="D_PU_RES" library="diode" deviceset="1N4004" device=""/>
+<part name="D_PD_RES" library="diode" deviceset="1N4004" device="">
+<attribute name="DATASHEET" value="http://www.diodes.com/_files/datasheets/ds28002.pdf"/>
+<attribute name="DIGIKEY" value="http://www.digikey.ca/product-detail/en/diodes-incorporated/1N4004-T/1N4004DICT-ND/160593"/>
+</part>
+<part name="D_PU_RES" library="diode" deviceset="1N4004" device="">
+<attribute name="DATASHEET" value="http://www.diodes.com/_files/datasheets/ds28002.pdf"/>
+<attribute name="DIGIKEY" value="http://www.digikey.ca/product-detail/en/diodes-incorporated/1N4004-T/1N4004DICT-ND/160593"/>
+</part>
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="SUPPLY8" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="C_RES" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
@@ -13654,14 +14238,22 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="C_DECO2" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
 <part name="C_DECO3" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
 <part name="C_DECO4" library="SparkFun-Capacitors" deviceset="0.1UF-25V-5%(0603)" device="" value="0.1uF"/>
-<part name="Q_SEL1" library="SparkFun-DiscreteSemi" deviceset="MOSFET-PCHANNEL" device=""/>
+<part name="Q_SEL1" library="SparkFun-DiscreteSemi" deviceset="MOSFET-PCHANNEL" device="" value="DMN3099L">
+<attribute name="DATASHEET" value="http://www.diodes.com/_files/datasheets/DMP3099L.pdf"/>
+</part>
 <part name="R_PU_SEL" library="resistor" deviceset="R-US_" device="R0603" value="10K"/>
 <part name="R_PD_SEL" library="resistor" deviceset="R-US_" device="R0603" value="10K"/>
-<part name="D_SEL" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="SMA-ALT" value="CDBA320L"/>
-<part name="INV" library="SparkFun-DigitalIC" deviceset="INVERTER" device="_SOT23-5" value="TC7SU04F"/>
+<part name="D_SEL" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="SMA-ALT" value="CDBA320L">
+<attribute name="DATASHEET" value="http://www.comchiptech.com/cms/UserFiles/CDBA320L-G%20Thru042439.%20CDBA340L-G%20RevA.pdf"/>
+</part>
+<part name="INV" library="SparkFun-DigitalIC" deviceset="INVERTER" device="_SOT23-5" value="TC7SU04F">
+<attribute name="DATASHEET" value="http://www.digikey.com/product-detail/en/toshiba-semiconductor-and-storage/TC7SU04F,LF/TC7SU04FLFCT-ND/870667"/>
+</part>
 <part name="SUPPLY1" library="SparkFun-Aesthetics" deviceset="VCC" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="Q_SEL2" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="AO3404A"/>
+<part name="Q_SEL2" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="AO3404A" value="DMN3023L">
+<attribute name="DATASHEET" value="http://www.diodes.com/_files/datasheets/DMN3023L.pdf"/>
+</part>
 <part name="R_BAT" library="resistor" deviceset="R-US_" device="R0603" value="to calc"/>
 <part name="R_VCC" library="resistor" deviceset="R-US_" device="R0603" value="to calc"/>
 <part name="BAT" library="led" deviceset="LED" device="CHIPLED_0805"/>
@@ -13677,7 +14269,10 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="SUPPLY13" library="SparkFun-Aesthetics" deviceset="V_USB" device=""/>
 <part name="SUPPLY14" library="SparkFun-Aesthetics" deviceset="V_USB" device=""/>
 <part name="SUPPLY15" library="SparkFun-Aesthetics" deviceset="V_BATT" device=""/>
-<part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0805" value="10uH"/>
+<part name="L1" library="SparkFun-Passives" deviceset="INDUCTOR" device="0805" value="10uH">
+<attribute name="DATASHEET" value="http://www.yuden.co.jp/productdata/catalog/en/wound01_e.pdf"/>
+<attribute name="DIGIKEY" value="http://www.digikey.ca/product-detail/en/taiyo-yuden/LBR2012T100K/587-2045-1-ND/1788992"/>
+</part>
 <part name="C_AVCC" library="SparkFun-Capacitors" deviceset="CAP" device="0603-CAP" value="0.1u"/>
 <part name="RSCL" library="resistor" deviceset="R-US_" device="R0603" value="2K"/>
 <part name="RSDA" library="resistor" deviceset="R-US_" device="R0603" value="2K"/>
@@ -13789,7 +14384,9 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="GND56" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND57" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND58" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="RADIO_CONTROLLER" library="custom_parts" deviceset="RF_CONTROL_3X7_CON" device=""/>
+<part name="RADIO_CONTROLLER" library="custom_parts" deviceset="RF_CONTROL_3X7_CON" device="">
+<attribute name="DIGIKEY" value="http://www.digikey.ca/product-search/en?mpart=S7B-XH-A%28LF%29%28SN%29&amp;vendor=455"/>
+</part>
 <part name="GND62" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND63" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND64" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -13820,7 +14417,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <attribute name="DATASHEET" value="http://cdn.lairdtech.com/home/brandworld/files/SIP-DS-MGV0605%200513.pdf"/>
 <attribute name="DIGIKEY" value="http://www.digikey.ca/product-detail/en/laird-signal-integrity-products/MGV06052R2M-10/240-2911-1-ND/5269966"/>
 </part>
-<part name="PUSH_BUTT" library="custom_parts" deviceset="PUSH_BUTTON" device=""/>
+<part name="PUSH_BUTT" library="custom_parts" deviceset="PUSH_BUTTON" device="">
+<attribute name="AWG_RATING" value="16"/>
+<attribute name="DATASHEET" value="http://media.digikey.com/pdf/Data%20Sheets/CW%20Industries%20PDFs/GPB553A2L01Bx_Dwg.pdf"/>
+<attribute name="DIGIKEY" value="http://www.digikey.ca/product-detail/en/cw-industries/GPB553A2L01BR/CWI267-ND/3193563"/>
+</part>
 <part name="GND7" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="LED_P1" library="pinhead" deviceset="PINHD-2X2" device="" value="MALE HEADER"/>
 <part name="LED_P2" library="pinhead" deviceset="PINHD-2X2" device="" value="MALE HEADER"/>
@@ -13861,11 +14462,32 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <part name="H1" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
 <part name="H2" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
 <part name="H3" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
-<part name="H4" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
+<part name="H4" library="holes" deviceset="MOUNT-PAD-ROUND" device="3.0"/>
 <part name="GND73" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND74" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND75" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="GND76" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
+<part name="ESC+1" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC-1" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC+2" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC-2" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC+3" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC-3" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC+4" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
+<part name="ESC-4" library="wirepad" deviceset="WIREPAD" device="3,17/1,3" value="WIREPAD3,17/1,3">
+<attribute name="AWG_RATING" value="18"/>
+</part>
 </parts>
 <sheets>
 <sheet>
@@ -13893,7 +14515,9 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="ATMEGA2560" gate="1" x="27.94" y="45.72"/>
 <instance part="PROGRAMMER10" gate="G$1" x="152.4" y="109.22"/>
 <instance part="GND1" gate="1" x="170.18" y="99.06"/>
-<instance part="16MHZ" gate="G$1" x="-17.78" y="134.62" rot="R90"/>
+<instance part="16MHZ" gate="G$1" x="-17.78" y="134.62" rot="R90">
+<attribute name="DATASHEET" x="-17.78" y="134.62" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
 <instance part="C_CRY1" gate="G$1" x="-22.86" y="129.54" rot="R90"/>
 <instance part="C_CRY2" gate="G$1" x="-22.86" y="139.7" rot="R90"/>
 <instance part="GND2" gate="1" x="-30.48" y="127"/>
@@ -13925,34 +14549,37 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="COUT2" gate="G$1" x="-66.04" y="119.38"/>
 <instance part="BAT-MONIT" gate="G$1" x="-210.82" y="91.44" rot="R90"/>
 <instance part="GND6" gate="1" x="-198.12" y="71.12"/>
-<instance part="LM7805" gate="REG$1" x="-60.96" y="40.64"/>
+<instance part="LM7805" gate="REG$1" x="-60.96" y="40.64">
+<attribute name="DATASHEET" x="-60.96" y="40.64" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="GND8" gate="1" x="-60.96" y="25.4"/>
 <instance part="GND9" gate="1" x="-30.48" y="71.12"/>
 <instance part="ESC_BL" gate="G$1" x="-165.1" y="-17.78" rot="R90"/>
 <instance part="SUPPLY3" gate="G$1" x="-248.92" y="147.32"/>
 <instance part="GND10" gate="1" x="-167.64" y="-5.08" rot="R180"/>
-<instance part="GND-ISO1" gate="G$1" x="-157.48" y="71.12"/>
 <instance part="ESC_FL" gate="G$1" x="-124.46" y="-17.78" rot="R90"/>
 <instance part="ESC_FR" gate="G$1" x="-83.82" y="-17.78" rot="R90"/>
 <instance part="ESC_BR" gate="G$1" x="-43.18" y="-17.78" rot="R90"/>
 <instance part="SUPPLY5" gate="G$1" x="-101.6" y="63.5"/>
 <instance part="SUPPLY6" gate="G$1" x="-45.72" y="96.52"/>
 <instance part="SUPPLY7" gate="G$1" x="-27.94" y="43.18"/>
-<instance part="BAT_IN+" gate="G$1" x="-307.34" y="147.32"/>
-<instance part="BAT_IN-" gate="G$1" x="-307.34" y="124.46"/>
-<instance part="BAT+3" gate="G$1" x="-193.04" y="-15.24" rot="R90"/>
-<instance part="BAT-4" gate="G$1" x="-180.34" y="-15.24" rot="R90"/>
-<instance part="BAT+4" gate="G$1" x="-152.4" y="-15.24" rot="R90"/>
-<instance part="BAT-2" gate="G$1" x="-139.7" y="-15.24" rot="R90"/>
-<instance part="BAT+1" gate="G$1" x="-111.76" y="-15.24" rot="R90"/>
-<instance part="BAT-3" gate="G$1" x="-99.06" y="-15.24" rot="R90"/>
-<instance part="BAT+2" gate="G$1" x="-71.12" y="-15.24" rot="R90"/>
-<instance part="BAT-1" gate="G$1" x="-58.42" y="-15.24" rot="R90"/>
+<instance part="BAT_IN+" gate="G$1" x="-307.34" y="147.32">
+<attribute name="AWG_RATING" x="-307.34" y="147.32" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="BAT_IN-" gate="G$1" x="-307.34" y="124.46">
+<attribute name="AWG_RATING" x="-307.34" y="124.46" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="CI_78" gate="G$1" x="-81.28" y="35.56"/>
 <instance part="CO_78" gate="G$1" x="-40.64" y="35.56"/>
 <instance part="RSENSE" gate="G$1" x="-144.78" y="83.82"/>
-<instance part="D_PD_RES" gate="1" x="40.64" y="139.7" rot="R90"/>
-<instance part="D_PU_RES" gate="1" x="40.64" y="157.48" rot="R90"/>
+<instance part="D_PD_RES" gate="1" x="40.64" y="139.7" rot="R90">
+<attribute name="DIGIKEY" x="40.64" y="139.7" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="DATASHEET" x="40.64" y="139.7" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="D_PU_RES" gate="1" x="40.64" y="157.48" rot="R90">
+<attribute name="DIGIKEY" x="40.64" y="157.48" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="DATASHEET" x="40.64" y="157.48" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
 <instance part="GND12" gate="1" x="40.64" y="129.54"/>
 <instance part="SUPPLY8" gate="G$1" x="40.64" y="162.56"/>
 <instance part="C_RES" gate="G$1" x="27.94" y="139.7"/>
@@ -13962,14 +14589,22 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="C_DECO2" gate="G$1" x="-35.56" y="86.36"/>
 <instance part="C_DECO3" gate="G$1" x="-40.64" y="83.82"/>
 <instance part="C_DECO4" gate="G$1" x="-45.72" y="81.28"/>
-<instance part="Q_SEL1" gate="G$1" x="-91.44" y="48.26"/>
+<instance part="Q_SEL1" gate="G$1" x="-91.44" y="48.26">
+<attribute name="DATASHEET" x="-91.44" y="48.26" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="R_PU_SEL" gate="G$1" x="-101.6" y="55.88" rot="R90"/>
 <instance part="R_PD_SEL" gate="G$1" x="-111.76" y="33.02" rot="R90"/>
-<instance part="D_SEL" gate="G$1" x="-35.56" y="50.8" rot="R270"/>
-<instance part="INV" gate="G$1" x="-124.46" y="45.72"/>
+<instance part="D_SEL" gate="G$1" x="-35.56" y="50.8" rot="R270">
+<attribute name="DATASHEET" x="-35.56" y="50.8" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="INV" gate="G$1" x="-124.46" y="45.72">
+<attribute name="DATASHEET" x="-124.46" y="45.72" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="SUPPLY1" gate="G$1" x="-111.76" y="50.8"/>
 <instance part="GND13" gate="1" x="-137.16" y="38.1"/>
-<instance part="Q_SEL2" gate="G$1" x="-101.6" y="40.64"/>
+<instance part="Q_SEL2" gate="G$1" x="-101.6" y="40.64">
+<attribute name="DATASHEET" x="-101.6" y="40.64" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="R_BAT" gate="G$1" x="-254" y="177.8"/>
 <instance part="R_VCC" gate="G$1" x="-254" y="170.18"/>
 <instance part="BAT" gate="G$1" x="-271.78" y="177.8" rot="R90"/>
@@ -13985,7 +14620,10 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="SUPPLY13" gate="G$1" x="-35.56" y="55.88"/>
 <instance part="SUPPLY14" gate="G$1" x="177.8" y="114.3"/>
 <instance part="SUPPLY15" gate="G$1" x="-210.82" y="147.32"/>
-<instance part="L1" gate="G$1" x="-50.8" y="96.52" rot="R180"/>
+<instance part="L1" gate="G$1" x="-50.8" y="96.52" rot="R180">
+<attribute name="DIGIKEY" x="-50.8" y="96.52" size="1.778" layer="96" rot="R180" display="off"/>
+<attribute name="DATASHEET" x="-50.8" y="96.52" size="1.778" layer="96" rot="R180" display="off"/>
+</instance>
 <instance part="C_AVCC" gate="G$1" x="-22.86" y="101.6" rot="R90"/>
 <instance part="RSCL" gate="G$1" x="81.28" y="35.56" rot="R180"/>
 <instance part="RSDA" gate="G$1" x="81.28" y="38.1" rot="R180"/>
@@ -14099,6 +14737,7 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="GND58" gate="1" x="-241.3" y="175.26"/>
 <instance part="RADIO_CONTROLLER" gate="G$1" x="220.98" y="60.96" smashed="yes" rot="R180">
 <attribute name="NAME" x="229.362" y="73.66" size="1.778" layer="95" rot="R270"/>
+<attribute name="DIGIKEY" x="220.98" y="60.96" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="GND62" gate="1" x="88.9" y="55.88"/>
 <instance part="GND63" gate="1" x="93.98" y="60.96"/>
@@ -14169,7 +14808,11 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <attribute name="DATASHEET" x="-238.76" y="48.26" size="1.778" layer="96" rot="R90" display="off"/>
 <attribute name="DIGIKEY" x="-238.76" y="48.26" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="PUSH_BUTT" gate="G$1" x="-266.7" y="134.62"/>
+<instance part="PUSH_BUTT" gate="G$1" x="-266.7" y="134.62">
+<attribute name="AWG_RATING" x="-266.7" y="134.62" size="1.778" layer="96" display="off"/>
+<attribute name="DATASHEET" x="-266.7" y="134.62" size="1.778" layer="96" display="off"/>
+<attribute name="DIGIKEY" x="-266.7" y="134.62" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="GND7" gate="1" x="-251.46" y="132.08"/>
 <instance part="LED_P1" gate="A" x="-396.24" y="-7.62"/>
 <instance part="LED_P2" gate="A" x="-360.68" y="-7.62"/>
@@ -14236,9 +14879,30 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <instance part="H3" gate="G$1" x="-347.98" y="149.86"/>
 <instance part="H4" gate="G$1" x="-347.98" y="142.24"/>
 <instance part="GND73" gate="1" x="-353.06" y="139.7"/>
-<instance part="GND74" gate="1" x="-353.06" y="147.32"/>
-<instance part="GND75" gate="1" x="-353.06" y="154.94"/>
-<instance part="GND76" gate="1" x="-353.06" y="162.56"/>
+<instance part="ESC+1" gate="G$1" x="-193.04" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-193.04" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC-1" gate="G$1" x="-180.34" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-180.34" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC+2" gate="G$1" x="-152.4" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-152.4" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC-2" gate="G$1" x="-139.7" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-139.7" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC+3" gate="G$1" x="-111.76" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-111.76" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC-3" gate="G$1" x="-99.06" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-99.06" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC+4" gate="G$1" x="-71.12" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-71.12" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="ESC-4" gate="G$1" x="-58.42" y="-25.4" rot="R90">
+<attribute name="AWG_RATING" x="-58.42" y="-25.4" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -14313,9 +14977,6 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="RSENSEN" gate="G$1" pin="1"/>
 <wire x1="-149.86" y1="88.9" x2="-149.86" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="-198.12" y1="76.2" x2="-157.48" y2="76.2" width="0.1524" layer="91"/>
-<pinref part="GND-ISO1" gate="G$1" pin="GND-ISO"/>
-<wire x1="-157.48" y1="73.66" x2="-157.48" y2="76.2" width="0.1524" layer="91"/>
-<junction x="-157.48" y="76.2"/>
 <pinref part="RSENSE" gate="G$1" pin="1"/>
 <junction x="-149.86" y="83.82"/>
 </segment>
@@ -14690,13 +15351,9 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <junction x="-254" y="33.02"/>
 <wire x1="-254" y1="33.02" x2="-254" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="-337.82" y1="15.24" x2="-254" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="CFF" gate="A" pin="2"/>
-<wire x1="-228.6" y1="35.56" x2="-228.6" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="-254" y1="15.24" x2="-228.6" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-254" y1="15.24" x2="-213.36" y2="15.24" width="0.1524" layer="91"/>
 <junction x="-254" y="15.24"/>
 <pinref part="RFB1" gate="A" pin="2"/>
-<wire x1="-228.6" y1="15.24" x2="-213.36" y2="15.24" width="0.1524" layer="91"/>
-<junction x="-228.6" y="15.24"/>
 <wire x1="-213.36" y1="15.24" x2="-200.66" y2="15.24" width="0.1524" layer="91"/>
 <junction x="-213.36" y="15.24"/>
 <wire x1="-200.66" y1="15.24" x2="-190.5" y2="15.24" width="0.1524" layer="91"/>
@@ -14781,40 +15438,29 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <junction x="-276.86" y="-15.24"/>
 </segment>
 <segment>
-<pinref part="BAT-4" gate="G$1" pin="PAD"/>
-<wire x1="-180.34" y1="-7.62" x2="-180.34" y2="-2.54" width="0.1524" layer="91"/>
 <pinref part="GND61" gate="1" pin="GND"/>
+<pinref part="ESC-1" gate="G$1" pin="P"/>
+<wire x1="-180.34" y1="-2.54" x2="-180.34" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-139.7" y1="-7.62" x2="-139.7" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="BAT-2" gate="G$1" pin="PAD"/>
 <pinref part="GND70" gate="1" pin="GND"/>
+<pinref part="ESC-2" gate="G$1" pin="P"/>
+<wire x1="-139.7" y1="-22.86" x2="-139.7" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-99.06" y1="-7.62" x2="-99.06" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="BAT-3" gate="G$1" pin="PAD"/>
 <pinref part="GND71" gate="1" pin="GND"/>
+<pinref part="ESC-3" gate="G$1" pin="P"/>
+<wire x1="-99.06" y1="-22.86" x2="-99.06" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BAT-1" gate="G$1" pin="PAD"/>
-<wire x1="-58.42" y1="-7.62" x2="-58.42" y2="-2.54" width="0.1524" layer="91"/>
 <pinref part="GND72" gate="1" pin="GND"/>
+<pinref part="ESC-4" gate="G$1" pin="P"/>
+<wire x1="-58.42" y1="-2.54" x2="-58.42" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="GND73" gate="1" pin="GND"/>
-<wire x1="-353.06" y1="142.24" x2="-347.98" y2="142.24" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="GND74" gate="1" pin="GND"/>
-<wire x1="-353.06" y1="149.86" x2="-347.98" y2="149.86" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="GND75" gate="1" pin="GND"/>
-<wire x1="-353.06" y1="157.48" x2="-347.98" y2="157.48" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="GND76" gate="1" pin="GND"/>
-<wire x1="-353.06" y1="165.1" x2="-347.98" y2="165.1" width="0.1524" layer="91"/>
+<pinref part="H4" gate="G$1" pin="MOUNT"/>
+<wire x1="-353.06" y1="142.24" x2="-350.52" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -16456,24 +17102,24 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <junction x="-287.02" y="147.32"/>
 </segment>
 <segment>
-<pinref part="BAT+3" gate="G$1" pin="PAD"/>
-<wire x1="-193.04" y1="-7.62" x2="-193.04" y2="-2.54" width="0.1524" layer="91"/>
 <label x="-193.04" y="-2.54" size="1.778" layer="95"/>
+<pinref part="ESC+1" gate="G$1" pin="P"/>
+<wire x1="-193.04" y1="-2.54" x2="-193.04" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-152.4" y1="-7.62" x2="-152.4" y2="-2.54" width="0.1524" layer="91"/>
 <label x="-152.4" y="-2.54" size="1.778" layer="95"/>
-<pinref part="BAT+4" gate="G$1" pin="PAD"/>
+<pinref part="ESC+2" gate="G$1" pin="P"/>
+<wire x1="-152.4" y1="-22.86" x2="-152.4" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-111.76" y1="-7.62" x2="-111.76" y2="-2.54" width="0.1524" layer="91"/>
 <label x="-109.22" y="-2.54" size="1.778" layer="95"/>
-<pinref part="BAT+1" gate="G$1" pin="PAD"/>
+<pinref part="ESC+3" gate="G$1" pin="P"/>
+<wire x1="-111.76" y1="-2.54" x2="-111.76" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="-71.12" y1="-7.62" x2="-71.12" y2="-2.54" width="0.1524" layer="91"/>
 <label x="-71.12" y="-2.54" size="1.778" layer="95"/>
-<pinref part="BAT+2" gate="G$1" pin="PAD"/>
+<pinref part="ESC+4" gate="G$1" pin="P"/>
+<wire x1="-71.12" y1="-2.54" x2="-71.12" y2="-22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="CV3P3" class="0">
@@ -16805,8 +17451,12 @@ Standard 0603 ceramic capacitor, and 0.1" leaded capacitor.</description>
 <pinref part="RFB1" gate="A" pin="1"/>
 <wire x1="-213.36" y1="35.56" x2="-213.36" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="LM5085" gate="A" pin="FB"/>
-<wire x1="-279.4" y1="30.48" x2="-213.36" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-279.4" y1="30.48" x2="-228.6" y2="30.48" width="0.1524" layer="91"/>
 <junction x="-213.36" y="30.48"/>
+<pinref part="CFF" gate="A" pin="2"/>
+<wire x1="-228.6" y1="30.48" x2="-213.36" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="35.56" x2="-228.6" y2="30.48" width="0.1524" layer="91"/>
+<junction x="-228.6" y="30.48"/>
 </segment>
 </net>
 <net name="PGATE_5085" class="0">

@@ -6,7 +6,19 @@ RF controller
 http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 
 fuse bits
+http://treehouseprojects.ca/fusebits/
 http://blog.louic.nl/?p=161
 
 ADC
 http://extremeelectronics.co.in/avr-tutorials/using-adc-of-avr-microcontroller/
+
+Petit tutoriel sur les drones
+http://www.robotshop.com/blog/en/make-uav-lesson-2-platform-14448
+
+
+Materiel pour drone
+http://www.droneshop.com/
+http://www.robotshop.com/
+
+Quelques examples de quadcopter et leur matériel:
+https://www.intorobotics.com/5-best-examples-of-how-to-build-a-diy-quadcopter/

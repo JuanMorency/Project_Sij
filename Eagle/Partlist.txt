@@ -1,0 +1,166 @@
+Partlist
+
+Exported from Sij_Final.sch at 11/4/2016 4:56 PM
+
+EAGLE Version 7.6.0 Copyright (c) 1988-2016 CadSoft
+
+Assembly variant: 
+
+Part             Value                  Device                   Package        Library                    Sheet
+
+16MHZ            16MHz                  CRYSTALHC49US            HC49US         SparkFun-FreqCtrl          1
+ATMEGA2560       ATMEGA2560AU           ATMEGA2560AU             TQFP100        SparkFun-DigitalIC         1
+BAT                                     LEDCHIPLED_0805          CHIPLED_0805   led                        1
+BAT-MONIT        7_PIN_JST-XH           7_PIN_JST-XH             7_PIN_JST-XH   JST-XH_HEADERS             1
+BAT_IN+          AWG_10_HOLE_PAD        AWG_10_HOLE_PAD          AWG10_HOLE_PAD custom_parts               1
+BAT_IN-          AWG_10_HOLE_PAD        AWG_10_HOLE_PAD          AWG10_HOLE_PAD custom_parts               1
+BQ76925          BQ76925_PW_20          BQ76925_PW_20            PW20           TI                         1
+BUTT_RESET       SWITCH-MOMENTARY-2PTH  SWITCH-MOMENTARY-2PTH    TACTILE-PTH    SparkFun-Electromechanical 1
+BUZZ             BUZZERPTH              BUZZERPTH                BUZZER-12MM    SparkFun-Electromechanical 1
+CADJ             1nF                    GRM033R71C102KA01D       0201           LM5085                     1
+CBAT             10uF                   CAP0805                  0805           SparkFun-Capacitors        1
+CFF              680pF                  GRM188R72E681KW07D       0603           LM5085                     1
+CIN              1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN1             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN2             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN3             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN4             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN5             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN6             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CIN_1            4.7uF                  GRM21BR61E475MA12L       0805           LM5085                     1
+CIN_2            4.7uF                  GRM21BR61E475MA12L       0805           LM5085                     1
+CI_78            0.22uF                 0.22UF-25V-10%(0603)     0603-CAP       SparkFun-Capacitors        1
+COUT             0.1u                   CAP0603-CAP              0603-CAP       SparkFun-Capacitors        1
+COUT1            100uF                  6TPH100MAEA              CAPSMT_6_A09   LM5085                     1
+COUT2            1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CO_78            0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+CREF             1.0uF                  1.0UF-16V-10%(0603)      0603-CAP       SparkFun-Capacitors        1
+CSENSE           0.1u                   CAP0603-CAP              0603-CAP       SparkFun-Passives          1
+CV3P3            4.7uF                  4.7UF-6.3V-10%(0603)0603 0603-CAP       SparkFun-Capacitors        1
+CVCC             1uF                    GRM188R61C105KA93D       0603           LM5085                     1
+C_AREF           0.1u                   CAP0603-CAP              0603-CAP       SparkFun-Capacitors        1
+C_AVCC           0.1u                   CAP0603-CAP              0603-CAP       SparkFun-Capacitors        1
+C_CRY1           22pF                   22PF-50V-5%(0603)        0603-CAP       SparkFun-Capacitors        1
+C_CRY2           22pF                   22PF-50V-5%(0603)        0603-CAP       SparkFun-Capacitors        1
+C_DECO1          0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+C_DECO2          0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+C_DECO3          0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+C_DECO4          0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+C_LP1            100uF                  CAP1206                  1206           SparkFun-Capacitors        1
+C_LP2            100uF                  CAP1206                  1206           SparkFun-Capacitors        1
+C_LP3            100uF                  CAP1206                  1206           SparkFun-Capacitors        1
+C_LP4            100uF                  CAP1206                  1206           SparkFun-Capacitors        1
+C_LP56           100uF                  CAP1206                  1206           SparkFun-Capacitors        1
+C_RES            0.1uF                  0.1UF-25V-5%(0603)       0603-CAP       SparkFun-Capacitors        1
+D1               700mV                  MBRB745PBF               DDPAK          LM5085                     1
+D_PD_RES         1N4004                 1N4004                   DO41-10        diode                      1
+D_PU_RES         1N4004                 1N4004                   DO41-10        diode                      1
+D_SEL            CDBA320L               DIODESMA-ALT             SMA-DIODE_ALT  SparkFun-DiscreteSemi      1
+ESC+1            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC+2            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC+3            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC+4            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC-1            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC-2            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC-3            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC-4            WIREPAD3,17/1,3        WIREPAD3,17/1,3          3,17/1,3       wirepad                    1
+ESC_BL           640455 TE connectivity M02PTH                   1X02           SparkFun-Connectors        1
+ESC_BR           640455 TE connectivity M02PTH                   1X02           SparkFun-Connectors        1
+ESC_FL           640455 TE connectivity M02PTH                   1X02           SparkFun-Connectors        1
+ESC_FR           640455 TE connectivity M02PTH                   1X02           SparkFun-Connectors        1
+H4               MOUNT-PAD-ROUND3.0     MOUNT-PAD-ROUND3.0       3,0-PAD        holes                      1
+I2C                                     M041X04_NO_SILK          1X04_NO_SILK   SparkFun-Connectors        1
+IMU_BOARD        M06_IMU                M06_IMU                  1X06_LONGPADS  custom_parts               1
+INV              TC7SU04F               INVERTER_SOT23-5         SOT23-5        SparkFun-DigitalIC         1
+JP4                                     JUMPER-2PTH              1X02           SparkFun-Retired           1
+JP5                                     JUMPER-2PTH              1X02           SparkFun-Retired           1
+JP6                                     JUMPER-2PTH              1X02           SparkFun-Retired           1
+L1               10uH                   INDUCTOR0805             0805           SparkFun-Passives          1
+L2               2.2uH                  IND_MGV0605              MGV0605        custom_parts               1
+LED0                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED1                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED2                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED3                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED4                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED5                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED6                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED7                                    LEDCHIPLED_0805          CHIPLED_0805   led                        1
+LED_P1           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LED_P2           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LED_P3           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LED_P4           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LED_P5           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LED_P6           MALE HEADER            PINHD-2X2                2X02           pinhead                    1
+LM5085           LM5085MY/NOPB          LM5085MY/NOPB            MUY08A         LM5085                     1
+LM7805           LM7805                 LM7805                   KTT3           TI                         1
+M1               -30V                   SI7149DP                 POWERPAK_SO-8  LM5085                     1
+PORTA                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTB                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTD                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTE                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTF                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTG                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTH                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTJ                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTK                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PORTL                                   M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PROGRAMMER10                            M05X2PTH                 AVR_ICSP       SparkFun-Connectors        1
+PUSH_BUTT        PUSH_BUTTON            PUSH_BUTTON              PUSH_BUTTON    custom_parts               1
+Q_SEL1           DMN3099L               MOSFET-PCHANNEL          SOT23-3        SparkFun-DiscreteSemi      1
+Q_SEL2           DMN3023L               MOSFET-NCHANNELAO3404A   SOT23-3        SparkFun-DiscreteSemi      1
+RADIO_CONTROLLER RF_CONTROL_3X7_CON     RF_CONTROL_3X7_CON       3X07           custom_parts               1
+RADJ             2.55k                  CRCW04022K55FKED         0603           LM5085                     1
+RBAT             100                    R-US_R0603               R0603          resistor                   1
+RFB1             3.32k                  CRCW04023K32FKED         0603           LM5085                     1
+RFB2             10k                    CRCW040210K0FKED         0603           LM5085                     1
+RIN              100                    R-US_R0603               R0603          resistor                   1
+RIN1             100                    R-US_R0603               R0603          resistor                   1
+RIN2             100                    R-US_R0603               R0603          resistor                   1
+RIN3             100                    R-US_R0603               R0603          resistor                   1
+RIN4             100                    R-US_R0603               R0603          resistor                   1
+RIN5             100                    R-US_R0603               R0603          resistor                   1
+RIN6             100                    R-US_R0603               R0603          resistor                   1
+RLED0                                   R-US_R0603               R0603          resistor                   1
+RLED1                                   R-US_R0603               R0603          resistor                   1
+RLED2                                   R-US_R0603               R0603          resistor                   1
+RLED3                                   R-US_R0603               R0603          resistor                   1
+RLED4                                   R-US_R0603               R0603          resistor                   1
+RLED5                                   R-US_R0603               R0603          resistor                   1
+RLED6                                   R-US_R0603               R0603          resistor                   1
+RLED7                                   R-US_R0603               R0603          resistor                   1
+RSCL             2K                     R-US_R0603               R0603          resistor                   1
+RSDA             2K                     R-US_R0603               R0603          resistor                   1
+RSENSE           1m                     R-US_R1206               R1206          resistor                   1
+RSENSEN          1K                     R-US_R0603               R0603          resistor                   1
+RSENSEP          1K                     R-US_R0603               R0603          resistor                   1
+RSNS             10m                    CSR1206FK10L0            1206           LM5085                     1
+RSPI1            500                    R-US_R0603               R0603          resistor                   1
+RSPI2            500                    R-US_R0603               R0603          resistor                   1
+RSPI3            500                    R-US_R0603               R0603          resistor                   1
+RSPI4            500                    R-US_R0603               R0603          resistor                   1
+RSPI5            500                    R-US_R0603               R0603          resistor                   1
+RSPI6            500                    R-US_R0603               R0603          resistor                   1
+RSPI7            500                    R-US_R0603               R0603          resistor                   1
+RSPI8            500                    R-US_R0603               R0603          resistor                   1
+RT               26.7k                  CRCW040226K7FKED         0603           LM5085                     1
+R_BAT            to calc                R-US_R0603               R0603          resistor                   1
+R_BLB            220                    R-US_R0603               R0603          resistor                   1
+R_BLT            220                    R-US_R0603               R0603          resistor                   1
+R_BRB            220                    R-US_R0603               R0603          resistor                   1
+R_BRT            220                    R-US_R0603               R0603          resistor                   1
+R_FLB            220                    R-US_R0603               R0603          resistor                   1
+R_FLT            220                    R-US_R0603               R0603          resistor                   1
+R_FRB            220                    R-US_R0603               R0603          resistor                   1
+R_FRT            220                    R-US_R0603               R0603          resistor                   1
+R_LCD1           2k                     R-US_R0603               R0603          resistor                   1
+R_LCD2           330                    R-US_R0603               R0603          resistor                   1
+R_PD_SEL         10K                    R-US_R0603               R0603          resistor                   1
+R_PU_RES         4.7k                   R-US_R0603               R0603          resistor                   1
+R_PU_SEL         10K                    R-US_R0603               R0603          resistor                   1
+R_PU_SS          4.7k                   R-US_R0603               R0603          resistor                   1
+R_RES            363                    R-US_R0603               R0603          resistor                   1
+R_USB            to calc                R-US_R0603               R0603          resistor                   1
+R_VCC            to calc                R-US_R0603               R0603          resistor                   1
+SPI              FEMALE 2x3             M03X2FEMALE              2X3            SparkFun-Connectors        1
+USB                                     LEDCHIPLED_0805          CHIPLED_0805   led                        1
+VCC                                     LEDCHIPLED_0805          CHIPLED_0805   led                        1

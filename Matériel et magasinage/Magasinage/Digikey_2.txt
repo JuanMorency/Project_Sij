@@ -1,0 +1,21 @@
+LM5085
+cap 47uF 	*2 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM21BR61E475MA12L/490-5422-1-ND/2175229 
+res 26.7 KOhm 	*1 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-0726K7L/311-26.7KHRCT-ND/730041
+cap 1nF 	*1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R71H102KA01D/490-1494-1-ND/587851
+res 2.55 KOhm 	*1 http://www.digikey.ca/product-detail/en/yageo/RC0402FR-072K55L/YAG3102CT-ND/5281967
+res 10 mOhm 	*1 http://www.digikey.ca/product-detail/en/stackpole-electronics-inc/CSR1206FK10L0/CSR1206FK10L0CT-ND/1646238
+res 3.33 KOhm	*1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-073K3L/311-3.3KGRCT-ND/729704
+cap 680 pF 	*1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R72E681KW07D/490-3524-1-ND/789429
+cap 100 uF Tant	*1 http://www.digikey.ca/product-detail/en/panasonic-electronic-components/6TPH100MAEA/P17119CT-ND/5372004
+PMOS 		*1 http://www.digikey.ca/product-detail/en/vishay-siliconix/SI7149DP-T1-GE3/SI7149DP-T1-GE3CT-ND/5805435
+Diode		*1 http://www.digikey.ca/product-search/en?keywords=MBRB745PBF
+Inductor	*1 http://www.digikey.ca/product-detail/en/laird-signal-integrity-products/MGV06052R2M-10/240-2911-1-ND/5269966
+
+push button  	*1 http://www.digikey.ca/product-detail/en/cw-industries/GPB553A2L01BR/CWI267-ND/3193563
+
+res 220 ohm 	*8 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07220RL/311-220GRCT-ND/729688
+cap 100uF	*5 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM31CD80J107ME39L/490-10525-1-ND/5026461
+
+2 pin header cover connector
+
+female header 3x7
