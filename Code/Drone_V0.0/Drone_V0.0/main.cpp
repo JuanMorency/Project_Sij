@@ -15,11 +15,20 @@
 #include "IMU.h"
 #include "WS2812.h"
 
+#define LED0B 0x01
+#define LED0R 0x02
+#define LED0J 0x04
+#define LED1B 0x08
+#define LED1R 0x10
+#define LED1J 0X20
+#define LED2B 0x40
+#define LED2R 0x80
+
 int main()
 {
-	
-	
-	
+
+
+
 	//initialize LCD
 	initLCD(); 		// configure LCD
 	//char* buffers for printing stuff on the LCD
@@ -47,7 +56,7 @@ int main()
 	////clearDisplay();
 	////LCD_WriteString("IMU");
 	////_delay_ms(1000);
-	
+
 	//LED_Strip
 	WS2812 LEDFRT(1, FRT); // 1 LED
 	WS2812 LEDFRB(1, FRB); // 1 LED
@@ -57,10 +66,10 @@ int main()
 	initializeInterrupt();
 	//initialize Radio Controller counter
 	initializecounterPWMread();
-	
+
 	int i = 0;
 	while(1)
-	{	
+	{
 		//if (button_falling)
 		//{
 			//AllESC.set(1,1100/2);
@@ -90,7 +99,7 @@ int main()
 			sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
 			LCD_WriteString(buffer);
 			_delay_ms(100);
-			
+
 			i++;
 			if(i == 5)
 			{
@@ -99,7 +108,7 @@ int main()
 				LEDFRT.set_crgb_at(0, valueFRT); // Set value at LED found at index 0
 				LEDFRB.set_crgb_at(0, valueFRB); // Set value at LED found at index 0
 				LEDFRT.sync(); // Sends the value to the LED
-				LEDFRB.sync(); // Sends the value to the LED				
+				LEDFRB.sync(); // Sends the value to the LED
 			}
 
 			else if(i == 10)
@@ -112,10 +121,10 @@ int main()
 				LEDFRB.sync(); // Sends the value to the LED
 				i = 0;
 			}
-			
+
 			//Imu.IMUTakeMeasures();
-			
-			//clearDisplay();	
+
+			//clearDisplay();
 			//_delay_ms(20);
 			//sprintf(buffer, "X:%u  Y:%u", imu.gyrx, imu.gyry);
 			//LCD_WriteString(buffer);
@@ -123,8 +132,8 @@ int main()
 			//sprintf(buffer, "Z:%u  Pres:%u", imu.gyrz, imu.pres);
 			//LCD_WriteString(buffer);
 			//_delay_ms(10);
-			
-			
+
+
 			//clearDisplay();
 			//_delay_ms(20);
 			//sprintf(buffer, "P:%i  T:%i", imu.pres, imu.temp);
@@ -141,15 +150,15 @@ int main()
 			//SetAdress(LINE2);
 			//sprintf(buffer, "Z:%u  Pres:%u", imu.gyrz, imu.pres);
 			//LCD_WriteString(buffer);
-			//_delay_ms(400);		
-			
-			
-			//clearDisplay();			
+			//_delay_ms(400);
+
+
+			//clearDisplay();
 			////if(i2c.read(0x00, dataIn,1) == 1)
 			//
-			//clearDisplay();	
+			//clearDisplay();
 			//sprintf(buffer, "%u    %u     ", dataIn[0], dataIn[1]);
-			//LCD_WriteString(buffer);		
+			//LCD_WriteString(buffer);
 			//if(i2c.read(0xAA, dataIn,1) == 0)
 			//{
 				//clearDisplay();
@@ -157,7 +166,7 @@ int main()
 				//_delay_ms(100000);
 			//}
 
-			
+
 		//}
 
 	}
