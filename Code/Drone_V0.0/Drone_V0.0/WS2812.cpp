@@ -1,25 +1,32 @@
-/*
-* light weight WS2812 lib V2.1 - Arduino support
-*
-* Controls WS2811/WS2812/WS2812B RGB-LEDs
-* Author: Matthias Riegler
-*
-* Mar 07 2014: Added Arduino and C++ Library
-*
-* September 6, 2014:	Added option to switch between most popular color orders
-*						(RGB, GRB, and BRG) --  Windell H. Oskay
-* 
-* License: GNU GPL v2 (see License.txt)
-*/
+/**
+  ******************************************************************************
+	* File Name         : WS2812.cpp
+	* Description       : Class for controlling multiple RGB WS2812 LED strips 
+	* Author			: Matthias Riegler, Juan Morency Trudel (Adaptation)
+	* Version           : 2.1
+	* Date				: September 6, 2014
+	* License			: GNU GPL v2 (see License.txt)
+	* Comment			: Mar 07 2014: Added Arduino and C++ Library
+						  September 6, 2014:	Added option to switch between most popular color orders
+						  (RGB, GRB, and BRG) --  Windell H. Oskay
+	
+  ******************************************************************************
+  */
 
 #include "WS2812.h"
 #include <stdlib.h>
 #include <avr/io.h>
 #include <avr/portpins.h>
 
-WS2812::WS2812(uint16_t num_leds, uint8_t stripPosition) {
+/**
+	* @brief WS2812 class that represents one LED strip
+	* @param num_leds	: Number of LED to control on the strip
+	* @param stripPas	: Position of the LED strip on the device to assign the right port to control it
+	* @retval None
+	*/
+WS2812::WS2812(uint16_t num_leds, uint8_t stripPos) {
 	count_led = num_leds;
-	stripPosition1 = stripPosition;
+	stripPosition = stripPos;
 	pixels = (uint8_t*)malloc(count_led*3);
 	#ifdef RGB_ORDER_ON_RUNTIME	
 		offsetGreen = 0;
@@ -27,7 +34,12 @@ WS2812::WS2812(uint16_t num_leds, uint8_t stripPosition) {
 		offsetBlue = 2;
 	#endif
 }
-
+/**
+	* @brief Gets the RGB value of the desired pixel in the array representing the colors of the 
+	* LED in the program memory
+	* @param index: This is the reference number of the pixel that is desired
+	* @retval cRGB: returns the cRGB struct value 
+	*/
 cRGB WS2812::get_crgb_at(uint16_t index) {
 	
 	cRGB px_value;
@@ -45,6 +57,14 @@ cRGB WS2812::get_crgb_at(uint16_t index) {
 	return px_value;
 }
 
+
+/**
+	* @brief Sets the RGB value of the desired pixel in the array representing the colors of the 
+	* LED in the program memory
+	* @param index: This is the reference number of the pixel that is desired to change
+	* @param px_value: This is the color that is to be assigned to the LED
+	* @retval uint8_t: returns a 0 upon success and 1 if the the index out of bound
+	*/
 uint8_t WS2812::set_crgb_at(uint16_t index, cRGB px_value) {
 	
 	if(index < count_led) {
@@ -60,6 +80,13 @@ uint8_t WS2812::set_crgb_at(uint16_t index, cRGB px_value) {
 	return 1;
 }
 
+/**
+	* @brief Same as set_crgb_at but with the possibility to input an offset (should be multiple of 3) to
+	* facilitate implementation in loops
+	* @param index: This is the reference number of the pixel that is desired to change
+	* @param px_value: This is the color that is to be assigned to the LED
+	* @retval uint8_t: returns a 0 upon success and 1 if the the index out of bound
+	*/
 uint8_t WS2812::set_subpixel_at(uint16_t index, uint8_t offset, uint8_t px_value) {
 	if (index < count_led) {
 		uint16_t tmp;
@@ -73,7 +100,7 @@ uint8_t WS2812::set_subpixel_at(uint16_t index, uint8_t offset, uint8_t px_value
 
 void WS2812::sync() {
 	setAsOutput();
-	*ws2812_port_reg |= pinMask; // Enable DDR
+	*ws2812_port_reg |= pinMask; // Enable DDR 
 	ws2812_sendarray_mask(pixels,3*count_led,pinMask,(uint8_t*) ws2812_port,(uint8_t*) ws2812_port_reg );	
 }
 
@@ -106,7 +133,7 @@ WS2812::~WS2812() {
 void WS2812::setAsOutput()
 {
 	//seem to have problems with port F, except for F3..., can't do shit
-	switch (stripPosition1)
+	switch (stripPosition)
 	{
 	case FRT:
 		setOutput(&PORTB,&DDRB, 6);
@@ -143,4 +170,13 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
 		ws2812_port = port;
 		ws2812_port_reg = ddr;
 
+}
+
+void WS2812::reset()
+{
+	int ledNumber3x = count_led*3;
+	for(int i = 0; i < ledNumber3x; i++)
+	{
+		pixels[i] = 0;
+	}
 }

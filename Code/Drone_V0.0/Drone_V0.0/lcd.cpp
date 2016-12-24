@@ -47,7 +47,7 @@ void enable(void){
 
 /**
 	* @brief set the data pin to a particular character
-  * @param c: char to be written on the LCD
+	* @param c: char to be written on the LCD
 	* @retval None
 	*/
 void LCD_WriteChar(char c){
@@ -106,7 +106,7 @@ void clearDisplay(void){
 	* @param address: Address of in the memory of the LCD RAM to read or write next character
 	*				 beware of heaxedecimal to int conversion
 	* @retval None
-	*	@note When 1-line display mode (N=LOW), DDRAM address is form 0x00 to 0x4F
+	* @note When 1-line display mode (N=LOW), DDRAM address is form 0x00 to 0x4F
 	* 			In 2-line display mode (N=HIGH), DDRAM address is form 0x00 to 0x27 for first line
 	*				and 0x40 to 0x67 for second line
 	*/
