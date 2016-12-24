@@ -2,21 +2,14 @@
 
 
 /*
-Pour l'instant Fclk_I/O = 1M
 la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
 fréquence désiré = entre 100 et 500Hz
 Comme on veut un maximum de résolution (le plus grand top possible)
 on maximise top et on laisse prescaler à 1
-pour un Top à 4096:  1 000 000/(4096*2) = 122Hz
-1/122Hz = 8.192ms 
-alors si on veut entre 1 et 2 ms, il faut un signal entre 
-512 et 1024 pour OCRnX
-
-Lorsqu'on aura set le crystal Fclk_I/O = 16M
-donc on aura qu'à changer Top pour le metre à 65536
-pour avoir la même fréquence mais encore plus de résolution
-La valeur correspondant à 1 et 2 ms sera alors:
-8192 et 16384 respectivement
+pour un Top à 65536:  16 000 000/(65536*2) = 122Hz
+1/122Hz = 8.192ms
+alors si on veut entre 1 et 2 ms (requis par le ESC), il faut un 
+signal entre 8192 et 16384 pour OCRnX
 
 Régistres (p. 154)
 
@@ -30,29 +23,27 @@ On utilise le mode 10 pour avoir un phase correct PWM
 avec le plus de résolution possible
 
 ICRnxH and ICRnxL = 0x0FFF
-on mets cette valeur à 4096 alors
-ICRnH = 00001111 and ICRnL = 11111111
+on mets cette valeur à 65535 alors
 
 CSn2:0 = 001
 prescaler mettre à 1
 
-
 set pin direction to output (DDR_OCnx)
 
-
-esc 1 = OC4A
-esc 2 = OC4B
-esc 3 = 0C5A
-esc 4 = 0C5B
+esc BL = OC4A
+esc FL = OC4B
+esc FR = 0C5A
+esc BR = 0C5B
 */
 
 //constructor
-esc::esc()
-{
 
+Esc::Esc(int escPosition)
+{
+	escNumber = escPosition;
 }
 
-void esc::initialize()
+void initializeESC()
 {
   //Timer/Counter 4/5 set to non-inverted Phase Correct PWM (8 bits resolution)
   TCCR4A |= (1 << COM4A1) | (1 << COM4B1) | (1 << WGM41);
@@ -63,9 +54,9 @@ void esc::initialize()
   TCCR4B |= (1 << WGM43) | (1 << CS40) ;
   TCCR5B |= (1 << WGM53) | (1 << CS50) ;
   
-  //régler TOP à 4096
-  ICR4 = 4096;
-  ICR5 = 4096;
+  //régler TOP à 65535
+  ICR4 = 65535;
+  ICR5 = 65535;
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
@@ -86,15 +77,28 @@ void esc::initialize()
   TCNT5 = 0;
 }
 
-void esc::set(int escnumber,uint16_t pwm)
+void Esc::set(uint16_t pwm)
 {
-switch (escnumber) {
-	//the divide by 2 here is required because of the way the ESC is set up
-	//when we will have a frequency of 16MHz we will actually have to multiply by 8
-	case 1: OCR4A = pwm/2;
-	case 2: OCR4B = pwm/2;
-	case 3: OCR5A = pwm/2;
-	case 4: OCR5B = pwm/2;
-}
-	OCR4B = pwm;
+	switch (escNumber) {
+		//multiply by 4 here to get from the PWM of the RF controller to the ESC
+		//ESC requires 1-2ms pulse width so from 8000 to 16000 pwm
+		//since the number we get from the RF is between 2000 and 4000, multiply by 4
+		case 1: 
+			OCR4A = pwm*4;
+			break;
+		case 2: 
+			OCR4B = pwm*4;
+			break;
+		case 3: 
+			OCR5A = pwm*4;
+			break;
+		case 4: 
+			OCR5B = pwm*4;
+			break;
+		default: 
+			OCR4A = 0;
+			OCR4B = 0;
+			OCR5A = 0;
+			OCR5B = 0;
+	}
 }

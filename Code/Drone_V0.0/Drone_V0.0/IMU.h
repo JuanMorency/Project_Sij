@@ -39,6 +39,7 @@
 
 #include "lcd.h"
 #include "I2C.h"
+#include "BMP180.h"
 #include <stdio.h>
 #include <util/delay.h>
 
@@ -46,11 +47,10 @@ class IMU
 {
 	public:
 	IMU();
-	void initialize(I2C i2c);
-	void IMUTakeMeasures(I2C i2c);
-	int accx, accy, accz, temp, gyrx, gyry, gyrz, pres;
+	void initialize();
+	void IMUTakeMeasures();
+	int accx, accy, accz, temp, gyrx, gyry, gyrz, pres, alt;
 };
 
-void bmp180Calibration(I2C i2c);
 
 #endif

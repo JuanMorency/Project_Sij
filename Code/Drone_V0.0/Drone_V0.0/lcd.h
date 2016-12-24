@@ -26,8 +26,9 @@
 #define DB7 PORTK7
 
 #define MAX_NUMBER_CHAR_LCD_DISPLAY 16
-#define ENABLE_TIME 0x190 						/* 400 us, don't set below ~50 or weird timing issue with display */
-#define WAIT_TIME_AFTER_RESET 0x7D0 	/* 2000 us, don't set below ~1000 us*/
+//Here the times are multiplied by 2 because the counter is at 0.5 us
+#define ENABLE_TIME 100 						/* 50 us, don't set below ~50 or weird timing issue with display */
+#define WAIT_TIME_AFTER_RESET 3000 	/* 1500 us, don't set below ~1000 us*/
 
 #define LINE2 64
 

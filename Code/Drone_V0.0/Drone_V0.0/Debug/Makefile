@@ -37,12 +37,15 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../BMP180.cpp \
 ../esc.cpp \
 ../I2C.cpp \
 ../IMU.cpp \
 ../interrupt.cpp \
 ../lcd.cpp \
-../main.cpp
+../light_ws2812.cpp \
+../main.cpp \
+../WS2812.cpp
 
 
 PREPROCESSING_SRCS += 
@@ -52,36 +55,48 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+BMP180.o \
 esc.o \
 I2C.o \
 IMU.o \
 interrupt.o \
 lcd.o \
-main.o
+light_ws2812.o \
+main.o \
+WS2812.o
 
 OBJS_AS_ARGS +=  \
+BMP180.o \
 esc.o \
 I2C.o \
 IMU.o \
 interrupt.o \
 lcd.o \
-main.o
+light_ws2812.o \
+main.o \
+WS2812.o
 
 C_DEPS +=  \
+BMP180.d \
 esc.d \
 I2C.d \
 IMU.d \
 interrupt.d \
 lcd.d \
-main.d
+light_ws2812.d \
+main.d \
+WS2812.d
 
 C_DEPS_AS_ARGS +=  \
+BMP180.d \
 esc.d \
 I2C.d \
 IMU.d \
 interrupt.d \
 lcd.d \
-main.d
+light_ws2812.d \
+main.d \
+WS2812.d
 
 OUTPUT_FILE_PATH +=Drone_V0.0.elf
 
@@ -97,6 +112,12 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
 
 
 

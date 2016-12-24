@@ -20,8 +20,8 @@ const int dataPin[8] =	{DB0, DB1, DB2, DB3, DB4, DB5, DB6, DB7};
 	* @retval None
 	*/
 void initLCD(void){
-	//init timer for LCD control. Counts up every 1us
-	TCCR1B |= (1 << CS00); /*prescaler 1*/
+	//init timer for LCD control. Counts up every 0.5 us (1/ (16M/8))
+	TCCR1B |= (1 << CS11); /*prescaler 8*/
 	//set pins as outputs
 	DDRK |= (1 << DDK7) | (1 << DDK6) | (1 << DDK5) | (1 << DDK4) | (1 << DDK3) | (1 << DDK2) | (1 << DDK1) | (1 << DDK0);
 	DDRL |= (1 << DDL7) | (1 << DDL6) | (1 << DDL5);

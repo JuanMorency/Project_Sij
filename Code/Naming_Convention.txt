@@ -1,0 +1,1 @@
+http://geosoft.no/development/cppstyle.html#Naming Conventions

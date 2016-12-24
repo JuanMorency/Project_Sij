@@ -1,3 +1,7 @@
 Put a RC low pass filter on ADC lines
 
 buy some 603 res for 2k RCL and RCA
+
+M1 il faut refaire le routing, voir le datasheet
+
+change cout2 for 1nF

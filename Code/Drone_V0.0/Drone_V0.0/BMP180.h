@@ -23,9 +23,8 @@
 #ifndef __BMP180_H
 #define __BMP180_H
 
-#include "Public_StdTypes.h"
 #include "I2C.h"
-
+#include "lcd.h"
 
 #define BMP180_ADDR                 0xEE     // default I2C address  
 
@@ -75,8 +74,9 @@ enum
 };
 
 extern int32_t PressureVal, TemperatureVal, AltitudeVal;
-extern void CalTemperatureAndPressureAndAltitude(void);
-extern void BMP180_Init(void);
+extern void CalTemperatureAndPressureAndAltitude();
+extern void BMP180_Init();
+extern int32_t getPressure0();
 #endif
 
 /******************* (C) COPYRIGHT 2014 Waveshare *****END OF FILE*******************/

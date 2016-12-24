@@ -5,10 +5,11 @@ Channel du radio controller
 http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 
 *pinout for radio receiver
-* J3 = CH1
+* J2 = CH4
+* J3 = CH3
 * J4 = CH2
-* J5 = CH3
-* J6 = CH4
+* J5 = CH1
+
 */
 
 /*
@@ -28,7 +29,7 @@ void initializeInterrupt()
 {
 	PCICR |= (1<<PCIE0) | (1<<PCIE1); /* enable pin change interrupt 0 and 1 */
 	PCMSK0 |= (1<<PCINT4); /* enable pin B0 to trigger PCINT0 */
-	PCMSK1 |= (1<<PCINT12) | (1<<PCINT13) | (1<<PCINT14) | (1<<PCINT15); /* enable pin J3-J6 to trigger PCINT1 */
+	PCMSK1 |= (1<<PCINT11) | (1<<PCINT12) | (1<<PCINT13) | (1<<PCINT14); /* enable pin J3-J6 to trigger PCINT1 */
 	sei();	/* Turn interrupts on */
 }
 
@@ -38,9 +39,10 @@ void initializecounterPWMread()
 	ch_1_counting = false, ch_2_counting = false, ch_3_counting = false, ch_4_counting = false;
 	ch_1_pw = 0, ch_2_pw = 0, ch_3_pw = 0, ch_4_pw = 0;
 	//counter for measuring pulse width of incoming radio signal
-	TCCR3B |= (1 << CS30); //set-up counter in normal mode with prescaler = 1
+	TCCR3B |= (1 << CS31); //set-up counter in normal mode with prescaler = 8
 	TIMSK3 |= (1 << TOIE3); // enable interrupt on overflow
 }
+
 //for button press
 ISR(PCINT0_vect) {
 	//read pin PB4 and if 1 this must be a rising edge change
@@ -51,7 +53,7 @@ ISR(PCINT0_vect) {
 //for reading the pwm receiver for the radio receiver
 ISR(PCINT1_vect) {
 	//channel_1
-	if (PINJ & 0b00001000 && last_ch_1 == false) //Rising edge
+	if (PINJ & 0b00100000 && last_ch_1 == false) //Rising edge
 	{	last_ch_1 = true;
 		ch_1_counting = true;
 		//verify if there is an overflow before starting to count
@@ -62,7 +64,7 @@ ISR(PCINT1_vect) {
 		//record the counter value for the rising edge
 		count_ch_1 = TCNT3L | TCNT3H << 8;		
 	}
-	else if (!(PINJ & 0b00001000) && last_ch_1 == true) //Falling edge
+	else if (!(PINJ & 0b00100000) && last_ch_1 == true) //Falling edge
 	{	last_ch_1 = false;
 		//subtract current counter to old one in count_ch_1 and store variable in ch_1_pw
 		//only if there is no overflow at rising and falling edge or if there is an overflow for both
@@ -103,7 +105,7 @@ ISR(PCINT1_vect) {
 	
 	
 	//channel_3
-	if (PINJ & 0b00100000 && last_ch_3 == false) //Rising edge
+	if (PINJ & 0b00001000 && last_ch_3 == false) //Rising edge
 	{	last_ch_3 = true;
 		ch_3_counting = true;
 		//verify if there is an overflow before starting to count
@@ -112,7 +114,7 @@ ISR(PCINT1_vect) {
 		//record the counter value for the rising edge
 		count_ch_3 = TCNT3L | TCNT3H << 8;
 	}
-	else if (!(PINJ & 0b00100000) && last_ch_3 == true) //Falling edge
+	else if (!(PINJ & 0b00001000) && last_ch_3 == true) //Falling edge
 	{	last_ch_3 = false;
 		//subtract current counter to old one in count_ch_3 and store variable in ch_3_pw
 		//only if there is no overflow at rising and falling edge or if there is an overflow for both
@@ -127,7 +129,7 @@ ISR(PCINT1_vect) {
 	
 	
 	//channel_4
-	if (PINJ & 0b01000000 && last_ch_4 == false) //Rising edge
+	if (PINJ & 0b00000100 && last_ch_4 == false) //Rising edge
 	{	last_ch_4 = true;
 		ch_4_counting = true;
 		//verify if there is an overflow before starting to count
@@ -136,7 +138,7 @@ ISR(PCINT1_vect) {
 		//record the counter value for the rising edge
 		count_ch_4 = TCNT3L | TCNT3H << 8;
 	}
-	else if (!(PINJ & 0b01000000) && last_ch_4 == true) //Falling edge
+	else if (!(PINJ & 0b00000100) && last_ch_4 == true) //Falling edge
 	{	last_ch_4 = false;
 		//subtract current counter to old one in count_ch_4 and store variable in ch_4_pw
 		//only if there is no overflow at rising and falling edge or if there is an overflow for both

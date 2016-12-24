@@ -1,12 +1,7 @@
 ﻿#include "I2C.h"
 
 
-//constructor
-I2C::I2C()
-{
-
-}
-void I2C::initialize()
+void initializeI2C()
 {
 	
 	//When connect the crystal, must prescale the I2C frequency to divide it by at least 4, otherwise IMU won't work 400kHz max
@@ -19,14 +14,14 @@ void I2C::initialize()
 	 */
 uint8_t twst;
 
-uint8_t I2C::write(uint8_t phys_address, uint8_t address, uint8_t data)
+uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data)
 {
 	uint8_t data1[1];
 	data1[0] = data;
-	write(phys_address,address, data1, 1);
+	writeI2C(phys_address,address, data1, 1);
 }
 
-uint8_t I2C::write(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
+uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
 	char buffer[20];
 	uint8_t twcr, n = 0;
@@ -135,16 +130,16 @@ uint8_t I2C::write(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t
 	return 0;
 }
 
-uint8_t I2C::read(uint8_t phys_address, uint8_t address)
+uint8_t readI2C(uint8_t phys_address, uint8_t address)
 {
 	uint8_t data[1];
-	if(read(phys_address,address,data, 1) == 0)
+	if(readI2C(phys_address,address,data, 1) == 0)
 	return data[0];
 	else
 	return 0xFF;
 }
 
-uint8_t I2C::read(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
+uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
 	uint8_t twcr, n = 0;
 	char buffer[20];

@@ -23,11 +23,17 @@
 
 #include "BMP180.h"
 
-int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD, _oss;  
+int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD, _oss;  //oss = oversampling setting
 uint16_t AC4, AC5, AC6;
-int32_t B5, UT, UP, Pressure0 = MSLP; 
-int32_t PressureVal = 0, TemperatureVal = 0, AltitudeVal = 0;
+int32_t B5, UT, UP, Pressure0 = MSLP;
+int32_t PressureVal = 0, TemperatureVal = 0, AltitudeVal = 0; 
+//Pressure in Pascal, Temperature in 0.1 C and Altitude in Meter
 
+
+int32_t getPressure0()
+{
+	return Pressure0;
+}
 
 /**
   * @brief  Digital filter
@@ -55,36 +61,13 @@ void BMP180_CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int
 }
 
 /**
-  * @brief  write an byte to the register adrress of BMP180
-  * @param  RegAddr: the register adrress of BMP180
-  * @param Data: the data would be writen to the specified register address
-  * @retval None
-  */
-void BMP180_WriteReg(uint8_t RegAddr, uint8_t Val) 
-{
-	I2C_WriteOneByte(BMP180_ADDR, RegAddr, Val);
-}
-
-/**
-  * @brief  Read couples of bytes from the specified register address continuously
-  * @param  RegAddr: the specified register adrress of BMP180
-  * @param  Num: buffer sizes
-  * @param  *pBuffer: points to a buffer to which will be writen 
-  * @retval None
-  */
-void BMP180_ReadReg(uint8_t RegAddr, uint8_t Num, uint8_t *pBuffer) 
-{
-  	I2C_ReadBuff(BMP180_ADDR, RegAddr, Num, pBuffer);
-}
-
-/**
   * @brief  Start temperature measurement
   * @param  None
   * @retval None
   */
-void BMP180_StartTemperatureMeasurement(void)
+void BMP180_StartTemperatureMeasurement()
 {
-	BMP180_WriteReg(CONTROL, READ_TEMPERATURE); 
+	writeI2C(BMP180_ADDRESS, CONTROL, READ_TEMPERATURE);
 }
 
 
@@ -93,9 +76,9 @@ void BMP180_StartTemperatureMeasurement(void)
   * @param  None
   * @retval None
   */
-void BMP180_StartPressureMeasurement(void)
+void BMP180_StartPressureMeasurement()
 {
-	BMP180_WriteReg(CONTROL, READ_PRESSURE + (_oss << 6)); 
+	writeI2C(BMP180_ADDRESS, CONTROL, READ_PRESSURE + (_oss << 6));
 }
 
 
@@ -104,12 +87,10 @@ void BMP180_StartPressureMeasurement(void)
   * @param  None
   * @retval None
   */
-void BMP180_ReadUncompensatedTemperature(void)
+void BMP180_ReadUncompensatedTemperature()
 {
 	uint8_t RegBuff[2];
-	
-	BMP180_ReadReg(CONTROL_OUTPUT, 2, &RegBuff[0]); 
-
+	readI2C(BMP180_ADDRESS, CONTROL_OUTPUT, &RegBuff[0], 2);
   	UT = ((int32_t)RegBuff[0] << 8) + (int32_t)RegBuff[1]; 
 }
 
@@ -119,11 +100,10 @@ void BMP180_ReadUncompensatedTemperature(void)
   * @param  None
   * @retval None
   */
-void BMP180_ReadUncompensatedPressure(void)
+void BMP180_ReadUncompensatedPressure()
 {
 	uint8_t RegBuff[3];
-	
-	BMP180_ReadReg(CONTROL_OUTPUT, 3, &RegBuff[0]); 
+	readI2C(BMP180_ADDRESS, CONTROL_OUTPUT, &RegBuff[0], 3);
   	UP = (((int32_t)RegBuff[0] << 16) + ((int32_t)RegBuff[1] << 8) + ((int32_t)RegBuff[2])) >> (8 -_oss); // uncompensated pressure value
 }
 
@@ -181,7 +161,6 @@ void BMP180_CalculateTruePressure(int32_t *pTruePressure)
   	*pTruePressure = P + ((X1 + X2 + 3791) >> 4);
 }
 
-
 /**
   * @brief  Calculating average value of pressure
   * @param  *pVal: the average value of pressure
@@ -191,23 +170,33 @@ void BMP180_LocalpressureAvg(int32_t *pVal)
 {
 	uint8_t i;
 	int32_t Sum = 0;
-	
+	char buffer[20];
 	for(i = 0; i < 5; i ++)
 	{
 	  	BMP180_StartTemperatureMeasurement();
-		Delay_ms(324); //4.5ms   324
+		_delay_ms(324); //4.5ms   324  // check to change to smaller
 		BMP180_ReadUncompensatedTemperature();
 		BMP180_StartPressureMeasurement();
-		Delay_ms(540);//7.5ms    540
+		_delay_ms(540);//7.5ms    540   // check to change to smaller
 		BMP180_ReadUncompensatedPressure();
 		BMP180_CalculateTruePressure(&PressureVal);
 		BMP180_CalculateTrueTemperature(&TemperatureVal);
+
+		clearDisplay();
+		sprintf(buffer, "UT:%i", UP);
+		LCD_WriteString(buffer);
+		SetAdress(64); // goes to line 2 of LCD
+		sprintf(buffer, "Pres:%i ", PressureVal);
+		LCD_WriteString(buffer);
+		_delay_ms(1000);
 		
+		//sum the 3 last values
 		if(i >= 2)
 		{
 			Sum += PressureVal;
 		}
 	}
+	//export the mean of last 3 values
 	*pVal = Sum / 3;
 }
 
@@ -220,12 +209,10 @@ void BMP180_LocalpressureAvg(int32_t *pVal)
 void BMP180_PressureAtSeaLevel(void)
 {  
 	float Temp = 0.0f;
-	
 	BMP180_LocalpressureAvg(&PressureVal);
-	
 	Temp = (float)LOCAL_ADS_ALTITUDE / 4433000;
 	Temp = (float)pow((1 - Temp), 5.255f);
-	Pressure0 = (PressureVal - PRESSURE_OFFSET) / Temp;//
+	Pressure0 = (PressureVal - PRESSURE_OFFSET) / Temp;
 }
 
 
@@ -245,32 +232,40 @@ void BMP180_CalculateAbsoluteAltitude(int32_t *pAltitude, int32_t PressureVal)
   * @param  None
   * @retval None
   */
-void BMP180_ReadCalibrationData(void) 
+void BMP180_ReadCalibrationData() 
 {
+	char buffer[20];
 	uint8_t RegBuff[2];
-
-	BMP180_ReadReg(CAL_AC1, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC1, RegBuff, 2);
   	AC1 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_AC2, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC2, RegBuff, 2);
   	AC2 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_AC3, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC3, RegBuff, 2);
   	AC3 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_AC4, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC4, RegBuff, 2);
   	AC4 = ((uint16_t)RegBuff[0] <<8 | ((uint16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_AC5, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC5, RegBuff, 2);
   	AC5 = ((uint16_t)RegBuff[0] <<8 | ((uint16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_AC6, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_AC6, RegBuff, 2);
   	AC6 = ((uint16_t)RegBuff[0] <<8 | ((uint16_t)RegBuff[1])); 
-  	BMP180_ReadReg(CAL_B1, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_B1, RegBuff, 2);
   	B1 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1])); 
-  	BMP180_ReadReg(CAL_B2, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_B2, RegBuff, 2);
   	B2 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1])); 
-  	BMP180_ReadReg(CAL_MB, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_MB, RegBuff, 2);
   	MB = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_MC, 2, RegBuff);
+	readI2C(BMP180_ADDRESS, CAL_MC, RegBuff, 2);
   	MC = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-  	BMP180_ReadReg(CAL_MD, 2, RegBuff);
-  	MD = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1])); 
+	readI2C(BMP180_ADDRESS, CAL_MD, RegBuff, 2);
+  	MD = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
+	clearDisplay();
+	sprintf(buffer, "1:%i 2:%i", AC1, AC2);
+	LCD_WriteString(buffer);
+	SetAdress(64); // goes to line 2 of LCD
+	sprintf(buffer, "3:%i 4:%u ",AC3, AC4);
+	LCD_WriteString(buffer);
+	_delay_ms(10000);
+	
 }
 
 
@@ -290,7 +285,7 @@ void BMP180_SetOversample(void)
   * @param  None
   * @retval None
   */
-void BMP180_Init(void) 
+void BMP180_Init() 
 {  
   	BMP180_SetOversample();
   	BMP180_ReadCalibrationData();
@@ -303,7 +298,7 @@ void BMP180_Init(void)
   * @param  None
   * @retval None
   */
-void CalTemperatureAndPressureAndAltitude(void)
+void CalTemperatureAndPressureAndAltitude()
 {
 	static uint8_t State = START_TEMPERATURE_MEASUREMENT;
 	static BMP180_AvgTypeDef BMP180_Filter[3];
@@ -313,14 +308,14 @@ void CalTemperatureAndPressureAndAltitude(void)
 	{
 		case START_TEMPERATURE_MEASUREMENT:
 			BMP180_StartTemperatureMeasurement();
-			Delay_ms(5); //4.5ms
+			_delay_ms(5); //4.5ms
 			State = READ_UT_AND_START_PRESSURE_MEASUREMENT;
 			break;
 			
 		case READ_UT_AND_START_PRESSURE_MEASUREMENT:
 			BMP180_ReadUncompensatedTemperature();
 			BMP180_StartPressureMeasurement();
-			Delay_ms(10);//7.5ms
+			_delay_ms(10);//7.5ms
 			State = READ_UP_CAL_TRUE_PRESSURE_TEMPERATURE;
 			break;
 			
@@ -342,6 +337,3 @@ void CalTemperatureAndPressureAndAltitude(void)
 			break;
 	}	
 }
-
-/******************* (C) COPYRIGHT 2014 Waveshare *****END OF FILE*******************/
-

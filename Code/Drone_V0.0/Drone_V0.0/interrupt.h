@@ -1,6 +1,6 @@
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
-#define F_CPU 1000000
+#define F_CPU 16000000
 
 
 #include <avr/interrupt.h>

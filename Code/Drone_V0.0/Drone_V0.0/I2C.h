@@ -1,6 +1,7 @@
 #ifndef I2C_H
-#define F_CPU 1000000
 #define I2C_H
+
+#define F_CPU 16000000
 #define IMU_ADDRESS 0xD0 //Address of IMU + 0 for write
 #define BMP180_ADDRESS 0xEE
 #define MAX_ITER 200
@@ -10,17 +11,11 @@
 #include <util/delay.h>
 #include <util/twi.h>
 
-class I2C
-{
-public:
-	I2C();
-	void initialize();
-	uint8_t write(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);
-	uint8_t write(uint8_t phys_address, uint8_t address, uint8_t data);
-	uint8_t read(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);
-	uint8_t read(uint8_t phys_address, uint8_t address);
-
-};
+void initializeI2C();
+uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);
+uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data);
+uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);
+uint8_t readI2C(uint8_t phys_address, uint8_t address);
 
 void I2Cstart();
 void I2Cstop();

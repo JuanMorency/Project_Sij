@@ -1,16 +1,22 @@
 #ifndef ESC_H
 #define ESC_H
-#define F_CPU 1000000
+#define F_CPU 16000000
 #define DELAY_ESC 0 //time to initialize the ESC in microseconds
+#define BL 1
+#define FL 2
+#define FR 3
+#define BR 4
 
 #include <avr/io.h>
 #include <util/delay.h>
 
-class esc
+class Esc
 {
+	int escNumber;
 public:
-  esc();
-  void initialize();
-  void set(int escnumber,uint16_t pwm);
+	Esc(int escPosition);
+	void set(uint16_t pwm);	
 };
+
+	void initializeESC();
 #endif
