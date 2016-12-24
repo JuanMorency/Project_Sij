@@ -84,6 +84,8 @@ uint8_t WS2812::set_crgb_at(uint16_t index, cRGB px_value) {
 	* @brief Same as set_crgb_at but with the possibility to input an offset (should be multiple of 3) to
 	* facilitate implementation in loops
 	* @param index: This is the reference number of the pixel that is desired to change
+	* @param offset: The offset of the pixel we want to change. offset of 1 is only one color (RGB), so 
+	* if you want to offset by 1 LED, the offset should be a multiple of 3
 	* @param px_value: This is the color that is to be assigned to the LED
 	* @retval uint8_t: returns a 0 upon success and 1 if the the index out of bound
 	*/
@@ -98,6 +100,13 @@ uint8_t WS2812::set_subpixel_at(uint16_t index, uint8_t offset, uint8_t px_value
 	return 1;
 }
 
+
+/**
+	* @brief This method sets the right output port associated with the WS2812 object and sends the pixel data to the 
+	* LED strip
+	* @param none
+	* @retval none
+	*/
 void WS2812::sync() {
 	setAsOutput();
 	*ws2812_port_reg |= pinMask; // Enable DDR 
@@ -105,18 +114,31 @@ void WS2812::sync() {
 }
 
 #ifdef RGB_ORDER_ON_RUNTIME	
+/**
+	* @brief Sets the order of the colors to GRB in the WS2812 objects
+	* @param none
+	* @retval none
+	*/
 void WS2812::setColorOrderGRB() { // Default color order
 	offsetGreen = 0;
 	offsetRed = 1;
 	offsetBlue = 2;
 }
-
+/**
+	* @brief Sets the order of the colors to RGB in the WS2812 objects
+	* @param none
+	* @retval none
+	*/
 void WS2812::setColorOrderRGB() {
 	offsetRed = 0;
 	offsetGreen = 1;
 	offsetBlue = 2;
 }
-
+/**
+	* @brief Sets the order of the colors to BRG in the WS2812 objects
+	* @param none
+	* @retval none
+	*/
 void WS2812::setColorOrderBRG() {
 	offsetBlue = 0;
 	offsetRed = 1;
@@ -124,12 +146,23 @@ void WS2812::setColorOrderBRG() {
 }
 #endif
 
+/**
+	* @brief Class destructor, restores the memory associated with the pixel array
+	* @param none
+	* @retval none
+	*/
 WS2812::~WS2812() {
 	free(pixels);
 	
 }
 
-
+/**
+	* @brief Method for selecting the right output port with the stripPosition attribute in the Object
+	* This is based on the mapping done for our drone.
+	* This is the place to change the IO pins if we change the pins that control the LED strips
+	* @param none
+	* @retval none
+	*/
 void WS2812::setAsOutput()
 {
 	//seem to have problems with port F, except for F3..., can't do shit
@@ -163,6 +196,16 @@ void WS2812::setAsOutput()
 
 }
 
+/**
+	* @brief Method for selecting the right output port with the stripPosition attribute in the Object
+	* This is based on the mapping done for our drone.
+	* This is the place to change the IO pins if we change the pins that control the LED strips
+	* @param *port: Pointer to the port (e.g. PORTA) that will be used on Atmega2560
+	* @param *ddr: Pointer to the DDR register (e.g. PORTA) that will be used on Atmega2560
+	* @param pin: The number of the pin of the defined port on the Atmega 2560
+	* @retval none
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -172,6 +215,11 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
 
 }
 
+/**
+	* @brief resets the values in the pixel array of the object to 0 (must use sync to actually update the LED)
+	* @param none
+	* @retval none
+	*/
 void WS2812::reset()
 {
 	int ledNumber3x = count_led*3;

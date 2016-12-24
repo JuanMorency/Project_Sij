@@ -13,21 +13,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001788  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000190  00000000  00000000  000017c8  2**0
+  5 .debug_aranges 00000198  00000000  00000000  000017c8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00002045  00000000  00000000  00001958  2**0
+  6 .debug_info   000020fa  00000000  00000000  00001960  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000a5e  00000000  00000000  0000399d  2**0
+  7 .debug_abbrev 00000a7a  00000000  00000000  00003a5a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000102b  00000000  00000000  000043fb  2**0
+  8 .debug_line   0000105e  00000000  00000000  000044d4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000374  00000000  00000000  00005428  2**2
+  9 .debug_frame  00000384  00000000  00000000  00005534  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000891  00000000  00000000  0000579c  2**0
+ 10 .debug_str    000008b0  00000000  00000000  000058b8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000d7d  00000000  00000000  0000602d  2**0
+ 11 .debug_loc    00000da1  00000000  00000000  00006168  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000130  00000000  00000000  00006daa  2**0
+ 12 .debug_ranges 00000138  00000000  00000000  00006f09  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1122,7 +1122,7 @@ void enable(void){
 00000746 <_Z13LCD_WriteCharc>:
 /**
 	* @brief set the data pin to a particular character
-  * @param c: char to be written on the LCD
+	* @param c: char to be written on the LCD
 	* @retval None
 	*/
 void LCD_WriteChar(char c){
@@ -1197,7 +1197,7 @@ void LCD_WriteChar(char c){
      7ae:	90 95       	com	r25
      7b0:	92 23       	and	r25, r18
      7b2:	9c 93       	st	X, r25
-  * @param c: char to be written on the LCD
+	* @param c: char to be written on the LCD
 	* @retval None
 	*/
 void LCD_WriteChar(char c){
@@ -1298,7 +1298,7 @@ void clearDisplay(void){
 
 0000083a <_Z9SetAdressi>:
 	* @retval None
-	*	@note When 1-line display mode (N=LOW), DDRAM address is form 0x00 to 0x4F
+	* @note When 1-line display mode (N=LOW), DDRAM address is form 0x00 to 0x4F
 	* 			In 2-line display mode (N=HIGH), DDRAM address is form 0x00 to 0x27 for first line
 	*				and 0x40 to 0x67 for second line
 	*/
@@ -2103,10 +2103,10 @@ int main()
      c76:	70 cf       	rjmp	.-288    	; 0xb58 <main+0x72>
 
 00000c78 <_ZN6WS2812C1Ejh>:
-	offsetGreen = 2;
-}
-#endif
-
+	* @brief Class destructor, restores the memory associated with the pixel array
+	* @param none
+	* @retval none
+	*/
 WS2812::~WS2812() {
 	free(pixels);
      c78:	cf 93       	push	r28
@@ -2178,15 +2178,15 @@ WS2812::~WS2812() {
      cf8:	08 95       	ret
 
 00000cfa <_ZN6WS281211setAsOutputEv>:
-	
-}
-
-
+	* This is the place to change the IO pins if we change the pins that control the LED strips
+	* @param none
+	* @retval none
+	*/
 void WS2812::setAsOutput()
 {
      cfa:	dc 01       	movw	r26, r24
 	//seem to have problems with port F, except for F3..., can't do shit
-	switch (stripPosition1)
+	switch (stripPosition)
      cfc:	1c 96       	adiw	r26, 0x0c	; 12
      cfe:	4c 91       	ld	r20, X
      d00:	1c 97       	sbiw	r26, 0x0c	; 12
@@ -2201,8 +2201,8 @@ void WS2812::setAsOutput()
      d12:	ff 4f       	sbci	r31, 0xFF	; 255
      d14:	8f 4f       	sbci	r24, 0xFF	; 255
      d16:	ad c0       	rjmp	.+346    	; 0xe72 <__tablejump2__>
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2226,8 +2226,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      d34:	8e 93       	st	-X, r24
      d36:	19 97       	sbiw	r26, 0x09	; 9
      d38:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2251,8 +2251,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      d56:	8e 93       	st	-X, r24
      d58:	19 97       	sbiw	r26, 0x09	; 9
      d5a:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2276,8 +2276,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      d78:	8e 93       	st	-X, r24
      d7a:	19 97       	sbiw	r26, 0x09	; 9
      d7c:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2301,8 +2301,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      d9a:	8e 93       	st	-X, r24
      d9c:	19 97       	sbiw	r26, 0x09	; 9
      d9e:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2326,8 +2326,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      dbc:	8e 93       	st	-X, r24
      dbe:	19 97       	sbiw	r26, 0x09	; 9
      dc0:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2351,8 +2351,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      dde:	8e 93       	st	-X, r24
      de0:	19 97       	sbiw	r26, 0x09	; 9
      de2:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2376,8 +2376,8 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      e00:	8e 93       	st	-X, r24
      e02:	19 97       	sbiw	r26, 0x09	; 9
      e04:	08 95       	ret
-}
-
+	* @note Example of utilisation setOutput(&PORTA, &DDRA, 3)
+	*/
 void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin) 
 {
 	//seem to have problems with port F, except for F3..., can`t do shit
@@ -2403,11 +2403,11 @@ void WS2812::setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pi
      e26:	08 95       	ret
 
 00000e28 <_ZN6WS28124syncEv>:
-		return 0;
-	}
-	return 1;
-}
-
+	* @brief This method sets the right output port associated with the WS2812 object and sends the pixel data to the 
+	* LED strip
+	* @param none
+	* @retval none
+	*/
 void WS2812::sync() {
      e28:	ef 92       	push	r14
      e2a:	ff 92       	push	r15
@@ -2418,7 +2418,7 @@ void WS2812::sync() {
      e34:	ec 01       	movw	r28, r24
 	setAsOutput();
      e36:	61 df       	rcall	.-318    	; 0xcfa <_ZN6WS281211setAsOutputEv>
-	*ws2812_port_reg |= pinMask; // Enable DDR
+	*ws2812_port_reg |= pinMask; // Enable DDR 
      e38:	e9 85       	ldd	r30, Y+9	; 0x09
      e3a:	fa 85       	ldd	r31, Y+10	; 0x0a
      e3c:	90 81       	ld	r25, Z

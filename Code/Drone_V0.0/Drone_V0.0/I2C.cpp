@@ -1,6 +1,10 @@
 ﻿#include "I2C.h"
 
-
+/**
+	* @brief Initialize the prescaler of the I2C clock
+	* @param none
+	* @retval none
+	*/
 void initializeI2C()
 {
 	
@@ -21,6 +25,22 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data)
 	writeI2C(phys_address,address, data1, 1);
 }
 
+/**
+	* @brief This methods sends bytes of data to another controller via I2C
+	* @param phys_address: This is the actual physical address (often fixed on hardware) of the device to communicate with (SLA_W)
+	* @param address: Register address on the slave device to write to
+	* @param data: pointer to the data that is to be sent to the slave
+	* @param length: number of bytes to write
+	* @retval uint8_t:  0	success
+	*					1	not in start condition
+	*					2	error in sending physical address, not expected status register
+	*					3	TW_MT_DATA_NACK when sending address
+	*					4	error in sending address, not expected status register
+	*					5	TW_MT_DATA_NACK when sending data
+	*					6	error in sending data, not expected status register
+	*					10	MAX_ITER reached timed out
+	* @note Refer to page 244 of the Atmega for information
+	*/
 uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
 	char buffer[20];
@@ -40,7 +60,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 	switch ((twst = TW_STATUS))
 	{
 		case TW_REP_START:		/* OK, but should not happen */
-		case TW_START:
+		case TW_START:			/* This is the expected answer */
 			break;
 		case TW_MT_ARB_LOST:	/*  A master must not initiate a stop condition in order to not corrupt the ongoing transfer from the active master. 
 								This will cause a new start condition to be initiated, which will normally be delayed until the currently active master has 
@@ -139,6 +159,26 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address)
 	return 0xFF;
 }
 
+
+/**
+	* @brief This methods receives bytes of data from another controller via I2C
+	* @param phys_address: This is the actual physical address (often fixed on hardware) of the device to communicate with (SLA_W)
+	* @param address: Register address on the slave device to write to
+	* @param data: pointer to the data that is to be sent to the slave
+	* @param length: number of bytes to read
+	* @retval uint8_t:  0	success
+	*					1	not in start condition
+	*					2	error in sending physical address SLA+W, not expected status register
+	*					3	TW_MT_DATA_NACK when sending address
+	*					4	error in sending address, not expected status register
+	*					5	while Repeated start condition, not expected status register
+	*					6	error in sending physical address SLA+R, not expected status register
+	*					7	TW_MT_DATA_NACK when sending address
+	*					8	TW_MR_DATA_NACK when reading data
+	*					9	error in reading data, not expected status register
+	*					10	MAX_ITER reached timed out
+	* @note Refer to page 244 of the Atmega for information
+	*/
 uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
 	uint8_t twcr, n = 0;
@@ -231,8 +271,8 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	WaitForTWINT();
 	switch ((twst = TW_STATUS))
 	{
-		case TW_START:		/* OK, but should not happen */
-		case TW_REP_START:
+		case TW_START:		// OK, but should not happen
+		case TW_REP_START:	// expected
 			break;
 
 		case TW_MT_ARB_LOST:
@@ -319,18 +359,34 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	
 }
 
+/**
+	* @brief Sets the register to send the start condition
+	* @param none
+	* @retval none
+	*/
 void I2Cstart()
 {
 	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN); //Send START condition
 }
 
+/**
+	* @brief Sets the register to send the stop condition
+	* @param none
+	* @retval none
+	*/
 void I2Cstop()
 {
 	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO); //Transmit STOP condition
 	TWCR = 0;
 }
 
-//waits for a status flag and returns 0 if it's the right one, 1 if not 
+
+/**
+	* @brief waits for a status flag returns 0 if it's the right one, 1 if not 
+	* @param status: Flag to expect
+	* @retval 0 good flag, 1 wrong flag, -1 not in start condition
+	*/
+//TODO simplify this
 uint8_t WaitAndCheckFor(uint8_t status)
 {
 	//char buffer[20];
@@ -342,6 +398,7 @@ uint8_t WaitAndCheckFor(uint8_t status)
 	while (!(TWCR & (1<<TWINT))); // Wait for TWINT Flag set. This indicates that the START condition has been transmitted
 	twst = TW_STATUS;
 	
+	//weird should not be here To check
 	if (status == TW_START) //Check value of TWI Status Register. Mask prescaler bits. If status different from START go to ERROR
 	{
 		switch ((twst = TW_STATUS))
@@ -358,7 +415,7 @@ uint8_t WaitAndCheckFor(uint8_t status)
 			  /* NB: do /not/ send stop condition */
 		}
 	}
-	if ((TWSR & 0xF8) != status) //Check value of TWI Status Register. Mask prescaler bits. If status different from START go to ERROR
+	if ((TWSR & 0xF8) != status) //Check value of TWI Status Register. Mask prescaler bits. If TWSR different from status go to ERROR
 	{
 		ERROR_I2C();
 		return 1;	
@@ -369,6 +426,14 @@ uint8_t WaitAndCheckFor(uint8_t status)
 	}
 }
 
+
+
+/**
+	* @brief wait until TWINT becomes 1 again
+	* @param none
+	* @retval none
+	*/
+//might be dangerous, we could get stuck here...
 void WaitForTWINT()
 {
 	//char buffer[20];
@@ -383,17 +448,29 @@ void WaitForTWINT()
 		//i++;
 	//} 
 }
-
+/**
+	* @brief sets TWCR register to start trnamission over I2C
+	* @param none
+	* @retval none
+	*/
 void I2CstartTransmit()
 {
 	TWCR = (1<<TWINT) | (1<<TWEN); //Clear TWINT bit in TWCR to start transmission of data/address
 }
-
+/**
+	* @brief sets the TWINT bit to 0
+	* @param none
+	* @retval none
+	*/
 void resetTWINT()
 {
 	TWCR &= ~(1<< TWINT);
 }
-
+/**
+	* @brief handles error. Just writes a message to the LCD for now
+	* @param none
+	* @retval none
+	*/
 void ERROR_I2C()
 {
 	//char buffer[20];
@@ -412,40 +489,3 @@ void ERROR_I2C()
 	I2Cstop();
 }
 
-
-
-//old 
-//
-////receive data
-//for (int i = 0; i<length;i++)
-//{
-	//resetTWINT();
-	//if(WaitAndCheckFor(TW_MR_DATA_ACK) == -1)
-	//{
-		//clearDisplay();
-		//LCD_WriteString("MR_MAS_ACK ");
-		//SetAdress(64); // goes to line 2 of LCD
-		//sprintf(buffer, "%X   %X   %X", TWDR, TWSR, TWCR);
-		//LCD_WriteString(buffer);
-		//_delay_ms(2000);
-		//return 1;
-	//}
-	//clearDisplay();
-	//sprintf(buffer, "%X   %X   %X", TWDR, TWSR, TWCR);
-	//LCD_WriteString(buffer);
-	////resetTWINT();
-	////WaitForTWINT();
-	//_delay_ms(100);
-	//
-	//SetAdress(64); // goes to line 2 of LCD
-	//sprintf(buffer, "%X   %X   %X", TWDR, TWSR, TWCR);
-	//LCD_WriteString(buffer);
-	//_delay_ms(3000);
-	//data[i] = TWDR; //read TWDR and put it in data
-	//if (i == length-1)
-	//{
-		//NotAcknowledgeReceive();
-	//}
-//}
-//I2Cstop();
-//return 0;

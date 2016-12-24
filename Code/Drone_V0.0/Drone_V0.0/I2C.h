@@ -2,7 +2,7 @@
 #define I2C_H
 
 #define F_CPU 16000000
-#define IMU_ADDRESS 0xD0 //Address of IMU + 0 for write
+#define IMU_ADDRESS 0xD0 //Address of IMU + 0 for write SLA_W
 #define BMP180_ADDRESS 0xEE
 #define MAX_ITER 200
 
