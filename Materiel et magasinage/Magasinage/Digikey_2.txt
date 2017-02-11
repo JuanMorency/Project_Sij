@@ -1,0 +1,31 @@
+LM5085
+cap 4.7uF 	*2 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM21BR61E475MA12L/490-5422-1-ND/2175229 
+res 26.7 KOhm 	*1 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-0726K7L/311-26.7KHRCT-ND/730041
+cap 1nF 0402	*1 http://www.digikey.ca/product-detail/en/yageo/CC0402KRX7R9BB102/311-1036-1-ND/302953
+0201		*1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM033R71E102KA01D/490-3184-1-ND/702725
+res 2.55 KOhm 	*1 http://www.digikey.ca/product-detail/en/yageo/RC0402FR-072K55L/YAG3102CT-ND/5281967
+res 3.33 KOhm	*1 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-073K3L/311-3.3KGRCT-ND/729704
+cap 680 pF 	*1 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM188R72E681KW07D/490-3524-1-ND/789429
+cap 100 uF Tant	*1 http://www.digikey.ca/product-detail/en/panasonic-electronic-components/6TPH100MAEA/P17119CT-ND/5372004
+PMOS 		*1 http://www.digikey.ca/product-detail/en/vishay-siliconix/SI7149DP-T1-GE3/SI7149DP-T1-GE3CT-ND/5805435
+Diode		*1 http://www.digikey.ca/product-search/en?keywords=MBRB745PBF
+Inductor	*1 http://www.digikey.ca/product-detail/en/laird-signal-integrity-products/MGV06052R2M-10/240-2911-1-ND/5269966
+
+
+c_cryst 22pF 	*2 http://www.digikey.ca/product-detail/en/kemet/C0603C220K3GACTU/399-9030-6-ND/3523100
+res 500		*9 http://www.digikey.ca/product-detail/en/yageo/RC0603FR-07499RL/311-499HRCT-ND/730213
+
+push button  	*1 http://www.digikey.ca/product-detail/en/cw-industries/GPB553A2L01BR/CWI267-ND/3193563
+
+res 220 ohm 	*8 http://www.digikey.ca/product-detail/en/yageo/RC0603JR-07220RL/311-220GRCT-ND/729688
+cap 100uF	*5 http://www.digikey.ca/product-detail/en/murata-electronics-north-america/GRM31CD80J107ME39L/490-10525-1-ND/5026461
+
+2 jumper short  *2 http://www.digikey.ca/product-detail/en/sullins-connector-solutions/SPC02SYAN/S9001-ND/76375
+
+female header 3x7 for RF *3 http://www.digikey.ca/product-detail/en/preci-dip/801-87-007-10-001101/1212-1188-ND/3757438
+
+2 row header 	*2 http://www.digikey.ca/product-detail/en/amphenol-fci/67997-410HLF/609-3243-ND/1878475
+
+
+
+

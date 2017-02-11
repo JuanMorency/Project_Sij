@@ -1,3 +1,11 @@
-Eagle/Projects/Sij/.Sij.brd.lck
-Eagle/Projects/Sij/.Sij.sch.lck
-Eagle/Projects/Sij/.Sij.s##.lck
+# Compiled source #
+###################
+*.o
+*.d
+
+# Eagle shit #
+############
+
+*.lck
+*.b/#*
+

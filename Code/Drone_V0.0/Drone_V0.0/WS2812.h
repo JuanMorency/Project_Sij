@@ -1,21 +1,17 @@
-/*
-* light weight WS2812 lib V2.1 - Arduino support
-*
-* Controls WS2811/WS2812/WS2812B RGB-LEDs
-* Author: Matthias Riegler
-*
-* Mar 07 2014: Added Arduino and C++ Library
-*
-* September 6, 2014      Added option to switch between most popular color orders
-*                          (RGB, GRB, and BRG) --  Windell H. Oskay
-* 
-* January 24, 2015       Added option to make color orders static again
-*                        Moved cRGB to a header so it is easier to replace / expand 
-*                              (added SetHSV based on code from kasperkamperman.com)
-*                                              -- Freezy
-*
-* License: GNU GPL v2 (see License.txt)
-*/
+/**
+  ******************************************************************************
+	* File Name         : WS2812.h
+	* Description       : header for WS2812.cpp
+	* Author			: Matthias Riegler, Juan Morency Trudel (Adaptation)
+	* Version           : 2.1
+	* Date				: September 6, 2014
+	* License			: GNU GPL v2 (see License.txt)
+	* Comment			: Mar 07 2014: Added Arduino and C++ Library
+						  September 6, 2014:	Added option to switch between most popular color orders
+						  (RGB, GRB, and BRG) --  Windell H. Oskay
+	
+  ******************************************************************************
+  */
 
 #ifndef WS2812_H_
 #define WS2812_H_
@@ -37,6 +33,10 @@
 #define BLT 6	// PK0
 #define BLB 7	// PK1
 
+extern bool WS2812Initialized;
+
+void initWS2812(void);
+
 /*
 dim_curve 'lookup table' to compensate for the nonlinearity of human vision.
 Used in the getRGB function on saturation and brightness to make 'dimming' look more natural.
@@ -44,7 +44,7 @@ Exponential function used to create values below :
 x from 0 - 255 : y = round(pow( 2.0, x+64/40.0) - 1)
 */
 
-// uncomment this line if you use HSV is many projects
+//comment this if HSV is not used
 #define USE_HSV
 
 #ifdef USE_HSV
@@ -82,7 +82,7 @@ const uint8_t dim_curve[] = {
 	#define OFFSET_B(b) b+2	
 #endif
 
-//Macro _BV
+//Macro _BV byte value
 #define _BV(bit) (1 << (bit))
 
 

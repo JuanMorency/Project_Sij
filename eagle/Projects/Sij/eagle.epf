@@ -419,15 +419,6 @@ PadsSameType=0
 Layer=16
 
 [Win_2]
-Type="Text Editor"
-Loc="-8 -31 491 468"
-State=2
-Number=2
-File="Sij_Final.brd.rpt"
-CursorPos="0 0"
-Font="Courier,11,-1,5,50,0,0,0,0,0"
-
-[Win_3]
 Type="Control Panel"
 Loc="0 0 1271 744"
 State=1
@@ -437,4 +428,3 @@ Number=0
 Screen="3046 1050"
 Window="Win_1"
 Window="Win_2"
-Window="Win_3"

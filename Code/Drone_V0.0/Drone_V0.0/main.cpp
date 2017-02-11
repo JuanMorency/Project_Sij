@@ -2,6 +2,8 @@
 #define min_PWM 0x01
 #define max_PWM 0x06
 
+
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -14,104 +16,89 @@
 #include "I2C.h"
 #include "IMU.h"
 #include "WS2812.h"
+#include "RF.h"
+
+
+
 
 int main()
-{
-	
-	
-	
-	//initialize LCD
-	initLCD(); 		// configure LCD
+{	
 	//char* buffers for printing stuff on the LCD
 	char buffer[20];
+	char buffer2[20];
+	
 	//create ESC object
 	Esc escFL(FL), escBL(BL),escBR(BR), escFR(FR);
-	// initialize ESC
+	
+	//create objects for led strips
+	WS2812 LEDFRT(1, FRT); // 100 LED
+	cRGB valueFRT;	
+	
+	//create IMU object
+	IMU imu;	
+	
+	//Initialize modules; comment out to deactivate feature
+	initLCD();
+	initRF();
 	initializeESC();
-	//AllESC.set(1,1100/2);
-	//AllESC.set(2,1100/2);
-	//AllESC.set(3,1100/2);
-	//AllESC.set(4,1100/2);
-	//_delay_ms(5000);
-	//
-	////Initialize I2C object
+	initWS2812();
 	//initializeI2C();
-	//clearDisplay();
-	//_delay_ms(1000);
-	//LCD_WriteString("I2C");
-//
-	//////create IMU object
-	////IMU Imu;
-	//////initialize IMU
-	////Imu.initialize();
-	////clearDisplay();
-	////LCD_WriteString("IMU");
-	////_delay_ms(1000);
+	//imu.initialize();
+
+	//After everything is initialized, start interrupts
+	startInterrupt();
 	
-	//LED_Strip
-	WS2812 LEDFRT(1, FRT); // 1 LED
-	WS2812 LEDFRB(1, FRB); // 1 LED
-	cRGB valueFRT;
-	cRGB valueFRB;
-	//initialize INT
-	initializeInterrupt();
-	//initialize Radio Controller counter
-	initializecounterPWMread();
-	
-	int i = 0;
 	while(1)
-	{	
-		//if (button_falling)
-		//{
-			//AllESC.set(1,1100/2);
-			//AllESC.set(2,1100/2);
-			//AllESC.set(3,1100/2);
-			//AllESC.set(4,1100/2);
-			//clearDisplay();
-			//LCD_WriteString("Salut Ben");
-			//_delay_ms(1000);
-			//button_falling = false;
-		//}
-		//else if (button_rising)
-		//{
-			//button_rising = false;
-		//}
-		//else
-		//{
+	{
+		////minimum useless operation in the while loop, otherwise bugs
+		//DDRA = 0xFF;
+
+		//LCD handler
+		if(flagLCD){
+			flagLCD = 0;
+			handleFSMLCD();
+		}
+
+		//RF receiver handler
+		if(flagRF)
+		{
+			flagRF = 0;
+			handleFSMRF();
+			sprintf(buffer, "1:%u 2:%u", ch_1_pw, ch_2_pw);
+			sprintf(buffer2, "3:%u 4:%u", ch_3_pw, ch_4_pw);
+			changeLCDText(buffer, buffer2);
+		}
+		
+		//ESC handler
+		if(flagESC)
+		{
+			flagESC = 0;
 			escFL.set(ch_3_pw);
 			escBL.set(ch_3_pw);
 			escBR.set(ch_3_pw);
 			escFR.set(ch_3_pw);
-
-			clearDisplay();
-			sprintf(buffer, "%u    %u     ", ch_1_pw, ch_2_pw);
-			LCD_WriteString(buffer);
-			SetAdress(64);
-			sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
-			LCD_WriteString(buffer);
-			_delay_ms(100);
+		}
+		
+		if(flagWS2812)
+		{
+			flagWS2812 = 0;
 			
-			i++;
-			if(i == 5)
+			//example of LED gradually
+			static int i = 0;
+			static bool directionUp = true;
+			//Led strips shit
+			for(int j = 0; j<1; j++)
 			{
-				valueFRT.b = 255; valueFRT.g = 0; valueFRT.r = 0; // RGB Value -> Blue
-				valueFRB.b = 0; valueFRB.g = 255; valueFRB.r = 0; // RGB Value -> Blue
-				LEDFRT.set_crgb_at(0, valueFRT); // Set value at LED found at index 0
-				LEDFRB.set_crgb_at(0, valueFRB); // Set value at LED found at index 0
-				LEDFRT.sync(); // Sends the value to the LED
-				LEDFRB.sync(); // Sends the value to the LED				
+				valueFRT.b = i; valueFRT.g = i; valueFRT.r = i; // RGB Value -> red
+				LEDFRT.set_crgb_at(j, valueFRT); // Set value at LED found at index j
 			}
+			LEDFRT.sync(); // Sends the value to the LED
+			if(i>=255) directionUp = false;
+			if(i<=0) directionUp = true;
+			if (directionUp) i++;
+			else i--;
+		}
 
-			else if(i == 10)
-			{
-				valueFRT.b = 0; valueFRT.g = 0; valueFRT.r = 0; // RGB Value -> Blue
-				valueFRB.b = 0; valueFRB.g = 0; valueFRB.r = 0; // RGB Value -> Blue
-				LEDFRT.set_crgb_at(0, valueFRT); // Set value at LED found at index 0
-				LEDFRB.set_crgb_at(0, valueFRB); // Set value at LED found at index 0
-				LEDFRT.sync(); // Sends the value to the LED
-				LEDFRB.sync(); // Sends the value to the LED
-				i = 0;
-			}
 			
 			//Imu.IMUTakeMeasures();
 			

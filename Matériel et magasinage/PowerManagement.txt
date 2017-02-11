@@ -1,9 +1,0 @@
-TI chip for sensing and monitoring:
-http://www.ti.com/product/BQ76925
-Voltage regulation:
-http://www.ti.com/product/LM1085/description 	pour autre chose comme pleins de LED si on a besoin de plus que 1A
-http://www.ti.com/product/lm7805c 		pour uC
-
-tracking:
-
-https://store.ti.com/Checkout/Receipt.aspx?OrderNumber=1150200

@@ -45,6 +45,7 @@ C_SRCS +=  \
 ../lcd.cpp \
 ../light_ws2812.cpp \
 ../main.cpp \
+../RF.cpp \
 ../WS2812.cpp
 
 
@@ -63,6 +64,7 @@ interrupt.o \
 lcd.o \
 light_ws2812.o \
 main.o \
+RF.o \
 WS2812.o
 
 OBJS_AS_ARGS +=  \
@@ -74,6 +76,7 @@ interrupt.o \
 lcd.o \
 light_ws2812.o \
 main.o \
+RF.o \
 WS2812.o
 
 C_DEPS +=  \
@@ -85,6 +88,7 @@ interrupt.d \
 lcd.d \
 light_ws2812.d \
 main.d \
+RF.d \
 WS2812.d
 
 C_DEPS_AS_ARGS +=  \
@@ -96,6 +100,7 @@ interrupt.d \
 lcd.d \
 light_ws2812.d \
 main.d \
+RF.d \
 WS2812.d
 
 OUTPUT_FILE_PATH +=Drone_V0.0.elf
@@ -112,6 +117,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

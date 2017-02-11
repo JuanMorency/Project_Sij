@@ -195,6 +195,12 @@
     <Compile Include="main.cpp">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="RF.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="RF.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="WS2812.cpp">
       <SubType>compile</SubType>
     </Compile>

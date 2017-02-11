@@ -6,6 +6,7 @@
 #define FL 2
 #define FR 3
 #define BR 4
+#define ESC_INIT_PW 4440 //initial pulse width, should try to find a dynamic way to set this.
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -19,4 +20,5 @@ public:
 };
 
 	void initializeESC();
+	extern bool escInitialized;
 #endif

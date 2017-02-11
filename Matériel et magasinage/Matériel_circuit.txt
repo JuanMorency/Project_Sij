@@ -1,3 +1,0 @@
-Cristal:
-https://abra-electronics.com/robotics-embedded-electronics/adafruit/components-parts/oscillators-en/2215-ada-16-mhz-crystal-20pf-capacitors.html
-https://cdn-shop.adafruit.com/product-files/2215/2215datasheet.pdf

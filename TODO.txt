@@ -1,13 +1,13 @@
 
 PCB 
 
-- check status pcb http://www.pcbway.com/member/order/orderlist.aspx?type=1
-- Once receive PCB check for missing components and do Digikey order 2
-
+- Verifier le circuit pour le 5V switching regulator. Il fait un bruit aigu et perds en voltage lorsqu'on connecte un load
+- Essayer d'arranger le power monitoring I2C en testant sur un un autre board avec notre spare microcontroller
 
 
 Code
 
-- Crystal
+- Creer les interrupts pour le IMU routine
+- Voir a optimiser le I2C
+- Verifier la pertinence d'activer les nested interrupts
 - Acceleromètre
-- LED strips

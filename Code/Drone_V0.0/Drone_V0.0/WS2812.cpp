@@ -18,6 +18,8 @@
 #include <avr/io.h>
 #include <avr/portpins.h>
 
+bool WS2812Initialized = false;
+
 /**
 	* @brief WS2812 class that represents one LED strip
 	* @param num_leds	: Number of LED to control on the strip
@@ -34,6 +36,17 @@ WS2812::WS2812(uint16_t num_leds, uint8_t stripPos) {
 		offsetBlue = 2;
 	#endif
 }
+
+/**
+	* @brief set the WS2812Initialized to true to use the interrupts associated with this
+	* @param None
+	* @retval None
+	*/
+void initWS2812(void){
+	WS2812Initialized = true;
+}
+
+
 /**
 	* @brief Gets the RGB value of the desired pixel in the array representing the colors of the 
 	* LED in the program memory

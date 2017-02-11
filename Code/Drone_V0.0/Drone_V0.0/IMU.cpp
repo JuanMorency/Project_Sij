@@ -1,5 +1,5 @@
 ﻿#include "IMU.h"
-
+#include "BMP180.h"
 const unsigned char OSS = 0;
 double accX, accY, accZ,gyroX, gyroY, gyroZ;
 double gyroXangle, gyroYangle,compAngleX, compAngleY,kalAngleX, kalAngleY;
@@ -10,12 +10,9 @@ uint8_t i2cData[14];
 //constructor
 IMU::IMU()
 {
-
 }
 void IMU::initialize()
 {
-	TWBR = ((F_CPU / 400000L) - 16) / 2;
-
 	writeI2C(IMU_ADDRESS,PWR_MGMT_1, 0x00); //Not sleep + clock 20 MHz
 	writeI2C(IMU_ADDRESS,SMPLRT_DIV, 0x07); //divide sample rate by 8
 	writeI2C(IMU_ADDRESS,CONFIG, 0x06); //set low pass filter to 5Hz bandwidth
@@ -28,7 +25,7 @@ void IMU::initialize()
 		LCD_WriteString("Error reading Sensor");
 		while(1);
 	}
-	BMP180_Init();
+	//BMP180_Init();
 }
 
 void IMU::IMUTakeMeasures()

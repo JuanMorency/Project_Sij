@@ -1,0 +1,28 @@
+﻿Documentation:
+Brushless motors http://www.dronetrest.com/t/brushless-motors-how-they-work-and-what-the-numbers-mean/564
+http://www.robotshop.com/blog/en/make-uav-lesson-3-propulsion-14785
+http://www.dronetrest.com/t/how-to-choose-the-right-motor-for-your-multicopter-drone/568
+
+Estimation du poids
+
+
+415g        frame (pour les drones 500mm - 650mm de diamètre avec jambes d'attérissage)
+66gx4=264g  moteurs
+12gx4=48g  ESD
+318g        Batterie (estimation d'une batterie 4 cellules, 5000 mAh)
+100g        PCB, microcontorlleur
+100g        camera (GOPRO, mais on peut aller dans qqch de beaucoup plus léger!)
+3g          IMU board
+Poids total (conservateur):
+1048 + custom PCB + board
+
+Non-considéré
+- Gimbal
+
+
+Normalement on veut 2 fois plus de thrust que de poid.
+Thrust requis:
+~2500g = 625g/moteur
+
+
+

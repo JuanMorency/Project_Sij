@@ -1,15 +1,18 @@
-/*
-* light weight WS2812 lib V2.1 - Arduino support
-*
-* Controls WS2811/WS2812/WS2812B RGB-LEDs
-* Author: Tim (cpldcpu@gmail.com)
-*
-* Jan  18th, 2014  v2.0b Initial Version
-* March 7th, 2014  v2.1  Added option to retarget the port register during runtime
-*                        Removes inlining to allow compiling with c++
-*
-* License: GNU GPL v2 (see License.txt)
-*/
+/**
+  ******************************************************************************
+	* File Name         : light_ws2812.cpp
+	* Description       : Method for sending information to LED strips in assembly
+	* Author			: Tim (cpldcpu@gmail.com), Juan Morency Trudel (Adaptation)
+	* Version           : 2.1
+	* Date				: September 6, 2014
+	* License			: GNU GPL v2 (see License.txt)
+	* Comment			: Jan  18th, 2014  v2.0b Initial Version
+	*					  March 7th, 2014  v2.1  Added option to retarget the port register during runtime
+	*                     Removes inlining to allow compiling with c++
+	
+  ******************************************************************************
+  */
+
 
 #include "WS2812.h"
 #include <avr/common.h>
@@ -47,15 +50,15 @@
   #define w1_nops  0
 #endif
 
-// The only critical timing parameter is the minimum pulse length of the "0"
-// Warn or throw error if this timing can not be met with current F_CPU settings.
-#define w_lowtime ((w1_nops+w_fixedlow)*1000000)/(F_CPU/1000)
-#if w_lowtime>550
-   #error "Light_ws2812: Sorry, the clock speed is too low. Did you set F_CPU correctly?"
-#elif w_lowtime>450
-   #warning "Light_ws2812: The timing is critical and may only work on WS2812B, not on WS2812(S)."
-   #warning "Please consider a higher clockspeed, if possible"
-#endif   
+//// The only critical timing parameter is the minimum pulse length of the "0"
+//// Warn or throw error if this timing can not be met with current F_CPU settings.
+//#define w_lowtime ((w1_nops+w_fixedlow)*1000000)/(F_CPU/1000)
+//#if w_lowtime>550
+   //#error "Light_ws2812: Sorry, the clock speed is too low. Did you set F_CPU correctly?"
+//#elif w_lowtime>450
+   //#warning "Light_ws2812: The timing is critical and may only work on WS2812B, not on WS2812(S)."
+   //#warning "Please consider a higher clockspeed, if possible"
+//#endif   
 
 #if w2>0
 #define w2_nops w2
@@ -75,6 +78,17 @@
 #define w_nop8  w_nop4 w_nop4
 #define w_nop16 w_nop8 w_nop8
 
+
+/**
+	* @brief Sends the pixel information to the LED strip with the right timing. The protocol is very special
+	* and requires fast timing (350ns pulse). 
+	* @param data: RGB information to send to the LED
+	* @param datalen: number of LED
+	* @param maskhi: bit mask of the pin that controls the LED
+	* @param *port: port of the pin (e.g. PORTA)
+	* @param *portreg: ddr of the pin (e.g. DDRA)
+	* @retval none
+	*/
 void  WS2812::ws2812_sendarray_mask(uint8_t *data,uint16_t datlen,uint8_t maskhi,uint8_t *port, uint8_t *portreg)
 {
   uint8_t curbyte,ctr,masklo;

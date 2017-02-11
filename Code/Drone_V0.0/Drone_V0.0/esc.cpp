@@ -1,7 +1,21 @@
-#include "esc.h"
+/**
+  ******************************************************************************
+	* File Name         : esc.cpp
+	* Description       : Control of the ESC using counters and wave generation
+	*						hardware of the AVR using a 10 bit phase correct PWM
+	* Author			: Juan Morency Trudel, Simon Poirier
+	* Version           : 1.0.0
+	* Date				: September, 2016
+  ******************************************************************************
+  */
 
+#include "esc.h"
+#include "RF.h"
+
+bool escInitialized = false;
 
 /*
+
 la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
 fréquence désiré = entre 100 et 500Hz
 Comme on veut un maximum de résolution (le plus grand top possible)
@@ -22,7 +36,7 @@ WGMnx1 = 1 and WGMnx3 = 1
 On utilise le mode 10 pour avoir un phase correct PWM
 avec le plus de résolution possible
 
-ICRnxH and ICRnxL = 0x0FFF
+ICRn = 65535
 on mets cette valeur à 65535 alors
 
 CSn2:0 = 001
@@ -60,11 +74,18 @@ void initializeESC()
   
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
-  OCR4A = 0;
-  OCR4B = 0;
-  OCR5A = 0;
-  OCR5B = 0;
-
+	if(RFInitialized){
+		OCR4A = ESC_INIT_PW;
+		OCR4B = ESC_INIT_PW;
+		OCR5A = ESC_INIT_PW;
+		OCR5B = ESC_INIT_PW;
+	}
+	else{
+		OCR4A = 0;
+		OCR4B = 0;
+		OCR5A = 0;
+		OCR5B = 0;
+	}
   //Set Pins to output
   DDRL |= (1<<PL4) | (1<<PL3); 
   DDRH |= (1<<PH4) | (1<<PH3);  
@@ -75,6 +96,8 @@ void initializeESC()
   //Timer 4/5 set to 0
   TCNT4 = 0;
   TCNT5 = 0;
+  
+  escInitialized = true;
 }
 
 void Esc::set(uint16_t pwm)

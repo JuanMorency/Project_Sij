@@ -1,0 +1,8 @@
+﻿Calcul d'énergie pour la battery:
+
+Battery 5200 mAh
+http://www.hobbyking.com/hobbyking/store/__84112__Multistar_LiHV_High_Capacity_5200Mah_3S_Multi_Rotor_Lipo_Pack_US_Warehouse_.html
+
+11.4v * 5.2 Ah = 59.28 Wh
+
+Estimation de la consommation d'énergie de nos moteurs: 232 W à puissance max

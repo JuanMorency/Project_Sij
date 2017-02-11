@@ -7,8 +7,8 @@
 	*/
 void initializeI2C()
 {
-	
-	//When connect the crystal, must prescale the I2C frequency to divide it by at least 4, otherwise IMU won't work 400kHz max
+	TWBR = ((F_CPU / 40000) - 16) / 2; // set frequency of sclk to 400 kHz	
+	TWCR = (1<<TWEN)|(0<<TWIE)|(0<<TWINT)|(0<<TWEA)|(0<<TWSTA)|(0<<TWSTO);
 }
 
 	/*
@@ -380,51 +380,51 @@ void I2Cstop()
 	TWCR = 0;
 }
 
-
-/**
-	* @brief waits for a status flag returns 0 if it's the right one, 1 if not 
-	* @param status: Flag to expect
-	* @retval 0 good flag, 1 wrong flag, -1 not in start condition
-	*/
-//TODO simplify this
-uint8_t WaitAndCheckFor(uint8_t status)
-{
-	//char buffer[20];
-	//clearDisplay();
-	//sprintf(buffer, "%X", (TWSR & 0xF8));
-	//LCD_WriteString(buffer);
-	//_delay_ms(1000);
-	
-	while (!(TWCR & (1<<TWINT))); // Wait for TWINT Flag set. This indicates that the START condition has been transmitted
-	twst = TW_STATUS;
-	
-	//weird should not be here To check
-	if (status == TW_START) //Check value of TWI Status Register. Mask prescaler bits. If status different from START go to ERROR
-	{
-		switch ((twst = TW_STATUS))
-		{
-			  case TW_REP_START:		/* OK, but should not happen */
-			  case TW_START:
-				break;
-
-			  case TW_MT_ARB_LOST:	/* Note [9] */
-			  return 1;
-
-			  default:
-			  return -1;		/* error: not in start condition */
-			  /* NB: do /not/ send stop condition */
-		}
-	}
-	if ((TWSR & 0xF8) != status) //Check value of TWI Status Register. Mask prescaler bits. If TWSR different from status go to ERROR
-	{
-		ERROR_I2C();
-		return 1;	
-	}
-	else
-	{
-		return 0;
-	}
-}
+//
+///**
+	//* @brief waits for a status flag returns 0 if it's the right one, 1 if not 
+	//* @param status: Flag to expect
+	//* @retval 0 good flag, 1 wrong flag, -1 not in start condition
+	//*/
+////TODO simplify this
+//uint8_t WaitAndCheckFor(uint8_t status)
+//{
+	////char buffer[20];
+	////clearDisplay();
+	////sprintf(buffer, "%X", (TWSR & 0xF8));
+	////LCD_WriteString(buffer);
+	////_delay_ms(1000);
+	//
+	//while (!(TWCR & (1<<TWINT))); // Wait for TWINT Flag set. This indicates that the START condition has been transmitted
+	//twst = TW_STATUS;
+	//
+	////weird should not be here To check
+	//if (status == TW_START) //Check value of TWI Status Register. Mask prescaler bits. If status different from START go to ERROR
+	//{
+		//switch ((twst = TW_STATUS))
+		//{
+			  //case TW_REP_START:		/* OK, but should not happen */
+			  //case TW_START:
+				//break;
+//
+			  //case TW_MT_ARB_LOST:	/* Note [9] */
+			  //return 1;
+//
+			  //default:
+			  //return -1;		/* error: not in start condition */
+			  ///* NB: do /not/ send stop condition */
+		//}
+	//}
+	//if ((TWSR & 0xF8) != status) //Check value of TWI Status Register. Mask prescaler bits. If TWSR different from status go to ERROR
+	//{
+		//ERROR_I2C();
+		//return 1;	
+	//}
+	//else
+	//{
+		//return 0;
+	//}
+//}
 
 
 
@@ -436,17 +436,10 @@ uint8_t WaitAndCheckFor(uint8_t status)
 //might be dangerous, we could get stuck here...
 void WaitForTWINT()
 {
-	//char buffer[20];
-	//int i = 1;
-	while (!(TWCR & (1<<TWINT)));// Wait for TWINT Flag set.
-	//{
-		//
-		//clearDisplay();
-		//sprintf(buffer, "%u", i);
-		//LCD_WriteString(buffer);
-		//_delay_ms(10);
-		//i++;
-	//} 
+	while (!(TWCR & (1<<TWINT)))// Wait for TWINT Flag set.
+	{
+	}
+
 }
 /**
 	* @brief sets TWCR register to start trnamission over I2C
