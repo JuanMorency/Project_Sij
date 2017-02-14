@@ -2,6 +2,12 @@
 ###################
 *.o
 *.d
+*.atsuo
+*.elf
+*.hex
+*.lss
+*.map
+*.srec
 
 # Eagle shit #
 ############

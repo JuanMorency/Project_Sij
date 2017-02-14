@@ -62,6 +62,7 @@ void entryMode(void);
 void SetAdress(int address);
 
 void changeLCDText(char* line1, char* line2);
+void changeLCDText(char* line1);
 
 void handleFSMLCD(void);
 

@@ -218,7 +218,18 @@ void changeLCDText(char* line1, char* line2)
 	g_line2[i] = '\0';
 }
 
-
+// TODO make method easier to use : calculate the length automatically
+void changeLCDText(char* line1)
+{
+	int i = 0;
+	for(; i < 16; i++)
+	{
+		g_line1[i] = line1[i];
+		g_line2[i] = ' ';
+	}
+	i++;
+	g_line1[i] = '\0';
+}
 
 
 

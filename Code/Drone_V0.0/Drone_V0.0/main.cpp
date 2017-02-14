@@ -31,16 +31,9 @@
 #define LED2R 0x80
 
 int main()
-<<<<<<< HEAD
-{	
-=======
 {
-
-
-
 	//initialize LCD
 	initLCD(); 		// configure LCD
->>>>>>> 3f0408643d219fafb54a61522eda4d707132ad32
 	//char* buffers for printing stuff on the LCD
 	char buffer[20];
 	char buffer2[20];
@@ -57,16 +50,13 @@ int main()
 	
 	//Initialize modules; comment out to deactivate feature
 	initLCD();
-	initRF();
-	initializeESC();
-	initWS2812();
-	//initializeI2C();
-<<<<<<< HEAD
-	//imu.initialize();
-
+	//initRF();
+	//initializeESC();
+	//initWS2812();
+	initializeI2C();
+	imu.initialize();
 	//After everything is initialized, start interrupts
 	startInterrupt();
-	
 	while(1)
 	{
 		////minimum useless operation in the while loop, otherwise bugs
@@ -92,55 +82,10 @@ int main()
 		if(flagESC)
 		{
 			flagESC = 0;
-=======
-	//clearDisplay();
-	//_delay_ms(1000);
-	//LCD_WriteString("I2C");
-//
-	//////create IMU object
-	////IMU Imu;
-	//////initialize IMU
-	////Imu.initialize();
-	////clearDisplay();
-	////LCD_WriteString("IMU");
-	////_delay_ms(1000);
-
-	//LED_Strip
-	WS2812 LEDFRT(1, FRT); // 1 LED
-	WS2812 LEDFRB(1, FRB); // 1 LED
-	cRGB valueFRT;
-	cRGB valueFRB;
-	//initialize INT
-	initializeInterrupt();
-	//initialize Radio Controller counter
-	initializecounterPWMread();
-
-	int i = 0;
-	while(1)
-	{
-		//if (button_falling)
-		//{
-			//AllESC.set(1,1100/2);
-			//AllESC.set(2,1100/2);
-			//AllESC.set(3,1100/2);
-			//AllESC.set(4,1100/2);
-			//clearDisplay();
-			//LCD_WriteString("Salut Ben");
-			//_delay_ms(1000);
-			//button_falling = false;
-		//}
-		//else if (button_rising)
-		//{
-			//button_rising = false;
-		//}
-		//else
-		//{
->>>>>>> 3f0408643d219fafb54a61522eda4d707132ad32
 			escFL.set(ch_3_pw);
 			escBL.set(ch_3_pw);
 			escBR.set(ch_3_pw);
 			escFR.set(ch_3_pw);
-<<<<<<< HEAD
 		}
 		
 		if(flagWS2812)
@@ -155,26 +100,7 @@ int main()
 			{
 				valueFRT.b = i; valueFRT.g = i; valueFRT.r = i; // RGB Value -> red
 				LEDFRT.set_crgb_at(j, valueFRT); // Set value at LED found at index j
-=======
-
-			clearDisplay();
-			sprintf(buffer, "%u    %u     ", ch_1_pw, ch_2_pw);
-			LCD_WriteString(buffer);
-			SetAdress(64);
-			sprintf(buffer, "%u    %u     ", ch_3_pw, ch_4_pw);
-			LCD_WriteString(buffer);
-			_delay_ms(100);
-
-			i++;
-			if(i == 5)
-			{
-				valueFRT.b = 255; valueFRT.g = 0; valueFRT.r = 0; // RGB Value -> Blue
-				valueFRB.b = 0; valueFRB.g = 255; valueFRB.r = 0; // RGB Value -> Blue
-				LEDFRT.set_crgb_at(0, valueFRT); // Set value at LED found at index 0
-				LEDFRB.set_crgb_at(0, valueFRB); // Set value at LED found at index 0
-				LEDFRT.sync(); // Sends the value to the LED
-				LEDFRB.sync(); // Sends the value to the LED
->>>>>>> 3f0408643d219fafb54a61522eda4d707132ad32
+				valueFRT.b = 255; valueFRT.g = 255; valueFRT.r = 255; // RGB Value -> Blue
 			}
 			LEDFRT.sync(); // Sends the value to the LED
 			if(i>=255) directionUp = false;
@@ -183,22 +109,15 @@ int main()
 			else i--;
 		}
 
-<<<<<<< HEAD
+		if(flagIMU)
+		{
+			flagIMU = 0;
+			imu.TakeMeasures();
+			sprintf(buffer, "ax:%u ay:%u", imu.accx, imu.accy);
+			sprintf(buffer2, "az:%u gx:%u", imu.accz, imu.gyrx);
+			changeLCDText(buffer, buffer2);
+		}
 			
-=======
-			else if(i == 10)
-			{
-				valueFRT.b = 0; valueFRT.g = 0; valueFRT.r = 0; // RGB Value -> Blue
-				valueFRB.b = 0; valueFRB.g = 0; valueFRB.r = 0; // RGB Value -> Blue
-				LEDFRT.set_crgb_at(0, valueFRT); // Set value at LED found at index 0
-				LEDFRB.set_crgb_at(0, valueFRB); // Set value at LED found at index 0
-				LEDFRT.sync(); // Sends the value to the LED
-				LEDFRB.sync(); // Sends the value to the LED
-				i = 0;
-			}
-
->>>>>>> 3f0408643d219fafb54a61522eda4d707132ad32
-			//Imu.IMUTakeMeasures();
 
 			//clearDisplay();
 			//_delay_ms(20);

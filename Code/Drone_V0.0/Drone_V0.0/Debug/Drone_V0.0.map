@@ -170,53 +170,20 @@ Discarded input sections
  .text          0x00000000        0x0 esc.o
  .data          0x00000000        0x0 esc.o
  .bss           0x00000000        0x0 esc.o
+ .text._Z13initializeESCv
+                0x00000000       0xb6 esc.o
  .text          0x00000000        0x0 I2C.o
  .data          0x00000000        0x0 I2C.o
  .bss           0x00000000        0x0 I2C.o
- .text._Z13initializeI2Cv
-                0x00000000        0xe I2C.o
  .text._Z8I2Cstartv
                 0x00000000        0x8 I2C.o
- .text._Z7I2Cstopv
-                0x00000000        0xc I2C.o
- .text._Z12WaitForTWINTv
-                0x00000000        0xc I2C.o
  .text._Z16I2CstartTransmitv
                 0x00000000        0x8 I2C.o
  .text._Z10resetTWINTv
                 0x00000000        0xc I2C.o
- .rodata.str1.1
-                0x00000000       0x91 I2C.o
- .text._Z9ERROR_I2Cv
-                0x00000000       0x24 I2C.o
- .text._Z8writeI2ChhPhh
-                0x00000000      0x20c I2C.o
- .text._Z8writeI2Chhh
-                0x00000000       0x20 I2C.o
- .text._Z7readI2ChhPhh
-                0x00000000      0x34a I2C.o
- .text._Z7readI2Chh
-                0x00000000       0x28 I2C.o
- .bss.twst      0x00000000        0x1 I2C.o
- .debug_info    0x00000000      0xb5f I2C.o
- .debug_abbrev  0x00000000      0x275 I2C.o
- .debug_loc     0x00000000      0x958 I2C.o
- .debug_aranges
-                0x00000000       0x70 I2C.o
- .debug_ranges  0x00000000      0x100 I2C.o
- .debug_line    0x00000000      0x625 I2C.o
- .debug_str     0x00000000      0x3ab I2C.o
- .comment       0x00000000       0x31 I2C.o
- .debug_frame   0x00000000      0x1a0 I2C.o
  .text          0x00000000        0x0 IMU.o
  .data          0x00000000        0x0 IMU.o
  .bss           0x00000000        0x0 IMU.o
- .rodata.str1.1
-                0x00000000       0x15 IMU.o
- .text._ZN3IMU10initializeEv
-                0x00000000       0x4e IMU.o
- .text._ZN3IMU15IMUTakeMeasuresEv
-                0x00000000       0xf0 IMU.o
  .bss.i2cData   0x00000000        0xe IMU.o
  .bss.timer     0x00000000        0x4 IMU.o
  .bss.tempRaw   0x00000000        0x2 IMU.o
@@ -261,9 +228,13 @@ Discarded input sections
  .text          0x00000000        0x0 RF.o
  .data          0x00000000        0x0 RF.o
  .bss           0x00000000        0x0 RF.o
+ .text._Z6initRFv
+                0x00000000       0x26 RF.o
  .text          0x00000000        0x0 WS2812.o
  .data          0x00000000        0x0 WS2812.o
  .bss           0x00000000        0x0 WS2812.o
+ .text._Z10initWS2812v
+                0x00000000        0x8 WS2812.o
  .text._ZN6WS281211get_crgb_atEj
                 0x00000000       0x4c WS2812.o
  .text._ZN6WS281215set_subpixel_atEjhh
@@ -735,7 +706,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x171e
+.text           0x00000000     0x1c48
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -857,108 +828,129 @@ END GROUP
                 0x00000136        0x8 esc.o
                 0x00000136                _ZN3EscC1Ei
                 0x00000136                _ZN3EscC2Ei
- .text._Z13initializeESCv
-                0x0000013e       0xb6 esc.o
-                0x0000013e                _Z13initializeESCv
  .text._ZN3Esc3setEj
-                0x000001f4       0x8a esc.o
-                0x000001f4                _ZN3Esc3setEj
+                0x0000013e       0x8a esc.o
+                0x0000013e                _ZN3Esc3setEj
+ .text._Z13initializeI2Cv
+                0x000001c8        0xe I2C.o
+                0x000001c8                _Z13initializeI2Cv
+ .text._Z7I2Cstopv
+                0x000001d6        0xc I2C.o
+                0x000001d6                _Z7I2Cstopv
+ .text._Z12WaitForTWINTv
+                0x000001e2        0xc I2C.o
+                0x000001e2                _Z12WaitForTWINTv
+ .text._Z8writeI2ChhPhh
+                0x000001ee      0x172 I2C.o
+                0x000001ee                _Z8writeI2ChhPhh
+ .text._Z8writeI2Chhh
+                0x00000360       0x1e I2C.o
+                0x00000360                _Z8writeI2Chhh
+ .text._Z7readI2ChhPhh
+                0x0000037e      0x24e I2C.o
+                0x0000037e                _Z7readI2ChhPhh
+ .text._Z7readI2Chh
+                0x000005cc       0x26 I2C.o
+                0x000005cc                _Z7readI2Chh
  .text._ZN3IMUC2Ev
-                0x0000027e        0x2 IMU.o
-                0x0000027e                _ZN3IMUC1Ev
-                0x0000027e                _ZN3IMUC2Ev
+                0x000005f2        0x2 IMU.o
+                0x000005f2                _ZN3IMUC1Ev
+                0x000005f2                _ZN3IMUC2Ev
+ .text._ZN3IMU10initializeEv
+                0x000005f4       0x42 IMU.o
+                0x000005f4                _ZN3IMU10initializeEv
+ .text._ZN3IMU12TakeMeasuresEv
+                0x00000636       0xc4 IMU.o
+                0x00000636                _ZN3IMU12TakeMeasuresEv
  .text._Z14startInterruptv
-                0x00000280        0x4 interrupt.o
-                0x00000280                _Z14startInterruptv
+                0x000006fa       0x1e interrupt.o
+                0x000006fa                _Z14startInterruptv
  .text.__vector_10
-                0x00000284       0x1e interrupt.o
-                0x00000284                __vector_10
+                0x00000718       0x26 interrupt.o
+                0x00000718                __vector_10
  .text.__vector_21
-                0x000002a2       0xb4 interrupt.o
-                0x000002a2                __vector_21
+                0x0000073e       0xe6 interrupt.o
+                0x0000073e                __vector_21
  .text._Z13LCD_WriteCharc
-                0x00000356       0x7a lcd.o
-                0x00000356                _Z13LCD_WriteCharc
+                0x00000824       0x7a lcd.o
+                0x00000824                _Z13LCD_WriteCharc
  .text._Z12clearDisplayv
-                0x000003d0       0x18 lcd.o
-                0x000003d0                _Z12clearDisplayv
+                0x0000089e       0x18 lcd.o
+                0x0000089e                _Z12clearDisplayv
  .text._Z9SetAdressi
-                0x000003e8       0x7e lcd.o
-                0x000003e8                _Z9SetAdressi
+                0x000008b6       0x7e lcd.o
+                0x000008b6                _Z9SetAdressi
  .text._Z9inputModev
-                0x00000466        0x6 lcd.o
-                0x00000466                _Z9inputModev
+                0x00000934        0x6 lcd.o
+                0x00000934                _Z9inputModev
  .text._Z6turnOnv
-                0x0000046c       0x18 lcd.o
-                0x0000046c                _Z6turnOnv
+                0x0000093a       0x18 lcd.o
+                0x0000093a                _Z6turnOnv
  .text._Z11functionSetv
-                0x00000484       0x18 lcd.o
-                0x00000484                _Z11functionSetv
+                0x00000952       0x18 lcd.o
+                0x00000952                _Z11functionSetv
  .text._Z7initLCDv
-                0x0000049c       0xd2 lcd.o
-                0x0000049c                _Z7initLCDv
+                0x0000096a       0xd2 lcd.o
+                0x0000096a                _Z7initLCDv
  .text._Z13changeLCDTextPcS_
-                0x0000056e       0x40 lcd.o
-                0x0000056e                _Z13changeLCDTextPcS_
+                0x00000a3c       0x40 lcd.o
+                0x00000a3c                _Z13changeLCDTextPcS_
+ .text._Z13changeLCDTextPc
+                0x00000a7c       0x2a lcd.o
+                0x00000a7c                _Z13changeLCDTextPc
  .text._Z12handleFSMLCDv
-                0x000005ae      0x166 lcd.o
-                0x000005ae                _Z12handleFSMLCDv
+                0x00000aa6      0x166 lcd.o
+                0x00000aa6                _Z12handleFSMLCDv
  .text._ZN6WS281221ws2812_sendarray_maskEPhjhS0_S0_
-                0x00000714       0x50 light_ws2812.o
-                0x00000714                _ZN6WS281221ws2812_sendarray_maskEPhjhS0_S0_
- .text.main     0x00000764      0x1b6 main.o
-                0x00000764                main
- .text._Z6initRFv
-                0x0000091a       0x40 RF.o
-                0x0000091a                _Z6initRFv
+                0x00000c0c       0x50 light_ws2812.o
+                0x00000c0c                _ZN6WS281221ws2812_sendarray_maskEPhjhS0_S0_
+ .text.main     0x00000c5c      0x230 main.o
+                0x00000c5c                main
  .text._Z11handleFSMRFv
-                0x0000095a      0x3c2 RF.o
-                0x0000095a                _Z11handleFSMRFv
+                0x00000e8c      0x3c2 RF.o
+                0x00000e8c                _Z11handleFSMRFv
  .text._ZN6WS2812C2Ejh
-                0x00000d1c       0x2c WS2812.o
-                0x00000d1c                _ZN6WS2812C2Ejh
-                0x00000d1c                _ZN6WS2812C1Ejh
- .text._Z10initWS2812v
-                0x00000d48        0x8 WS2812.o
-                0x00000d48                _Z10initWS2812v
+                0x0000124e       0x2c WS2812.o
+                0x0000124e                _ZN6WS2812C2Ejh
+                0x0000124e                _ZN6WS2812C1Ejh
  .text._ZN6WS281211set_crgb_atEj4cRGB
-                0x00000d50       0x56 WS2812.o
-                0x00000d50                _ZN6WS281211set_crgb_atEj4cRGB
+                0x0000127a       0x56 WS2812.o
+                0x0000127a                _ZN6WS281211set_crgb_atEj4cRGB
  .text._ZN6WS281211setAsOutputEv
-                0x00000da6      0x12e WS2812.o
-                0x00000da6                _ZN6WS281211setAsOutputEv
+                0x000012d0      0x12e WS2812.o
+                0x000012d0                _ZN6WS281211setAsOutputEv
  .text._ZN6WS28124syncEv
-                0x00000ed4       0x4a WS2812.o
-                0x00000ed4                _ZN6WS28124syncEv
- .text.libgcc   0x00000f1e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
-                0x00000f1e                __tablejump2__
+                0x000013fe       0x4a WS2812.o
+                0x000013fe                _ZN6WS28124syncEv
+ .text.libgcc   0x00001448       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_tablejump2.o)
+                0x00001448                __tablejump2__
  .text.avr-libc
-                0x00000f2e      0x25a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x00000f2e                malloc
-                0x00001058                free
+                0x00001458      0x25a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x00001458                malloc
+                0x00001582                free
  .text.avr-libc
-                0x00001188       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
-                0x00001188                sprintf
+                0x000016b2       0x5e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(sprintf.o)
+                0x000016b2                sprintf
  .text.avr-libc
-                0x000011e6      0x3dc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(vfprintf_std.o)
-                0x000011e6                vfprintf
+                0x00001710      0x3dc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(vfprintf_std.o)
+                0x00001710                vfprintf
  .text.avr-libc
-                0x000015c2       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
-                0x000015c2                strnlen_P
+                0x00001aec       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(strnlen_P.o)
+                0x00001aec                strnlen_P
  .text.avr-libc
-                0x000015d8       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
-                0x000015d8                strnlen
+                0x00001b02       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(strnlen.o)
+                0x00001b02                strnlen
  .text.avr-libc
-                0x000015ee       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(fputc.o)
-                0x000015ee                fputc
+                0x00001b18       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(fputc.o)
+                0x00001b18                fputc
  .text.avr-libc
-                0x0000165e       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
-                0x0000165e                __ultoa_invert
-                0x0000171a                . = ALIGN (0x2)
+                0x00001b88       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(ultoa_invert.o)
+                0x00001b88                __ultoa_invert
+                0x00001c44                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000171a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
-                0x0000171a                _exit
-                0x0000171a                exit
+ .fini9         0x00001c44        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+                0x00001c44                _exit
+                0x00001c44                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -977,11 +969,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000171a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
+ .fini0         0x00001c44        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000171e                _etext = .
+                0x00001c48                _etext = .
 
-.data           0x00800200       0x2c load address 0x0000171e
+.data           0x00800200       0xcc load address 0x00001c48
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800200        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(malloc.o)
@@ -995,118 +987,132 @@ END GROUP
                 0x00800207        0x1 main.o
  *(.rodata)
  *(.rodata*)
- .rodata._ZL7dataPin
-                0x00800208       0x10 lcd.o
  .rodata.str1.1
-                0x00800218       0x14 main.o
+                0x00800208       0x72 I2C.o
+ .rodata.str1.1
+                0x0080027a       0x15 IMU.o
+ .rodata._ZL7dataPin
+                0x0080028f       0x10 lcd.o
+ .rodata.str1.1
+                0x0080029f       0x2c main.o
  *(.gnu.linkonce.d*)
-                0x0080022c                . = ALIGN (0x2)
-                0x0080022c                _edata = .
-                0x0080022c                PROVIDE (__data_end, .)
+                0x008002cc                . = ALIGN (0x2)
+ *fill*         0x008002cb        0x1 
+                0x008002cc                _edata = .
+                0x008002cc                PROVIDE (__data_end, .)
 
-.bss            0x0080022c       0x5f
-                0x0080022c                PROVIDE (__bss_start, .)
+.bss            0x008002cc       0x64
+                0x008002cc                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.escInitialized
-                0x0080022c        0x1 esc.o
-                0x0080022c                escInitialized
+                0x008002cc        0x1 esc.o
+                0x008002cc                escInitialized
+ .bss.twst      0x008002cd        0x1 I2C.o
+                0x008002cd                twst
+ .bss.InertMUInitialized
+                0x008002ce        0x1 IMU.o
+                0x008002ce                InertMUInitialized
+ .bss._ZZ11__vector_21E12IMUFlagCount
+                0x008002cf        0x2 interrupt.o
  .bss._ZZ11__vector_21E15WS2812FlagCount
-                0x0080022d        0x2 interrupt.o
+                0x008002d1        0x2 interrupt.o
  .bss._ZZ11__vector_21E12ESCFlagCount
-                0x0080022f        0x2 interrupt.o
+                0x008002d3        0x2 interrupt.o
  .bss._ZZ11__vector_21E12LCDFlagCount
-                0x00800231        0x2 interrupt.o
+                0x008002d5        0x2 interrupt.o
+ .bss.flagIMU   0x008002d7        0x1 interrupt.o
+                0x008002d7                flagIMU
  .bss.flagWS2812
-                0x00800233        0x1 interrupt.o
-                0x00800233                flagWS2812
- .bss.flagESC   0x00800234        0x1 interrupt.o
-                0x00800234                flagESC
- .bss.flagRF    0x00800235        0x1 interrupt.o
-                0x00800235                flagRF
- .bss.flagLCD   0x00800236        0x1 interrupt.o
-                0x00800236                flagLCD
+                0x008002d8        0x1 interrupt.o
+                0x008002d8                flagWS2812
+ .bss.flagESC   0x008002d9        0x1 interrupt.o
+                0x008002d9                flagESC
+ .bss.flagRF    0x008002da        0x1 interrupt.o
+                0x008002da                flagRF
+ .bss.flagLCD   0x008002db        0x1 interrupt.o
+                0x008002db                flagLCD
  .bss._ZZ12handleFSMLCDvE14counterLongLCD
-                0x00800237        0x2 lcd.o
+                0x008002dc        0x2 lcd.o
  .bss._ZZ12handleFSMLCDvE11currentChar
-                0x00800239        0x1 lcd.o
+                0x008002de        0x1 lcd.o
  .bss._ZZ12handleFSMLCDvE12charPosition
-                0x0080023a        0x1 lcd.o
+                0x008002df        0x1 lcd.o
  .bss._ZZ12handleFSMLCDvE15counterShortLCD
-                0x0080023b        0x1 lcd.o
+                0x008002e0        0x1 lcd.o
  .bss._ZZ12handleFSMLCDvE8LCDState
-                0x0080023c        0x1 lcd.o
+                0x008002e1        0x1 lcd.o
  .bss.lcdInitialized
-                0x0080023d        0x1 lcd.o
-                0x0080023d                lcdInitialized
- .bss.g_line2   0x0080023e       0x14 lcd.o
-                0x0080023e                g_line2
- .bss.g_line1   0x00800252       0x14 lcd.o
-                0x00800252                g_line1
+                0x008002e2        0x1 lcd.o
+                0x008002e2                lcdInitialized
+ .bss.g_line2   0x008002e3       0x14 lcd.o
+                0x008002e3                g_line2
+ .bss.g_line1   0x008002f7       0x14 lcd.o
+                0x008002f7                g_line1
  .bss._ZZ4mainE1i
-                0x00800266        0x2 main.o
+                0x0080030b        0x2 main.o
  .bss._ZZ11handleFSMRFvE10count_ch_4
-                0x00800268        0x2 RF.o
+                0x0080030d        0x2 RF.o
  .bss._ZZ11handleFSMRFvE15ch_4_ovf_rising
-                0x0080026a        0x1 RF.o
+                0x0080030f        0x1 RF.o
  .bss._ZZ11handleFSMRFvE9last_ch_4
-                0x0080026b        0x1 RF.o
+                0x00800310        0x1 RF.o
  .bss._ZZ11handleFSMRFvE10count_ch_3
-                0x0080026c        0x2 RF.o
+                0x00800311        0x2 RF.o
  .bss._ZZ11handleFSMRFvE15ch_3_ovf_rising
-                0x0080026e        0x1 RF.o
+                0x00800313        0x1 RF.o
  .bss._ZZ11handleFSMRFvE9last_ch_3
-                0x0080026f        0x1 RF.o
+                0x00800314        0x1 RF.o
  .bss._ZZ11handleFSMRFvE10count_ch_2
-                0x00800270        0x2 RF.o
+                0x00800315        0x2 RF.o
  .bss._ZZ11handleFSMRFvE15ch_2_ovf_rising
-                0x00800272        0x1 RF.o
+                0x00800317        0x1 RF.o
  .bss._ZZ11handleFSMRFvE9last_ch_2
-                0x00800273        0x1 RF.o
+                0x00800318        0x1 RF.o
  .bss._ZZ11handleFSMRFvE13ch_4_counting
-                0x00800274        0x1 RF.o
+                0x00800319        0x1 RF.o
  .bss._ZZ11handleFSMRFvE13ch_3_counting
-                0x00800275        0x1 RF.o
+                0x0080031a        0x1 RF.o
  .bss._ZZ11handleFSMRFvE13ch_2_counting
-                0x00800276        0x1 RF.o
+                0x0080031b        0x1 RF.o
  .bss._ZZ11handleFSMRFvE10count_ch_1
-                0x00800277        0x2 RF.o
+                0x0080031c        0x2 RF.o
  .bss._ZZ11handleFSMRFvE15ch_1_ovf_rising
-                0x00800279        0x1 RF.o
+                0x0080031e        0x1 RF.o
  .bss._ZZ11handleFSMRFvE11timer_3_ovf
-                0x0080027a        0x1 RF.o
+                0x0080031f        0x1 RF.o
  .bss._ZZ11handleFSMRFvE13ch_1_counting
-                0x0080027b        0x1 RF.o
+                0x00800320        0x1 RF.o
  .bss._ZZ11handleFSMRFvE9last_ch_1
-                0x0080027c        0x1 RF.o
+                0x00800321        0x1 RF.o
  .bss.RFInitialized
-                0x0080027d        0x1 RF.o
-                0x0080027d                RFInitialized
- .bss.ch_4_pw   0x0080027e        0x2 RF.o
-                0x0080027e                ch_4_pw
- .bss.ch_3_pw   0x00800280        0x2 RF.o
-                0x00800280                ch_3_pw
- .bss.ch_2_pw   0x00800282        0x2 RF.o
-                0x00800282                ch_2_pw
- .bss.ch_1_pw   0x00800284        0x2 RF.o
-                0x00800284                ch_1_pw
+                0x00800322        0x1 RF.o
+                0x00800322                RFInitialized
+ .bss.ch_4_pw   0x00800323        0x2 RF.o
+                0x00800323                ch_4_pw
+ .bss.ch_3_pw   0x00800325        0x2 RF.o
+                0x00800325                ch_3_pw
+ .bss.ch_2_pw   0x00800327        0x2 RF.o
+                0x00800327                ch_2_pw
+ .bss.ch_1_pw   0x00800329        0x2 RF.o
+                0x00800329                ch_1_pw
  .bss.WS2812Initialized
-                0x00800286        0x1 WS2812.o
-                0x00800286                WS2812Initialized
+                0x0080032b        0x1 WS2812.o
+                0x0080032b                WS2812Initialized
  *(COMMON)
- COMMON         0x00800287        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(malloc.o)
-                0x00800287                __brkval
-                0x00800289                __flp
-                0x0080028b                PROVIDE (__bss_end, .)
-                0x0000171e                __data_load_start = LOADADDR (.data)
-                0x0000174a                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080032c        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr6\libc.a(malloc.o)
+                0x0080032c                __brkval
+                0x0080032e                __flp
+                0x00800330                PROVIDE (__bss_end, .)
+                0x00001c48                __data_load_start = LOADADDR (.data)
+                0x00001d14                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080028b        0x0
+.noinit         0x00800330        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x0080028b                _end = .
-                0x0080028b                PROVIDE (__heap_start, .)
+                0x00800330                _end = .
+                0x00800330                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -1149,6 +1155,7 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 esc.o
                                  0x31 (size before relaxing)
+ .comment       0x00000030       0x31 I2C.o
  .comment       0x00000030       0x31 IMU.o
  .comment       0x00000030       0x31 interrupt.o
  .comment       0x00000030       0x31 lcd.o
@@ -1182,100 +1189,109 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x1e8
+.debug_aranges  0x00000000      0x258
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 esc.o
  .debug_aranges
-                0x00000030       0x30 IMU.o
+                0x00000030       0x68 I2C.o
  .debug_aranges
-                0x00000060       0x30 interrupt.o
+                0x00000098       0x30 IMU.o
  .debug_aranges
-                0x00000090       0x70 lcd.o
+                0x000000c8       0x30 interrupt.o
  .debug_aranges
-                0x00000100       0x20 light_ws2812.o
+                0x000000f8       0x78 lcd.o
  .debug_aranges
-                0x00000120       0x20 main.o
+                0x00000170       0x20 light_ws2812.o
  .debug_aranges
-                0x00000140       0x28 RF.o
+                0x00000190       0x20 main.o
  .debug_aranges
-                0x00000168       0x80 WS2812.o
+                0x000001b0       0x28 RF.o
+ .debug_aranges
+                0x000001d8       0x80 WS2812.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x28e4
+.debug_info     0x00000000     0x301d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x1f5 esc.o
- .debug_info    0x000001f5      0x550 IMU.o
- .debug_info    0x00000745      0x2aa interrupt.o
- .debug_info    0x000009ef      0x37e lcd.o
- .debug_info    0x00000d6d      0x52b light_ws2812.o
- .debug_info    0x00001298      0x965 main.o
- .debug_info    0x00001bfd      0x230 RF.o
- .debug_info    0x00001e2d      0xab7 WS2812.o
+ .debug_info    0x000001f5      0x6b7 I2C.o
+ .debug_info    0x000008ac      0x507 IMU.o
+ .debug_info    0x00000db3      0x2fe interrupt.o
+ .debug_info    0x000010b1      0x3c2 lcd.o
+ .debug_info    0x00001473      0x52b light_ws2812.o
+ .debug_info    0x0000199e      0x998 main.o
+ .debug_info    0x00002336      0x230 RF.o
+ .debug_info    0x00002566      0xab7 WS2812.o
 
-.debug_abbrev   0x00000000      0xcec
+.debug_abbrev   0x00000000      0xe8e
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x188 esc.o
- .debug_abbrev  0x00000188      0x202 IMU.o
- .debug_abbrev  0x0000038a       0xd5 interrupt.o
- .debug_abbrev  0x0000045f      0x118 lcd.o
- .debug_abbrev  0x00000577      0x1a1 light_ws2812.o
- .debug_abbrev  0x00000718      0x25e main.o
- .debug_abbrev  0x00000976       0x96 RF.o
- .debug_abbrev  0x00000a0c      0x2e0 WS2812.o
+ .debug_abbrev  0x00000188      0x1be I2C.o
+ .debug_abbrev  0x00000346      0x1d4 IMU.o
+ .debug_abbrev  0x0000051a       0xe9 interrupt.o
+ .debug_abbrev  0x00000603      0x118 lcd.o
+ .debug_abbrev  0x0000071b      0x1a1 light_ws2812.o
+ .debug_abbrev  0x000008bc      0x25c main.o
+ .debug_abbrev  0x00000b18       0x96 RF.o
+ .debug_abbrev  0x00000bae      0x2e0 WS2812.o
 
-.debug_line     0x00000000     0x13cd
+.debug_line     0x00000000     0x192f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x200 esc.o
- .debug_line    0x00000200      0x171 IMU.o
- .debug_line    0x00000371       0xf1 interrupt.o
- .debug_line    0x00000462      0x52f lcd.o
- .debug_line    0x00000991       0xf1 light_ws2812.o
- .debug_line    0x00000a82      0x1f8 main.o
- .debug_line    0x00000c7a      0x3a4 RF.o
- .debug_line    0x0000101e      0x3af WS2812.o
+ .debug_line    0x00000200      0x475 I2C.o
+ .debug_line    0x00000675      0x14d IMU.o
+ .debug_line    0x000007c2      0x1a0 interrupt.o
+ .debug_line    0x00000962      0x570 lcd.o
+ .debug_line    0x00000ed2       0xf1 light_ws2812.o
+ .debug_line    0x00000fc3      0x231 main.o
+ .debug_line    0x000011f4      0x38c RF.o
+ .debug_line    0x00001580      0x3af WS2812.o
 
-.debug_frame    0x00000000      0x3e4
+.debug_frame    0x00000000      0x590
  *(.debug_frame)
  .debug_frame   0x00000000       0x44 esc.o
- .debug_frame   0x00000044       0x60 IMU.o
- .debug_frame   0x000000a4       0x70 interrupt.o
- .debug_frame   0x00000114      0x10c lcd.o
- .debug_frame   0x00000220       0x34 light_ws2812.o
- .debug_frame   0x00000254       0x34 main.o
- .debug_frame   0x00000288       0x34 RF.o
- .debug_frame   0x000002bc      0x128 WS2812.o
+ .debug_frame   0x00000044      0x190 I2C.o
+ .debug_frame   0x000001d4       0x60 IMU.o
+ .debug_frame   0x00000234       0x70 interrupt.o
+ .debug_frame   0x000002a4      0x128 lcd.o
+ .debug_frame   0x000003cc       0x34 light_ws2812.o
+ .debug_frame   0x00000400       0x34 main.o
+ .debug_frame   0x00000434       0x34 RF.o
+ .debug_frame   0x00000468      0x128 WS2812.o
 
-.debug_str      0x00000000      0xb86
+.debug_str      0x00000000      0xc14
  *(.debug_str)
  .debug_str     0x00000000      0x245 esc.o
                                 0x279 (size before relaxing)
- .debug_str     0x00000245      0x212 IMU.o
-                                0x3dc (size before relaxing)
- .debug_str     0x00000457       0xe2 interrupt.o
-                                0x29f (size before relaxing)
- .debug_str     0x00000539      0x184 lcd.o
-                                0x382 (size before relaxing)
- .debug_str     0x000006bd      0x29d light_ws2812.o
+ .debug_str     0x00000245      0x178 I2C.o
+                                0x325 (size before relaxing)
+ .debug_str     0x000003bd      0x111 IMU.o
+                                0x34d (size before relaxing)
+ .debug_str     0x000004ce       0xf7 interrupt.o
+                                0x2e2 (size before relaxing)
+ .debug_str     0x000005c5      0x18d lcd.o
+                                0x396 (size before relaxing)
+ .debug_str     0x00000752      0x29d light_ws2812.o
                                 0x47c (size before relaxing)
- .debug_str     0x0000095a       0xc8 main.o
-                                0x643 (size before relaxing)
- .debug_str     0x00000a22       0xe4 RF.o
+ .debug_str     0x000009ef       0x94 main.o
+                                0x618 (size before relaxing)
+ .debug_str     0x00000a83       0xf6 RF.o
                                 0x2ef (size before relaxing)
- .debug_str     0x00000b06       0x80 WS2812.o
+ .debug_str     0x00000b79       0x9b WS2812.o
                                 0x4e4 (size before relaxing)
 
-.debug_loc      0x00000000      0xdb6
+.debug_loc      0x00000000     0x140d
  *(.debug_loc)
  .debug_loc     0x00000000       0xb8 esc.o
- .debug_loc     0x000000b8       0xbf IMU.o
- .debug_loc     0x00000177       0x92 interrupt.o
- .debug_loc     0x00000209      0x236 lcd.o
- .debug_loc     0x0000043f      0x172 light_ws2812.o
- .debug_loc     0x000005b1       0x68 main.o
- .debug_loc     0x00000619      0x79d WS2812.o
+ .debug_loc     0x000000b8      0x5b0 I2C.o
+ .debug_loc     0x00000668       0xbd IMU.o
+ .debug_loc     0x00000725       0x92 interrupt.o
+ .debug_loc     0x000007b7      0x2df lcd.o
+ .debug_loc     0x00000a96      0x172 light_ws2812.o
+ .debug_loc     0x00000c08       0x68 main.o
+ .debug_loc     0x00000c70      0x79d WS2812.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1295,16 +1311,17 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x168
+.debug_ranges   0x00000000      0x298
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x20 esc.o
- .debug_ranges  0x00000020       0x20 IMU.o
- .debug_ranges  0x00000040       0x20 interrupt.o
- .debug_ranges  0x00000060       0x60 lcd.o
- .debug_ranges  0x000000c0       0x10 light_ws2812.o
- .debug_ranges  0x000000d0       0x10 main.o
- .debug_ranges  0x000000e0       0x18 RF.o
- .debug_ranges  0x000000f8       0x70 WS2812.o
+ .debug_ranges  0x00000020       0xf8 I2C.o
+ .debug_ranges  0x00000118       0x20 IMU.o
+ .debug_ranges  0x00000138       0x20 interrupt.o
+ .debug_ranges  0x00000158       0x68 lcd.o
+ .debug_ranges  0x000001c0       0x10 light_ws2812.o
+ .debug_ranges  0x000001d0       0x40 main.o
+ .debug_ranges  0x00000210       0x18 RF.o
+ .debug_ranges  0x00000228       0x70 WS2812.o
 
 .debug_macro
  *(.debug_macro)

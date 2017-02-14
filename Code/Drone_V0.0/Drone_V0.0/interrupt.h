@@ -12,6 +12,8 @@
 #include "lcd.h" 
 #include "esc.h" 
 #include "WS2812.h"
+#include "IMU.h"
+#include "RF.h"
 
 // xxx_Period defines the frequency at which the xxx interrupt flag is set to 1
 // Use the following formula to determine xxx_Period:
@@ -33,9 +35,13 @@
 // And the color should only be changed during an emergency
 #define WS2812_PERIOD 3000
 
+// 30 Hertz for now
+#define IMU_PERIOD 2000
+
 extern bool flagLCD;
 extern bool flagRF;
 extern bool flagESC;
 extern bool flagWS2812;
+extern bool flagIMU;
 void startInterrupt();
 #endif

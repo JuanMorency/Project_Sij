@@ -11,3 +11,7 @@ Code
 - Voir a optimiser le I2C
 - Verifier la pertinence d'activer les nested interrupts
 - Acceleromètre
+
+- créer des fonctions pour désactiver certain interrupts
+
+- check if we should have some kind of protection when we write 2 bytes

@@ -43,13 +43,16 @@
 #include <stdio.h>
 #include <util/delay.h>
 
+extern bool InertMUInitialized; //cannot name it IMUInitialized, seems to have a conflict with the class...
+
 class IMU
 {
 	public:
 	IMU();
 	void initialize();
-	void IMUTakeMeasures();
+	void TakeMeasures();
 	int accx, accy, accz, temp, gyrx, gyry, gyrz, pres, alt;
+	
 };
 
 

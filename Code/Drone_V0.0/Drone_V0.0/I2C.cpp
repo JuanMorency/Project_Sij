@@ -49,9 +49,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 	restart:
 	if (n++ >= MAX_ITER)
 	{
-		clearDisplay();
-		LCD_WriteString("Salve not responding");
-		_delay_ms(2000);
+		changeLCDText("Slave not responding");
 		return 10;	
 	}
 	begin:
@@ -67,9 +65,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 								released the bus. */
 			goto begin;
 		default:
-			clearDisplay();
-			LCD_WriteString("Start I2C fail");
-			_delay_ms(2000);		
+			changeLCDText("Start I2C fail");
 			return 1;		/* error: not in start condition */
 			  /* NB: do /not/ send stop condition */
 	}
@@ -89,10 +85,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("Invalid phys add");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("Invalid phys add");
 			I2Cstop();
 			return 2;
 	}
@@ -113,10 +106,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("No Data Ack from Slave");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("No Data Ack from Slave");
 			I2Cstop();
 			return 4;
 	}
@@ -139,10 +129,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 				goto begin;
 
 			default:
-				clearDisplay();
-				LCD_WriteString("No Data Ack from Slave");
-				_delay_ms(2000);
-				ERROR_I2C();		/* must send stop condition */
+				changeLCDText("No Data Ack from Slave");
 				I2Cstop();
 				return 6;
 		}
@@ -187,9 +174,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	restart:
 	if (n++ >= MAX_ITER)
 	{
-		clearDisplay();
-		LCD_WriteString("Slave not responding");
-		_delay_ms(2000);
+		changeLCDText("Slave not responding");
 		return 10;	
 	}
 	
@@ -207,9 +192,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 								released the bus. */
 			goto begin;
 		default:
-			clearDisplay();
-			LCD_WriteString("Start I2C fail");
-			_delay_ms(2000);		
+			changeLCDText("Start I2C fail");	
 			return 1;		/* error: not in start condition */
 			  /* NB: do /not/ send stop condition */
 	}
@@ -231,10 +214,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("Invalid phys add");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("Invalid phys add");
 			I2Cstop();
 			return 2;
 	}
@@ -256,10 +236,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("No Data Ack from Slave");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("No Data Ack from Slave");
 			I2Cstop();
 			return 4;
 	}
@@ -279,10 +256,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("Rs error");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("Rs error");
 			I2Cstop();
 			return 5;
 	}	
@@ -305,10 +279,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			clearDisplay();
-			LCD_WriteString("MR_SLA_ACK ");
-			_delay_ms(2000);
-			ERROR_I2C();		/* must send stop condition */
+			changeLCDText("MR_SLA_ACK ");
 			I2Cstop();
 			return 7;
 	}
@@ -336,10 +307,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 				}
 				else
 				{
-					clearDisplay();
-					LCD_WriteString("TW_MR_DATA_NACK ");
-					_delay_ms(2000);
-					ERROR_I2C();		/* must send stop condition */
+					changeLCDText("TW_MR_DATA_NACK ");
 					I2Cstop();
 					return 8;					
 				}
@@ -347,10 +315,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 				data[i] = TWDR;
 				break;
 			default:
-				clearDisplay();
-				LCD_WriteString("MR_SLA_ACK ");
-				_delay_ms(2000);
-				ERROR_I2C();		/* must send stop condition */
+				changeLCDText("MR_SLA_ACK ");
 				I2Cstop();
 				return 9;
 		}
@@ -380,60 +345,13 @@ void I2Cstop()
 	TWCR = 0;
 }
 
-//
-///**
-	//* @brief waits for a status flag returns 0 if it's the right one, 1 if not 
-	//* @param status: Flag to expect
-	//* @retval 0 good flag, 1 wrong flag, -1 not in start condition
-	//*/
-////TODO simplify this
-//uint8_t WaitAndCheckFor(uint8_t status)
-//{
-	////char buffer[20];
-	////clearDisplay();
-	////sprintf(buffer, "%X", (TWSR & 0xF8));
-	////LCD_WriteString(buffer);
-	////_delay_ms(1000);
-	//
-	//while (!(TWCR & (1<<TWINT))); // Wait for TWINT Flag set. This indicates that the START condition has been transmitted
-	//twst = TW_STATUS;
-	//
-	////weird should not be here To check
-	//if (status == TW_START) //Check value of TWI Status Register. Mask prescaler bits. If status different from START go to ERROR
-	//{
-		//switch ((twst = TW_STATUS))
-		//{
-			  //case TW_REP_START:		/* OK, but should not happen */
-			  //case TW_START:
-				//break;
-//
-			  //case TW_MT_ARB_LOST:	/* Note [9] */
-			  //return 1;
-//
-			  //default:
-			  //return -1;		/* error: not in start condition */
-			  ///* NB: do /not/ send stop condition */
-		//}
-	//}
-	//if ((TWSR & 0xF8) != status) //Check value of TWI Status Register. Mask prescaler bits. If TWSR different from status go to ERROR
-	//{
-		//ERROR_I2C();
-		//return 1;	
-	//}
-	//else
-	//{
-		//return 0;
-	//}
-//}
-
-
-
 /**
 	* @brief wait until TWINT becomes 1 again
 	* @param none
 	* @retval none
 	*/
 //might be dangerous, we could get stuck here...
+// just implement a timeout
 void WaitForTWINT()
 {
 	while (!(TWCR & (1<<TWINT)))// Wait for TWINT Flag set.
@@ -458,27 +376,5 @@ void I2CstartTransmit()
 void resetTWINT()
 {
 	TWCR &= ~(1<< TWINT);
-}
-/**
-	* @brief handles error. Just writes a message to the LCD for now
-	* @param none
-	* @retval none
-	*/
-void ERROR_I2C()
-{
-	//char buffer[20];
-	//clearDisplay();
-	//sprintf(buffer, "%X", TWSR);
-	//LCD_WriteString(buffer);
-	//_delay_ms(1000);
-	//SetAdress(64); // goes to line 2 of LCD
-	//sprintf(buffer, "%X", TWDR);
-	//LCD_WriteString(buffer);
-	//_delay_ms(5000);
-	
-	clearDisplay();
-	LCD_WriteString("I2C Error");
-	_delay_ms(2000);
-	I2Cstop();
 }
 
