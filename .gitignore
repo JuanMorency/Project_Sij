@@ -8,6 +8,9 @@
 *.lss
 *.map
 *.srec
+*.eep
+*.mk
+MakeFile
 
 # Eagle shit #
 ############
