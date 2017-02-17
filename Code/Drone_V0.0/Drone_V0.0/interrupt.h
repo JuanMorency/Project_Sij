@@ -35,8 +35,8 @@
 // And the color should only be changed during an emergency
 #define WS2812_PERIOD 3000
 
-// 30 Hertz for now
-#define IMU_PERIOD 2000
+// 3 Hertz for now
+#define IMU_PERIOD 20000
 
 extern bool flagLCD;
 extern bool flagRF;

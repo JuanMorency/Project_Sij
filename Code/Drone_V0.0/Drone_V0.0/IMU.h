@@ -1,7 +1,7 @@
 #ifndef IMU_H
 #define IMU_H
 
-#define PWR_MGMT_1 0x6B
+#define PWR_MGMT_1 0x6B //Power Management. Typical values:0x00(run mode)
 #define SMPLRT_DIV 0x19
 #define CONFIG 0x1A
 #define GYRO_CONFIG 0x1B
@@ -32,8 +32,6 @@
 #define MAG_ZOUT_L		0x07
 #define MAG_ZOUT_H		0x08
 
-
-#define	PWR_MGMT_1		0x6B	//Power Management. Typical values:0x00(run mode)
 #define	WHO_AM_I		0x75	//identity of the device
 
 
@@ -45,14 +43,22 @@
 
 extern bool InertMUInitialized; //cannot name it IMUInitialized, seems to have a conflict with the class...
 
+typedef struct
+{
+	int16_t X;
+	int16_t Y;
+	int16_t Z;
+}XYZ16_TypeDef;
+
 class IMU
 {
 	public:
 	IMU();
 	void initialize();
-	void TakeMeasures();
-	int accx, accy, accz, temp, gyrx, gyry, gyrz, pres, alt;
-	
+	void takeMeasures();
+	void initGyrOffset();
+	uint16_t pres, alt;
+	XYZ16_TypeDef gyrOffset, accRaw, gyroRaw, magRaw;
 };
 
 

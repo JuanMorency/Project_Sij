@@ -55,6 +55,7 @@ int main()
 	//initWS2812();
 	initializeI2C();
 	imu.initialize();
+	
 	//After everything is initialized, start interrupts
 	startInterrupt();
 	while(1)
@@ -112,58 +113,15 @@ int main()
 		if(flagIMU)
 		{
 			flagIMU = 0;
-			imu.TakeMeasures();
-			sprintf(buffer, "ax:%u ay:%u", imu.accx, imu.accy);
-			sprintf(buffer2, "az:%u gx:%u", imu.accz, imu.gyrx);
+			imu.takeMeasures();
+			static int i = 0;
+			sprintf(buffer, "x:%i y:%i", imu.accRaw.X, imu.accRaw.Y);
+			sprintf(buffer2, "z:%i M:%i  %u", imu.accRaw.Z, imu.gyroRaw.X, i);
 			changeLCDText(buffer, buffer2);
+			i=1-i;
+			if(imu.accRaw.X > 5000) {PORTC |= 1<<PORTC0;}
+			else {PORTC &= !(1<<PORTC0);}
 		}
-			
-
-			//clearDisplay();
-			//_delay_ms(20);
-			//sprintf(buffer, "X:%u  Y:%u", imu.gyrx, imu.gyry);
-			//LCD_WriteString(buffer);
-			//SetAdress(LINE2);
-			//sprintf(buffer, "Z:%u  Pres:%u", imu.gyrz, imu.pres);
-			//LCD_WriteString(buffer);
-			//_delay_ms(10);
-
-
-			//clearDisplay();
-			//_delay_ms(20);
-			//sprintf(buffer, "P:%i  T:%i", imu.pres, imu.temp);
-			//LCD_WriteString(buffer);
-			//SetAdress(LINE2);
-			//sprintf(buffer, "A:%i P0:%i", imu.alt, getPressure0());
-			//LCD_WriteString(buffer);
-			//_delay_ms(10);
-
-			//clearDisplay();
-			//_delay_ms(80);
-			//sprintf(buffer, "X:%u  Y:%u", imu.gyrx, imu.gyry);
-			//LCD_WriteString(buffer);
-			//SetAdress(LINE2);
-			//sprintf(buffer, "Z:%u  Pres:%u", imu.gyrz, imu.pres);
-			//LCD_WriteString(buffer);
-			//_delay_ms(400);
-
-
-			//clearDisplay();
-			////if(i2c.read(0x00, dataIn,1) == 1)
-			//
-			//clearDisplay();
-			//sprintf(buffer, "%u    %u     ", dataIn[0], dataIn[1]);
-			//LCD_WriteString(buffer);
-			//if(i2c.read(0xAA, dataIn,1) == 0)
-			//{
-				//clearDisplay();
-				//LCD_WriteString(" Success");
-				//_delay_ms(100000);
-			//}
-
-
-		//}
-
 	}
 	return 0;
 }

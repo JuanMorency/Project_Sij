@@ -1,5 +1,7 @@
 ﻿#include "I2C.h"
 
+int j;
+
 /**
 	* @brief Initialize the prescaler of the I2C clock
 	* @param none
@@ -9,6 +11,7 @@ void initializeI2C()
 {
 	TWBR = ((F_CPU / 40000) - 16) / 2; // set frequency of sclk to 400 kHz	
 	TWCR = (1<<TWEN)|(0<<TWIE)|(0<<TWINT)|(0<<TWEA)|(0<<TWSTA)|(0<<TWSTO);
+	DDRC = 0xFF;
 }
 
 	/*
@@ -116,7 +119,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 	{
 		TWDR = data[i]; //Load DATA into TWDR Register.
 		I2CstartTransmit();
-		WaitForTWINT();	
+		WaitForTWINT();
 		switch ((twst = TW_STATUS))
 		{
 			case TW_MT_DATA_ACK:
@@ -284,9 +287,10 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			return 7;
 	}
 	
-
+	
 	for (int i = 0; i < length; i++)    /*********************To check***********************/
 	{
+		
 		if (i == length-1)
 		{
 			TWCR = (1<<TWINT)|(1<<TWEN);
@@ -298,21 +302,12 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 		WaitForTWINT();
 		switch ((twst = TW_STATUS))
 		{
-			case TW_MR_DATA_NACK:
-				if (i == length-1) //good last bit received,  stop I2C
-				{
-					data[i] = TWDR;
-					I2Cstop();
-					return 0;
-				}
-				else
-				{
-					changeLCDText("TW_MR_DATA_NACK ");
-					I2Cstop();
-					return 8;					
-				}
 			case TW_MR_DATA_ACK:
 				data[i] = TWDR;
+				break;
+			case TW_MR_DATA_NACK:
+				data[i] = TWDR;
+				I2Cstop();
 				break;
 			default:
 				changeLCDText("MR_SLA_ACK ");
@@ -320,8 +315,8 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 				return 9;
 		}
 	}
+	return 0;
 
-	
 }
 
 /**
@@ -360,7 +355,7 @@ void WaitForTWINT()
 
 }
 /**
-	* @brief sets TWCR register to start trnamission over I2C
+	* @brief sets TWCR register to start transmission over I2C
 	* @param none
 	* @retval none
 	*/

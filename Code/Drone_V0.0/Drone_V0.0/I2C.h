@@ -2,9 +2,11 @@
 #define I2C_H
 
 #define F_CPU 16000000
-#define IMU_ADDRESS 0xD0 //Address of IMU + 0 for write SLA_W
-#define BMP180_ADDRESS 0xEE
 #define MAX_ITER 200
+
+#define MP9255_ADDRESS	0xD0 //Address of IMU + 0 for write SLA_W
+#define AK8963_ADDRESS	0x0C
+#define BMP180_ADDRESS	0xEE
 
 #include "lcd.h"
 #include <stdio.h>
