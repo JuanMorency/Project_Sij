@@ -61,7 +61,7 @@ int main()
 	while(1)
 	{
 		////minimum useless operation in the while loop, otherwise bugs
-		//DDRA = 0xFF;
+		DDRC = 0xFF;
 
 		//LCD handler
 		if(flagLCD){
@@ -114,14 +114,37 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			static int i = 0;
 			sprintf(buffer, "x:%i y:%i", imu.accRaw.X, imu.accRaw.Y);
-			sprintf(buffer2, "z:%i M:%i  %u", imu.accRaw.Z, imu.gyroRaw.X, i);
+			sprintf(buffer2, "z:%i gx:%i", imu.accRaw.Z, imu.gyroRaw.X);
 			changeLCDText(buffer, buffer2);
-			i=1-i;
-			if(imu.accRaw.X > 5000) {PORTC |= 1<<PORTC0;}
-			else {PORTC &= !(1<<PORTC0);}
 		}
+		
+			//static uint8_t data[20];
+			//data[0] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_H);
+			//data[1] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_L);
+			//data[2] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_H);
+			//data[3] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_L);
+			//data[4] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_H);
+			//data[5] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_L);
+			//while(readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14)) //problem with read I2C for more than 1 data.
+			//{
+				//readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14);
+				//_delay_ms(2);
+				//imu.accRaw.X = (data[0] << 8) | data[1];
+				//imu.accRaw.Y = (data[2] << 8) | data[3];
+				//imu.accRaw.Z = (data[4] << 8) | data[5];
+				////tempRaw =	(data[6] << 8) | data[7];
+				////gyroRaw.X = (data[8] << 8) | data[9];
+				////gyroRaw.Y = (data[10] << 8) | data[11];
+				////gyroRaw.Z = (data[12] << 8) | data[13];
+				//static uint8_t i = 0;
+				////writeI2C(MP9255_ADDRESS,0x31, i);
+				//sprintf(buffer, "I2C:%i, test %i, %i",  writeI2C(MP9255_ADDRESS,0x31, i), readI2C(MP9255_ADDRESS,0x31), i);
+				////sprintf(buffer2, "z:%i M:%i  %u", imu.accRaw.Z, imu.gyroRaw.X, i);
+				//changeLCDText(buffer, buffer2);
+				//i=1-i;
+			//}
+			//_delay_ms(50);
 	}
 	return 0;
 }

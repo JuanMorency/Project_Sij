@@ -19,44 +19,36 @@ void IMU::initialize()
 {
 	//need to set up the magnetometer
 
+	writeI2C(MP9255_ADDRESS,SMPLRT_DIV, 0x07); //divide sample rate by 8
+	writeI2C(MP9255_ADDRESS,CONFIG, 0x06); //set low pass filter to 5Hz bandwidth
+	writeI2C(MP9255_ADDRESS,GYRO_CONFIG, 0x10); //set gyro full scale to 1000 dps
+	writeI2C(MP9255_ADDRESS,ACCEL_CONFIG, 0x01);//set accel full scale to 4g
+	writeI2C(MP9255_ADDRESS,PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
+	
 	if (readI2C(MP9255_ADDRESS, WHO_AM_I) != 0x73)
 	{
 		changeLCDText("Error reading Sensor");
 		while(1); //lol
 	}
-
-	writeI2C(MP9255_ADDRESS,PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
-	writeI2C(MP9255_ADDRESS,SMPLRT_DIV, 0x07); //divide sample rate by 8
-	writeI2C(MP9255_ADDRESS,CONFIG, 0x06); //set low pass filter to 5Hz bandwidth
-	writeI2C(MP9255_ADDRESS,GYRO_CONFIG, 0x10); //set gyro full scale to 1000 dps
-	writeI2C(MP9255_ADDRESS,ACCEL_CONFIG, 0x01);//set accel full scale to 4g
-
+	_delay_ms(100); 
 	//BMP180_Init();
 	InertMUInitialized  = true;
+
 }
 
 void IMU::takeMeasures()
 {
 	static uint8_t data[20];
-	data[0] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_H);
-	data[1] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_L);
-	data[2] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_H);
-	data[3] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_L);
-	data[4] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_H);
-	data[5] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_L);
-	accRaw.X = (data[0] << 8) | data[1];
-	accRaw.Y = (data[2] << 8) | data[3];
-	accRaw.Z = (data[4] << 8) | data[5];
-	//if(readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14) == 0) //problem with read I2C for more than 1 data. 
-	//{
-		//accRaw.X = (data[0] << 8) | data[1];
-		//accRaw.Y = (data[2] << 8) | data[3];
-		//accRaw.Z = (data[4] << 8) | data[5];
-		//tempRaw =	(data[6] << 8) | data[7];
-		//gyroRaw.X = (data[8] << 8) | data[9];
-		//gyroRaw.Y = (data[10] << 8) | data[11];
-		//gyroRaw.Z = (data[12] << 8) | data[13];
-	//}
+	if(readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14) == 0) //problem with read I2C for more than 1 data. 
+	{
+		accRaw.X = (data[0] << 8) | data[1];
+		accRaw.Y = (data[2] << 8) | data[3];
+		accRaw.Z = (data[4] << 8) | data[5];
+		tempRaw =	(data[6] << 8) | data[7];
+		gyroRaw.X = (data[8] << 8) | data[9];
+		gyroRaw.Y = (data[10] << 8) | data[11];
+		gyroRaw.Z = (data[12] << 8) | data[13];
+	}
 
     //writeI2C(MP9255_ADDRESS,0x37,0x02);//turn on Bypass Mode 
     //_delay_ms(10);

@@ -326,6 +326,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	*/
 void I2Cstart()
 {
+	TWCR = 0;
 	TWCR = (1<<TWINT)|(1<<TWSTA)|(1<<TWEN); //Send START condition
 }
 
@@ -337,7 +338,6 @@ void I2Cstart()
 void I2Cstop()
 {
 	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO); //Transmit STOP condition
-	TWCR = 0;
 }
 
 /**
