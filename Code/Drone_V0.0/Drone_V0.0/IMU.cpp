@@ -1,6 +1,5 @@
 ﻿#include "IMU.h"
-#include "BMP180.h"
-const unsigned char OSS = 0;
+
 int16_t tempRaw;
 uint32_t timer;
 uint8_t i2cData[14];
@@ -20,6 +19,7 @@ void IMU::initialize()
 {
 	mpu9255.initialize();
 	ak8963.initialize();
+	bmp180.initialize();
 	//need to set up the magnetometer
 	//BMP180_Init();
 	InertMUInitialized  = true;
@@ -44,8 +44,7 @@ void IMU::takeMeasures()
 	this->mag.X = ak8963.getMagneticField().X;
 	this->mag.Y = ak8963.getMagneticField().X;
 	this->mag.Z = ak8963.getMagneticField().X;
-
-
+	this->pres = bmp180.getPressure0();
 
 	//CalTemperatureAndPressureAndAltitude();
 	//pres = PressureVal;

@@ -339,6 +339,7 @@ void I2Cstart()
 void I2Cstop()
 {
 	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO); //Transmit STOP condition
+	TWCR = 0;
 }
 
 /**

@@ -2,8 +2,6 @@
 #define min_PWM 0x01
 #define max_PWM 0x06
 
-
-
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
@@ -18,18 +16,6 @@
 #include "WS2812.h"
 #include "RF.h"
 #include "debugLED.h"
-
-
-
-
-#define LED0B 0x01
-#define LED0R 0x02
-#define LED0J 0x04
-#define LED1B 0x08
-#define LED1R 0x10
-#define LED1J 0X20
-#define LED2B 0x40
-#define LED2R 0x80
 
 int main()
 {
@@ -61,9 +47,6 @@ int main()
 	startInterrupt();
 	while(1)
 	{
-		////minimum useless operation in the while loop, otherwise bugs
-		DDRC = 0xFF;
-
 		//LCD handler
 		if(flagLCD){
 			flagLCD = 0;
@@ -116,36 +99,9 @@ int main()
 			flagIMU = 0;
 			imu.takeMeasures();
 			sprintf(buffer, "x:%i y:%i", imu.acc.X, imu.acc.Y);
-			sprintf(buffer2, "z:%i m:%i", imu.acc.Z, imu.mag.X);
+			sprintf(buffer2, "z:%i p:%li", imu.acc.Z, imu.pres);
 			changeLCDText(buffer, buffer2);
 		}
-		
-			//static uint8_t data[20];
-			//data[0] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_H);
-			//data[1] = readI2C(MP9255_ADDRESS,ACCEL_XOUT_L);
-			//data[2] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_H);
-			//data[3] = readI2C(MP9255_ADDRESS,ACCEL_YOUT_L);
-			//data[4] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_H);
-			//data[5] = readI2C(MP9255_ADDRESS,ACCEL_ZOUT_L);
-			//while(readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14)) //problem with read I2C for more than 1 data.
-			//{
-				//readI2C(MP9255_ADDRESS,ACCEL_XOUT_H, data,14);
-				//_delay_ms(2);
-				//imu.accRaw.X = (data[0] << 8) | data[1];
-				//imu.accRaw.Y = (data[2] << 8) | data[3];
-				//imu.accRaw.Z = (data[4] << 8) | data[5];
-				////tempRaw =	(data[6] << 8) | data[7];
-				////gyroRaw.X = (data[8] << 8) | data[9];
-				////gyroRaw.Y = (data[10] << 8) | data[11];
-				////gyroRaw.Z = (data[12] << 8) | data[13];
-				//static uint8_t i = 0;
-				////writeI2C(MP9255_ADDRESS,0x31, i);
-				//sprintf(buffer, "I2C:%i, test %i, %i",  writeI2C(MP9255_ADDRESS,0x31, i), readI2C(MP9255_ADDRESS,0x31), i);
-				////sprintf(buffer2, "z:%i M:%i  %u", imu.accRaw.Z, imu.gyroRaw.X, i);
-				//changeLCDText(buffer, buffer2);
-				//i=1-i;
-			//}
-			//_delay_ms(50);
 	}
 	return 0;
 }

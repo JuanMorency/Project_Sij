@@ -159,6 +159,12 @@
     <Compile Include="AK8963.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="BMP180.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="BMP180.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="debugLED.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -211,6 +217,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RF.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="typeDef.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="WS2812.cpp">

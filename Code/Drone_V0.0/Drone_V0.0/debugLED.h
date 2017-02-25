@@ -18,15 +18,14 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-
-#define LED0 PORTC0		//top LED
-#define LED1 PORTC1
-#define LED2 PORTC2
-#define LED3 PORTC3
-#define LED4 PORTC4
-#define LED5 PORTC5
-#define LED6 PORTC6
-#define LED7 PORTC7		//bottom LED
+#define LED0 PORTC0		//top LED (Blue)
+#define LED1 PORTC1		//Red
+#define LED2 PORTC2		//Yellow
+#define LED3 PORTC3		//Blue
+#define LED4 PORTC4		//Red
+#define LED5 PORTC5		//Yellow
+#define LED6 PORTC6		//Blue
+#define LED7 PORTC7		//bottom LED (Red)
 
 void turnDebugLedOn(uint8_t ledNumber);
 void turnDebugLedOff(uint8_t ledNumber);

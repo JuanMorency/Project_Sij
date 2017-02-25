@@ -7,16 +7,14 @@ PCB
 
 Code
 
-- Vérifier si on peut utiliser les interrupts générés par le IMU
-- Voir à rendre le I2C plus robust, mais semble bon.
+- Voir à rendre le I2C plus robuste.
+
 - Verifier la pertinence d'activer les nested interrupts
 
 - créer des fonctions pour désactiver certain interrupts
 
 - check if we should have some kind of protection when we write 2 bytes in case an interrupt happend in between 
 and reads the wrong value.
-
-- tester voir si on peut accéder au magnetomètre
 
 - Avoir un objet IMU qui a ses objets, MPU9255, AK8963 et BMP180. 
 
