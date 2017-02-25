@@ -31,19 +31,19 @@ void IMU::takeMeasures()
 	//static uint8_t data[20];
 	mpu9255.updateRawData();
 	mpu9255.calculateAccRotTemp();
-	//ak8963.updateRawData();
-	//ak8963.calculateMag();
+	ak8963.updateRawData();
+	ak8963.calculateMag();
 	
 	this->acc.X = mpu9255.getAcceleration().X;
 	this->acc.Y = mpu9255.getAcceleration().Y;
 	this->acc.Z = mpu9255.getAcceleration().Z;
-	this->temp = mpu9255.getTemperature();
+	this->temp  = mpu9255.getTemperature();
 	this->rot.X = mpu9255.getRotation().X;
 	this->rot.Y = mpu9255.getRotation().Y;
 	this->rot.Z = mpu9255.getRotation().Z;
-	//this->mag.X = ak8963.getMagneticField().X;
-	//this->mag.Y = ak8963.getMagneticField().X;
-	//this->mag.Z = ak8963.getMagneticField().X;
+	this->mag.X = ak8963.getMagneticField().X;
+	this->mag.Y = ak8963.getMagneticField().X;
+	this->mag.Z = ak8963.getMagneticField().X;
 
 
 

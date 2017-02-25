@@ -115,9 +115,9 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			//sprintf(buffer, "x:%i y:%i", imu.acc.X, imu.acc.Y);
-			//sprintf(buffer2, "z:%i temp:%i", imu.acc.Z, imu.mag.X);
-			//changeLCDText(buffer, buffer2);
+			sprintf(buffer, "x:%i y:%i", imu.acc.X, imu.acc.Y);
+			sprintf(buffer2, "z:%i m:%i", imu.acc.Z, imu.mag.X);
+			changeLCDText(buffer, buffer2);
 		}
 		
 			//static uint8_t data[20];

@@ -40,12 +40,12 @@ void MPU9255::initialize() {
 	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3); 
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_4<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
-	// check this reference for LPF 
+	// check this reference for LPF bancwidth. might want to put higher
 	// https://ulrichbuschbaum.wordpress.com/2015/01/18/using-the-mpu6050s-dlpf/
 	
 	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
-	//This makes the MPU9255 release the interrupt when the data is read and also allows access to AK8973 through the slave I2C bus
-	writeI2C(MPU9255_ADDRESS,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
+	//This makes the MPU9255 release the interrupt when the data is read and also allows access to AK8973 through the aux I2C bus
+	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
 	writeI2C(devAddr,MPU9255_RA_INT_ENABLE, 1<<0); //enable interrupt for raw data ready
 	writeI2C(devAddr,MPU9255_RA_I2C_MST_CTRL, 1<<6); //delays the data ready interrupt to make sure data has been loaded to the registers
 	

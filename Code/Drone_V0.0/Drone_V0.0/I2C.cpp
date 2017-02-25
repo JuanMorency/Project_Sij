@@ -1,4 +1,5 @@
 ﻿#include "I2C.h"
+#include "debugLED.h"
 
 int j;
 
@@ -288,7 +289,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	}
 	
 	
-	for (int i = 0; i < length; i++)    /*********************To check***********************/
+	for (int i = 0; i < length; i++)
 	{
 		
 		if (i == length-1)
