@@ -153,10 +153,16 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BMP180.cpp">
+    <Compile Include="AK8963.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="BMP180.h">
+    <Compile Include="AK8963.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="debugLED.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="debugLED.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="esc.cpp">
@@ -193,6 +199,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MPU9255.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MPU9255.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="RF.cpp">

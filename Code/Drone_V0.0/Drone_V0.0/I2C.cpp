@@ -25,7 +25,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data)
 {
 	uint8_t data1[1];
 	data1[0] = data;
-	writeI2C(phys_address,address, data1, 1);
+	return writeI2C(phys_address,address, data1, 1);
 }
 
 /**

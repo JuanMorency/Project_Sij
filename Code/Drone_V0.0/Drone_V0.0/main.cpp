@@ -17,6 +17,7 @@
 #include "IMU.h"
 #include "WS2812.h"
 #include "RF.h"
+#include "debugLED.h"
 
 
 
@@ -114,9 +115,9 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "x:%i y:%i", imu.accRaw.X, imu.accRaw.Y);
-			sprintf(buffer2, "z:%i gx:%i", imu.accRaw.Z, imu.gyroRaw.X);
-			changeLCDText(buffer, buffer2);
+			//sprintf(buffer, "x:%i y:%i", imu.acc.X, imu.acc.Y);
+			//sprintf(buffer2, "z:%i temp:%i", imu.acc.Z, imu.mag.X);
+			//changeLCDText(buffer, buffer2);
 		}
 		
 			//static uint8_t data[20];

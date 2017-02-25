@@ -19,3 +19,5 @@ and reads the wrong value.
 - tester voir si on peut accéder au magnetomètre
 
 - Avoir un objet IMU qui a ses objets, MPU9255, AK8963 et BMP180. 
+
+- Adjust Low pass filter and sampling rate of the accelerometer.
