@@ -45,8 +45,8 @@
 
 
 //These have BIT enables to have a 16 bit output
-#define AK8963_MODE_POWERDOWN           0x0
-#define AK8963_MODE_SINGLE              0x11
+#define AK8963_MODE_POWERDOWN           0x00
+#define AK8963_MODE_SINGLE              0x01
 #define AK8963_MODE_CONTINUOUS_8HZ      0x12
 #define AK8963_MODE_EXTERNAL            0x14
 #define AK8963_MODE_CONTINUOUS_100HZ    0x16
@@ -79,7 +79,7 @@ class AK8963 {
 		
     private:
         uint8_t devAddr;
-        uint8_t buffer[6];
+        uint8_t buffer[7];
         uint8_t mode;
 		XYZ16_TypeDef mag, magRaw, adjustment;
 };

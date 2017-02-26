@@ -18,12 +18,14 @@ AK8963::AK8963(uint8_t address) {
     devAddr = address;
 }
 
-/** Power on and prepare for continous usage.
+/** Power on and prepare for continuous usage.
  */
 void AK8963::initialize() {
-	this->readAdjustment();
-	writeI2C(devAddr,AK8963_RA_CNTL1, AK8963_MODE_CONTINUOUS_100HZ); //set in continuous mode 2 and 16 bit output
 	if(!(this->testConnection())){turnDebugLedOn(2);}
+	this->readAdjustment();
+	// Change to appropriate mode
+	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_CONTINUOUS_100HZ);
+	_delay_ms(10);
 }
 
 /** Verify the I2C connection.
@@ -40,16 +42,15 @@ void AK8963::reset() {
     writeI2C(devAddr, AK8963_RA_CNTL2, 0x01);
 }
 
-//// CNTL2 register
-//void AK8963::releaseMPU9255I2CMasterBus() {
-	//writeI2C(MPU9255_ADDRESS,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
-//}
 
 void AK8963::readAdjustment() {
+
+	// Power down magnetometer
+	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_POWERDOWN); 
+	_delay_ms(10);
 	//set mode to fuse access mode
-	buffer[0] = writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_FUSEROM);
-	
-	//might need a little delay here
+	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_FUSEROM);
+	_delay_ms(10);
 	
 	//read the adjustment value
 	readI2C(devAddr, AK8963_RA_ASAX, buffer, 3);
@@ -57,8 +58,16 @@ void AK8963::readAdjustment() {
 	this->adjustment.Y = buffer[1];
 	this->adjustment.Z = buffer[2];
 
-	////set mode back to 
-	//writeI2C(devAddr, AK8963_RA_CNTL2, AK8963_MODE_CONTINUOUS_100HZ);
+	 // calculation to do on these adjustments values
+	 //verify best way to do this if don't want to use floats
+	 //destination[0] =  (float)(rawData[0] - 128)/256.0f + 1.0f;   // Return x-axis sensitivity adjustment values, etc.
+	 //destination[1] =  (float)(rawData[1] - 128)/256.0f + 1.0f;
+	 //destination[2] =  (float)(rawData[2] - 128)/256.0f + 1.0f;
+
+	// Power down magnetometer
+	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_POWERDOWN);
+	_delay_ms(10);
+	
 	
 	
 	//might need to use reset in this function at some point
@@ -72,32 +81,38 @@ void AK8963::readAdjustment() {
   */
 void AK8963::updateRawData()
 {
-	
-	//writeI2C(devAddr,AK8963_RA_CNTL1, AK8963_MODE_SINGLE);
-	//char data[20];
-	//sprintf(data, "mag:%i", readI2C(devAddr,AK8963_RA_HYH));
-	//changeLCDText(data, data);
-	//writeI2C(MPU9255_ADDRESS,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
-	//_delay_ms(1);
-	
-	
-	if(readI2C(devAddr,AK8963_RA_HXL, buffer,6) == 0)
+ 
+	//Read 7 datas here to store status 2 register in the buffer
+	//Status 2 has to be read in continuous operation in order for the sensor to continue
+	//updating data. Also it tells us if an overflow occurred
+
+
+	if(readI2C(devAddr, AK8963_RA_ST1) & (1<<AK8963_ST1_DRDY_BIT)) // update only if data is ready 
+	{ 
+		if(readI2C(devAddr,AK8963_RA_HXL, buffer,7) == 0)
+		{
+			if(!(buffer[6] & (1<<AK8963_ST2_HOFL_BIT)))
+			{
+				magRaw.X = (buffer[1] << 8) | buffer[0];
+				magRaw.Y = (buffer[3] << 8) | buffer[2];
+				magRaw.Z = (buffer[5] << 8) | buffer[4];
+			}
+			//debug
+			else
+			{
+				turnDebugLedOn(4);
+			}
+		}
+		//debug
+		else{
+			turnDebugLedOn(3);
+		}		
+	}
+	//debug
+	else
 	{
-		magRaw.X = (buffer[1] << 8) | buffer[0];
-		magRaw.Y = (buffer[3] << 8) | buffer[2];
-		magRaw.Z = (buffer[5] << 8) | buffer[4];
+		turnDebugLedOn(7);
 	}
-	else{
-		turnDebugLedOn(3);
-	}
-	
-	////debug
-	//char data[20];
-	//char data2[20];
-	//sprintf(data, "x %i y %i",magRaw.X,magRaw.Y);
-	//sprintf(data2, "z :%i",magRaw.Z);
-	//changeLCDText(data, data2);
-	////end debug
 }
 
 XYZ16_TypeDef AK8963::getMagneticField()
@@ -112,6 +127,27 @@ XYZ16_TypeDef AK8963::getMagneticField()
   */
 void AK8963::calculateMag()
 {
-	this->mag = this->magRaw;
+	this->mag.X = this->magRaw.X;
+	this->mag.Y = this->magRaw.Y;
+	this->mag.Z = this->magRaw.Z;
 	//TODO Do the calculations to adjust these values with offset and other stuff required
+	
+	    //mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
+	    //my = (float)magCount[1]*mRes*magCalibration[1] - magbias[1];
+	    //mz = (float)magCount[2]*mRes*magCalibration[2] - magbias[2];
+	    //
+	    //void getMres() {
+		    //switch (Mscale)
+		    //{
+			    //// Possible magnetometer scales (and their register bit settings) are:
+			    //// 14 bit resolution (0) and 16 bit resolution (1)
+			    //case MFS_14BITS:
+			    //mRes = 10.0*4912.0/8190.0; // Proper scale to return milliGauss
+			    //break;
+			    //case MFS_16BITS:
+			    //mRes = 10.0*4912.0/32760.0; // Proper scale to return milliGauss
+			    //break;
+		    //}
+	    //}
+		//https://github.com/kriswiner/MPU-9250/blob/master/STM32F401/MPU9250.h
 }

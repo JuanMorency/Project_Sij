@@ -16,6 +16,7 @@ Code
 - check if we should have some kind of protection when we write 2 bytes in case an interrupt happend in between 
 and reads the wrong value.
 
-- Avoir un objet IMU qui a ses objets, MPU9255, AK8963 et BMP180. 
 
-- Adjust Low pass filter and sampling rate of the accelerometer.
+- Adjust Low pass filter and sampling rate of the accelerometer/gyro.
+
+- Calibration et calculs pour les 3 senseurs

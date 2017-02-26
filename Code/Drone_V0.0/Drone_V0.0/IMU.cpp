@@ -19,7 +19,7 @@ void IMU::initialize()
 {
 	mpu9255.initialize();
 	ak8963.initialize();
-	bmp180.initialize();
+	//bmp180.initialize();
 	//need to set up the magnetometer
 	//BMP180_Init();
 	InertMUInitialized  = true;
@@ -29,8 +29,8 @@ void IMU::initialize()
 void IMU::takeMeasures()
 {
 	//static uint8_t data[20];
-	mpu9255.updateRawData();
-	mpu9255.calculateAccRotTemp();
+	//mpu9255.updateRawData();
+	//mpu9255.calculateAccRotTemp();
 	ak8963.updateRawData();
 	ak8963.calculateMag();
 	
@@ -42,8 +42,8 @@ void IMU::takeMeasures()
 	this->rot.Y = mpu9255.getRotation().Y;
 	this->rot.Z = mpu9255.getRotation().Z;
 	this->mag.X = ak8963.getMagneticField().X;
-	this->mag.Y = ak8963.getMagneticField().X;
-	this->mag.Z = ak8963.getMagneticField().X;
+	this->mag.Y = ak8963.getMagneticField().Y;
+	this->mag.Z = ak8963.getMagneticField().Z;
 	this->pres = bmp180.getPressure0();
 
 	//CalTemperatureAndPressureAndAltitude();
