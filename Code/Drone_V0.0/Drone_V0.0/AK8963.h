@@ -73,7 +73,7 @@ class AK8963 {
         bool testConnection();
         void reset();
 		void readAdjustment();
-		XYZ16_TypeDef getMagneticField();
+		XYZfloat_TypeDef getMagneticField();
 		void calculateMag();
 		void updateRawData();
 		
@@ -81,7 +81,8 @@ class AK8963 {
         uint8_t devAddr;
         uint8_t buffer[7];
         uint8_t mode;
-		XYZ16_TypeDef mag, magRaw, adjustment;
+		float mRes;
+		XYZfloat_TypeDef mag, magRaw, adjustmentRaw, adjustment, bias;
 };
 
 #endif /* _AK8963_H_ */

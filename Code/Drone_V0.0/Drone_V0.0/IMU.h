@@ -21,7 +21,7 @@ class IMU
 	void takeMeasures();
 	int32_t pres, alt, temp;
 	int16_t yaw, roll, pitch;
-	XYZ16_TypeDef acc, rot, mag;
+	XYZfloat_TypeDef acc, rot, mag;
 	
 	private:
 	MPU9255 mpu9255;

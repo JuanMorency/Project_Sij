@@ -26,6 +26,10 @@ void AK8963::initialize() {
 	// Change to appropriate mode
 	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_CONTINUOUS_100HZ);
 	_delay_ms(10);
+	mRes = 10.0*4912.0/32760.0; // Proper scale to return milliGauss
+	bias.X=0;
+	bias.Y=0;
+	bias.Z=0;
 }
 
 /** Verify the I2C connection.
@@ -60,9 +64,9 @@ void AK8963::readAdjustment() {
 
 	 // calculation to do on these adjustments values
 	 //verify best way to do this if don't want to use floats
-	 //destination[0] =  (float)(rawData[0] - 128)/256.0f + 1.0f;   // Return x-axis sensitivity adjustment values, etc.
-	 //destination[1] =  (float)(rawData[1] - 128)/256.0f + 1.0f;
-	 //destination[2] =  (float)(rawData[2] - 128)/256.0f + 1.0f;
+	 adjustment.X =  (float)(adjustmentRaw.X - 128)/256.0f + 1.0f;   // Return x-axis sensitivity adjustment values, etc.
+	 adjustment.Y =  (float)(adjustmentRaw.Y - 128)/256.0f + 1.0f;
+	 adjustment.Z =  (float)(adjustmentRaw.Z - 128)/256.0f + 1.0f;
 
 	// Power down magnetometer
 	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_POWERDOWN);
@@ -115,7 +119,7 @@ void AK8963::updateRawData()
 	}
 }
 
-XYZ16_TypeDef AK8963::getMagneticField()
+XYZfloat_TypeDef AK8963::getMagneticField()
 {
 	return this->mag;
 }
@@ -127,10 +131,12 @@ XYZ16_TypeDef AK8963::getMagneticField()
   */
 void AK8963::calculateMag()
 {
-	this->mag.X = this->magRaw.X;
-	this->mag.Y = this->magRaw.Y;
-	this->mag.Z = this->magRaw.Z;
+	this->mag.X = this->magRaw.X*mRes*adjustment.X - bias.X;
+	this->mag.Y = this->magRaw.Y*mRes*adjustment.Y - bias.Y;
+	this->mag.Z = this->magRaw.Z*mRes*adjustment.Z - bias.Z;
 	//TODO Do the calculations to adjust these values with offset and other stuff required
+	
+	
 	
 	    //mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
 	    //my = (float)magCount[1]*mRes*magCalibration[1] - magbias[1];

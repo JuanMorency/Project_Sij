@@ -31,8 +31,8 @@ void IMU::takeMeasures()
 	//static uint8_t data[20];
 	mpu9255.updateRawData();
 	mpu9255.calculateAccRotTemp();
-	//ak8963.updateRawData();
-	//ak8963.calculateMag();
+	ak8963.updateRawData();
+	ak8963.calculateMag();
 	
 	this->acc.X = mpu9255.getAcceleration().X;
 	this->acc.Y = mpu9255.getAcceleration().Y;
