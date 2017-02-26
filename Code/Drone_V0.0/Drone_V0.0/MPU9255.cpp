@@ -35,14 +35,19 @@ bool MPU9255::testConnection() {
  * the appropriate bandwidth. Sets up interrupts
  */
 void MPU9255::initialize() {
-	
 	if(!(this->testConnection()))
 	{
 		turnDebugLedOn(1);
 	}
 	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
-	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_250<<3);
+	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3);
+	//calculate the resolution to transform the bit value in degrees per second
+	//adjust if resolution is changed
+	gRes = 1000.0/32760.0;
+	
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
+	//in milliG
+	aRes = 2000.0/32760.0;
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
 
 	//get the offset values for the accelerometer
@@ -137,14 +142,14 @@ void MPU9255::updateRawData()
 void MPU9255::calculateAccRotTemp()
 {
 	temp = tempRaw;
-	acc.X = accRaw.X - accOffset.X;
-	acc.Y = accRaw.Y - accOffset.Y;
-	acc.Z = accRaw.Z - accOffset.Z;
+	acc.X = (float)(accRaw.X - accOffset.X)*aRes;
+	acc.Y = (float)(accRaw.Y - accOffset.Y)*aRes;
+	acc.Z = (float)(accRaw.Z - accOffset.Z)*aRes;
 
 	
-	gyr.X = float(gyrRaw.X - gyrOffset.X)* gRes;
-	gyr.Y = gyrRaw.Y - gyrOffset.Y* gRes;
-	gyr.Z = gyrRaw.Z - gyrOffset.Z* gRes;
+	gyr.X = (float)(gyrRaw.X - gyrOffset.X)*gRes;
+	gyr.Y = (float)(gyrRaw.Y - gyrOffset.Y)*gRes;
+	gyr.Z = (float)(gyrRaw.Z - gyrOffset.Z)*gRes;
 	
 	
 	
@@ -165,7 +170,7 @@ int16_t MPU9255::getTemperature()
   * @brief  Returns gyroscope measurement
   * @retval XYZ16_TypeDef of the rotation
   */
-XYZ16_TypeDef MPU9255::getRotation()
+XYZfloat_TypeDef MPU9255::getRotation()
 {
 	return this->gyr;
 }
@@ -174,7 +179,7 @@ XYZ16_TypeDef MPU9255::getRotation()
   * @brief  Returns accelerometer measurement
   * @retval XYZ16_TypeDef of the accelerometer
   */
-XYZ16_TypeDef MPU9255::getAcceleration()
+XYZfloat_TypeDef MPU9255::getAcceleration()
 {
 	return this->acc;
 }

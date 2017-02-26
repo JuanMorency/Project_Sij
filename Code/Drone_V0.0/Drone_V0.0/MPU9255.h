@@ -162,8 +162,8 @@ class MPU9255 {
 		void calculateAccRotTemp();
 		
         int16_t getTemperature();
-        XYZ16_TypeDef getRotation();
-        XYZ16_TypeDef getAcceleration();
+        XYZfloat_TypeDef getRotation();
+        XYZfloat_TypeDef getAcceleration();
 		
 		
     private:
@@ -173,7 +173,7 @@ class MPU9255 {
 		XYZ16_TypeDef accRaw, gyrRaw;
 		XYZfloat_TypeDef acc, gyr;
 		uint8_t tempRaw, temp;
-		float gres;
+		float gRes, aRes;
 };
 
 #endif /* _MPU9255_H_ */
