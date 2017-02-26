@@ -147,6 +147,9 @@
 #define MPU9255_INTCFG_I2C_BYPASS_EN_BIT    1
 #define MPU9255_INTCFG_CLKOUT_EN_BIT        0
 
+
+#define GYR_OFFSET_MAX_CALIBRATION			100
+
 class MPU9255 {
     public:
         MPU9255();
@@ -167,8 +170,10 @@ class MPU9255 {
         uint8_t devAddr;
         uint8_t buffer[14];
 		XYZ16_TypeDef gyrOffset, accOffset;
-		XYZ16_TypeDef accRaw, gyrRaw, acc, gyr;
+		XYZ16_TypeDef accRaw, gyrRaw;
+		XYZfloat_TypeDef acc, gyr;
 		uint8_t tempRaw, temp;
+		float gres;
 };
 
 #endif /* _MPU9255_H_ */

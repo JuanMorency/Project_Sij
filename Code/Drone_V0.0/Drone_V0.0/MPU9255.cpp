@@ -35,31 +35,50 @@ bool MPU9255::testConnection() {
  * the appropriate bandwidth. Sets up interrupts
  */
 void MPU9255::initialize() {
-	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x13); //divide sample rate by 20 to have a 50 Hz sample rate for interrupts
-	writeI2C(devAddr,MPU9255_RA_CONFIG, MPU9255_DLPF_BW_5); //set low pass filter for gyro and temp to 5 Hz bandwidth
-	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3); 
-	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_4<<3);
-	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
-	// check this reference for LPF bancwidth. might want to put higher
-	// https://ulrichbuschbaum.wordpress.com/2015/01/18/using-the-mpu6050s-dlpf/
-	
-	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
-	//This makes the MPU9255 release the interrupt when the data is read and also allows access to AK8973 through the aux I2C bus
-	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
-	writeI2C(devAddr,MPU9255_RA_INT_ENABLE, 1<<0); //enable interrupt for raw data ready
-	writeI2C(devAddr,MPU9255_RA_I2C_MST_CTRL, 1<<6); //delays the data ready interrupt to make sure data has been loaded to the registers
-	
-	EICRA |= (1<<ISC20)|(1<<ISC21); /* Sets the rising edge of INT2 to trigger interrupts */
-	EIMSK |= (1<<INT2);	/* Enables INT2 */
 	
 	if(!(this->testConnection()))
 	{
 		turnDebugLedOn(1);
 	}
+	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
+	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_250<<3);
+	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
+	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
+
+	//get the offset values for the accelerometer
+	if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
+	{
+		accOffset.X = (buffer[0] << 8) | buffer[1];
+		accOffset.Y = (buffer[2] << 8) | buffer[3];
+		accOffset.Z = (buffer[4] << 8) | buffer[5];
+	}	
+	
+	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
+	_delay_ms(10);		
+	initGyrOffset(); //this will take 32 ms
+	
+	//set the LPF for the gyroscope and set the sample rate to the desired value
+	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x13); //divide sample rate by 20 to have a 50 Hz sample rate for interrupts
+	writeI2C(devAddr,MPU9255_RA_CONFIG, MPU9255_DLPF_BW_5); //set low pass filter for gyro and temp to 5 Hz bandwidth
+
+
+	// check this reference for LPF bandwidth. might want to put higher
+	// https://ulrichbuschbaum.wordpress.com/2015/01/18/using-the-mpu6050s-dlpf/
+	
+
+	//Interrupts on MPU9255 and making AK8973 available on the I2C bus
+	//This makes the MPU9255 release the interrupt when the data is read and also allows access to AK8973 through the aux I2C bus
+	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
+	writeI2C(devAddr,MPU9255_RA_INT_ENABLE, 1<<0); //enable interrupt for raw data ready
+	writeI2C(devAddr,MPU9255_RA_I2C_MST_CTRL, 1<<6); //delays the data ready interrupt to make sure data has been loaded to the registers
+	
+	//start interrupt polling on the microcontroller
+	EICRA |= (1<<ISC20)|(1<<ISC21); /* Sets the rising edge of INT2 to trigger interrupts */
+	EIMSK |= (1<<INT2);	/* Enables INT2 */
 }
 
 /**
-  * @brief  Initializes gyroscopes offset
+  * @brief  Initializes gyroscopes offset by taking 32 measures and taking a mean
   * @param  None
   * @retval None
   */
@@ -68,25 +87,24 @@ void MPU9255::initGyrOffset()
 	uint8_t i;
 	int32_t	TempGx = 0, TempGy = 0, TempGz = 0;
 	
- 	for(i = 0; i < 32; i ++)
+ 	for(i = 0; i < 128; i ++)
  	{
-		static uint8_t data[6];
 		static uint16_t gyro[3];
-		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, data,6) == 0)//problem with read I2C for more than 1 data.
+		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, buffer,6) == 0)//problem with read I2C for more than 1 data.
 		{
-			gyro[0] = (data[0] << 8) | data[1];
-			gyro[1] = (data[2] << 8) | data[3];
-			gyro[2] = (data[4] << 8) | data[5];
+			gyro[0] = (buffer[0] << 8) | buffer[1];
+			gyro[1] = (buffer[2] << 8) | buffer[3];
+			gyro[2] = (buffer[4] << 8) | buffer[5];
 		}
 		TempGx += gyro[0];
 		TempGy += gyro[1];
 		TempGz += gyro[2];
-		_delay_us(100);
+		_delay_ms(1);
 	}
 	
-	gyrOffset.X = TempGx >> 5;
-	gyrOffset.Y = TempGy >> 5;
-	gyrOffset.Z = TempGz >> 5;
+	if(TempGx < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.X = TempGx >> 7;}
+	if(TempGy < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Y = TempGy >> 7;}
+	if(TempGz < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Z = TempGz >> 7;}
 }
 
 /**
@@ -118,9 +136,17 @@ void MPU9255::updateRawData()
   */
 void MPU9255::calculateAccRotTemp()
 {
-	this->temp = this->tempRaw;
-	this->acc = this->accRaw;
-	this->gyr = this->gyrRaw;
+	temp = tempRaw;
+	acc.X = accRaw.X - accOffset.X;
+	acc.Y = accRaw.Y - accOffset.Y;
+	acc.Z = accRaw.Z - accOffset.Z;
+
+	
+	gyr.X = float(gyrRaw.X - gyrOffset.X)* gRes;
+	gyr.Y = gyrRaw.Y - gyrOffset.Y* gRes;
+	gyr.Z = gyrRaw.Z - gyrOffset.Z* gRes;
+	
+	
 	
 	//TODO Do the calculations to adjust these values with offset and other stuff required
 }
