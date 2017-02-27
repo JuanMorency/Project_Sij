@@ -84,7 +84,7 @@ int main()
 			for(int j = 0; j<1; j++)
 			{
 				valueFRT.b = i; valueFRT.g = i; valueFRT.r = i; // RGB Value -> red
-				LEDFRT.set_crgb_at(j, valueFRT); // Set value at LED found at index j
+				LEDFRT.set_crgb_at(j, valueFRT); // Set valueB at LED found at index j
 				valueFRT.b = 255; valueFRT.g = 255; valueFRT.r = 255; // RGB Value -> Blue
 			}
 			LEDFRT.sync(); // Sends the value to the LED
@@ -98,8 +98,8 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "x:%i y:%i", imu.mag.X, imu.mag.Y);
-			sprintf(buffer2, "z:%i :%i", imu.mag.Z, imu.mag.Y);
+			sprintf(buffer, "x:%i y:%i", imu.rot.X, imu.rot.Y);
+			sprintf(buffer2, "z:%i :%i", imu.rot.Z, imu.rot.Y);
 			changeLCDText(buffer, buffer2);
 		}
 	}

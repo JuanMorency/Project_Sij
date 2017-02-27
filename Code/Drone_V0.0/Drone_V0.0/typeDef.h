@@ -15,4 +15,11 @@ typedef struct
 	float Z;
 }XYZfloat_TypeDef;
 
+typedef struct
+{
+	uint32_t X;
+	uint32_t Y;
+	uint32_t Z;
+}XYZ32_TypeDef;
+
 #endif /* _TYPEDEF_H_ */

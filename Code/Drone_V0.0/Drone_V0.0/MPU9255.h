@@ -162,18 +162,16 @@ class MPU9255 {
 		void calculateAccRotTemp();
 		
         int16_t getTemperature();
-        XYZfloat_TypeDef getRotation();
-        XYZfloat_TypeDef getAcceleration();
+        XYZ16_TypeDef getRotation();
+        XYZ16_TypeDef getAcceleration();
 		
 		
     private:
         uint8_t devAddr;
         uint8_t buffer[14];
 		XYZ16_TypeDef gyrOffset, accOffset;
-		XYZ16_TypeDef accRaw, gyrRaw;
-		XYZfloat_TypeDef acc, gyr;
-		uint8_t tempRaw, temp;
-		float gRes, aRes;
+		XYZ16_TypeDef accRaw, gyrRaw, gyr, acc;
+		uint16_t tempRaw, temp;
 };
 
 #endif /* _MPU9255_H_ */

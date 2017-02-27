@@ -41,27 +41,25 @@ void MPU9255::initialize() {
 	}
 	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
 	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3);
-	//calculate the resolution to transform the bit value in degrees per second
-	//adjust if resolution is changed
-	gRes = 1000.0/32760.0;
-	
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
-	//in milliG
-	aRes = 2000.0/32760.0;
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
 
 	//get the offset values for the accelerometer
 	if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
 	{
-		accOffset.X = (buffer[0] << 8) | buffer[1];
-		accOffset.Y = (buffer[2] << 8) | buffer[3];
-		accOffset.Z = (buffer[4] << 8) | buffer[5];
+		// the number is stored in 15 bits and not 16 in the MPU registers
+		accOffset.X = (buffer[0] << 8) | (buffer[1]&0xFE);
+		accOffset.Y = (buffer[2] << 8) | (buffer[3]&0xFE);
+		accOffset.Z = (buffer[4] << 8) | (buffer[5]&0xFE);
+		
+		accOffset.X = accOffset.X>>1;
+		accOffset.Y = accOffset.Y>>1;
+		accOffset.Z = accOffset.Z>>1;
 	}	
 	
 	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
 	_delay_ms(10);		
 	initGyrOffset(); //this will take 32 ms
-	
 	//set the LPF for the gyroscope and set the sample rate to the desired value
 	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x13); //divide sample rate by 20 to have a 50 Hz sample rate for interrupts
 	writeI2C(devAddr,MPU9255_RA_CONFIG, MPU9255_DLPF_BW_5); //set low pass filter for gyro and temp to 5 Hz bandwidth
@@ -76,7 +74,6 @@ void MPU9255::initialize() {
 	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
 	writeI2C(devAddr,MPU9255_RA_INT_ENABLE, 1<<0); //enable interrupt for raw data ready
 	writeI2C(devAddr,MPU9255_RA_I2C_MST_CTRL, 1<<6); //delays the data ready interrupt to make sure data has been loaded to the registers
-	
 	//start interrupt polling on the microcontroller
 	EICRA |= (1<<ISC20)|(1<<ISC21); /* Sets the rising edge of INT2 to trigger interrupts */
 	EIMSK |= (1<<INT2);	/* Enables INT2 */
@@ -95,7 +92,7 @@ void MPU9255::initGyrOffset()
  	for(i = 0; i < 128; i ++)
  	{
 		static uint16_t gyro[3];
-		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, buffer,6) == 0)//problem with read I2C for more than 1 data.
+		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, buffer,6) == 0)
 		{
 			gyro[0] = (buffer[0] << 8) | buffer[1];
 			gyro[1] = (buffer[2] << 8) | buffer[3];
@@ -106,10 +103,12 @@ void MPU9255::initGyrOffset()
 		TempGz += gyro[2];
 		_delay_ms(1);
 	}
-	
-	if(TempGx < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.X = TempGx >> 7;}
-	if(TempGy < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Y = TempGy >> 7;}
-	if(TempGz < GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Z = TempGz >> 7;}
+	gyrOffset.X = 0;
+	gyrOffset.Y = 0;
+	gyrOffset.Z = 0;
+	if((TempGx >> 7) <= GYR_OFFSET_MAX_CALIBRATION){gyrOffset.X = TempGx >> 7;}
+	if((TempGy >> 7) <= GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Y = TempGy >> 7;}
+	if((TempGz >> 7) <= GYR_OFFSET_MAX_CALIBRATION){gyrOffset.Z = TempGz >> 7;}
 }
 
 /**
@@ -124,7 +123,7 @@ void MPU9255::updateRawData()
 		accRaw.X = (buffer[0] << 8) | buffer[1];
 		accRaw.Y = (buffer[2] << 8) | buffer[3];
 		accRaw.Z = (buffer[4] << 8) | buffer[5];
-		tempRaw =	(buffer[6] << 8) | buffer[7];
+		tempRaw =  (buffer[6] << 8) | buffer[7];
 		gyrRaw.X = (buffer[8] << 8) | buffer[9];
 		gyrRaw.Y = (buffer[10] << 8) | buffer[11];
 		gyrRaw.Z = (buffer[12] << 8) | buffer[13];
@@ -142,18 +141,28 @@ void MPU9255::updateRawData()
 void MPU9255::calculateAccRotTemp()
 {
 	temp = tempRaw;
-	acc.X = (float)(accRaw.X - accOffset.X)*aRes;
-	acc.Y = (float)(accRaw.Y - accOffset.Y)*aRes;
-	acc.Z = (float)(accRaw.Z - accOffset.Z)*aRes;
+	
+	//in G x10^(-4)
+	//need to substract the offsets here
+	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15); //divide by 2^15 which is the max number of int16
+	acc.Y = (int16_t)((int32_t)(accRaw.Y)*20000>>15);
+	acc.Z = (int16_t)((int32_t)(accRaw.Z)*20000>>15);
 
 	
-	gyr.X = (float)(gyrRaw.X - gyrOffset.X)*gRes;
-	gyr.Y = (float)(gyrRaw.Y - gyrOffset.Y)*gRes;
-	gyr.Z = (float)(gyrRaw.Z - gyrOffset.Z)*gRes;
+	// calculate the resolution to transform the bit value in 0.1 degrees per second
+	gyr.X = (int16_t)((int32_t)(gyrRaw.X - gyrOffset.X)*10000>>15); //divide by 2^15 which is the max number of int16
+	gyr.Y = (int16_t)((int32_t)(gyrRaw.Y - gyrOffset.Y)*10000>>15);
+	gyr.Z = (int16_t)((int32_t)(gyrRaw.Z - gyrOffset.Z)*10000>>15);
+	
+	//gyr.X = accOffset.X;
+	//gyr.Y = accOffset.Y;
+	//gyr.Z = accOffset.Z;
 	
 	
-	
-	//TODO Do the calculations to adjust these values with offset and other stuff required
+	//problems
+	//accOffset don't seem to be right
+	//gyrRaw z stays at 0, all gyr seems to be offset by 1
+
 }
 
 
@@ -170,7 +179,7 @@ int16_t MPU9255::getTemperature()
   * @brief  Returns gyroscope measurement
   * @retval XYZ16_TypeDef of the rotation
   */
-XYZfloat_TypeDef MPU9255::getRotation()
+XYZ16_TypeDef MPU9255::getRotation()
 {
 	return this->gyr;
 }
@@ -179,7 +188,7 @@ XYZfloat_TypeDef MPU9255::getRotation()
   * @brief  Returns accelerometer measurement
   * @retval XYZ16_TypeDef of the accelerometer
   */
-XYZfloat_TypeDef MPU9255::getAcceleration()
+XYZ16_TypeDef MPU9255::getAcceleration()
 {
 	return this->acc;
 }
