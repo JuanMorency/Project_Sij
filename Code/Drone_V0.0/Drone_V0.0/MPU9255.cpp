@@ -39,36 +39,43 @@ void MPU9255::initialize() {
 	{
 		turnDebugLedOn(1);
 	}
-	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
+	
+	//writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
+	////hard reset 
+	//writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0b10000000);
+	//_delay_ms(1000);
+	////signal path reset
+	//writeI2C(devAddr,MPU9255_RA_SIGNAL_PATH_RESET, 0b00000111);
+	//_delay_ms(100);
+	
+	
 	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
 
-	//get the offset values for the accelerometer
-	if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
-	{
-		// the number is stored in 15 bits and not 16 in the MPU registers
-		accOffset.X = (buffer[0] << 8) | (buffer[1]&0xFE);
-		accOffset.Y = (buffer[2] << 8) | (buffer[3]&0xFE);
-		accOffset.Z = (buffer[4] << 8) | (buffer[5]&0xFE);
-		
-		accOffset.X = accOffset.X>>1;
-		accOffset.Y = accOffset.Y>>1;
-		accOffset.Z = accOffset.Z>>1;
-	}	
+	////get the offset values for the accelerometer
+	//if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
+	//{
+		//// the number is stored in 15 bits and not 16 in the MPU registers
+		//accOffset.X = (buffer[0] << 8) | (buffer[1]&0xFE);
+		//accOffset.Y = (buffer[2] << 8) | (buffer[3]&0xFE);
+		//accOffset.Z = (buffer[4] << 8) | (buffer[5]&0xFE);
+		//
+		//accOffset.X = accOffset.X>>1;
+		//accOffset.Y = accOffset.Y>>1;
+		//accOffset.Z = accOffset.Z>>1;
+	//}	
 	
-	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x01); //Not sleep + clock 20 MHz
+	
+	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x02); //Not sleep + clock 20 MHz
 	_delay_ms(10);		
 	initGyrOffset(); //this will take 32 ms
 	//set the LPF for the gyroscope and set the sample rate to the desired value
 	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x13); //divide sample rate by 20 to have a 50 Hz sample rate for interrupts
 	writeI2C(devAddr,MPU9255_RA_CONFIG, MPU9255_DLPF_BW_5); //set low pass filter for gyro and temp to 5 Hz bandwidth
-
-
 	// check this reference for LPF bandwidth. might want to put higher
 	// https://ulrichbuschbaum.wordpress.com/2015/01/18/using-the-mpu6050s-dlpf/
 	
-
 	//Interrupts on MPU9255 and making AK8973 available on the I2C bus
 	//This makes the MPU9255 release the interrupt when the data is read and also allows access to AK8973 through the aux I2C bus
 	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
@@ -131,6 +138,8 @@ void MPU9255::updateRawData()
 	else{
 		turnDebugLedOn(3);
 	}
+
+
 }
 
 /**
@@ -143,7 +152,7 @@ void MPU9255::calculateAccRotTemp()
 	temp = tempRaw;
 	
 	//in G x10^(-4)
-	//need to substract the offsets here
+	//need to subtract the offsets here
 	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15); //divide by 2^15 which is the max number of int16
 	acc.Y = (int16_t)((int32_t)(accRaw.Y)*20000>>15);
 	acc.Z = (int16_t)((int32_t)(accRaw.Z)*20000>>15);
@@ -153,15 +162,6 @@ void MPU9255::calculateAccRotTemp()
 	gyr.X = (int16_t)((int32_t)(gyrRaw.X - gyrOffset.X)*10000>>15); //divide by 2^15 which is the max number of int16
 	gyr.Y = (int16_t)((int32_t)(gyrRaw.Y - gyrOffset.Y)*10000>>15);
 	gyr.Z = (int16_t)((int32_t)(gyrRaw.Z - gyrOffset.Z)*10000>>15);
-	
-	//gyr.X = accOffset.X;
-	//gyr.Y = accOffset.Y;
-	//gyr.Z = accOffset.Z;
-	
-	
-	//problems
-	//accOffset don't seem to be right
-	//gyrRaw z stays at 0, all gyr seems to be offset by 1
 
 }
 

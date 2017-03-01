@@ -26,10 +26,9 @@ void AK8963::initialize() {
 	// Change to appropriate mode
 	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_CONTINUOUS_100HZ);
 	_delay_ms(10);
-	mRes = 10.0*4912.0/32760.0; // Proper scale to return milliGauss
-	bias.X=0;
-	bias.Y=0;
-	bias.Z=0;
+	bias.X=AK8973_MAG_OFFSET_X;
+	bias.Y=AK8973_MAG_OFFSET_Y;
+	bias.Z=AK8973_MAG_OFFSET_Z;
 }
 
 /** Verify the I2C connection.
@@ -58,23 +57,13 @@ void AK8963::readAdjustment() {
 	
 	//read the adjustment value
 	readI2C(devAddr, AK8963_RA_ASAX, buffer, 3);
-	this->adjustment.X = buffer[0];
-	this->adjustment.Y = buffer[1];
-	this->adjustment.Z = buffer[2];
-
-	 // calculation to do on these adjustments values
-	 //verify best way to do this if don't want to use floats
-	 adjustment.X =  (float)(adjustmentRaw.X - 128)/256.0f + 1.0f;   // Return x-axis sensitivity adjustment values, etc.
-	 adjustment.Y =  (float)(adjustmentRaw.Y - 128)/256.0f + 1.0f;
-	 adjustment.Z =  (float)(adjustmentRaw.Z - 128)/256.0f + 1.0f;
-
+	this->adjustmentRaw.X = buffer[0];
+	this->adjustmentRaw.Y = buffer[1];
+	this->adjustmentRaw.Z = buffer[2];
+	
 	// Power down magnetometer
 	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_POWERDOWN);
 	_delay_ms(10);
-	
-	
-	
-	//might need to use reset in this function at some point
 }
 
 
@@ -119,7 +108,7 @@ void AK8963::updateRawData()
 	}
 }
 
-XYZfloat_TypeDef AK8963::getMagneticField()
+XYZ16_TypeDef AK8963::getMagneticField()
 {
 	return this->mag;
 }
@@ -131,29 +120,12 @@ XYZfloat_TypeDef AK8963::getMagneticField()
   */
 void AK8963::calculateMag()
 {
-	this->mag.X = this->magRaw.X*mRes*adjustment.X - bias.X;
-	this->mag.Y = this->magRaw.Y*mRes*adjustment.Y - bias.Y;
-	this->mag.Z = this->magRaw.Z*mRes*adjustment.Z - bias.Z;
-	//TODO Do the calculations to adjust these values with offset and other stuff required
+	//resolution is 32768
+	//full scale mag field is 4912 micro Tesla = 49120 milliGauss
+	//Formula for adjustment: Hadj = H*(adj+128)/256
+	//Full formula gives:
 	
-	
-	
-	    //mx = (float)magCount[0]*mRes*magCalibration[0] - magbias[0];  // get actual magnetometer value, this depends on scale being set
-	    //my = (float)magCount[1]*mRes*magCalibration[1] - magbias[1];
-	    //mz = (float)magCount[2]*mRes*magCalibration[2] - magbias[2];
-	    //
-	    //void getMres() {
-		    //switch (Mscale)
-		    //{
-			    //// Possible magnetometer scales (and their register bit settings) are:
-			    //// 14 bit resolution (0) and 16 bit resolution (1)
-			    //case MFS_14BITS:
-			    //mRes = 10.0*4912.0/8190.0; // Proper scale to return milliGauss
-			    //break;
-			    //case MFS_16BITS:
-			    //mRes = 10.0*4912.0/32760.0; // Proper scale to return milliGauss
-			    //break;
-		    //}
-	    //}
-		//https://github.com/kriswiner/MPU-9250/blob/master/STM32F401/MPU9250.h
+	mag.X = (int16_t)(((int32_t)this->magRaw.X*49120>>7)*(adjustmentRaw.X+128)>>16) - bias.X;
+	mag.Y = (int16_t)(((int32_t)this->magRaw.Y*49120>>7)*(adjustmentRaw.Y+128)>>16) - bias.Y;
+	mag.Z = (int16_t)(((int32_t)this->magRaw.Z*49120>>7)*(adjustmentRaw.Z+128)>>16) - bias.Z;
 }

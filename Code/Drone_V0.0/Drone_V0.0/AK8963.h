@@ -64,6 +64,11 @@
 
 #define AK8963_WIA_DEVICE_ID			0x48
 
+// very approximate calibration values gotten from Juan's room
+#define AK8973_MAG_OFFSET_X				-5		//milliGauss
+#define AK8973_MAG_OFFSET_Y				-34		//milliGauss
+#define AK8973_MAG_OFFSET_Z				-522	//milliGauss
+
 class AK8963 {
     public:
         AK8963();
@@ -73,7 +78,7 @@ class AK8963 {
         bool testConnection();
         void reset();
 		void readAdjustment();
-		XYZfloat_TypeDef getMagneticField();
+		XYZ16_TypeDef getMagneticField();
 		void calculateMag();
 		void updateRawData();
 		
@@ -81,8 +86,9 @@ class AK8963 {
         uint8_t devAddr;
         uint8_t buffer[7];
         uint8_t mode;
-		float mRes;
-		XYZfloat_TypeDef mag, magRaw, adjustmentRaw, adjustment, bias;
+		//mag is in milliGauss
+		//Earth magnetic field is around 530 milligauss at our location
+		XYZ16_TypeDef mag, magRaw, adjustmentRaw, bias;
 };
 
 #endif /* _AK8963_H_ */

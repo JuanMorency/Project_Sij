@@ -1,6 +1,7 @@
 #ifndef __BMP180_H
 #define __BMP180_H
 
+#define F_CPU 16000000
 #include "I2C.h"
 #include "lcd.h"
 #include "debugLED.h"
@@ -43,7 +44,7 @@
 
 //Other
 #define MSLP						101325          // Mean Sea Level Pressure = 1013.25 hPA (1hPa = 100Pa = 1mbar)
-#define LOCAL_ADS_ALTITUDE			2500            //mm     altitude of your position now
+#define LOCAL_ADS_ALTITUDE			0				//cm     altitude of your position now
 #define PRESSURE_OFFSET				0               //Pa    Offset
 
 
@@ -70,13 +71,16 @@ class BMP180 {
 	void reset();
 	
 	int32_t getPressure0();
-	void CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *pOutVal);
+	int32_t getPressure();
+	int32_t getTemperature();
+	int32_t getAltitude();
+
 	void CalculateTemperaturePressureAndAltitude();
 
 
 	
 	private:
-	//move other method to private
+	void CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *pOutVal);
 	void SetOversample(uint8_t mode);
 	void ReadCalibrationData();
 	void StartPressureMeasurement();
@@ -93,12 +97,12 @@ class BMP180 {
 	int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD, _oss;  //oss = oversampling setting
 	uint16_t AC4, AC5, AC6;
 	int32_t B5, UT, UP, Pressure0;
-	int32_t PressureVal, TemperatureVal, AltitudeVal;
-	//Pressure in Pascal, Temperature in 0.1 C and Altitude in Meter
+	int32_t PressureVal; //in Pascal
+	int32_t TemperatureVal; // in 0.1 Celsius
+	int32_t AltitudeVal; // in cm
+	BMP180_AvgTypeDef BMP180_Filter[3];
 };
 
 
 #endif
-
-/******************* (C) COPYRIGHT 2014 Waveshare *****END OF FILE*******************/
 

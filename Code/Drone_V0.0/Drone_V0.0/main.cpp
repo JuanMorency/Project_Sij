@@ -47,7 +47,7 @@ int main()
 	startInterrupt();
 	while(1)
 	{
-		//LCD handler
+		//LCD handlerJ
 		if(flagLCD){
 			flagLCD = 0;
 			handleFSMLCD();
@@ -98,8 +98,8 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "x:%i y:%i", imu.rot.X, imu.rot.Y);
-			sprintf(buffer2, "z:%i :%i", imu.rot.Z, imu.rot.Y);
+			sprintf(buffer, "x:%i y:%i", imu.mag.X, imu.mag.Y);
+			sprintf(buffer2, "z:%i", imu.mag.Z);
 			changeLCDText(buffer, buffer2);
 		}
 	}

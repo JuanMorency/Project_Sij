@@ -3,6 +3,13 @@
 
 typedef struct
 {
+	int8_t X;
+	int8_t Y;
+	int8_t Z;
+}XYZ8_TypeDef;
+
+typedef struct
+{
 	int16_t X;
 	int16_t Y;
 	int16_t Z;

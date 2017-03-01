@@ -170,7 +170,9 @@ class MPU9255 {
         uint8_t devAddr;
         uint8_t buffer[14];
 		XYZ16_TypeDef gyrOffset, accOffset;
-		XYZ16_TypeDef accRaw, gyrRaw, gyr, acc;
+		XYZ16_TypeDef accRaw, gyrRaw;
+		XYZ16_TypeDef acc; //in G x10^(-4)
+		XYZ16_TypeDef gyr; //in 0.1 degrees per second
 		uint16_t tempRaw, temp;
 };
 
