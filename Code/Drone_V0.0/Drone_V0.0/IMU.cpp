@@ -30,11 +30,10 @@ void IMU::takeMeasures()
 	ak8963.updateRawData();
 	ak8963.calculateMag();
 	
-	//this function has updates the raw values on it's own with a state machine. 
+	//this function updates the raw values on it's own with a state machine. 
 	//it is assumed that the delay between calls will be greater than 10 ms
 	//which is the time required for the conversion of the pressure
 	bmp180.CalculateTemperaturePressureAndAltitude();
-	
 	
 	this->acc.X = mpu9255.getAcceleration().X;
 	this->acc.Y = mpu9255.getAcceleration().Y;
@@ -46,7 +45,7 @@ void IMU::takeMeasures()
 	this->mag.Y = ak8963.getMagneticField().Y;
 	this->mag.Z = ak8963.getMagneticField().Z;
 	this->pres =  bmp180.getPressure();
-	this->temp =  bmp180.getTemperature();
+	this->temp =  bmp180.getPressure0();
 	this->alt =  bmp180.getAltitude();
 }
 

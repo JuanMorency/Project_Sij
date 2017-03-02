@@ -98,8 +98,8 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "x:%i y:%i", imu.mag.X, imu.mag.Y);
-			sprintf(buffer2, "z:%i", imu.mag.Z);
+			sprintf(buffer, "%li %li", imu.pres, imu.temp);
+			sprintf(buffer2, "a:%li", imu.alt);
 			changeLCDText(buffer, buffer2);
 		}
 	}

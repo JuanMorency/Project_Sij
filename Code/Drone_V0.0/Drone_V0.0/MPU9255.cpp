@@ -40,18 +40,10 @@ void MPU9255::initialize() {
 		turnDebugLedOn(1);
 	}
 	
-	//writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x00); // leave the frequency at 1kHz for calibration
-	////hard reset 
-	//writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0b10000000);
-	//_delay_ms(1000);
-	////signal path reset
-	//writeI2C(devAddr,MPU9255_RA_SIGNAL_PATH_RESET, 0b00000111);
-	//_delay_ms(100);
-	
-	
 	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
+
 
 	////get the offset values for the accelerometer
 	//if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
@@ -65,7 +57,7 @@ void MPU9255::initialize() {
 		//accOffset.Y = accOffset.Y>>1;
 		//accOffset.Z = accOffset.Z>>1;
 	//}	
-	
+	//Seems better without offsets of so don't use them
 	
 	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x02); //Not sleep + clock 20 MHz
 	_delay_ms(10);		
@@ -152,7 +144,6 @@ void MPU9255::calculateAccRotTemp()
 	temp = tempRaw;
 	
 	//in G x10^(-4)
-	//need to subtract the offsets here
 	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15); //divide by 2^15 which is the max number of int16
 	acc.Y = (int16_t)((int32_t)(accRaw.Y)*20000>>15);
 	acc.Z = (int16_t)((int32_t)(accRaw.Z)*20000>>15);

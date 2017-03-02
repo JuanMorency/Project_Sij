@@ -228,11 +228,11 @@ void BMP180::LocalpressureAvg(int32_t *pVal)
 		//{
 			//Sum += PressureVal;
 		//}
-		char data[20];
-		char data2[20];
-		sprintf(data, "t:%li", UT);
-		sprintf(data2, "p:%li", UP);
-		changeLCDText(data, data2);
+		//char data[20];
+		//char data2[20];
+		//sprintf(data, "t:%li", UT);
+		//sprintf(data2, "p:%li", UP);
+		//changeLCDText(data, data2);
 	}
 	
 	
@@ -260,7 +260,7 @@ void BMP180::PressureAtSeaLevel(void)
 	//Temp = (float)LOCAL_ADS_ALTITUDE / 4433000;
 	//Temp = (float)pow((1 - Temp), 5.255f);
 	//Pressure0 = (PressureVal - PRESSURE_OFFSET) / Temp;
-	//Pressure0 = 101325;
+	Pressure0 = PressureVal;
 }
 
 
