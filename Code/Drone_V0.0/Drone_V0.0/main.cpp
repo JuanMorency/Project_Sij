@@ -37,8 +37,8 @@ int main()
 	
 	//Initialize modules; comment out to deactivate feature
 	initLCD();
-	//initRF();
-	//initializeESC();
+	initRF();
+	initializeESC();
 	//initWS2812();
 	initializeI2C();
 	imu.initialize();
@@ -58,9 +58,9 @@ int main()
 		{
 			flagRF = 0;
 			handleFSMRF();
-			sprintf(buffer, "1:%u 2:%u", ch_1_pw, ch_2_pw);
-			sprintf(buffer2, "3:%u 4:%u", ch_3_pw, ch_4_pw);
-			changeLCDText(buffer, buffer2);
+			//sprintf(buffer, "1:%u 2:%u", ch_1_pw, ch_2_pw);
+			//sprintf(buffer2, "3:%u 4:%u", ch_3_pw, ch_4_pw);
+			//changeLCDText(buffer, buffer2);
 		}
 		
 		//ESC handler
@@ -98,8 +98,8 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "%li %li", imu.pres, imu.temp);
-			sprintf(buffer2, "a:%li", imu.alt);
+			sprintf(buffer, "x:%i y:%i", imu.mag.X, imu.mag.Y);
+			sprintf(buffer2, "z:%i", imu.mag.Z);
 			changeLCDText(buffer, buffer2);
 		}
 	}
