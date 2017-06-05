@@ -4,10 +4,11 @@
 #define F_CPU 16000000
 #define MAX_ITER 200
 
-#include "lcd.h"
 #include <stdio.h>
 #include <util/delay.h>
 #include <util/twi.h>
+#include "lcd.h"
+#include "serial.h"
 
 void initializeI2C();
 uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);

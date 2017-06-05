@@ -9,12 +9,11 @@
 #include <inttypes.h>
 
 //to get the initialization status
-#include "lcd.h" 
-#include "esc.h" 
-#include "WS2812.h"
-#include "IMU.h"
+//#include "esc.h" 
+//#include "WS2812.h"
+//#include "IMU.h"
 #include "RF.h"
-#include "serial.h"
+//#include "serial.h"
 
 // xxx_Period defines the frequency at which the xxx interrupt flag is set to 1
 // Use the following formula to determine xxx_Period:
@@ -34,15 +33,15 @@
 // Cannot be too fast as it slows down the rest of the code
 // Normally the there should not be continuous interrupts for LED strips 
 // And the color should only be changed during an emergency
-#define WS2812_PERIOD 20000
+#define WS2812_PERIOD 3000
 
-// 30 Hertz for now
-#define IMU_PERIOD 2000
+// 3 Hertz for now
+#define IMU_PERIOD 20000
 
-extern volatile bool flagLCD;
-extern volatile bool flagRF;
-extern volatile bool flagESC;
-extern volatile bool flagWS2812;
-extern volatile bool flagIMU;
+extern bool flagLCD;
+extern bool flagRF;
+extern bool flagESC;
+extern bool flagWS2812;
+extern bool flagIMU;
 void startInterrupt();
 #endif

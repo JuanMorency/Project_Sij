@@ -12,7 +12,6 @@ void initializeI2C()
 {
 	TWBR = ((F_CPU / 40000) - 16) / 2; // set frequency of sclk to 400 kHz	
 	TWCR = (1<<TWEN)|(0<<TWIE)|(0<<TWINT)|(0<<TWEA)|(0<<TWSTA)|(0<<TWSTO);
-	DDRC = 0xFF;
 }
 
 	/*
@@ -53,7 +52,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 	restart:
 	if (n++ >= MAX_ITER)
 	{
-		changeLCDText("Slave not responding");
+		serialTransmit("Slave not responding");
 		return 10;	
 	}
 	begin:
@@ -69,7 +68,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 								released the bus. */
 			goto begin;
 		default:
-			changeLCDText("Start I2C fail");
+			serialTransmit("Start I2C fail");
 			return 1;		/* error: not in start condition */
 			  /* NB: do /not/ send stop condition */
 	}
@@ -89,7 +88,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 			goto begin;
 
 		default:
-			changeLCDText("Invalid phys add");
+			serialTransmit("Invalid phys add");
 			I2Cstop();
 			return 2;
 	}
@@ -110,7 +109,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 			goto begin;
 
 		default:
-			changeLCDText("No Data Ack from Slave");
+			serialTransmit("No Data Ack from Slave");
 			I2Cstop();
 			return 4;
 	}
@@ -133,7 +132,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t l
 				goto begin;
 
 			default:
-				changeLCDText("No Data Ack from Slave");
+				serialTransmit("No Data Ack from Slave");
 				I2Cstop();
 				return 6;
 		}
@@ -178,7 +177,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	restart:
 	if (n++ >= MAX_ITER)
 	{
-		changeLCDText("Slave not responding");
+		serialTransmit("Slave not responding");
 		return 10;	
 	}
 	
@@ -196,7 +195,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 								released the bus. */
 			goto begin;
 		default:
-			changeLCDText("Start I2C fail");	
+			serialTransmit("Start I2C fail");	
 			return 1;		/* error: not in start condition */
 			  /* NB: do /not/ send stop condition */
 	}
@@ -218,7 +217,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			changeLCDText("Invalid phys add");
+			serialTransmit("Invalid phys add");
 			I2Cstop();
 			return 2;
 	}
@@ -240,7 +239,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			changeLCDText("No Data Ack from Slave");
+			serialTransmit("No Data Ack from Slave");
 			I2Cstop();
 			return 4;
 	}
@@ -260,7 +259,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			changeLCDText("Rs error");
+			serialTransmit("Rs error");
 			I2Cstop();
 			return 5;
 	}	
@@ -283,7 +282,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 			goto begin;
 
 		default:
-			changeLCDText("MR_SLA_ACK ");
+			serialTransmit("MR_SLA_ACK ");
 			I2Cstop();
 			return 7;
 	}
@@ -311,7 +310,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 				I2Cstop();
 				break;
 			default:
-				changeLCDText("MR_SLA_ACK ");
+				serialTransmit("MR_SLA_ACK ");
 				I2Cstop();
 				return 9;
 		}

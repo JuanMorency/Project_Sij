@@ -14,8 +14,17 @@ BMP180::BMP180() {
   * @retval None
   */
 void BMP180::initialize() 
-{ 
-	PressureVal = 101325, TemperatureVal = 27, AltitudeVal = 0, Pressure0 = MSLP;
+{
+	for(int i = 0; i<8; i++)
+	{
+		BMP180_Filter[0].AvgBuffer[i] = MEAN_PRESSURE_AT_LINTON;
+		BMP180_Filter[1].AvgBuffer[i] = LOCAL_ADS_ALTITUDE;
+		BMP180_Filter[2].AvgBuffer[i] = MEAN_TEMPERATURE_AT_LINTON;
+		
+	}
+	
+	
+	PressureVal = MEAN_PRESSURE_AT_LINTON, TemperatureVal = MEAN_TEMPERATURE_AT_LINTON, AltitudeVal = LOCAL_ADS_ALTITUDE, Pressure0 = MSLP;
 	if(!(this->testConnection())){turnDebugLedOn(2);}
   	SetOversample(MODE_ULTRA_LOW_POWER);
   	ReadCalibrationData();
@@ -70,19 +79,21 @@ int32_t BMP180::getAltitude()
   * @retval None
   *               
   */
-void BMP180::CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *pOutVal)
+void BMP180::CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *OutVal)
 {	
 	uint8_t i;
 	
-  	*(pAvgBuffer + ((*pIndex) ++)) = InVal;
-  	*pIndex &= 0x07;
+  	*(pAvgBuffer + ((*pIndex) ++)) = InVal; // increase index by one and insert value at that position
+  	*pIndex &= 0x07;	// if index is higher than 7, return index to 0
   	
-  	*pOutVal = 0;
+	  
+	//calculate the mean of all the values in the buffer
+  	*OutVal = 0;
 	for(i = 0; i < 8; i ++) 
   	{
-    	*pOutVal += *(pAvgBuffer + i);
+    	*OutVal += *(pAvgBuffer + i);
   	}
-  	*pOutVal >>= 3;
+  	*OutVal >>= 3;
 }
 
 /**
@@ -114,9 +125,11 @@ void BMP180::StartPressureMeasurement()
   */
 void BMP180::ReadUncompensatedTemperature()
 {
-	uint8_t RegBuff[2];
+	static uint8_t RegBuff[2];
 	readI2C(devAddr, BMP180_RA_CONTROL_OUTPUT, &RegBuff[0], 2);
   	UT = ((int32_t)RegBuff[0] << 8) + (int32_t)RegBuff[1];
+	//sprintf(buffer, "UT: %li \n", UT);
+	//serialTransmit(buffer);
 }
 
 
@@ -127,9 +140,11 @@ void BMP180::ReadUncompensatedTemperature()
   */
 void BMP180::ReadUncompensatedPressure()
 {
-	uint8_t RegBuff[3];
+	static uint8_t RegBuff[3];
 	readI2C(devAddr, BMP180_RA_CONTROL_OUTPUT, &RegBuff[0], 3);
   	UP = (((int32_t)RegBuff[0] << 16) + ((int32_t)RegBuff[1] << 8) + ((int32_t)RegBuff[2])) >> (8 -_oss); // uncompensated pressure value
+	//sprintf(buffer, "UP: %li \n", UP);
+	//serialTransmit(buffer);	
 }
 
 
@@ -140,12 +155,14 @@ void BMP180::ReadUncompensatedPressure()
   */
 void BMP180::CalculateTrueTemperature(int32_t *pTrueTemperature)
 {
-	int32_t X1, X2;
+	static int32_t X1, X2;
 	
   	X1 = ((UT - AC6) * AC5) >> 15;
   	X2 = ((int32_t)MC << 11) / (X1 + (int32_t)MD);
   	B5 = X1 + X2;
   	*pTrueTemperature = (B5 + 8) >> 4;
+	//sprintf(buffer, "UT: %li, AC6: %u, AC5: %u, MC: %i, MD: %i, X1: %li, X2: %li, B5: %li, true temp: %li \n",UT, AC6, AC5, MC, MD, X1, X2, B5, *pTrueTemperature);
+	//serialTransmit(buffer);
 }
 
 
@@ -156,8 +173,8 @@ void BMP180::CalculateTrueTemperature(int32_t *pTrueTemperature)
   */
 void BMP180::CalculateTruePressure(int32_t *pTruePressure)
 {
-	int32_t X1, X2, X3, B3, B6, P, Temp;
-	uint32_t  B4, B7;
+	static int32_t X1, X2, X3, B3, B6, P, Temp;
+	static uint32_t  B4, B7;
 	
 	B6 = B5 - 4000;             
 	X1 = ((int32_t)B2* ((B6 * B6) >> 12)) >> 11;
@@ -191,60 +208,36 @@ void BMP180::CalculateTruePressure(int32_t *pTruePressure)
   * @param  *pVal: the average value of pressure
   * @retval None
   */
-void BMP180::LocalpressureAvg(int32_t *pVal)
+void BMP180::LocalpressureAvg()
 {
-	uint8_t i;
-	int32_t Sum = 0;
-	int32_t PVal, TVal;
-	_delay_ms(500);
-	for(i = 0; i < 10; i ++)
+	for(uint8_t i = 0; i < 10; i++)
 	{
+		//need to double the start command otherwise have some weird results...
 		StartTemperatureMeasurement();
-		_delay_ms(20); //4.5ms	
+		_delay_ms(5); //4.5ms	
+		StartTemperatureMeasurement();
+		_delay_ms(5); //4.5ms	
 		ReadUncompensatedTemperature();
 		StartPressureMeasurement();
-		_delay_ms(50);//7.5ms
+		_delay_ms(26);//25.5ms
+		StartPressureMeasurement();
+		_delay_ms(26);//25.5ms
 		ReadUncompensatedPressure();
 		
-		CalculateTruePressure(&PVal);
-		CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal - PRESSURE_OFFSET, &PressureVal);
-
-		//CalculateTrueTemperature(&TVal);
-		//CalAvgValue(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
-		_delay_ms(25);
-	
-		//
-		//StartTemperatureMeasurement();
-		//_delay_ms(5); //4.5ms   324  // check to change to smaller
-		//ReadUncompensatedTemperature();
-		//StartPressureMeasurement();
-		//_delay_ms(26);//7.5ms    540   // check to change to smaller
-		//ReadUncompensatedPressure();
-		//CalculateTruePressure(&PressureVal);
-		//CalculateTrueTemperature(&TemperatureVal);
-		//
-		////sum the 4 last values
-		//if(i >= 16)
-		//{
-			//Sum += PressureVal;
-		//}
-		//char data[20];
-		//char data2[20];
-		//sprintf(data, "t:%li", UT);
-		//sprintf(data2, "p:%li", UP);
-		//changeLCDText(data, data2);
+		//neglect the first couple values, they might be wrong
+		if(i>3)
+		{
+			CalculateTrueTemperature(&TVal);
+			CalAvgValue(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
+			
+			CalculateTruePressure(&PVal);
+			CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
+			
+		}
+		
+		//sprintf(buffer, "TemperatureVal:%li, PValOut:%li, Altitude:%li \n", TemperatureVal, PressureVal, AltitudeVal);
+		//serialTransmit(buffer);
 	}
-	
-	
-	//char data[20];
-	//char data2[20];
-	//sprintf(data, "t:%li", PressureVal);
-	//sprintf(data2, "p:%li", PressureVal);
-	//changeLCDText(data, data2);
-	
-	//export the mean of last 4 values
-	//*pVal = Sum >>3;
-	*pVal = PressureVal;
 }
 
 
@@ -256,11 +249,12 @@ void BMP180::LocalpressureAvg(int32_t *pVal)
 void BMP180::PressureAtSeaLevel(void)
 {  
 	float Temp = 0.0f;
-	LocalpressureAvg(&PressureVal);
-	//Temp = (float)LOCAL_ADS_ALTITUDE / 4433000;
-	//Temp = (float)pow((1 - Temp), 5.255f);
-	//Pressure0 = (PressureVal - PRESSURE_OFFSET) / Temp;
-	Pressure0 = PressureVal;
+	LocalpressureAvg();
+	Temp = (float)LOCAL_ADS_ALTITUDE / 4433000;
+	Temp = (float)pow((1 - Temp), 5.255f);
+	Pressure0 = (PressureVal) / Temp;
+	//sprintf(buffer, "pres0:%li, pres:%li \n",Pressure0, PressureVal);
+	//serialTransmit(buffer);
 }
 
 
@@ -270,9 +264,11 @@ void BMP180::PressureAtSeaLevel(void)
   * @param  PressureVal: the pressure at the absolute altitude
   * @retval None
   */
-void BMP180::CalculateAbsoluteAltitude(int32_t *pAltitude, int32_t PressureVal)
+void BMP180::CalculateAbsoluteAltitude(int32_t *pAltitude)
 {
-	*pAltitude = 4433000 * (1 - pow((PressureVal / (float)Pressure0), 0.1903)); 
+	*pAltitude = (int32_t)(4433000 * (1 - pow((PressureVal / (float)Pressure0), 0.1903)));
+	//sprintf(buffer, "pressure %li, pressure0: %li, alt:%li \n",PressureVal, Pressure0, *pAltitude);
+	//serialTransmit(buffer);
 }
 
 /**
@@ -282,7 +278,6 @@ void BMP180::CalculateAbsoluteAltitude(int32_t *pAltitude, int32_t PressureVal)
   */
 void BMP180::ReadCalibrationData() 
 {
-	uint8_t RegBuff[2];
 	readI2C(devAddr, BMP180_RA_CAL_AC1, RegBuff, 2);
   	AC1 = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
 	readI2C(devAddr, BMP180_RA_CAL_AC2, RegBuff, 2);
@@ -305,7 +300,8 @@ void BMP180::ReadCalibrationData()
   	MC = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
 	readI2C(devAddr, BMP180_RA_CAL_MD, RegBuff, 2);
   	MD = ((int16_t)RegBuff[0] <<8 | ((int16_t)RegBuff[1]));
-
+	//sprintf(buffer, "calibration: AC1: %i, AC2: %i, AC3: %i, AC4: %u, AC5: %u, AC6: %u, B1: %i, B2: %i, MB: %i, MC: %i, MD: %i \n",AC1, AC2, AC3, AC4, AC5, AC6,B1, B2, MB, MC, MD);
+	//serialTransmit(buffer);
 }
 
 
@@ -321,14 +317,16 @@ void BMP180::SetOversample(uint8_t mode)
 
 
 /**
-  * @brief  Calculation of pressure and temperature and altitude state machine for BMP180
+  * @brief  Calculation of pressure and temperature and altitude state machine for BMP180 with FSM. 
+  This function should not be called at more than 100 Hz due to the assumed delay between state.
+  For some weird reason, the start temperature and pressure function must be called twice... maybe try to optimize this
   * @param  None
   * @retval None
   */
 void BMP180::CalculateTemperaturePressureAndAltitude()
 {
 	static uint8_t State = START_TEMPERATURE_MEASUREMENT;
-	int32_t PVal, AVal, TVal;
+	static uint8_t counter = 0;
 
 	switch(State)
 	{
@@ -336,33 +334,55 @@ void BMP180::CalculateTemperaturePressureAndAltitude()
 			StartTemperatureMeasurement();
 			//_delay_ms(5); //4.5ms
 			//make sure you have the required delay here if IMU sampling is increased
-			State = READ_UT_AND_START_PRESSURE_MEASUREMENT;
+			if(counter > 0)
+			{
+				counter = 0;
+				State = READ_UT_AND_START_PRESSURE_MEASUREMENT;
+			}
+			else
+			{
+				counter++;
+			}
 			break;
 			
 		case READ_UT_AND_START_PRESSURE_MEASUREMENT:
-			ReadUncompensatedTemperature();
+			if(counter == 0)
+			{
+				ReadUncompensatedTemperature();
+			}
 			StartPressureMeasurement();
 			//_delay_ms(10);//7.5ms
 			//make sure you have the required delay here if IMU sampling is increased
-			State = READ_UP_CAL_TRUE_PRESSURE_TEMPERATURE;
+			if(counter > 0)
+			{
+				counter = 0;
+				State = READ_UP_AND_CAL_TRUE_PRESSURE_AND_TEMPERATURE;
+			}
+			else
+			{
+				counter++;
+			}
+			
 			break;
 			
-		case READ_UP_CAL_TRUE_PRESSURE_TEMPERATURE:
+		case READ_UP_AND_CAL_TRUE_PRESSURE_AND_TEMPERATURE:
 			ReadUncompensatedPressure();
 			
 			CalculateTrueTemperature(&TVal);
 			CalAvgValue(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
-			
+						
 			CalculateTruePressure(&PVal);
-			CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal - PRESSURE_OFFSET, &PressureVal);
+			CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
+			PressureVal = PVal;
 
-			CalculateAbsoluteAltitude(&AVal, PVal - PRESSURE_OFFSET);
+			CalculateAbsoluteAltitude(&AVal);
 			CalAvgValue(&BMP180_Filter[1].Index, BMP180_Filter[1].AvgBuffer, AVal, &AltitudeVal);
 
 			State = START_TEMPERATURE_MEASUREMENT; 
 			break;
 
 		default:
+			State = START_TEMPERATURE_MEASUREMENT; 
 			break;
 	}	
 }

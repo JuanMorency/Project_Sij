@@ -61,7 +61,7 @@ void MPU9255::initialize() {
 	
 	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x02); //Not sleep + clock 20 MHz
 	_delay_ms(10);		
-	initGyrOffset(); //this will take 32 ms
+	initGyrOffset(); //this will take 130 ms
 	//set the LPF for the gyroscope and set the sample rate to the desired value
 	writeI2C(devAddr,MPU9255_RA_SMPLRT_DIV, 0x13); //divide sample rate by 20 to have a 50 Hz sample rate for interrupts
 	writeI2C(devAddr,MPU9255_RA_CONFIG, MPU9255_DLPF_BW_5); //set low pass filter for gyro and temp to 5 Hz bandwidth
@@ -73,9 +73,6 @@ void MPU9255::initialize() {
 	writeI2C(devAddr,MPU9255_RA_INT_PIN_CFG, (1<<MPU9255_INTCFG_INT_RD_CLEAR_BIT)|(1<<MPU9255_INTCFG_I2C_BYPASS_EN_BIT));
 	writeI2C(devAddr,MPU9255_RA_INT_ENABLE, 1<<0); //enable interrupt for raw data ready
 	writeI2C(devAddr,MPU9255_RA_I2C_MST_CTRL, 1<<6); //delays the data ready interrupt to make sure data has been loaded to the registers
-	//start interrupt polling on the microcontroller
-	EICRA |= (1<<ISC20)|(1<<ISC21); /* Sets the rising edge of INT2 to trigger interrupts */
-	EIMSK |= (1<<INT2);	/* Enables INT2 */
 }
 
 /**

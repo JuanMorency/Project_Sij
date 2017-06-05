@@ -21,7 +21,7 @@ AK8963::AK8963(uint8_t address) {
 /** Power on and prepare for continuous usage.
  */
 void AK8963::initialize() {
-	if(!(this->testConnection())){turnDebugLedOn(2);}
+	if(!(this->testConnection())){turnDebugLedOn(3);}
 	this->readAdjustment();
 	// Change to appropriate mode
 	writeI2C(devAddr, AK8963_RA_CNTL1, AK8963_MODE_CONTINUOUS_100HZ);

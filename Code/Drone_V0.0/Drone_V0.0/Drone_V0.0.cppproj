@@ -219,6 +219,12 @@
     <Compile Include="RF.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="serial.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="serial.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="typeDef.h">
       <SubType>compile</SubType>
     </Compile>

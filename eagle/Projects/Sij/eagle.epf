@@ -375,9 +375,9 @@ UsedLibrary="C:/Users/juan-/Google Drive/Summer 2016/Project_Sij/Eagle/Libraries
 [Win_1]
 Type="Control Panel"
 Loc="0 0 1271 744"
-State=1
+State=3
 Number=0
 
 [Desktop]
-Screen="1366 768"
+Screen="1680 1050"
 Window="Win_1"

@@ -1,6 +1,4 @@
 #define F_CPU 16000000
-#define min_PWM 0x01
-#define max_PWM 0x06
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -16,15 +14,11 @@
 #include "WS2812.h"
 #include "RF.h"
 #include "debugLED.h"
+#include "serial.h"
+
 
 int main()
-{
-	//initialize LCD
-	initLCD(); 		// configure LCD
-	//char* buffers for printing stuff on the LCD
-	char buffer[20];
-	char buffer2[20];
-	
+{	
 	//create ESC object
 	Esc escFL(FL), escBL(BL),escBR(BR), escFR(FR);
 	
@@ -34,21 +28,25 @@ int main()
 	
 	//create IMU object
 	IMU imu;	
-	
 	//Initialize modules; comment out to deactivate feature
-	initLCD();
-	initRF();
-	initializeESC();
+	//initLCD();
+	//initRF();
+	//initializeESC();
 	//initWS2812();
 	initializeI2C();
-	imu.initialize();
-	
-	//After everything is initialized, start interrupts
+	initSerial(MYUBRR);
 	startInterrupt();
+	//After everything is initialized, start interrupts
+	imu.initialize();
+
+
+
+	
 	while(1)
 	{
-		//LCD handlerJ
-		if(flagLCD){
+		//LCD handler
+		if(flagLCD)
+		{
 			flagLCD = 0;
 			handleFSMLCD();
 		}
@@ -58,9 +56,18 @@ int main()
 		{
 			flagRF = 0;
 			handleFSMRF();
-			//sprintf(buffer, "1:%u 2:%u", ch_1_pw, ch_2_pw);
-			//sprintf(buffer2, "3:%u 4:%u", ch_3_pw, ch_4_pw);
-			//changeLCDText(buffer, buffer2);
+			
+			if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
+			{
+				RFserialSlowDownCounter = 0;
+				sprintf(buffer, "1:%u 2:%u 3:%u 4:%u", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
+				serialTransmit(buffer);
+			}
+			else
+			{
+				RFserialSlowDownCounter++;
+			}
+
 		}
 		
 		//ESC handler
@@ -98,9 +105,17 @@ int main()
 		{
 			flagIMU = 0;
 			imu.takeMeasures();
-			sprintf(buffer, "x:%i y:%i", imu.mag.X, imu.mag.Y);
-			sprintf(buffer2, "z:%i", imu.mag.Z);
-			changeLCDText(buffer, buffer2);
+			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
+			{
+				IMUserialSlowDownCounter = 0;
+				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \n", imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, 
+				imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres, imu.alt, imu.temp);
+				serialTransmit(buffer);
+			}
+			else
+			{
+				IMUserialSlowDownCounter++;
+			}
 		}
 	}
 	return 0;

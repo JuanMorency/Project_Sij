@@ -5,6 +5,7 @@
 #include "I2C.h"
 #include "lcd.h"
 #include "debugLED.h"
+#include "serial.h"
 
 #define BMP180_ADDRESS				0xEE     // default I2C address  
 
@@ -44,8 +45,9 @@
 
 //Other
 #define MSLP						101325          // Mean Sea Level Pressure = 1013.25 hPA (1hPa = 100Pa = 1mbar)
-#define LOCAL_ADS_ALTITUDE			0				//cm     altitude of your position now
-#define PRESSURE_OFFSET				0               //Pa    Offset
+#define MEAN_PRESSURE_AT_LINTON		100200
+#define MEAN_TEMPERATURE_AT_LINTON	240
+#define LOCAL_ADS_ALTITUDE			7357			//cm     altitude of 4611 avenue Linton
 
 
 typedef struct
@@ -59,7 +61,7 @@ enum
 {
 	START_TEMPERATURE_MEASUREMENT = 0,
 	READ_UT_AND_START_PRESSURE_MEASUREMENT,
-	READ_UP_CAL_TRUE_PRESSURE_TEMPERATURE,
+	READ_UP_AND_CAL_TRUE_PRESSURE_AND_TEMPERATURE,
 };
 
 class BMP180 {
@@ -89,18 +91,19 @@ class BMP180 {
 	void ReadUncompensatedPressure();
 	void CalculateTrueTemperature(int32_t *pTrueTemperature);
 	void CalculateTruePressure(int32_t *pTruePressure);
-	void CalculateAbsoluteAltitude(int32_t *pAltitude, int32_t PressureVal);
-	void LocalpressureAvg(int32_t *pVal);
+	void CalculateAbsoluteAltitude(int32_t *pAltitude);
+	void LocalpressureAvg();
 	void PressureAtSeaLevel(void);
 	uint8_t devAddr;
 	
 	int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD, _oss;  //oss = oversampling setting
 	uint16_t AC4, AC5, AC6;
-	int32_t B5, UT, UP, Pressure0;
+	int32_t B5, UT, UP, Pressure0, PVal, AVal, TVal, PValOut;
 	int32_t PressureVal; //in Pascal
 	int32_t TemperatureVal; // in 0.1 Celsius
 	int32_t AltitudeVal; // in cm
-	BMP180_AvgTypeDef BMP180_Filter[3];
+	BMP180_AvgTypeDef BMP180_Filter[3]; // 0 is pressure, 1 is altitude and 2 is temperature
+	uint8_t RegBuff[3];
 };
 
 
