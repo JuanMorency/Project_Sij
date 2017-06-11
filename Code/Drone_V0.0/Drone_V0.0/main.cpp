@@ -31,8 +31,8 @@ int main()
 	IMU imu;	
 	//Initialize modules; comment out to deactivate feature
 	//initLCD();
-	//initRF();
-	//initializeESC();
+	initRF();
+	initializeESC();
 	//initWS2812();
 	initializeI2C();
 	imu.initialize();
@@ -50,25 +50,6 @@ int main()
 		{
 			flagLCD = 0;
 			handleFSMLCD();
-		}
-
-		//RF receiver handler
-		if(flagRF)
-		{
-			flagRF = 0;
-			handleFSMRF();
-			
-			if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
-			{
-				RFserialSlowDownCounter = 0;
-				sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
-				serialTransmit(buffer);
-			}
-			else
-			{
-				RFserialSlowDownCounter++;
-			}
-
 		}
 		
 		//ESC handler
@@ -109,9 +90,9 @@ int main()
 			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
 			{
 				IMUserialSlowDownCounter = 0;
-				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \n", 
+				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \t\t q0:%f q1:%f q2:%f q3:%f\n", 
 				imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres, 
-				imu.alt, imu.temp);
+				imu.alt, imu.temp, q0, q1, q2, q3);
 				serialTransmit(buffer);
 			}
 			else

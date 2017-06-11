@@ -1,7 +1,6 @@
 ﻿#include "interrupt.h"
 
 volatile bool flagLCD = 0;
-volatile bool flagRF = 0;
 volatile bool flagESC = 0;
 volatile bool flagWS2812 = 0;
 volatile bool flagIMU = 0;
@@ -39,7 +38,18 @@ void startInterrupt()
 ISR(PCINT1_vect) {
 	if(RFInitialized)
 	{
-		flagRF = true;
+		handleFSMRF();
+					
+		if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
+		{
+			RFserialSlowDownCounter = 0;
+			sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
+			serialTransmit(buffer);
+		}
+		else
+		{
+			RFserialSlowDownCounter++;
+		}
 	}
 }
 

@@ -210,7 +210,7 @@
     <Compile Include="light_ws2812.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MadgwickAHRS.c">
+    <Compile Include="MadgwickAHRS.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MadgwickAHRS.h">

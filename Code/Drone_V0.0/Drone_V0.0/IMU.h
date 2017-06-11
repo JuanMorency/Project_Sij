@@ -7,6 +7,7 @@
 #include "AK8963.h"
 #include "BMP180.h"
 #include "typeDef.h"
+#include "MadgwickAHRS.h"
 
 #include <stdio.h>
 #include <util/delay.h>

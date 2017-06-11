@@ -5,8 +5,6 @@ uint32_t timer;
 uint8_t i2cData[14];
 bool InertMUInitialized  = false;
 
-//TODO initialize variables acc, gyr, etc.
-
 //constructor
 IMU::IMU()
 {
@@ -45,6 +43,7 @@ void IMU::takeMeasures()
 	this->pres =  bmp180.getPressure();
 	this->temp =  bmp180.getTemperature();
 	this->alt =  bmp180.getAltitude();
+	//MadgwickAHRSupdate(acc.X, acc.Y, acc.Z, rot.X, rot.Y, rot.Z, mag.X, mag.Y, mag.Z);
 }
 
 

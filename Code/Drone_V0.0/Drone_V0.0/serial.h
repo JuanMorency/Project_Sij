@@ -18,7 +18,7 @@
 #define BAUD 57600					//default baud rate max 57600, min 9600
 #define MYUBRR F_CPU/16/BAUD-1
 
-#define RF_SERIAL_SPEED_DIVIDER 30
+#define RF_SERIAL_SPEED_DIVIDER 50
 #define IMU_SERIAL_SPEED_DIVIDER 10
 
 extern bool serialInitialized;
