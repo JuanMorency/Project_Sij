@@ -6,6 +6,8 @@
 #include "lcd.h"
 #include "debugLED.h"
 #include "serial.h"
+#include "typeDef.h"
+#include "filter.h"
 
 #define BMP180_ADDRESS				0xEE     // default I2C address  
 
@@ -49,14 +51,6 @@
 #define MEAN_TEMPERATURE_AT_LINTON	240
 #define LOCAL_ADS_ALTITUDE			7357			//cm     altitude of 4611 avenue Linton
 
-
-typedef struct
-{
-	uint8_t Index;
-	int32_t AvgBuffer[8];
-}BMP180_AvgTypeDef;
-
-
 enum
 {
 	START_TEMPERATURE_MEASUREMENT = 0,
@@ -82,7 +76,7 @@ class BMP180 {
 
 	
 	private:
-	void CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *pOutVal);
+	void updateFilter(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *pOutVal);
 	void SetOversample(uint8_t mode);
 	void ReadCalibrationData();
 	void StartPressureMeasurement();
@@ -102,7 +96,7 @@ class BMP180 {
 	int32_t PressureVal; //in Pascal
 	int32_t TemperatureVal; // in 0.1 Celsius
 	int32_t AltitudeVal; // in cm
-	BMP180_AvgTypeDef BMP180_Filter[3]; // 0 is pressure, 1 is altitude and 2 is temperature
+	AvgTypeDef BMP180_Filter[3]; // 0 is pressure, 1 is altitude and 2 is temperature
 	uint8_t RegBuff[3];
 };
 

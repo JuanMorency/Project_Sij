@@ -177,6 +177,12 @@
     <Compile Include="esc.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="filter.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="filter.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="I2C.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -202,6 +208,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="light_ws2812.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MadgwickAHRS.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MadgwickAHRS.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">

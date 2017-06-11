@@ -2,7 +2,7 @@
 
 uint16_t ch_1_pw = 0, ch_2_pw = 0, ch_3_pw = 0, ch_4_pw = 0;
 bool RFInitialized = false;
-
+AvgTypeDef RF_filter[4]; //one for each channel
 /*
 Channel du radio controller
 http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
@@ -12,7 +12,6 @@ http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 * J3 = CH3
 * J4 = CH2
 * J5 = CH1
-
 */
 
 
@@ -39,7 +38,7 @@ void initRF()
 	* on a pin change, checks which channel triggered it by storing all the values of the pins and then checking which
 	* one changed. To measure the width of the pulse, a counter (2 MHz) is used to measure the time it took
 	* from a rising edge to a falling edge. This pulse width is the important information and is stored in the
-	* ch_x_pw variables. The counter always runs to avoid having issues when 2 channels are triggerred at the same time
+	* ch_x_pw variables. The counter always runs to avoid having issues when 2 channels are triggered at the same time
 	* and overflow protection is implemented. 
     * @param none
 	* @retval None
@@ -68,6 +67,8 @@ void handleFSMRF(void){
 		//when overflow happens when 2 or more channels are counting simultaneously
 		if (!ch_1_counting && !ch_2_counting && !ch_3_counting && !ch_4_counting) timer_3_ovf=false;
 		ch_1_counting = false;
+		
+		
 	}
 	
 	//channel_2

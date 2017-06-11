@@ -69,32 +69,32 @@ int32_t BMP180::getAltitude()
 }
 
 
-/**
-  * @brief  Digital filter
-  * @param *pIndex:
-  * @param *pAvgBuffer:
-  * @param InVal:
-  * @param pOutVal:
-  *
-  * @retval None
-  *               
-  */
-void BMP180::CalAvgValue(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *OutVal)
-{	
-	uint8_t i;
-	
-  	*(pAvgBuffer + ((*pIndex) ++)) = InVal; // increase index by one and insert value at that position
-  	*pIndex &= 0x07;	// if index is higher than 7, return index to 0
-  	
-	  
-	//calculate the mean of all the values in the buffer
-  	*OutVal = 0;
-	for(i = 0; i < 8; i ++) 
-  	{
-    	*OutVal += *(pAvgBuffer + i);
-  	}
-  	*OutVal >>= 3;
-}
+///**
+  //* @brief  Digital filter
+  //* @param *pIndex:
+  //* @param *pAvgBuffer:
+  //* @param InVal:
+  //* @param pOutVal:
+  //*
+  //* @retval None
+  //*               
+  //*/
+//void BMP180::updateFilter(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *OutVal)
+//{	
+	//uint8_t i;
+	//
+  	//*(pAvgBuffer + ((*pIndex) ++)) = InVal; // increase index by one and insert value at that position
+  	//*pIndex &= 0x07;	// if index is higher than 7, return index to 0
+  	//
+	  //
+	////calculate the mean of all the values in the buffer
+  	//*OutVal = 0;
+	//for(i = 0; i < 8; i ++) 
+  	//{
+    	//*OutVal += *(pAvgBuffer + i);
+  	//}
+  	//*OutVal >>= 3;
+//}
 
 /**
   * @brief  Start temperature measurement
@@ -228,10 +228,10 @@ void BMP180::LocalpressureAvg()
 		if(i>3)
 		{
 			CalculateTrueTemperature(&TVal);
-			CalAvgValue(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
+			updateAvg8Filter(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
 			
 			CalculateTruePressure(&PVal);
-			CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
+			updateAvg8Filter(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
 			
 		}
 		
@@ -369,14 +369,14 @@ void BMP180::CalculateTemperaturePressureAndAltitude()
 			ReadUncompensatedPressure();
 			
 			CalculateTrueTemperature(&TVal);
-			CalAvgValue(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
+			updateAvg8Filter(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
 						
 			CalculateTruePressure(&PVal);
-			CalAvgValue(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
+			updateAvg8Filter(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
 			PressureVal = PVal;
 
 			CalculateAbsoluteAltitude(&AVal);
-			CalAvgValue(&BMP180_Filter[1].Index, BMP180_Filter[1].AvgBuffer, AVal, &AltitudeVal);
+			updateAvg8Filter(&BMP180_Filter[1].Index, BMP180_Filter[1].AvgBuffer, AVal, &AltitudeVal);
 
 			State = START_TEMPERATURE_MEASUREMENT; 
 			break;

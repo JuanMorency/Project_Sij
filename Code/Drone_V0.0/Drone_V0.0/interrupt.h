@@ -27,7 +27,7 @@
 
 
 //desired frequency = 60 Hertz
-#define ESC_PERIOD 1000
+#define ESC_PERIOD 250
 
 
 // desired frequency = 20 Hertz

@@ -15,11 +15,12 @@
 #include "RF.h"
 #include "debugLED.h"
 #include "serial.h"
+#include "MadgwickAHRS.h"
 
 
 int main()
 {	
-	//create ESC object
+	//create ESC objec
 	Esc escFL(FL), escBL(BL),escBR(BR), escFR(FR);
 	
 	//create objects for led strips
@@ -34,10 +35,10 @@ int main()
 	//initializeESC();
 	//initWS2812();
 	initializeI2C();
+	imu.initialize();
 	initSerial(MYUBRR);
 	startInterrupt();
 	//After everything is initialized, start interrupts
-	imu.initialize();
 
 
 
@@ -60,7 +61,7 @@ int main()
 			if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
 			{
 				RFserialSlowDownCounter = 0;
-				sprintf(buffer, "1:%u 2:%u 3:%u 4:%u", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
+				sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
 				serialTransmit(buffer);
 			}
 			else
@@ -74,10 +75,10 @@ int main()
 		if(flagESC)
 		{
 			flagESC = 0;
-			escFL.set(ch_3_pw);
-			escBL.set(ch_3_pw);
-			escBR.set(ch_3_pw);
-			escFR.set(ch_3_pw);
+			escFL.set(2000);
+			escBL.set(2000);
+			escBR.set(2000);
+			escFR.set(2000);
 		}
 		
 		if(flagWS2812)
@@ -108,8 +109,9 @@ int main()
 			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
 			{
 				IMUserialSlowDownCounter = 0;
-				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \n", imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, 
-				imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres, imu.alt, imu.temp);
+				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \n", 
+				imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres, 
+				imu.alt, imu.temp);
 				serialTransmit(buffer);
 			}
 			else

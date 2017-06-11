@@ -29,4 +29,10 @@ typedef struct
 	uint32_t Z;
 }XYZ32_TypeDef;
 
+typedef struct
+{
+	uint8_t Index;
+	int32_t AvgBuffer[8];
+}AvgTypeDef;
+
 #endif /* _TYPEDEF_H_ */
