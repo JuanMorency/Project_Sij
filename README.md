@@ -1,2 +1,2 @@
 # Project_Sij
-developpement d'un drone
+Complete Drone Electrical and Sotware Design
