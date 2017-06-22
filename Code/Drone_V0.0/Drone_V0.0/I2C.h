@@ -1,7 +1,10 @@
 #ifndef I2C_H
 #define I2C_H
 
+#ifndef F_CPU
 #define F_CPU 16000000
+#endif
+
 #define MAX_ITER 200
 
 #include <stdio.h>

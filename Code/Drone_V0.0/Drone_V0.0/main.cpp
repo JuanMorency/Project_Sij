@@ -6,6 +6,8 @@
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+//#include <string.h>
 #include "esc.h"
 #include "interrupt.h"
 #include "lcd.h"
@@ -17,20 +19,19 @@
 #include "serial.h"
 #include "MadgwickAHRS.h"
 
-
 int main()
 {	
 	//create ESC objec
-	Esc escFL(FL), escBL(BL),escBR(BR), escFR(FR);
+	Esc escFL(FR), escBL(BR),escBR(BL), escFR(FL);
 	
 	//create objects for led strips
 	WS2812 LEDFRT(1, FRT); // 100 LED
 	cRGB valueFRT;	
 	
 	//create IMU object
-	IMU imu;	
+	IMU imu;
+		
 	//Initialize modules; comment out to deactivate feature
-	//initLCD();
 	initRF();
 	initializeESC();
 	//initWS2812();
@@ -39,27 +40,17 @@ int main()
 	initSerial(MYUBRR);
 	startInterrupt();
 	//After everything is initialized, start interrupts
-
-
-
 	
 	while(1)
-	{
-		//LCD handler
-		if(flagLCD)
-		{
-			flagLCD = 0;
-			handleFSMLCD();
-		}
-		
+	{		
 		//ESC handler
 		if(flagESC)
 		{
 			flagESC = 0;
-			escFL.set(2000);
-			escBL.set(2000);
-			escBR.set(2000);
-			escFR.set(2000);
+			escFL.set(2000 - roll*50 + pitch*50);
+			escBL.set(2000 - roll*50 - pitch*50);
+			escBR.set(2000 + roll*50 - pitch*50);
+			escFR.set(2000 + roll*50 + pitch*50);
 		}
 		
 		if(flagWS2812)
@@ -90,9 +81,52 @@ int main()
 			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
 			{
 				IMUserialSlowDownCounter = 0;
-				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li \t\t q0:%f q1:%f q2:%f q3:%f\n", 
-				imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres, 
-				imu.alt, imu.temp, q0, q1, q2, q3);
+				//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
+				//imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres,
+				//imu.alt, imu.temp);
+
+				// print sensor values
+				
+				//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i",
+				//imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z);
+				
+				//// print quaternions
+//
+				//FloatToString(floatbuff, q0);
+				//strcat (buffer,"\t\t q0:");
+				//strcat (buffer,floatbuff);
+				//FloatToString(floatbuff, q1);
+				//strcat (buffer,"\t q1:");
+				//strcat (buffer,floatbuff);
+				//FloatToString(floatbuff, q2);
+				//strcat (buffer,"\t q2:");
+				//strcat (buffer,floatbuff);
+				//FloatToString(floatbuff, q3);
+				//strcat (buffer,"\t q3:");
+				//strcat (buffer,floatbuff);
+
+				//print yaw pitch roll
+				
+				sprintf(buffer, " ");				
+				FloatToString(floatbuff, roll);
+				strcat (buffer,"roll:");
+				strcat (buffer,floatbuff);
+				FloatToString(floatbuff, pitch);
+				strcat (buffer,"\t pitch:");
+				strcat (buffer,floatbuff);
+				FloatToString(floatbuff, yaw);
+				strcat (buffer,"\t yaw:");
+				strcat (buffer,floatbuff);
+				
+				//calculate and print the update frequency
+				
+				FloatToString(floatbuff, (float)sumCount/sum);
+				//reset the counters for update rate calculations for IMU
+				sumCount = 0;
+				sum = 0;
+				strcat (buffer,"\t rate: ");
+				strcat (buffer,floatbuff);			
+				strcat (buffer,"\n");
 				serialTransmit(buffer);
 			}
 			else

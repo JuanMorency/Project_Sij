@@ -13,17 +13,22 @@
 #ifndef MadgwickAHRS_h
 #define MadgwickAHRS_h
 
+#include <math.h>
+#include "debugLED.h"
+#include "interrupt.h"
+
 //----------------------------------------------------------------------------------------------------
 // Variable declaration
 
 extern volatile float beta;				// algorithm gain
 extern volatile float q0, q1, q2, q3;	// quaternion of sensor frame relative to auxiliary frame
-
+extern volatile float roll, pitch, yaw;	// Euler Angles
 //---------------------------------------------------------------------------------------------------
 // Function declarations
 
-void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
-void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az);
+void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
+//void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az);
+void calcEulerAngles(); //in degrees
 
 #endif
 //=====================================================================================================

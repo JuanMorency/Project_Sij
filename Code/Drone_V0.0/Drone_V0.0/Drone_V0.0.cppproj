@@ -201,12 +201,6 @@
     <Compile Include="interrupt.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="lcd.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="lcd.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="light_ws2812.cpp">
       <SubType>compile</SubType>
     </Compile>

@@ -46,8 +46,7 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data)
 	*/
 uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
-	char buffer[20];
-	uint8_t twcr, n = 0;
+	uint8_t n = 0;
 	
 	restart:
 	if (n++ >= MAX_ITER)
@@ -171,8 +170,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address)
 	*/
 uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length)
 {
-	uint8_t twcr, n = 0;
-	char buffer[20];
+	uint8_t n = 0;
 		
 	restart:
 	if (n++ >= MAX_ITER)

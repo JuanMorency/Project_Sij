@@ -8,11 +8,15 @@
 #include "BMP180.h"
 #include "typeDef.h"
 #include "MadgwickAHRS.h"
+#include "interrupt.h"
+#include <math.h>
 
 #include <stdio.h>
 #include <util/delay.h>
 
 extern bool InertMUInitialized; //cannot name it IMUInitialized, seems to have a conflict with the class...
+extern uint32_t sumCount; // used to control display output rate
+extern float sum;        // integration interval for both filter schemes
 
 class IMU
 {
@@ -21,7 +25,6 @@ class IMU
 	void initialize();
 	void takeMeasures();
 	int32_t pres, alt, temp;
-	int16_t yaw, roll, pitch;
 	XYZ16_TypeDef acc; //in G x10^(-4)
 	XYZ16_TypeDef mag; 
 	XYZ16_TypeDef rot; //in 0.1 degrees per second

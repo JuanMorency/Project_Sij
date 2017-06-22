@@ -1,7 +1,10 @@
 #ifndef __BMP180_H
 #define __BMP180_H
 
+#ifndef F_CPU
 #define F_CPU 16000000
+#endif
+
 #include "I2C.h"
 #include "lcd.h"
 #include "debugLED.h"

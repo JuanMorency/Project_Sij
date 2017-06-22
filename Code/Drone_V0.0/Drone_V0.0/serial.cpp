@@ -17,6 +17,7 @@ int datalength;
 volatile int charLeftToTransmit = 0;
 char* dataSerial;
 char buffer[200];
+char floatbuff[10];
 volatile int RFserialSlowDownCounter = 0;
 volatile int IMUserialSlowDownCounter = 0;
 
@@ -85,4 +86,20 @@ void serialReceive ()
 char getSerialBuffer()
 {
 	return serialBuffer;
+}
+
+void FloatToString(char* text, float number)
+{
+
+	const char *tmpSign = (number < 0) ? "-" : "";
+	float tmpVal = (number < 0) ? -number : number;
+
+	int tmpInt1 = tmpVal;                  // Get the integer
+	float tmpFrac = tmpVal - tmpInt1;      // Get fraction
+	int tmpInt2 = trunc(tmpFrac * 10000);  // Turn into integer
+
+	// Print as parts, note that you need 0-padding for fractional bit.
+
+	sprintf (text, "%s%d.%04d", tmpSign, tmpInt1, tmpInt2);	
+	
 }

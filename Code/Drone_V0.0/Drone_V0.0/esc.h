@@ -1,6 +1,10 @@
 #ifndef ESC_H
 #define ESC_H
+
+#ifndef F_CPU
 #define F_CPU 16000000
+#endif
+
 #define DELAY_ESC 5000 //time to initialize the ESC in microseconds
 #define BL 1
 #define FL 2
