@@ -168,7 +168,7 @@ class MPU9255 {
 		
     private:
         uint8_t devAddr;
-        uint8_t buffer[14];
+        uint8_t bufferI2C[14];
 		XYZ16_TypeDef gyrOffset, accOffset;
 		XYZ16_TypeDef accRaw, gyrRaw;
 		XYZ16_TypeDef acc; //in G x10^(-4)

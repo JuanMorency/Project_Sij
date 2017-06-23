@@ -1,7 +1,17 @@
+/**
+******************************************************************************
+* File Name         : BMP180.cpp
+* Description       : Initialization and communication functions for the BMP180 pressure sensor
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #include "BMP180.h"
 
-/** Default constructor, uses default I2C address.
- * @see BMP180_ADDRESS
+/** 
+ * @brief Default constructor, uses default I2C address.
  */
 BMP180::BMP180() {
     devAddr = BMP180_ADDRESS;
@@ -9,10 +19,8 @@ BMP180::BMP180() {
 
 
 /**
-  * @brief  initializes BMP180
-  * @param  None
-  * @retval None
-  */
+ * @brief  initializes BMP180
+ */
 void BMP180::initialize() 
 {
 	for(int i = 0; i<8; i++)
@@ -32,8 +40,9 @@ void BMP180::initialize()
 	
 }
 
-/** Verify the I2C connection.
- * Make sure the device is connected and responds as expected.
+/** 
+ * @brief Verifies the I2C connection.
+ * Makes sure the device is connected and responds as expected.
  * @return True if connection is valid, false otherwise
  */
 bool BMP180::testConnection()
@@ -42,64 +51,44 @@ bool BMP180::testConnection()
     return false;	
 }
 
-void BMP180::reset()
-{
-		
-}
-
-
+/** 
+ * @brief returns the Pressure0 calculated from the PressureAtSeaLevel method
+ * @return the Pressure0
+ */
 int32_t BMP180::getPressure0()
 {
 	return Pressure0;
 }
 
+/** 
+ * @brief returns the PressureVal in Pascal
+ * @return PressureVal
+ */
 int32_t BMP180::getPressure()
 {
 	return PressureVal;
 }
 
+/** 
+ * @brief returns the temperature in 0.1 C
+ * @return TemperatureVal
+ */
 int32_t BMP180::getTemperature()
 {
 	return TemperatureVal;
 }
 
+/** 
+ * @brief returns the altitude in cm
+ * @return AltitudeVal
+ */
 int32_t BMP180::getAltitude()
 {
 	return AltitudeVal;
 }
 
-
-///**
-  //* @brief  Digital filter
-  //* @param *pIndex:
-  //* @param *pAvgBuffer:
-  //* @param InVal:
-  //* @param pOutVal:
-  //*
-  //* @retval None
-  //*               
-  //*/
-//void BMP180::updateFilter(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *OutVal)
-//{	
-	//uint8_t i;
-	//
-  	//*(pAvgBuffer + ((*pIndex) ++)) = InVal; // increase index by one and insert value at that position
-  	//*pIndex &= 0x07;	// if index is higher than 7, return index to 0
-  	//
-	  //
-	////calculate the mean of all the values in the buffer
-  	//*OutVal = 0;
-	//for(i = 0; i < 8; i ++) 
-  	//{
-    	//*OutVal += *(pAvgBuffer + i);
-  	//}
-  	//*OutVal >>= 3;
-//}
-
 /**
-  * @brief  Start temperature measurement
-  * @param  None
-  * @retval None
+  * @brief Start temperature measurement by writing to a register on the BMP180
   */
 void BMP180::StartTemperatureMeasurement()
 {
@@ -108,9 +97,7 @@ void BMP180::StartTemperatureMeasurement()
 
 
 /**
-  * @brief  Start pressure measurement
-  * @param  None
-  * @retval None
+  * @brief Start pressure measurement by writing to a register on the BMP180
   */
 void BMP180::StartPressureMeasurement()
 {
@@ -119,9 +106,8 @@ void BMP180::StartPressureMeasurement()
 
 
 /**
-  * @brief  Read uncompensated temperature
-  * @param  None
-  * @retval None
+  * @brief Read uncompensated temperature, to be done after StartTemperatureMeasurement
+  * has been called (and certain delay)
   */
 void BMP180::ReadUncompensatedTemperature()
 {
@@ -134,9 +120,8 @@ void BMP180::ReadUncompensatedTemperature()
 
 
 /**
-  * @brief  Read uncompensated pressure
-  * @param  None
-  * @retval None
+  * @brief  Read uncompensated pressure, to be done after StartTemperatureMeasurement
+  * has been called (and certain delay)
   */
 void BMP180::ReadUncompensatedPressure()
 {
@@ -149,9 +134,8 @@ void BMP180::ReadUncompensatedPressure()
 
 
 /**
-  * @brief  Calculate true temperature
+  * @brief Calculate true temperature
   * @param  *pTrueTemperature: true temperature 
-  * @retval None
   */
 void BMP180::CalculateTrueTemperature(int32_t *pTrueTemperature)
 {
@@ -204,9 +188,8 @@ void BMP180::CalculateTruePressure(int32_t *pTruePressure)
 }
 
 /**
-  * @brief  Calculating average value of pressure
-  * @param  *pVal: the average value of pressure
-  * @retval None
+  * @brief  Calculating average value of pressure for initialization purposes. 
+  * Also updates the filter with these values to avoid starting at 0
   */
 void BMP180::LocalpressureAvg()
 {
@@ -242,9 +225,7 @@ void BMP180::LocalpressureAvg()
 
 
 /** 
-  * @brief  Calculating pressure at sea level
-  * @param  None
-  * @retval None
+  * @brief  Calculate pressure at sea level using mean pressure measured and altitude
   */
 void BMP180::PressureAtSeaLevel(void)
 {  
@@ -261,8 +242,6 @@ void BMP180::PressureAtSeaLevel(void)
 /** 
   * @brief  Calculating absolute altitude
   * @param  *pAltitude: absolute altitude
-  * @param  PressureVal: the pressure at the absolute altitude
-  * @retval None
   */
 void BMP180::CalculateAbsoluteAltitude(int32_t *pAltitude)
 {
@@ -273,8 +252,6 @@ void BMP180::CalculateAbsoluteAltitude(int32_t *pAltitude)
 
 /**
   * @brief  Read calibration data from the EEPROM of the BMP180
-  * @param  None
-  * @retval None
   */
 void BMP180::ReadCalibrationData() 
 {
@@ -307,8 +284,6 @@ void BMP180::ReadCalibrationData()
 
 /**
   * @brief  Configures hardware pressure sampling accuracy modes
-  * @param  None
-  * @retval None
   */
 void BMP180::SetOversample(uint8_t mode)
 {
@@ -317,11 +292,10 @@ void BMP180::SetOversample(uint8_t mode)
 
 
 /**
-  * @brief  Calculation of pressure and temperature and altitude state machine for BMP180 with FSM. 
-  This function should not be called at more than 100 Hz due to the assumed delay between state.
+ * @brief Read raw values and calculation of pressure, temperature and altitude for BMP180 with FSM. 
+ * This function should not be called at more than 100 Hz due to the assumed delay between state. The actual update rate 
+ * of the data will be the rate this function is called divided by 5 (since the FSM currently has 5 states).
   For some weird reason, the start temperature and pressure function must be called twice... maybe try to optimize this
-  * @param  None
-  * @retval None
   */
 void BMP180::CalculateTemperaturePressureAndAltitude()
 {
@@ -333,7 +307,8 @@ void BMP180::CalculateTemperaturePressureAndAltitude()
 		case START_TEMPERATURE_MEASUREMENT:
 			StartTemperatureMeasurement();
 			//_delay_ms(5); //4.5ms
-			//make sure you have the required delay here if IMU sampling is increased
+			
+			//to double this state before passing to the next one
 			if(counter > 0)
 			{
 				counter = 0;
@@ -352,7 +327,8 @@ void BMP180::CalculateTemperaturePressureAndAltitude()
 			}
 			StartPressureMeasurement();
 			//_delay_ms(10);//7.5ms
-			//make sure you have the required delay here if IMU sampling is increased
+			
+			//to double this state before passing to the next one
 			if(counter > 0)
 			{
 				counter = 0;

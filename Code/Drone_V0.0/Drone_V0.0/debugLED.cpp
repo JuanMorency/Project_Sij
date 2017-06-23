@@ -12,9 +12,9 @@
 #include "debugLED.h"
 
 /**
-	* @brief Easily change the one LED on
-	* @param ledNumber: the number of the LED that you want to turn on
-	*/
+ * @brief Easily change the one LED on
+ * @param ledNumber: the number of the LED that you want to turn on
+ */
 void turnDebugLedOn(uint8_t ledNumber)
 {
 	if (ledNumber <= 7)
@@ -26,8 +26,9 @@ void turnDebugLedOn(uint8_t ledNumber)
 }
 
 /**
-	* @brief Turns one the debug LED off
-	*/
+ * @brief Turns one the debug LED off
+ * @param ledNumber: the number of the LED that you want to turn on
+ */
 void turnDebugLedOff(uint8_t ledNumber)
 {
 	if (ledNumber <= 7)
@@ -45,7 +46,7 @@ void turnAllDebugLedOff()
 }
 
 /**
-	* @brief Easily change the one LED on and wait forever
+	* @brief Easily change one LED on and wait forever
 	* @param ledNumber: the number of the LED that you want to turn on
 	*/
 void turnDebugLedOnAndWait(uint8_t ledNumber)

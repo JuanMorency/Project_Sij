@@ -1,24 +1,35 @@
+/**
+******************************************************************************
+* File Name         : AK8963.cpp
+* Description       : Initialization and communication functions for the AK8963 magnetic sensor embedded in the MPU9255
+* Author			: Juan Morency Trudel, Simon Poirier
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #include "AK8963.h"
 #include "lcd.h"
 #include "MPU9255.h"
 
-/** Default constructor, uses default I2C address.
- * @see AK8963_DEFAULT_ADDRESS
+/** 
+ * @brief Default constructor, uses default I2C address.
  */
 AK8963::AK8963() {
+	//shift on address because 7 bits
     devAddr = AK8963_ADDRESS<<1;
 }
 
-/** Specific address constructor.
+/** 
+ * @brief Specific address constructor.
  * @param address I2C address
- * @see AK8963_DEFAULT_ADDRESS
- * @see AK8963_ADDRESS_00
  */
 AK8963::AK8963(uint8_t address) {
     devAddr = address;
 }
 
-/** Power on and prepare for continuous usage.
+/** 
+ * @brief Power on and prepare for continuous usage.
  */
 void AK8963::initialize() {
 	if(!(this->testConnection())){turnDebugLedOn(3);}
@@ -31,21 +42,29 @@ void AK8963::initialize() {
 	bias.Z=AK8973_MAG_OFFSET_Z;
 }
 
-/** Verify the I2C connection.
+/** 
+ * @brief Verify the I2C connection.
  * Make sure the device is connected and responds as expected.
- * @return True if connection is valid, false otherwise
+ * @retval True if connection is valid, false otherwise
  */
 bool AK8963::testConnection() {
     if (readI2C(devAddr, AK8963_RA_WIA) == AK8963_WIA_DEVICE_ID) {return true;}
     return false;
 }
 
-
+/** 
+ * @brief Resets the AK8963
+ */
 void AK8963::reset() {
     writeI2C(devAddr, AK8963_RA_CNTL2, 0x01);
 }
 
-
+/** 
+ * @brief Reads the adjustments values via I2C on the AK8963 and
+ * store those in the adjustmentRaw variable.
+ * Powers down magnetometer after use, hence make sure to start
+ * it again after use
+ */
 void AK8963::readAdjustment() {
 
 	// Power down magnetometer
@@ -69,8 +88,6 @@ void AK8963::readAdjustment() {
 
 /**
   * @brief  Reads the raw values in the AK8963 registers and updates the objects variables
-  * @param  None
-  * @retval None
   */
 void AK8963::updateRawData()
 {
@@ -82,9 +99,9 @@ void AK8963::updateRawData()
 
 	if(readI2C(devAddr, AK8963_RA_ST1) & (1<<AK8963_ST1_DRDY_BIT)) // update only if data is ready 
 	{ 
-		if(readI2C(devAddr,AK8963_RA_HXL, buffer,7) == 0)
+		if(readI2C(devAddr,AK8963_RA_HXL, buffer,7) == 0) // update only if I2C gets no errors
 		{
-			if(!(buffer[6] & (1<<AK8963_ST2_HOFL_BIT)))
+			if(!(buffer[6] & (1<<AK8963_ST2_HOFL_BIT))) // update only if no overflow
 			{
 				magRaw.X = (buffer[1] << 8) | buffer[0];
 				magRaw.Y = (buffer[3] << 8) | buffer[2];
@@ -93,21 +110,25 @@ void AK8963::updateRawData()
 			//debug
 			else
 			{
-				turnDebugLedOn(4);
+				turnDebugLedOn(4); // data not ready
 			}
 		}
 		//debug
 		else{
-			turnDebugLedOn(3);
+			turnDebugLedOn(3); // I2C error
 		}		
 	}
 	//debug
 	else
 	{
-		turnDebugLedOn(7);
+		turnDebugLedOn(7); // AK8963 overflow
 	}
 }
 
+/**
+  * @brief  Returns the magnetic field in an int_16 format. 
+  * the updateRawData must be called before this to ensure the latest data
+  */
 XYZ16_TypeDef AK8963::getMagneticField()
 {
 	return this->mag;
@@ -115,8 +136,6 @@ XYZ16_TypeDef AK8963::getMagneticField()
 
 /**
   * @brief  Updates the value of mag from the last raw values gotten
-  * @param  None
-  * @retval None
   */
 void AK8963::calculateMag()
 {

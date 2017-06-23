@@ -17,9 +17,7 @@
   * @param *pAvgBuffer: value of the element in the filter
   * @param InVal:
   * @param pOutVal:
-  *
-  * @retval None
-  *               
+  * @retval None              
   */
 void updateAvg8Filter(uint8_t *pIndex, int32_t *pAvgBuffer, int32_t InVal, int32_t *OutVal)
 {

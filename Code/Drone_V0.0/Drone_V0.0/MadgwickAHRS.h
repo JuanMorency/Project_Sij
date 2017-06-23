@@ -29,6 +29,8 @@ extern volatile float roll, pitch, yaw;	// Euler Angles
 void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
 //void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az);
 void calcEulerAngles(); //in degrees
+float atan2_approximation2(float y, float x);
+float asin_approximation(float x);
 
 #endif
 //=====================================================================================================

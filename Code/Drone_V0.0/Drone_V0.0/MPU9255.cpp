@@ -46,12 +46,12 @@ void MPU9255::initialize() {
 
 
 	////get the offset values for the accelerometer
-	//if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, buffer,6) == 0)
+	//if(readI2C(devAddr,MPU9255_RA_XA_OFFS_H, bufferI2C,6) == 0)
 	//{
 		//// the number is stored in 15 bits and not 16 in the MPU registers
-		//accOffset.X = (buffer[0] << 8) | (buffer[1]&0xFE);
-		//accOffset.Y = (buffer[2] << 8) | (buffer[3]&0xFE);
-		//accOffset.Z = (buffer[4] << 8) | (buffer[5]&0xFE);
+		//accOffset.X = (bufferI2C[0] << 8) | (bufferI2C[1]&0xFE);
+		//accOffset.Y = (bufferI2C[2] << 8) | (bufferI2C[3]&0xFE);
+		//accOffset.Z = (bufferI2C[4] << 8) | (bufferI2C[5]&0xFE);
 		//
 		//accOffset.X = accOffset.X>>1;
 		//accOffset.Y = accOffset.Y>>1;
@@ -88,11 +88,11 @@ void MPU9255::initGyrOffset()
  	for(i = 0; i < 128; i ++)
  	{
 		static uint16_t gyro[3];
-		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, buffer,6) == 0)
+		if(readI2C(devAddr,MPU9255_RA_GYRO_XOUT_H, bufferI2C,6) == 0)
 		{
-			gyro[0] = (buffer[0] << 8) | buffer[1];
-			gyro[1] = (buffer[2] << 8) | buffer[3];
-			gyro[2] = (buffer[4] << 8) | buffer[5];
+			gyro[0] = (bufferI2C[0] << 8) | bufferI2C[1];
+			gyro[1] = (bufferI2C[2] << 8) | bufferI2C[3];
+			gyro[2] = (bufferI2C[4] << 8) | bufferI2C[5];
 		}
 		TempGx += gyro[0];
 		TempGy += gyro[1];
@@ -114,15 +114,15 @@ void MPU9255::initGyrOffset()
   */
 void MPU9255::updateRawData()
 {
-	if(readI2C(devAddr,MPU9255_RA_ACCEL_XOUT_H, buffer,14) == 0)
+	if(readI2C(devAddr,MPU9255_RA_ACCEL_XOUT_H, bufferI2C,1) == 0)
 	{
-		accRaw.X = (buffer[0] << 8) | buffer[1];
-		accRaw.Y = (buffer[2] << 8) | buffer[3];
-		accRaw.Z = (buffer[4] << 8) | buffer[5];
-		tempRaw =  (buffer[6] << 8) | buffer[7];
-		gyrRaw.X = (buffer[8] << 8) | buffer[9];
-		gyrRaw.Y = (buffer[10] << 8) | buffer[11];
-		gyrRaw.Z = (buffer[12] << 8) | buffer[13];
+		accRaw.X = (bufferI2C[0] << 8) | bufferI2C[1];
+		accRaw.Y = (bufferI2C[2] << 8) | bufferI2C[3];
+		accRaw.Z = (bufferI2C[4] << 8) | bufferI2C[5];
+		tempRaw =  (bufferI2C[6] << 8) | bufferI2C[7];
+		gyrRaw.X = (bufferI2C[8] << 8) | bufferI2C[9];
+		gyrRaw.Y = (bufferI2C[10] << 8) | bufferI2C[11];
+		gyrRaw.Z = (bufferI2C[12] << 8) | bufferI2C[13];
 	}
 	else{
 		turnDebugLedOn(3);

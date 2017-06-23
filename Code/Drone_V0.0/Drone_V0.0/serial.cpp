@@ -40,7 +40,12 @@ void initSerial(unsigned int ubrr)
 
 
 
-// function to send data
+/**
+ * @brief Transmits the char array
+ * @param pointer to the beginning of the data to be transmitted,
+ * the function will stop transmitting when it hits a /0 characteristic
+ * of an end of string
+ */
 void serialTransmit (char* data)
 {
 	if (charLeftToTransmit == 0) // to make sure previous data is finished sending
@@ -57,11 +62,17 @@ void serialTransmit (char* data)
 	else
 	{
 		//indicating serial is being sent too fast and some messages might not be sent
+		//not a critical error
 		turnDebugLedOn(4);
 	}
 }
 
-// function to send data
+/**
+ * @brief This method is called when the interrupt indicating the previous serial data 
+ * has been transmitted (USART0_TX_vect) is set and thus the register is free to be loaded 
+ * with new data. This method simply loads UDR0 until there is no more data to transmit 
+ * 
+ */
 void serialTransmitINT ()
 {
 	if (charLeftToTransmit > 0)
@@ -73,21 +84,36 @@ void serialTransmitINT ()
 
 
 
-//work on these receiving functions if needed as it can only be used to receive one char
+
+//TODO work on these receiving functions if needed as it can only be used to receive one char
 //right now reads data on receive but does nothing with it
 
-// function to receive data
+/**
+ * @brief This method reads the serial data received in UDR0 register
+ * 
+ */
 void serialReceive ()
 {
 	//while(!(UCSR0A) & (1<<RXC0));                   // wait while data is being received
 	serialBuffer =  UDR0;                                   // return 8-bit data
 }
 
+/**
+ * @brief This method returns the serial data stored in serialBuffer
+ * @retval char with the serial data
+ */
 char getSerialBuffer()
 {
 	return serialBuffer;
 }
 
+
+/**
+ * @brief method that simply converts a floating point number to a char array
+ * since this can't be done with the atmega2560 using sprintf or similar functions
+ * @param char* with the text countaining the float converted to string
+ * @param float number to be converted to string
+ */
 void FloatToString(char* text, float number)
 {
 

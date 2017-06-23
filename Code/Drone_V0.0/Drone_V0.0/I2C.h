@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : I2C.h
+* Description       : header file for I2C.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef I2C_H
 #define I2C_H
 

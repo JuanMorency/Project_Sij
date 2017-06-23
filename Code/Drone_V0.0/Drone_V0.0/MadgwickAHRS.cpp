@@ -227,13 +227,16 @@ float invSqrt(float x) {
 // END OF CODE
 //====================================================================================================
 
+
+// atan2 and asin functions here seems to be very slow!! 
+// could find a numerical estimation with faster implementation
 void calcEulerAngles(){
 	float ysqr = q2 * q2;
 
 	// roll (x-axis rotation)
 	float t0 = +2.0 * (q0 * q1 + q2 * q3);
 	float t1 = +1.0 - 2.0 * (q1 * q1 + ysqr);
-	roll = atan2(t0, t1)*180.0f / M_PI;
+	roll = atan2_approximation2(t0, t1)*180.0f / M_PI;
 
 	// pitch (y-axis rotation)
 	float t2 = +2.0 * (q0 * q2 - q3 * q1);
@@ -244,5 +247,37 @@ void calcEulerAngles(){
 	// yaw (z-axis rotation)
 	float t3 = +2.0 * (q0 * q3 + q1 * q2);
 	float t4 = +1.0 - 2.0 * (ysqr + q3 * q3);
-	yaw = atan2(t3, t4)*180.0f / M_PI;
+	yaw = atan2_approximation2(t3, t4)*180.0f / M_PI;
+}
+
+
+
+#define PI_FLOAT     3.14159265f
+#define PIBY2_FLOAT  1.5707963f
+// |error| < 0.005
+float atan2_approximation2( float y, float x )
+{
+	if ( x == 0.0f )
+	{
+		if ( y > 0.0f ) return PIBY2_FLOAT;
+		if ( y == 0.0f ) return 0.0f;
+		return -PIBY2_FLOAT;
+	}
+	float atan;
+	float z = y/x;
+	if ( fabs( z ) < 1.0f )
+	{
+		atan = z/(1.0f + 0.28f*z*z);
+		if ( x < 0.0f )
+		{
+			if ( y < 0.0f ) return atan - PI_FLOAT;
+			return atan + PI_FLOAT;
+		}
+	}
+	else
+	{
+		atan = PIBY2_FLOAT - z/(z*z + 0.28f);
+		if ( y < 0.0f ) return atan - PI_FLOAT;
+	}
+	return atan;
 }

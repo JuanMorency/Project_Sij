@@ -1,7 +1,24 @@
-﻿#include "I2C.h"
+﻿/**
+******************************************************************************
+* File Name         : I2C.h
+* Description       : methods for I2C communication
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
+#include "I2C.h"
 #include "debugLED.h"
 
+
+
+//Saved TWI status register, for error messages only.  We need to
+//save it in a variable, since the datasheet only guarantees the TWSR
+//register to have valid contents while the TWINT bit in TWCR is set.
+uint8_t twst;
 int j;
+
 
 /**
 	* @brief Initialize the prescaler of the I2C clock
@@ -14,13 +31,22 @@ void initializeI2C()
 	TWCR = (1<<TWEN)|(0<<TWIE)|(0<<TWINT)|(0<<TWEA)|(0<<TWSTA)|(0<<TWSTO);
 }
 
-	/*
-	 * Saved TWI status register, for error messages only.  We need to
-	 * save it in a variable, since the datasheet only guarantees the TWSR
-	 * register to have valid contents while the TWINT bit in TWCR is set.
-	 */
-uint8_t twst;
 
+/**
+	* @brief This methods sends one char via I2C
+	* @param phys_address: This is the actual physical address (often fixed on hardware) of the device to communicate with (SLA_W)
+	* @param address: Register address on the slave device to write to
+	* @param data: char that is to be sent to the slave
+	* @retval uint8_t:  0	success
+	*					1	not in start condition
+	*					2	error in sending physical address, not expected status register
+	*					3	TW_MT_DATA_NACK when sending address
+	*					4	error in sending address, not expected status register
+	*					5	TW_MT_DATA_NACK when sending data
+	*					6	error in sending data, not expected status register
+	*					10	MAX_ITER reached timed out
+	* @note Refer to page 244 of the Atmega for more information
+	*/
 uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data)
 {
 	uint8_t data1[1];

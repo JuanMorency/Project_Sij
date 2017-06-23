@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : AK8963.h
+* Description       : header file for AK8963.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef _AK8963_H_
 #define _AK8963_H_
 
@@ -64,7 +74,11 @@
 
 #define AK8963_WIA_DEVICE_ID			0x48
 
+
+
 // very approximate calibration values gotten from Juan's room
+// Your own calibration should be done by orientating yourself to 
+// true north 
 #define AK8973_MAG_OFFSET_X				-5		//milliGauss
 #define AK8973_MAG_OFFSET_Y				-34		//milliGauss
 #define AK8973_MAG_OFFSET_Z				-522	//milliGauss

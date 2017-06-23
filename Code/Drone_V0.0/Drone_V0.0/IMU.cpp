@@ -16,7 +16,7 @@ void IMU::initialize()
 {
 	mpu9255.initialize();
 	ak8963.initialize();
-	//bmp180.initialize();
+	bmp180.initialize();
 	InertMUInitialized  = true;
 }
 

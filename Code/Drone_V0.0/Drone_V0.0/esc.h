@@ -1,3 +1,13 @@
+/**
+  ******************************************************************************
+	* File Name         : esc.h
+	* Description       : header for esc.cpp
+	* Author			: Juan Morency Trudel, Simon Poirier
+	* Version           : 1.0.0
+	* Date				: September, 2016
+  ******************************************************************************
+  */
+
 #ifndef ESC_H
 #define ESC_H
 

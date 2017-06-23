@@ -2,7 +2,7 @@
   ******************************************************************************
 	* File Name         : esc.cpp
 	* Description       : Control of the ESC using counters and wave generation
-	*						hardware of the AVR using a 10 bit phase correct PWM
+	* hardware of the AVR as well as a 10 bit phase correct PWM
 	* Author			: Juan Morency Trudel, Simon Poirier
 	* Version           : 1.0.0
 	* Date				: September, 2016
@@ -50,13 +50,18 @@ esc FR = 0C5A
 esc BR = 0C5B
 */
 
-//constructor
-
+/** 
+ * @brief Default constructor
+ * @param escPosition: the number referring to which ESC to link to
+ */
 Esc::Esc(int escPosition)
 {
 	escNumber = escPosition;
 }
 
+/**
+ * @brief  initializes all ESCs
+ */
 void initializeESC()
 {
   //Timer/Counter 4/5 set to non-inverted Phase Correct PWM (8 bits resolution)
@@ -68,7 +73,7 @@ void initializeESC()
   TCCR4B |= (1 << WGM43) | (1 << CS40) ;
   TCCR5B |= (1 << WGM53) | (1 << CS50) ;
   
-  //régler TOP à 65535
+  //set TOP at 65535
   ICR4 = 65535;
   ICR5 = 65535;
   
@@ -100,6 +105,10 @@ void initializeESC()
   escInitialized = true;
 }
 
+/**
+ * @brief Sets the PWM being sent to this ESC
+ * @param PWM value to be written
+ */
 void Esc::set(uint16_t pwm)
 {
 	switch (escNumber) {

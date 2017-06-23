@@ -1,3 +1,14 @@
+/**
+******************************************************************************
+* File Name         : main.cpp
+* Description       : Full sensor acquisition, filtering fusion and PID controller for a 600 mm drone. This software also controls outputs to WS2812B 
+*						LED strips, the motor controllers and serial communication for debugging. This code is meant to work with an atmega2560 and an MPU9255 AHRS.  
+* Author			: Juan Morency Trudel, Simon Poirier.
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #define F_CPU 16000000
 
 #include <avr/io.h>
@@ -7,7 +18,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-//#include <string.h>
 #include "esc.h"
 #include "interrupt.h"
 #include "lcd.h"
@@ -21,7 +31,7 @@
 
 int main()
 {	
-	//create ESC objec
+	//create ESC objects
 	Esc escFL(FR), escBL(BR),escBR(BL), escFR(FL);
 	
 	//create objects for led strips

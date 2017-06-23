@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : BMP180.h
+* Description       : header file for BMP180.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef __BMP180_H
 #define __BMP180_H
 
