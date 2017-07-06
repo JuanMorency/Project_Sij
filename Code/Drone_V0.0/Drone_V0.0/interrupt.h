@@ -39,16 +39,37 @@
 // 60 Hertz for now
 #define IMU_PERIOD 1
 
+
+// 100 Hz
+#define AK8963_PERIOD 78
+
+// 50 Hz which results in 10 Hz real update frequency
+#define BMP180_PERIOD 157
+
 extern volatile bool flagLCD;
 extern volatile bool flagRF;
 extern volatile bool flagESC;
 extern volatile bool flagWS2812;
 extern volatile bool flagIMU;
+extern volatile bool flagAK8963;
+extern volatile bool flagBMP180;
+
+extern volatile bool I2CInterruptBusy;
 
 extern volatile unsigned long timer0_overflow_count;
 extern float deltat;     // integration interval for both filter schemes
 extern uint8_t lastUpdate;	// used to calculate integration interval for IMU
 extern uint8_t Now;			// used to calculate integration interval for IMU
 
-void startInterrupt();
+extern XYZ16_TypeDef currentRawAcc;
+extern XYZ16_TypeDef currentRawGyr;
+extern XYZ16_TypeDef currentRawMag;
+
+enum
+{
+	MPU9255_READ = 0,
+	AK8963_READ,
+};
+
+void startInterrupt(IMU &imu1);
 #endif

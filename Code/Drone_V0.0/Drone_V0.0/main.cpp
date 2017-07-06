@@ -43,14 +43,13 @@ int main()
 		
 	//Initialize modules; comment out to deactivate feature
 	initRF();
-	initializeESC();
+	//initializeESC();
 	//initWS2812();
 	initializeI2C();
 	imu.initialize();
 	initSerial(MYUBRR);
-	startInterrupt();
+	startInterrupt(imu);
 	//After everything is initialized, start interrupts
-	
 	while(1)
 	{		
 		//ESC handler
@@ -83,11 +82,22 @@ int main()
 			if (directionUp) i++;
 			else i--;
 		}
-
+		
+		//if(flagBMP180 && !I2CInterruptBusy)
+		//{
+			//flagBMP180 = false;
+			//
+			//imu.bmp180.CalculateTemperaturePressureAndAltitude();
+			//
+			//// Send start condition to reactivate I2C interrupts
+			////TWCR = 0;
+			////TWCR = (1<<TWINT)|(1<<TWIE)|(1<<TWSTA)|(1<<TWEN);
+		//}
+		
 		if(flagIMU)
 		{
 			flagIMU = 0;
-			imu.takeMeasures();
+			imu.updateMadgwick();
 			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
 			{
 				IMUserialSlowDownCounter = 0;
@@ -99,6 +109,9 @@ int main()
 				
 				//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i",
 				//imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z);
+
+				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
+				currentRawAcc.X, currentRawAcc.Y, currentRawAcc.Z, currentRawGyr.X, currentRawGyr.Y, currentRawGyr.Z, currentRawMag.X, currentRawMag.Y, currentRawMag.Z, imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature() );
 				
 				//// print quaternions
 //
@@ -117,16 +130,16 @@ int main()
 
 				//print yaw pitch roll
 				
-				sprintf(buffer, " ");				
-				FloatToString(floatbuff, roll);
-				strcat (buffer,"roll:");
-				strcat (buffer,floatbuff);
-				FloatToString(floatbuff, pitch);
-				strcat (buffer,"\t pitch:");
-				strcat (buffer,floatbuff);
-				FloatToString(floatbuff, yaw);
-				strcat (buffer,"\t yaw:");
-				strcat (buffer,floatbuff);
+				//sprintf(buffer, " ");				
+				//FloatToString(floatbuff, roll);
+				//strcat (buffer,"roll:");
+				//strcat (buffer,floatbuff);
+				//FloatToString(floatbuff, pitch);
+				//strcat (buffer,"\t pitch:");
+				//strcat (buffer,floatbuff);
+				//FloatToString(floatbuff, yaw);
+				//strcat (buffer,"\t yaw:");
+				//strcat (buffer,floatbuff);
 				
 				//calculate and print the update frequency
 				
@@ -138,6 +151,8 @@ int main()
 				strcat (buffer,floatbuff);			
 				strcat (buffer,"\n");
 				serialTransmit(buffer);
+				//sprintf(buffer, "TWINT time: %d", timeWaitForTWINT);
+				//serialTransmit(buffer);
 			}
 			else
 			{

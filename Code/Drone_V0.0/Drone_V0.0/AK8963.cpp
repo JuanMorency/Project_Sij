@@ -12,6 +12,8 @@
 #include "lcd.h"
 #include "MPU9255.h"
 
+bool AK8963Initialized = false; 
+
 /** 
  * @brief Default constructor, uses default I2C address.
  */
@@ -40,6 +42,7 @@ void AK8963::initialize() {
 	bias.X=AK8973_MAG_OFFSET_X;
 	bias.Y=AK8973_MAG_OFFSET_Y;
 	bias.Z=AK8973_MAG_OFFSET_Z;
+	AK8963Initialized = true; 
 }
 
 /** 
@@ -147,4 +150,13 @@ void AK8963::calculateMag()
 	mag.X = (int16_t)(((int32_t)this->magRaw.X*49120>>7)*(adjustmentRaw.X+128)>>16) - bias.X;
 	mag.Y = (int16_t)(((int32_t)this->magRaw.Y*49120>>7)*(adjustmentRaw.Y+128)>>16) - bias.Y;
 	mag.Z = (int16_t)(((int32_t)this->magRaw.Z*49120>>7)*(adjustmentRaw.Z+128)>>16) - bias.Z;
+}
+
+/**
+  * @brief  Sets the magnetic field strength of the object
+  * @param XYZ16_TypeDef of the input magnetic field strength
+  */
+void AK8963::setRawMagneticField(XYZ16_TypeDef inputMag)
+{
+	this->magRaw = inputMag;
 }

@@ -83,6 +83,8 @@
 #define AK8973_MAG_OFFSET_Y				-34		//milliGauss
 #define AK8973_MAG_OFFSET_Z				-522	//milliGauss
 
+extern bool AK8963Initialized; 
+
 class AK8963 {
     public:
         AK8963();
@@ -95,6 +97,7 @@ class AK8963 {
 		XYZ16_TypeDef getMagneticField();
 		void calculateMag();
 		void updateRawData();
+		void setRawMagneticField(XYZ16_TypeDef inputMag);
 		
     private:
         uint8_t devAddr;

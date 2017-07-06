@@ -57,7 +57,6 @@ void serialTransmit (char* data)
 		///* Wait for empty transmit buffer */
 		//while ( !( UCSR0A & (1<<UDRE0)) )
 		UDR0 = data[0];                                   // load data in the register
-		turnDebugLedOff(4);
 	}
 	else
 	{

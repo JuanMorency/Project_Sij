@@ -159,11 +159,16 @@ class MPU9255 {
         bool testConnection();
 		void initGyrOffset();
 		void updateRawData();
+		void updateRawDataInterrupt();
 		void calculateAccRotTemp();
 		
         int16_t getTemperature();
         XYZ16_TypeDef getRotation();
         XYZ16_TypeDef getAcceleration();
+
+		void setRawAcceleration(XYZ16_TypeDef inputAcc);
+		void setRawRotation(XYZ16_TypeDef inputGyr);
+		void setRawTemperature(uint16_t inputTemp);
 		
 		
     private:
@@ -173,6 +178,7 @@ class MPU9255 {
 		XYZ16_TypeDef accRaw, gyrRaw;
 		XYZ16_TypeDef acc; //in G x10^(-4)
 		XYZ16_TypeDef gyr; //in 0.1 degrees per second
+		XYZ16_TypeDef tempData; //in 0.1 degrees per second
 		uint16_t tempRaw, temp;
 };
 

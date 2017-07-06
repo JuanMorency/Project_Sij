@@ -8,6 +8,12 @@
   ******************************************************************************
   */
 
+
+// to use Serial, plug the CH340 board by USB on your computer and simply plug:
+// Rx of the Serial board in E1
+// Tx of Serial board in E0
+
+
 #ifndef SERIAL_H
 #define SERIAL_H
 

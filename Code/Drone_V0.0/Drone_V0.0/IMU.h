@@ -23,12 +23,11 @@ class IMU
 	public:
 	IMU();
 	void initialize();
-	void takeMeasures();
+	void updateMadgwick();
 	int32_t pres, alt, temp;
 	XYZ16_TypeDef acc; //in G x10^(-4)
 	XYZ16_TypeDef mag; 
 	XYZ16_TypeDef rot; //in 0.1 degrees per second
-	private:
 	MPU9255 mpu9255;
 	AK8963 ak8963;
 	BMP180 bmp180;

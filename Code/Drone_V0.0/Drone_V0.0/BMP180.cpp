@@ -10,6 +10,8 @@
 
 #include "BMP180.h"
 
+bool BMP180Initialized  = false;
+
 /** 
  * @brief Default constructor, uses default I2C address.
  */
@@ -37,7 +39,7 @@ void BMP180::initialize()
   	SetOversample(MODE_ULTRA_LOW_POWER);
   	ReadCalibrationData();
   	PressureAtSeaLevel();	//sets pressure0  to calculate altitude from the delta pressure measured
-	
+	BMP180Initialized = true; 
 }
 
 /** 

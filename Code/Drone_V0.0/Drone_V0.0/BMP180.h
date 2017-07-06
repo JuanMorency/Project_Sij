@@ -71,6 +71,8 @@ enum
 	READ_UP_AND_CAL_TRUE_PRESSURE_AND_TEMPERATURE,
 };
 
+extern bool BMP180Initialized; //cannot name it IMUInitialized, seems to have a conflict with the class...
+
 class BMP180 {
 	public:
 	BMP180();

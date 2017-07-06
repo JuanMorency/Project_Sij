@@ -114,7 +114,7 @@ void MPU9255::initGyrOffset()
   */
 void MPU9255::updateRawData()
 {
-	if(readI2C(devAddr,MPU9255_RA_ACCEL_XOUT_H, bufferI2C,1) == 0)
+	if(readI2C(devAddr,MPU9255_RA_ACCEL_XOUT_H, bufferI2C,14) == 0)
 	{
 		accRaw.X = (bufferI2C[0] << 8) | bufferI2C[1];
 		accRaw.Y = (bufferI2C[2] << 8) | bufferI2C[3];
@@ -127,8 +127,20 @@ void MPU9255::updateRawData()
 	else{
 		turnDebugLedOn(3);
 	}
+}
 
-
+/**
+* @brief Updates the objects raw sensor data variables with data from the buffer filled by the I2C FSM
+  */
+void MPU9255::updateRawDataInterrupt()
+{
+	accRaw.X = (dataReadBuffer[0] << 8) | dataReadBuffer[1];
+	accRaw.Y = (dataReadBuffer[2] << 8) | dataReadBuffer[3];
+	accRaw.Z = (dataReadBuffer[4] << 8) | dataReadBuffer[5];
+	tempRaw =  (dataReadBuffer[6] << 8) | dataReadBuffer[7];
+	gyrRaw.X = (dataReadBuffer[8] << 8) | dataReadBuffer[9];
+	gyrRaw.Y = (dataReadBuffer[10] << 8) | dataReadBuffer[11];
+	gyrRaw.Z = (dataReadBuffer[12] << 8) | dataReadBuffer[13];
 }
 
 /**
@@ -152,7 +164,6 @@ void MPU9255::calculateAccRotTemp()
 	gyr.Z = (int16_t)((int32_t)(gyrRaw.Z - gyrOffset.Z)*10000>>15);
 
 }
-
 
 /**
   * @brief  Returns temperature
@@ -179,4 +190,31 @@ XYZ16_TypeDef MPU9255::getRotation()
 XYZ16_TypeDef MPU9255::getAcceleration()
 {
 	return this->acc;
+}
+
+/**
+  * @brief  Sets the acceleration of the object
+  * @param XYZ16_TypeDef of the input acceleration
+  */
+ void MPU9255::setRawAcceleration(XYZ16_TypeDef inputAcc)
+{
+	this->acc = inputAcc;
+}
+
+/**
+  * @brief  Sets the rotation of the object
+  * @param XYZ16_TypeDef of the input rotation
+  */
+ void MPU9255::setRawRotation(XYZ16_TypeDef inputGyr)
+{
+	this->gyr = inputGyr;
+}
+
+/**
+  * @brief  Sets the temperature of the object
+  * @param XYZ16_TypeDef of the input temperature
+  */
+ void MPU9255::setRawTemperature(uint16_t inputTemp)
+{
+	this->temp = inputTemp;
 }
