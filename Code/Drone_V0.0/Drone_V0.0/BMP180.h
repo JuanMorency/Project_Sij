@@ -22,8 +22,8 @@
 #include "typeDef.h"
 #include "filter.h"
 
-#define BMP180_ADDRESS				0xEE     // default I2C address  
-
+#define BMP180_ADDRESS				0x77     // default I2C address  
+#define BMP180_ADDRESS_SHIFTED		0xEE     // default I2C address  
 
 /* ---- Registers ---- */
 #define BMP180_RA_CAL_AC1           0xAA  // R   Calibration data (16 bits)
@@ -60,8 +60,8 @@
 
 //Other
 #define MSLP						101325          // Mean Sea Level Pressure = 1013.25 hPA (1hPa = 100Pa = 1mbar)
-#define MEAN_PRESSURE_AT_LINTON		100200
-#define MEAN_TEMPERATURE_AT_LINTON	240
+#define MEAN_PRESSURE_AT_HOME		100200
+#define MEAN_TEMPERATURE_AT_HOME	240
 #define LOCAL_ADS_ALTITUDE			7357			//cm     altitude of 4611 avenue Linton
 
 enum
@@ -71,7 +71,9 @@ enum
 	READ_UP_AND_CAL_TRUE_PRESSURE_AND_TEMPERATURE,
 };
 
-extern bool BMP180Initialized; //cannot name it IMUInitialized, seems to have a conflict with the class...
+extern bool bmp180Initialized;
+extern bool bmp180DataReady;
+
 
 class BMP180 {
 	public:
@@ -85,6 +87,12 @@ class BMP180 {
 	int32_t getPressure();
 	int32_t getTemperature();
 	int32_t getAltitude();
+
+	static int16_t _oss; //oss = oversampling setting
+		
+	void setRawTemperature(int32_t inputTemp);
+	void setRawPressure(int32_t inputPress);
+	void calculateTrueValues();
 
 	void CalculateTemperaturePressureAndAltitude();
 
@@ -104,8 +112,7 @@ class BMP180 {
 	void LocalpressureAvg();
 	void PressureAtSeaLevel(void);
 	uint8_t devAddr;
-	
-	int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD, _oss;  //oss = oversampling setting
+	int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD;
 	uint16_t AC4, AC5, AC6;
 	int32_t B5, UT, UP, Pressure0, PVal, AVal, TVal, PValOut;
 	int32_t PressureVal; //in Pascal

@@ -23,6 +23,8 @@ uint8_t dataReadBuffer[14];
 uint8_t phys_adress;
 uint8_t data_adress;
 uint8_t data_length;
+uint8_t dataToWrite[10];
+uint8_t lastRead = MPU9255_READ;
 
 bool TwiInterruptInitialized  = false;
 
@@ -448,14 +450,14 @@ uint8_t handleFsmI2c()
 	static uint8_t State = CHECK_START_AND_LOAD_ADDRESS;
 	static uint8_t counter = 0;
 	static uint8_t n = 0;
-
 	switch(State)
 	{
 		case CHECK_TIMEOUT_AND_START:		
 			if (n++ >= MAX_ITER)
 			{
-				serialTransmit("Slave not responding");
+				serialTransmit("Slave not responding \n");
 				return 10;	
+				n = 0;
 			}	
 			/*Send start condition*/
 			TWCR = 0;
@@ -473,7 +475,7 @@ uint8_t handleFsmI2c()
 										This will cause a new start condition to be initiated, which will normally be delayed until the currently active master has 
 										released the bus. */
 					State = CHECK_TIMEOUT_AND_START;
-					serialTransmit("TW_MR_ARB_LOST");
+					serialTransmit("TW_MR_ARB_LOST \n");
 					return 1;
 				default:
 						sprintf(buffer, "Start I2C Fail, TW_STATUS:%x \n",twst);
@@ -498,25 +500,89 @@ uint8_t handleFsmI2c()
 
 				case TW_MT_SLA_NACK:	/* nack during select: device busy writing */
 					State = CHECK_TIMEOUT_AND_START;
-					serialTransmit("TW_MT_SLA_NACK");
+					serialTransmit("TW_MT_SLA_NACK \n");
 					return 2;
 				case TW_MT_ARB_LOST:	/* re-arbitrate */
 					State = CHECK_TIMEOUT_AND_START;
-					serialTransmit("TW_MR_ARB_LOST");
+					serialTransmit("TW_MR_ARB_LOST \n");
 					return 2;
 				default:
 					sprintf(buffer, "Invalid phys add, TW_STATUS:%x \n",twst);
 					serialTransmit(buffer);
 					return 2;
 			}
-
 			//send the address of the register in the IMU chip we want to read
 			TWDR = data_adress; //put register address on the bus
 			// start transmit
 			TWCR = (1<<TWINT)|(1<<TWIE)|(1<<TWEN); //Clear TWINT bit in TWCR to start transmission of data/address
-			State = CHECK_DATA_ACK_AND_SEND_REPEATED_START;
+			counter = 0;
+			
+			//different state switch depending on read or write
+			if(lastRead == WRITE)
+			{
+				State = CHECK_DATA_ACK_AND_SEND_DATA;	
+			}
+			else
+			{
+				State = CHECK_DATA_ACK_AND_SEND_REPEATED_START;
+			}
 			break;
-				
+
+		case CHECK_DATA_ACK_AND_SEND_DATA:
+			switch ((twst = TW_STATUS))
+			{
+				case TW_MT_DATA_ACK:
+					break;
+				case TW_MT_DATA_NACK:
+					serialTransmit("TW_MT_DATA_NACK \n");
+					return 3;
+				case TW_MT_ARB_LOST:
+					State = CHECK_TIMEOUT_AND_START;
+					serialTransmit("TW_MR_ARB_LOST \n");
+					return 4;
+				default:
+					serialTransmit("No Data Ack from Slave \n");
+					return 4;
+			}
+			//send data
+			TWDR = dataToWrite[counter]; //Load DATA into TWDR Register.
+			// start transmit
+			TWCR = (1<<TWINT)|(1<<TWIE)|(1<<TWEN); //Clear TWINT bit in TWCR to start transmission of data/address
+			counter++;
+			State = CHECK_DATA_ACK_AND_SEND_MORE_BYTES;
+			break;
+			
+		case CHECK_DATA_ACK_AND_SEND_MORE_BYTES:
+			switch ((twst = TW_STATUS))
+			{
+				case TW_MT_DATA_ACK:
+					break;
+				case TW_MT_DATA_NACK:
+					serialTransmit("TW_MT_DATA_NACK");
+					return 3;
+				case TW_MT_ARB_LOST:
+					State = CHECK_TIMEOUT_AND_START;
+					serialTransmit("TW_MR_ARB_LOST");
+					return 4;
+				default:
+					serialTransmit("No Data Ack from Slave");
+					return 4;
+			}
+			if(counter >= data_length)
+			{
+				counter = 0;
+				State = CHECK_START_AND_LOAD_ADDRESS;
+				return 0; //finished sending bytes	
+			}
+			else
+			{
+				TWDR = dataToWrite[counter]; //Load DATA into TWDR Register.
+				// start transmit
+				TWCR = (1<<TWINT)|(1<<TWIE)|(1<<TWEN); //Clear TWINT bit in TWCR to start transmission of data/address				
+			}
+			counter++;
+			break;
+						
 		case CHECK_DATA_ACK_AND_SEND_REPEATED_START: 
 			switch ((twst = TW_STATUS))
 			{
@@ -563,7 +629,6 @@ uint8_t handleFsmI2c()
 			break;
 
 		case CHECK_ACK_AND_SEND_READ_BYTE_REQUEST:
-			n = 0;
 			switch ((twst = TW_STATUS))
 			{
 				case TW_MR_SLA_ACK:

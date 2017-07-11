@@ -23,11 +23,15 @@
 extern volatile float beta;				// algorithm gain
 extern volatile float q0, q1, q2, q3;	// quaternion of sensor frame relative to auxiliary frame
 extern volatile float roll, pitch, yaw;	// Euler Angles
+//following convention was used for yaw pitch roll positive direction: https://en.wikipedia.org/wiki/Flight_dynamics_(fixed-wing_aircraft)
+//same as NASA
+//yaw should be 0 when pointing to magnetic south pole
+
 //---------------------------------------------------------------------------------------------------
 // Function declarations
 
 void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
-//void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az);
+void MadgwickAHRSupdateIMU(float ax, float ay, float az, float gx, float gy, float gz);
 void calcEulerAngles(); //in degrees
 float atan2_approximation2(float y, float x);
 float asin_approximation(float x);

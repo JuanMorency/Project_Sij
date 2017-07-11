@@ -36,40 +36,35 @@
 // And the color should only be changed during an emergency
 #define WS2812_PERIOD 393
 
-// 60 Hertz for now
-#define IMU_PERIOD 1
-
+// 5 Hertz for now
+#define SERIAL_PERIOD 1568
+//#define SERIAL_PERIOD 5068
 
 // 100 Hz
-#define AK8963_PERIOD 78
+//for some unknown reason this had to be slowed down for the actual frequency to be 100
+//#define AK8963_PERIOD 78
+#define AK8963_PERIOD 82
 
-// 50 Hz which results in 10 Hz real update frequency
-#define BMP180_PERIOD 157
+// 60 Hz which results in 10 Hz real update frequency
+#define BMP180_PERIOD 131
 
-extern volatile bool flagLCD;
-extern volatile bool flagRF;
-extern volatile bool flagESC;
-extern volatile bool flagWS2812;
-extern volatile bool flagIMU;
-extern volatile bool flagAK8963;
-extern volatile bool flagBMP180;
 
-extern volatile bool I2CInterruptBusy;
+extern volatile bool flagEsc;
+extern volatile bool flagWs2812;
+extern volatile bool flagSerial;
+extern volatile bool flagAk8963;
+extern volatile bool flagBmp180;
 
-extern volatile unsigned long timer0_overflow_count;
-extern float deltat;     // integration interval for both filter schemes
-extern uint8_t lastUpdate;	// used to calculate integration interval for IMU
-extern uint8_t Now;			// used to calculate integration interval for IMU
+extern volatile unsigned long timer0OverflowCountAk8963, timer0OverflowCountMpu9255, timer0OverflowCountBmp180;
+extern float deltaTimeAk8963, deltaTimeMpu9255, deltaTimeBmp180; // time taken for the between polls of sensors
+extern uint8_t lastUpdateAk8963, lastUpdateMpu9255, lastUpdateBmp180; // used to calculate integration interval
+extern uint8_t Now;        // used to calculate integration interval
 
 extern XYZ16_TypeDef currentRawAcc;
 extern XYZ16_TypeDef currentRawGyr;
 extern XYZ16_TypeDef currentRawMag;
+extern int32_t currentRawTemp;
+extern int32_t currentRawPress;
 
-enum
-{
-	MPU9255_READ = 0,
-	AK8963_READ,
-};
-
-void startInterrupt(IMU &imu1);
+void startInterrupt();
 #endif

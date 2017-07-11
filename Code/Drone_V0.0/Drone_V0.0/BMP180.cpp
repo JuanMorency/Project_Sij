@@ -1,7 +1,7 @@
 /**
 ******************************************************************************
 * File Name         : BMP180.cpp
-* Description       : Initialization and communication functions for the BMP180 pressure sensor
+* Description       : Initialization and communication functions for the BMP180 pressure sensor using a static class for ease
 * Author			: Juan Morency Trudel
 * Version           : 1.0.0
 * Date				: June 2017
@@ -10,15 +10,28 @@
 
 #include "BMP180.h"
 
-bool BMP180Initialized  = false;
+bool bmp180Initialized  = false;
+bool bmp180DataReady = false;
 
-/** 
- * @brief Default constructor, uses default I2C address.
- */
-BMP180::BMP180() {
-    devAddr = BMP180_ADDRESS;
+//definition of static variables
+int16_t BMP180::_oss; //oss = oversampling setting
+
+uint8_t devAddr;
+int16_t AC1, AC2, AC3, B1, B2=0, MB, MC, MD;
+uint16_t AC4, AC5, AC6;
+int32_t B5, UT, UP, Pressure0, PVal, AVal, TVal, PValOut;
+int32_t PressureVal; //in Pascal
+int32_t TemperatureVal; // in 0.1 Celsius
+int32_t AltitudeVal; // in cm
+AvgTypeDef BMP180_Filter[3]; // 0 is pressure, 1 is altitude and 2 is temperature
+uint8_t RegBuff[3];
+
+
+//constructor
+BMP180::BMP180()
+{
+	devAddr = BMP180_ADDRESS<<1;
 }
-
 
 /**
  * @brief  initializes BMP180
@@ -27,19 +40,16 @@ void BMP180::initialize()
 {
 	for(int i = 0; i<8; i++)
 	{
-		BMP180_Filter[0].AvgBuffer[i] = MEAN_PRESSURE_AT_LINTON;
+		BMP180_Filter[0].AvgBuffer[i] = MEAN_PRESSURE_AT_HOME;
 		BMP180_Filter[1].AvgBuffer[i] = LOCAL_ADS_ALTITUDE;
-		BMP180_Filter[2].AvgBuffer[i] = MEAN_TEMPERATURE_AT_LINTON;
-		
+		BMP180_Filter[2].AvgBuffer[i] = MEAN_TEMPERATURE_AT_HOME;
 	}
-	
-	
-	PressureVal = MEAN_PRESSURE_AT_LINTON, TemperatureVal = MEAN_TEMPERATURE_AT_LINTON, AltitudeVal = LOCAL_ADS_ALTITUDE, Pressure0 = MSLP;
-	if(!(this->testConnection())){turnDebugLedOn(2);}
+	PressureVal = MEAN_PRESSURE_AT_HOME, TemperatureVal = MEAN_TEMPERATURE_AT_HOME, AltitudeVal = LOCAL_ADS_ALTITUDE, Pressure0 = MSLP;
+	if(!(testConnection())){serialTransmit("BMP180 Test connection failed");}
   	SetOversample(MODE_ULTRA_LOW_POWER);
   	ReadCalibrationData();
   	PressureAtSeaLevel();	//sets pressure0  to calculate altitude from the delta pressure measured
-	BMP180Initialized = true; 
+	bmp180Initialized = true;
 }
 
 /** 
@@ -357,10 +367,46 @@ void BMP180::CalculateTemperaturePressureAndAltitude()
 			updateAvg8Filter(&BMP180_Filter[1].Index, BMP180_Filter[1].AvgBuffer, AVal, &AltitudeVal);
 
 			State = START_TEMPERATURE_MEASUREMENT; 
+			bmp180DataReady = true;
 			break;
 
 		default:
 			State = START_TEMPERATURE_MEASUREMENT; 
 			break;
 	}	
+}
+
+/**
+  * @brief  Calculates true values of the temperature, pressure and altitude
+  */
+void BMP180::calculateTrueValues()
+{
+	CalculateTrueTemperature(&TVal);
+	updateAvg8Filter(&BMP180_Filter[2].Index, BMP180_Filter[2].AvgBuffer, TVal, &TemperatureVal);
+	
+	CalculateTruePressure(&PVal);
+	updateAvg8Filter(&BMP180_Filter[0].Index, BMP180_Filter[0].AvgBuffer, PVal, &PressureVal);
+	PressureVal = PVal;
+
+	CalculateAbsoluteAltitude(&AVal);
+	updateAvg8Filter(&BMP180_Filter[1].Index, BMP180_Filter[1].AvgBuffer, AVal, &AltitudeVal);
+}
+
+
+/**
+  * @brief  Sets the temperature of the object
+  * @param int32_t of the input temperature
+  */
+void BMP180::setRawTemperature(int32_t inputTemp)
+{
+	UT = inputTemp;
+}
+
+/**
+  * @brief  Sets the pressure of the object
+  * @param int32_t of the input pressure
+  */
+void BMP180::setRawPressure(int32_t inputPress)
+{
+	UP = inputPress;
 }

@@ -1,5 +1,8 @@
 #include "MPU9255.h"
 
+bool mpu9255DataReady = false;
+
+
 /** Default constructor, uses default I2C address.
  * @see MPU9255_DEFAULT_ADDRESS
  */
@@ -150,12 +153,12 @@ void MPU9255::updateRawDataInterrupt()
   */
 void MPU9255::calculateAccRotTemp()
 {
-	temp = tempRaw;
+	//temp = tempRaw;
 	
 	//in G x10^(-4)
-	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15); //divide by 2^15 which is the max number of int16
-	acc.Y = (int16_t)((int32_t)(accRaw.Y)*20000>>15);
-	acc.Z = (int16_t)((int32_t)(accRaw.Z)*20000>>15);
+	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15)+ACC_X_OFFSET; //divide by 2^15 which is the max number of int16
+	acc.Y = (int16_t)((int32_t)(accRaw.Y)*20000>>15)+ACC_Y_OFFSET;
+	acc.Z = (int16_t)((int32_t)(accRaw.Z)*20000>>15)+ACC_Z_OFFSET;
 
 	
 	// calculate the resolution to transform the bit value in 0.1 degrees per second
@@ -184,6 +187,34 @@ XYZ16_TypeDef MPU9255::getRotation()
 }
 
 /**
+  * @brief  Returns X gyroscope measurement
+  * @retval int16_t of the rotation
+  */
+int16_t MPU9255::getRotationX()
+{
+	return this->gyr.X;
+}
+
+/**
+  * @brief  Returns Y gyroscope measurement
+  * @retval int16_t of the rotation
+  */
+int16_t MPU9255::getRotationY()
+{
+	return this->gyr.Y;
+}
+
+/**
+  * @brief  Returns Z gyroscope measurement
+  * @retval int16_t of the rotation
+  */
+int16_t MPU9255::getRotationZ()
+{
+	return this->gyr.Z;
+}
+
+
+/**
   * @brief  Returns accelerometer measurement
   * @retval XYZ16_TypeDef of the accelerometer
   */
@@ -193,12 +224,39 @@ XYZ16_TypeDef MPU9255::getAcceleration()
 }
 
 /**
+  * @brief  Returns X accelerometer measurement
+  * @retval int16_t of the X accelerometer
+  */
+int16_t MPU9255::getAccelerationX()
+{
+	return this->acc.X;
+}
+
+/**
+  * @brief  Returns Y accelerometer measurement
+  * @retval int16_t of the Y accelerometer
+  */
+int16_t MPU9255::getAccelerationY()
+{
+	return this->acc.Y;
+}
+
+/**
+  * @brief  Returns Z accelerometer measurement
+  * @retval int16_t of the Z accelerometer
+  */
+int16_t MPU9255::getAccelerationZ()
+{
+	return this->acc.Z;
+}
+
+/**
   * @brief  Sets the acceleration of the object
   * @param XYZ16_TypeDef of the input acceleration
   */
  void MPU9255::setRawAcceleration(XYZ16_TypeDef inputAcc)
 {
-	this->acc = inputAcc;
+	this->accRaw = inputAcc;
 }
 
 /**
@@ -207,7 +265,7 @@ XYZ16_TypeDef MPU9255::getAcceleration()
   */
  void MPU9255::setRawRotation(XYZ16_TypeDef inputGyr)
 {
-	this->gyr = inputGyr;
+	this->gyrRaw = inputGyr;
 }
 
 /**
@@ -216,5 +274,5 @@ XYZ16_TypeDef MPU9255::getAcceleration()
   */
  void MPU9255::setRawTemperature(uint16_t inputTemp)
 {
-	this->temp = inputTemp;
+	this->tempRaw = inputTemp;
 }

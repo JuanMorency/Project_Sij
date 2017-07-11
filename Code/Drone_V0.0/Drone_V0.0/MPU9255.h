@@ -150,6 +150,17 @@
 
 #define GYR_OFFSET_MAX_CALIBRATION			100
 
+#define ACC_X_OFFSET						-200
+#define ACC_Y_OFFSET						-125
+#define ACC_Z_OFFSET						-420
+
+//min x:-9800	max x:10200   
+//min y:-9950	max y: 10200
+//min z:-9850	max z:10690
+
+
+extern bool mpu9255DataReady;
+
 class MPU9255 {
     public:
         MPU9255();
@@ -164,7 +175,13 @@ class MPU9255 {
 		
         int16_t getTemperature();
         XYZ16_TypeDef getRotation();
+		int16_t getRotationX();
+		int16_t getRotationY();
+		int16_t getRotationZ();
         XYZ16_TypeDef getAcceleration();
+		int16_t getAccelerationX();
+		int16_t getAccelerationY();
+		int16_t getAccelerationZ();
 
 		void setRawAcceleration(XYZ16_TypeDef inputAcc);
 		void setRawRotation(XYZ16_TypeDef inputGyr);

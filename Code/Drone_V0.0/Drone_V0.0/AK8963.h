@@ -79,11 +79,21 @@
 // very approximate calibration values gotten from Juan's room
 // Your own calibration should be done by orientating yourself to 
 // true north 
-#define AK8973_MAG_OFFSET_X				-5		//milliGauss
-#define AK8973_MAG_OFFSET_Y				-34		//milliGauss
-#define AK8973_MAG_OFFSET_Z				-522	//milliGauss
+//#define AK8973_MAG_OFFSET_X				-5		//milliGauss
+//#define AK8973_MAG_OFFSET_Y				-34		//milliGauss
+//#define AK8973_MAG_OFFSET_Z				-522	//milliGauss
 
-extern bool AK8963Initialized; 
+
+//x -590 to 310
+//y -260 to 640
+//z -750 to 180
+
+#define AK8973_MAG_OFFSET_X				140		//milliGauss
+#define AK8973_MAG_OFFSET_Y				-190	//milliGauss
+#define AK8973_MAG_OFFSET_Z				285		//milliGauss
+
+extern bool ak8963Initialized; 
+extern bool ak8963DataReady;
 
 class AK8963 {
     public:
@@ -95,6 +105,9 @@ class AK8963 {
         void reset();
 		void readAdjustment();
 		XYZ16_TypeDef getMagneticField();
+		int16_t getMagneticFieldX();
+		int16_t getMagneticFieldY();
+		int16_t getMagneticFieldZ();
 		void calculateMag();
 		void updateRawData();
 		void setRawMagneticField(XYZ16_TypeDef inputMag);

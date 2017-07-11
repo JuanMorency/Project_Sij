@@ -12,7 +12,8 @@
 #include "lcd.h"
 #include "MPU9255.h"
 
-bool AK8963Initialized = false; 
+bool ak8963Initialized = false; 
+bool ak8963DataReady = false;	
 
 /** 
  * @brief Default constructor, uses default I2C address.
@@ -42,7 +43,7 @@ void AK8963::initialize() {
 	bias.X=AK8973_MAG_OFFSET_X;
 	bias.Y=AK8973_MAG_OFFSET_Y;
 	bias.Z=AK8973_MAG_OFFSET_Z;
-	AK8963Initialized = true; 
+	ak8963Initialized = true; 
 }
 
 /** 
@@ -138,6 +139,33 @@ XYZ16_TypeDef AK8963::getMagneticField()
 }
 
 /**
+  * @brief  Returns the X magnetic field in an int_16 format. 
+  * the updateRawData must be called before this to ensure the latest data
+  */
+int16_t AK8963::getMagneticFieldX()
+{
+	return this->mag.X;
+}
+
+/**
+  * @brief  Returns the Y magnetic field in an int_16 format. 
+  * the updateRawData must be called before this to ensure the latest data
+  */
+int16_t AK8963::getMagneticFieldY()
+{
+	return this->mag.Y;
+}
+
+/**
+  * @brief  Returns the Y magnetic field in an int_16 format. 
+  * the updateRawData must be called before this to ensure the latest data
+  */
+int16_t AK8963::getMagneticFieldZ()
+{
+	return this->mag.Z;
+}
+
+/**
   * @brief  Updates the value of mag from the last raw values gotten
   */
 void AK8963::calculateMag()
@@ -147,9 +175,9 @@ void AK8963::calculateMag()
 	//Formula for adjustment: Hadj = H*(adj+128)/256
 	//Full formula gives:
 	
-	mag.X = (int16_t)(((int32_t)this->magRaw.X*49120>>7)*(adjustmentRaw.X+128)>>16) - bias.X;
-	mag.Y = (int16_t)(((int32_t)this->magRaw.Y*49120>>7)*(adjustmentRaw.Y+128)>>16) - bias.Y;
-	mag.Z = (int16_t)(((int32_t)this->magRaw.Z*49120>>7)*(adjustmentRaw.Z+128)>>16) - bias.Z;
+	mag.X = (int16_t)(((int32_t)this->magRaw.X*49120>>7)*(adjustmentRaw.X+128)>>16) + bias.X;
+	mag.Y = (int16_t)(((int32_t)this->magRaw.Y*49120>>7)*(adjustmentRaw.Y+128)>>16) + bias.Y;
+	mag.Z = (int16_t)(((int32_t)this->magRaw.Z*49120>>7)*(adjustmentRaw.Z+128)>>16) + bias.Z;
 }
 
 /**

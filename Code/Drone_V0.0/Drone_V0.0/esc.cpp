@@ -80,10 +80,10 @@ void initializeESC()
   //Set ESCs speed to 0
   //TODO need to select right initial pulse width such that the ESC get armed
 	if(RFInitialized){
-		OCR4A = ESC_INIT_PW;
-		OCR4B = ESC_INIT_PW;
-		OCR5A = ESC_INIT_PW;
-		OCR5B = ESC_INIT_PW;
+		OCR4A = ESC_INIT_PW*4;
+		OCR4B = ESC_INIT_PW*4;
+		OCR5A = ESC_INIT_PW*4;
+		OCR5B = ESC_INIT_PW*4;
 	}
 	else{
 		OCR4A = 0;
@@ -115,6 +115,7 @@ void Esc::set(uint16_t pwm)
 		//multiply by 4 here to get from the PWM of the RF controller to the ESC
 		//ESC requires 1-2ms pulse width so from 8000 to 16000 pwm
 		//since the number we get from the RF is between 2000 and 4000, multiply by 4
+		//this does not have to be a precise number as the ESCs initialize at the beginning
 		case 1: 
 			OCR4A = pwm*4;
 			break;

@@ -18,7 +18,7 @@
 #include <avr/io.h>
 #include <avr/portpins.h>
 
-bool WS2812Initialized = false;
+bool ws2812Initialized = false;
 
 /**
 	* @brief WS2812 class that represents one LED strip
@@ -43,7 +43,7 @@ WS2812::WS2812(uint16_t num_leds, uint8_t stripPos) {
 	* @retval None
 	*/
 void initWS2812(void){
-	WS2812Initialized = true;
+	ws2812Initialized = true;
 }
 
 

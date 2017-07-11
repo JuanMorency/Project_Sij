@@ -10,8 +10,8 @@
 
 
 // to use Serial, plug the CH340 board by USB on your computer and simply plug:
-// Rx of the Serial board in E1
-// Tx of Serial board in E0
+// Tx of the Serial board in E0
+// Rx of Serial board in E1
 
 
 #ifndef SERIAL_H
@@ -29,7 +29,7 @@
 #define MYUBRR F_CPU/16/BAUD-1
 
 #define RF_SERIAL_SPEED_DIVIDER 50
-#define IMU_SERIAL_SPEED_DIVIDER 30
+#define IMU_SERIAL_SPEED_DIVIDER 500
 
 extern bool serialInitialized;
 extern char buffer[200];

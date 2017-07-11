@@ -48,23 +48,121 @@ int main()
 	initializeI2C();
 	imu.initialize();
 	initSerial(MYUBRR);
-	startInterrupt(imu);
+	startInterrupt();
 	//After everything is initialized, start interrupts
 	while(1)
-	{		
-		//ESC handler
-		if(flagESC)
+	{
+
+		imu.updateImuAndMadgwick();
+
+		if(flagSerial)
 		{
-			flagESC = 0;
-			escFL.set(2000 - roll*50 + pitch*50);
-			escBL.set(2000 - roll*50 - pitch*50);
-			escBR.set(2000 + roll*50 - pitch*50);
-			escFR.set(2000 + roll*50 + pitch*50);
+			flagSerial = false;
+
+			// print IMU sensor values
+			
+			//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
+			//imu.mpu9255.getAccelerationX(), imu.mpu9255.getAccelerationY(), imu.mpu9255.getAccelerationZ(), 
+			//imu.mpu9255.getRotationX(), imu.mpu9255.getRotationY(), imu.mpu9255.getRotationZ(), 
+			//imu.ak8963.getMagneticFieldX(), imu.ak8963.getMagneticFieldY(), imu.ak8963.getMagneticFieldZ(), imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature());
+				
+			//// print quaternions
+			//
+			//FloatToString(floatbuff, q0);
+			//strcat (buffer,"\t\t q0:");
+			//strcat (buffer,floatbuff);
+			//FloatToString(floatbuff, q1);
+			//strcat (buffer,"\t q1:");
+			//strcat (buffer,floatbuff);
+			//FloatToString(floatbuff, q2);
+			//strcat (buffer,"\t q2:");
+			//strcat (buffer,floatbuff);
+			//FloatToString(floatbuff, q3);
+			//strcat (buffer,"\t q3:");
+			//strcat (buffer,floatbuff);
+
+			////print yaw pitch roll
+			//
+			//sprintf(buffer, " ");
+			//FloatToString(floatbuff, roll);
+			//strcat (buffer,"roll:");
+			//strcat (buffer,floatbuff);
+			//FloatToString(floatbuff, pitch);
+			//strcat (buffer,"\t pitch:");
+			//strcat (buffer,floatbuff);
+			//FloatToString(floatbuff, yaw);
+			//strcat (buffer,"\t yaw:");
+			//strcat (buffer,floatbuff);
+			//
+			//
+			//
+			////Print sensor update rate
+			//
+			//strcat (buffer,"\t rates: ");
+			////calculate and print the update frequency of AK8963
+			//if (sumAk8963 != 0)
+			//{
+				//FloatToString(floatbuff, (float)sumCountAk8963/sumAk8963);
+				//strcat (buffer,"Mag: ");
+				//strcat (buffer,floatbuff);
+			//}
+			//else
+			//{
+				//strcat (buffer,"Mag: Too fast ");
+			//}
+			////reset the counters for update rate calculations
+			//sumCountAk8963 = 0;
+			//sumAk8963 = 0;
+			//
+			//
+			////calculate and print the update frequency of MPU9255
+			//if (sumMpu9255 != 0)
+			//{
+				//FloatToString(floatbuff, (float)sumCountMpu9255/sumMpu9255);
+				//strcat (buffer,"\t Acc/Gyr: ");
+				//strcat (buffer,floatbuff);
+			//}
+			//else
+			//{
+				//strcat (buffer,"\t Acc/Gyr: Too fast ");
+			//}
+			////reset the counters for update rate calculations
+			//sumCountMpu9255 = 0;
+			//sumMpu9255 = 0;
+//
+			////calculate and print the update frequency of BMP180
+			//if (sumBmp180 != 0)
+			//{
+				//FloatToString(floatbuff, (float)sumCountBmp180/sumBmp180);
+				//strcat (buffer,"\t Pressure: ");
+				//strcat (buffer,floatbuff);
+			//}
+			//else
+			//{
+				//strcat (buffer,"\t Pressure : Too fast ");
+			//}
+			////reset the counters for update rate calculations
+			//sumCountBmp180 = 0;
+			//sumBmp180 = 0;
+
+
+			//strcat (buffer,"\n");
+			//serialTransmit(buffer);
+		}
+
+		//ESC handler
+		if(flagEsc)
+		{
+			flagEsc = 0;
+			escFL.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM - roll*50 + pitch*50);
+			escBL.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM - roll*50 - pitch*50);
+			escBR.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM + roll*50 - pitch*50);
+			escFR.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM + roll*50 + pitch*50);
 		}
 		
-		if(flagWS2812)
+		if(flagWs2812)
 		{
-			flagWS2812 = 0;
+			flagWs2812 = 0;
 			
 			//example of LED gradually
 			static int i = 0;
@@ -81,83 +179,6 @@ int main()
 			if(i<=0) directionUp = true;
 			if (directionUp) i++;
 			else i--;
-		}
-		
-		//if(flagBMP180 && !I2CInterruptBusy)
-		//{
-			//flagBMP180 = false;
-			//
-			//imu.bmp180.CalculateTemperaturePressureAndAltitude();
-			//
-			//// Send start condition to reactivate I2C interrupts
-			////TWCR = 0;
-			////TWCR = (1<<TWINT)|(1<<TWIE)|(1<<TWSTA)|(1<<TWEN);
-		//}
-		
-		if(flagIMU)
-		{
-			flagIMU = 0;
-			imu.updateMadgwick();
-			if (IMUserialSlowDownCounter >= IMU_SERIAL_SPEED_DIVIDER)
-			{
-				IMUserialSlowDownCounter = 0;
-				//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
-				//imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z,imu.pres,
-				//imu.alt, imu.temp);
-
-				// print sensor values
-				
-				//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i",
-				//imu.acc.X, imu.acc.Y, imu.acc.Z, imu.rot.X, imu.rot.Y, imu.rot.Z, imu.mag.X, imu.mag.Y, imu.mag.Z);
-
-				sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
-				currentRawAcc.X, currentRawAcc.Y, currentRawAcc.Z, currentRawGyr.X, currentRawGyr.Y, currentRawGyr.Z, currentRawMag.X, currentRawMag.Y, currentRawMag.Z, imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature() );
-				
-				//// print quaternions
-//
-				//FloatToString(floatbuff, q0);
-				//strcat (buffer,"\t\t q0:");
-				//strcat (buffer,floatbuff);
-				//FloatToString(floatbuff, q1);
-				//strcat (buffer,"\t q1:");
-				//strcat (buffer,floatbuff);
-				//FloatToString(floatbuff, q2);
-				//strcat (buffer,"\t q2:");
-				//strcat (buffer,floatbuff);
-				//FloatToString(floatbuff, q3);
-				//strcat (buffer,"\t q3:");
-				//strcat (buffer,floatbuff);
-
-				//print yaw pitch roll
-				
-				//sprintf(buffer, " ");				
-				//FloatToString(floatbuff, roll);
-				//strcat (buffer,"roll:");
-				//strcat (buffer,floatbuff);
-				//FloatToString(floatbuff, pitch);
-				//strcat (buffer,"\t pitch:");
-				//strcat (buffer,floatbuff);
-				//FloatToString(floatbuff, yaw);
-				//strcat (buffer,"\t yaw:");
-				//strcat (buffer,floatbuff);
-				
-				//calculate and print the update frequency
-				
-				FloatToString(floatbuff, (float)sumCount/sum);
-				//reset the counters for update rate calculations for IMU
-				sumCount = 0;
-				sum = 0;
-				strcat (buffer,"\t rate: ");
-				strcat (buffer,floatbuff);			
-				strcat (buffer,"\n");
-				serialTransmit(buffer);
-				//sprintf(buffer, "TWINT time: %d", timeWaitForTWINT);
-				//serialTransmit(buffer);
-			}
-			else
-			{
-				IMUserialSlowDownCounter++;
-			}
 		}
 	}
 	return 0;

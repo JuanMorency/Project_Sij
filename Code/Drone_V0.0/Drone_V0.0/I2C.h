@@ -38,6 +38,8 @@ enum
 	CHECK_TIMEOUT_AND_START = 0,
 	CHECK_START_AND_LOAD_ADDRESS,
 	CHECK_ACK_AND_LOAD_DATA_ADDRESS,
+	CHECK_DATA_ACK_AND_SEND_DATA,
+	CHECK_DATA_ACK_AND_SEND_MORE_BYTES,
 	CHECK_DATA_ACK_AND_SEND_REPEATED_START,
 	CHECK_REPEATED_START_AND_START_READ,
 	CHECK_ACK_AND_SEND_READ_BYTE_REQUEST,
@@ -48,8 +50,19 @@ extern uint8_t dataReadBuffer[14];
 extern uint8_t phys_adress;
 extern uint8_t data_adress;
 extern uint8_t data_length;
+extern uint8_t dataToWrite[10];
+extern uint8_t lastRead;
 
 extern bool TwiInterruptInitialized;
+
+enum
+{
+	WRITE = 0,
+	MPU9255_READ,
+	AK8963_READ,
+	BMP180_READ_TEMPERATURE,
+	BMP180_READ_PRESSURE
+};
 
 void I2Cstart();
 void I2Cstop();

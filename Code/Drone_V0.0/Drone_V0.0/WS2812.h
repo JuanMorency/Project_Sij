@@ -33,7 +33,7 @@
 #define BLT 6	// PK0
 #define BLB 7	// PK1
 
-extern bool WS2812Initialized;
+extern bool ws2812Initialized;
 
 void initWS2812(void);
 
@@ -157,39 +157,39 @@ struct cRGB {
 
 
 class WS2812 {
-public: 
-	WS2812(uint16_t num_led, uint8_t stripPosition);
-	~WS2812();
+	public: 
+		WS2812(uint16_t num_led, uint8_t stripPosition);
+		~WS2812();
 	
-	void setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin);
-	void setAsOutput();
-	cRGB get_crgb_at(uint16_t index);
-	uint8_t set_crgb_at(uint16_t index, cRGB px_value);
-	uint8_t set_subpixel_at(uint16_t index, uint8_t offset, uint8_t px_value);
-	void sync();
-	void reset();
+		void setOutput(volatile uint8_t *port, volatile uint8_t *ddr, uint8_t pin);
+		void setAsOutput();
+		cRGB get_crgb_at(uint16_t index);
+		uint8_t set_crgb_at(uint16_t index, cRGB px_value);
+		uint8_t set_subpixel_at(uint16_t index, uint8_t offset, uint8_t px_value);
+		void sync();
+		void reset();
 		
-#ifdef RGB_ORDER_ON_RUNTIME	
-	void setColorOrderRGB();
-	void setColorOrderGRB();
-	void setColorOrderBRG();
-#endif
+	#ifdef RGB_ORDER_ON_RUNTIME	
+		void setColorOrderRGB();
+		void setColorOrderGRB();
+		void setColorOrderBRG();
+	#endif
 
-private:
-	uint16_t count_led;
-	uint8_t *pixels;
+	private:
+		uint16_t count_led;
+		uint8_t *pixels;
 
-#ifdef RGB_ORDER_ON_RUNTIME	
-	uint8_t offsetRed;
-	uint8_t offsetGreen;
-	uint8_t offsetBlue;
-#endif	
+	#ifdef RGB_ORDER_ON_RUNTIME	
+		uint8_t offsetRed;
+		uint8_t offsetGreen;
+		uint8_t offsetBlue;
+	#endif	
 
-	void ws2812_sendarray_mask(uint8_t *array,uint16_t length, uint8_t pinmask,uint8_t *port, uint8_t *portreg);
-	volatile uint8_t *ws2812_port;
-	volatile uint8_t *ws2812_port_reg;
-	uint8_t pinMask;
-	volatile uint8_t stripPosition; 
+		void ws2812_sendarray_mask(uint8_t *array,uint16_t length, uint8_t pinmask,uint8_t *port, uint8_t *portreg);
+		volatile uint8_t *ws2812_port;
+		volatile uint8_t *ws2812_port_reg;
+		uint8_t pinMask;
+		volatile uint8_t stripPosition; 
 };
 
 
