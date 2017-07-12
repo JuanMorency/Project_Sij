@@ -65,8 +65,8 @@ ISR(PCINT1_vect) {
 		if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
 		{
 			RFserialSlowDownCounter = 0;
-			sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
-			serialTransmit(buffer);
+			//sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
+			//serialTransmit(buffer);
 		}
 		else
 		{

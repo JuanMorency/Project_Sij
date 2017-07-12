@@ -28,6 +28,7 @@
 #include "debugLED.h"
 #include "serial.h"
 #include "MadgwickAHRS.h"
+#include "PID.h"
 
 int main()
 {	
@@ -43,13 +44,20 @@ int main()
 		
 	//Initialize modules; comment out to deactivate feature
 	initRF();
-	//initializeESC();
+	initializeESC();
 	//initWS2812();
 	initializeI2C();
 	imu.initialize();
 	initSerial(MYUBRR);
 	startInterrupt();
 	//After everything is initialized, start interrupts
+	
+	
+	//PID objects
+	PID yawPid(YAW,YAW_KP,YAW_KI,YAW_KD);
+	PID pitchPid(PITCH,PITCH_KP,PITCH_KI,PITCH_KD);
+	PID rollPid(ROLL,ROLL_KP,ROLL_KI,ROLL_KD);
+	
 	while(1)
 	{
 
@@ -145,7 +153,6 @@ int main()
 			//sumCountBmp180 = 0;
 			//sumBmp180 = 0;
 
-
 			//strcat (buffer,"\n");
 			//serialTransmit(buffer);
 		}
@@ -154,10 +161,54 @@ int main()
 		if(flagEsc)
 		{
 			flagEsc = 0;
-			escFL.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM - roll*50 + pitch*50);
-			escBL.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM - roll*50 - pitch*50);
-			escBR.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM + roll*50 - pitch*50);
-			escFR.set(ESC_INIT_PW + ch_3_pw-CHANNEL_3_MIN_PWM + roll*50 + pitch*50);
+			if(RFInitialized)
+			{
+				//calculate the PID adjustments
+				yawAdjustment = (uint16_t)(yawPid.updatePid(yaw,getDesiredAngleFromRf(YAW))*2000/360);
+				pitchAdjustment = (uint16_t)(pitchPid.updatePid(pitch,getDesiredAngleFromRf(PITCH))*2000/180);
+				rollAdjustment = (uint16_t)(rollPid.updatePid(roll,getDesiredAngleFromRf(ROLL))*2000/180);
+				
+				sprintf(buffer,"yawAdj: %i, PitchAdj: %i, RollAdj: %i \n", yawAdjustment, pitchAdjustment, rollAdjustment);
+				serialTransmit(buffer);
+				
+				//calculate the PWM to send to the ESCs
+				FlSpeed = ESC_INIT_PW + ch_3_pw - CHANNEL_3_MIN_PWM + rollAdjustment + pitchAdjustment;
+				BlSpeed = ESC_INIT_PW + ch_3_pw - CHANNEL_3_MIN_PWM + rollAdjustment - pitchAdjustment;
+				BrSpeed = ESC_INIT_PW + ch_3_pw - CHANNEL_3_MIN_PWM - rollAdjustment - pitchAdjustment;
+				FrSpeed = ESC_INIT_PW + ch_3_pw - CHANNEL_3_MIN_PWM - rollAdjustment + pitchAdjustment;
+				//Set FL ESC
+				if(FlSpeed < ESC_INIT_PW) escFL.set(ESC_INIT_PW);
+				else if (FlSpeed > ESC_MAX_PW) escFL.set(ESC_MAX_PW);
+				else escFL.set(FlSpeed);
+
+				//Set BL ESC
+				if(BlSpeed < ESC_INIT_PW) escBL.set(ESC_INIT_PW);
+				else if (BlSpeed > ESC_MAX_PW) escBL.set(ESC_MAX_PW);
+				else escBL.set(BlSpeed);
+
+				//Set BR ESC
+				if(BrSpeed < ESC_INIT_PW) escBR.set(ESC_INIT_PW);
+				else if (BrSpeed > ESC_MAX_PW) escBR.set(ESC_MAX_PW);
+				else escBR.set(BrSpeed);
+				
+				//Set FR ESC
+				if(FrSpeed < ESC_INIT_PW) escFR.set(ESC_INIT_PW);
+				else if (FrSpeed > ESC_MAX_PW) escFR.set(ESC_MAX_PW);
+				else escFR.set(FrSpeed);				
+			}
+			else
+			{
+				escFL.set(ESC_INIT_PW);
+				escBL.set(ESC_INIT_PW);
+				escBR.set(ESC_INIT_PW);
+				escFR.set(ESC_INIT_PW);
+			}
+
+
+			//escFL.set(ch_3_pw);
+			//escBL.set(ch_3_pw);
+			//escBR.set(ch_3_pw);
+			//escFR.set(ch_3_pw);
 		}
 		
 		if(flagWs2812)

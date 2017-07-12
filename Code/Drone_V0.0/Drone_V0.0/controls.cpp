@@ -9,8 +9,3 @@
 */
 
 #include "controls.h"
-
-void updatePID(IMU imu)
-{
-	
-}

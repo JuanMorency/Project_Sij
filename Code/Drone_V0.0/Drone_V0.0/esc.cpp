@@ -14,6 +14,15 @@
 
 bool escInitialized = false;
 
+uint16_t yawAdjustment = 0;
+uint16_t pitchAdjustment = 0;
+uint16_t rollAdjustment = 0;
+
+uint16_t FlSpeed = ESC_INIT_PW;
+uint16_t BlSpeed = ESC_INIT_PW;
+uint16_t BrSpeed = ESC_INIT_PW;
+uint16_t FrSpeed = ESC_INIT_PW;
+
 /*
 
 la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
@@ -77,8 +86,12 @@ void initializeESC()
   ICR4 = 65535;
   ICR5 = 65535;
   
-  //Set ESCs speed to 0
-  //TODO need to select right initial pulse width such that the ESC get armed
+  //Set Pins to output
+  DDRL |= (1<<PL4) | (1<<PL3);
+  DDRH |= (1<<PH4) | (1<<PH3);
+  
+  //calibrateESC();
+
 	if(RFInitialized){
 		OCR4A = ESC_INIT_PW*4;
 		OCR4B = ESC_INIT_PW*4;
@@ -91,18 +104,32 @@ void initializeESC()
 		OCR5A = 0;
 		OCR5B = 0;
 	}
-  //Set Pins to output
-  DDRL |= (1<<PL4) | (1<<PL3); 
-  DDRH |= (1<<PH4) | (1<<PH3);  
   
-  //delay to make sure the ESC are armed before playing with the PWM
-  _delay_ms(DELAY_ESC);
+  ////delay to make sure the ESC are armed before playing with the PWM
+  //_delay_ms(DELAY_ESC);
   
   //Timer 4/5 set to 0
   TCNT4 = 0;
   TCNT5 = 0;
   
   escInitialized = true;
+}
+
+/**
+ * @brief  calibrate all ESCs
+ */
+void calibrateESC()
+{
+	OCR4A = ESC_MAX_PW*4;
+	OCR4B = ESC_MAX_PW*4;
+	OCR5A = ESC_MAX_PW*4;
+	OCR5B = ESC_MAX_PW*4;
+	_delay_ms(6000);
+	OCR4A = ESC_INIT_PW*4;
+	OCR4B = ESC_INIT_PW*4;
+	OCR5A = ESC_INIT_PW*4;
+	OCR5B = ESC_INIT_PW*4;	
+	_delay_ms(8000);
 }
 
 /**

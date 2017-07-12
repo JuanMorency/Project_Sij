@@ -20,10 +20,20 @@
 #define FL 2
 #define FR 3
 #define BR 4
-#define ESC_INIT_PW 2000 //initial pulse width, should try to find a dynamic way to set this.
+#define ESC_INIT_PW 2000 // initial pulse width
+#define ESC_MAX_PW 4000 // max pulse width
 
 #include <avr/io.h>
 #include <util/delay.h>
+
+extern uint16_t yawAdjustment;
+extern uint16_t pitchAdjustment;
+extern uint16_t rollAdjustment;
+
+extern uint16_t FlSpeed;
+extern uint16_t BlSpeed;
+extern uint16_t BrSpeed;
+extern uint16_t FrSpeed;
 
 class Esc
 {
@@ -34,5 +44,6 @@ public:
 };
 
 	void initializeESC();
+	void calibrateESC();
 	extern bool escInitialized;
 #endif

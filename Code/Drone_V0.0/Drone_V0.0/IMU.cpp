@@ -50,12 +50,14 @@ void IMU::updateImuAndMadgwick()
 		// so we interchange x and y and multiply the Z axis by -1.
 		// the total change is (x,y,z) becomes (-x,-y,-z))
 		
-		//MadgwickAHRSupdate((float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
-		//(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f,
-		//(float)ak8963.getMagneticFieldX(), -(float)ak8963.getMagneticFieldY(), -(float)ak8963.getMagneticFieldZ());
+
 		MadgwickAHRSupdate(-(float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
 		-(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f,
 		-(float)ak8963.getMagneticFieldX(), -(float)ak8963.getMagneticFieldY(), -(float)ak8963.getMagneticFieldZ());
+		//old without
+		//MadgwickAHRSupdate((float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
+		//(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f,
+		//(float)ak8963.getMagneticFieldX(), -(float)ak8963.getMagneticFieldY(), -(float)ak8963.getMagneticFieldZ());
 		calcEulerAngles();
 	}
 
@@ -65,7 +67,6 @@ void IMU::updateImuAndMadgwick()
 		bmp180.setRawTemperature(currentRawTemp);
 		bmp180.setRawPressure(currentRawPress);
 		bmp180.calculateTrueValues();
-		
 		//calculate the time it takes before the next call of this function
 		Now = TCNT0;
 		//the 8 is counter 0 prescaler
@@ -94,8 +95,8 @@ void IMU::updateImuAndMadgwick()
 		sumMpu9255 += deltaTimeMpu9255; // sum for averaging filter update rate
 		sumCountMpu9255++;
 
-		//MadgwickAHRSupdateIMU((float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
-		//(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f);
+		MadgwickAHRSupdateIMU(-(float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
+		-(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f);
 		
 		//calcEulerAngles();
 	}

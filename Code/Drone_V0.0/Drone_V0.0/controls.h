@@ -14,8 +14,7 @@
 #include "RF.h"
 #include "esc.h"
 #include "IMU.h"
-
-
-void updatePID();
+#include "PID.h"
+#include "serial.h"
 
 #endif /* CONTROLS_H_ */

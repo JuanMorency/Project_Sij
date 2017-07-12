@@ -26,8 +26,8 @@
 
 // The minimum update frequency for multirotors is generally 200 Hz
 // https://www.rcgroups.com/forums/showthread.php?1504894-ESC-update-frequency
-//desired frequency = 200 Hertz
-#define ESC_PERIOD 39
+//desired frequency = 20 Hertz
+#define ESC_PERIOD 390
 
 
 // desired frequency = 20 Hertz

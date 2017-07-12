@@ -9,7 +9,6 @@
 */
 
 #include "AK8963.h"
-#include "lcd.h"
 #include "MPU9255.h"
 
 bool ak8963Initialized = false; 

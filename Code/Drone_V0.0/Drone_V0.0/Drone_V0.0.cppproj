@@ -225,6 +225,12 @@
     <Compile Include="MPU9255.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="PID.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PID.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="RF.cpp">
       <SubType>compile</SubType>
     </Compile>
