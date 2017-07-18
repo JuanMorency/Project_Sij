@@ -26,8 +26,8 @@
 
 // The minimum update frequency for multirotors is generally 200 Hz
 // https://www.rcgroups.com/forums/showthread.php?1504894-ESC-update-frequency
-//desired frequency = 20 Hertz
-#define ESC_PERIOD 390
+//desired frequency = 100 Hertz for now
+#define ESC_PERIOD 78
 
 
 // desired frequency = 20 Hertz
@@ -36,9 +36,8 @@
 // And the color should only be changed during an emergency
 #define WS2812_PERIOD 393
 
-// 5 Hertz for now
-#define SERIAL_PERIOD 1568
-//#define SERIAL_PERIOD 5068
+// 10 Hertz for now
+#define SERIAL_PERIOD 784
 
 // 100 Hz
 //for some unknown reason this had to be slowed down for the actual frequency to be 100

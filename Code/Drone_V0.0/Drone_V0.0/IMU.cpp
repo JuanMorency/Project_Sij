@@ -36,8 +36,6 @@ void IMU::updateImuAndMadgwick()
 		sumAk8963 += deltaTimeAk8963; // sum for averaging filter update rate
 		sumCountAk8963++;
 
-		
-
 		// Page 38 of PS-MPU-9255 gives the axes orientations
 		// the x axis on the MPU9255 represents the forward direction. Since on our board the front is actually the y
 		// direction, a 90 degree rotation clockwise has to be made. For this x = y and y = -x for all 3 sensors.
@@ -50,14 +48,13 @@ void IMU::updateImuAndMadgwick()
 		// so we interchange x and y and multiply the Z axis by -1.
 		// the total change is (x,y,z) becomes (-x,-y,-z))
 		
-
-		MadgwickAHRSupdate(-(float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
-		-(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f,
-		-(float)ak8963.getMagneticFieldX(), -(float)ak8963.getMagneticFieldY(), -(float)ak8963.getMagneticFieldZ());
-		//old without
-		//MadgwickAHRSupdate((float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
-		//(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f,
-		//(float)ak8963.getMagneticFieldX(), -(float)ak8963.getMagneticFieldY(), -(float)ak8963.getMagneticFieldZ());
+		xMagneticFieldMadgwick = -(float)ak8963.getMagneticFieldX();
+		yMagneticFieldMadgwick = -(float)ak8963.getMagneticFieldY();
+		zMagneticFieldMadgwick = -(float)ak8963.getMagneticFieldZ();		
+		
+		MadgwickAHRSupdate(xAccelerationMadgwick, yAccelerationMadgwick, zAccelerationMadgwick,
+							xRotationMadgwick, yRotationMadgwick, zRotationMadgwick,
+							xMagneticFieldMadgwick, yMagneticFieldMadgwick, zMagneticFieldMadgwick);
 		calcEulerAngles();
 	}
 
@@ -94,11 +91,16 @@ void IMU::updateImuAndMadgwick()
 		lastUpdateMpu9255 = Now;
 		sumMpu9255 += deltaTimeMpu9255; // sum for averaging filter update rate
 		sumCountMpu9255++;
-
-		MadgwickAHRSupdateIMU(-(float)mpu9255.getAccelerationY()/10000, -(float)mpu9255.getAccelerationX()/10000, (float)mpu9255.getAccelerationZ()/10000,
-		-(float)mpu9255.getRotationY()*M_PI/1800.0f, -(float)mpu9255.getRotationY()*M_PI/1800.0f, (float)mpu9255.getRotationZ()*M_PI/1800.0f);
+		xAccelerationMadgwick = -(float)mpu9255.getAccelerationY()/10000;
+		yAccelerationMadgwick = -(float)mpu9255.getAccelerationX()/10000;
+		zAccelerationMadgwick = (float)mpu9255.getAccelerationZ()/10000;
+		xRotationMadgwick = -(float)mpu9255.getRotationY()*M_PI_OVER_1800;
+		yRotationMadgwick = -(float)mpu9255.getRotationY()*M_PI_OVER_1800;
+		zRotationMadgwick = (float)mpu9255.getRotationZ()*M_PI_OVER_1800;
 		
-		//calcEulerAngles();
+		MadgwickAHRSupdateIMU(xAccelerationMadgwick, yAccelerationMadgwick, zAccelerationMadgwick,
+								xRotationMadgwick, yRotationMadgwick, zRotationMadgwick);
+		calcEulerAngles();
 	}
 }
 

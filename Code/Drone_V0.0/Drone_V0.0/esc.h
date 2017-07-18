@@ -26,10 +26,6 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-extern uint16_t yawAdjustment;
-extern uint16_t pitchAdjustment;
-extern uint16_t rollAdjustment;
-
 extern uint16_t FlSpeed;
 extern uint16_t BlSpeed;
 extern uint16_t BrSpeed;

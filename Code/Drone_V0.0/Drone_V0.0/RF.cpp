@@ -1,6 +1,6 @@
 ﻿#include "RF.h"
 
-uint16_t ch_1_pw = 0, ch_2_pw = 0, ch_3_pw = 0, ch_4_pw = 0;
+int16_t ch_1_pw = CHANNEL_1_MEAN, ch_2_pw = CHANNEL_2_MEAN, ch_3_pw = CHANNEL_3_MIN_PWM, ch_4_pw = CHANNEL_4_MEAN;
 bool RFInitialized = false;
 AvgTypeDef RF_filter[4]; //one for each channel
 
@@ -117,14 +117,30 @@ float getDesiredAngleFromRf(uint8_t desiredAngle)
 	switch(desiredAngle)
 	{
 		case YAW:
-			return ((float)ch_4_pw-CHANNEL_4_MEAN)/CHANNEL_4_RANGE*2*MAX_YAW_CONTROL;
+			if (ch_4_pw > MIN_PWM_DETECT)
+			{
+				return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER;
+			}
+			else return 0;
+			break;
 		case PITCH:
-			return ((float)ch_2_pw-CHANNEL_2_MEAN)/CHANNEL_2_RANGE*2*MAX_PITCH_CONTROL;
+			if (ch_2_pw > MIN_PWM_DETECT)
+			{
+				return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
+			}
+			else return 0;
+			break;		
 		case ROLL:
-			return ((float)ch_1_pw-CHANNEL_1_MEAN)/CHANNEL_1_RANGE*2*MAX_ROLL_CONTROL;
+			if (ch_1_pw > MIN_PWM_DETECT)
+			{
+				return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
+			}
+			else return 0;
+			break;
 		default:
 			turnDebugLedOn(1);
 			return 0;
+			break;
 
 	}
 }

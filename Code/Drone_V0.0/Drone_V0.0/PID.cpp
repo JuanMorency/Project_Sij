@@ -24,6 +24,8 @@ PID::PID(uint8_t pidId, float kp, float ki, float kd)
 	this->kp = kp;
 	this->ki = ki;
 	this->kd = kd;
+	adjustmentRaw = 0;
+	adjustmentEsc = 0;
 }
 
 
@@ -33,7 +35,7 @@ PID::PID(uint8_t pidId, float kp, float ki, float kd)
  * @param target : desired value for the PID loop to converge to
  * @return control variable of the PID
  */
-float PID::updatePid(float current, float target)
+void PID::updatePid(float current, float target)
 {
 	// Calculate error
 	error = target - current;
@@ -41,10 +43,15 @@ float PID::updatePid(float current, float target)
 	// Calculate the integral
 	integral = integral + error;
 	//set max integral to avoid too much accumulation when drone does not move
-	//if(integral > MAX_PID_INTEGRAL)
-	//{
-		//integral = MAX_PID_INTEGRAL;
-	//}
+	if(integral >= MAX_PID_INTEGRAL)
+	{
+		integral = MAX_PID_INTEGRAL;
+	}
+	else if(integral <= -MAX_PID_INTEGRAL)
+	{
+		integral = -MAX_PID_INTEGRAL;
+	}
+
 	
 	// Calculate the derivative
 	derivative = error - lastError;
@@ -53,5 +60,11 @@ float PID::updatePid(float current, float target)
 	lastError = error;
 		
 	// return control variable
-	return (kp*error+ki*integral+kd*derivative);
+	adjustmentRaw = (kp*error+ki*integral+kd*derivative);
+	adjustmentEsc = adjustmentRaw*ESC_INIT_PW/180;
+}
+
+int16_t PID::getAdjustment()
+{
+	return (int16_t)adjustmentEsc;
 }

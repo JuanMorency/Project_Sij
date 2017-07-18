@@ -12,11 +12,17 @@
 #include "esc.h"
 #include "RF.h"
 
-bool escInitialized = false;
 
-uint16_t yawAdjustment = 0;
-uint16_t pitchAdjustment = 0;
-uint16_t rollAdjustment = 0;
+// The ESC should be plugged such that the following rotation is present (seen from top):
+// (CW is for clockwise and CCW is for counterclockwise)
+// Front left	: CW
+// Front right	: CCW
+// Back right	: CW
+// Back left	: CCW
+
+
+
+bool escInitialized = false;
 
 uint16_t FlSpeed = ESC_INIT_PW;
 uint16_t BlSpeed = ESC_INIT_PW;
@@ -24,7 +30,6 @@ uint16_t BrSpeed = ESC_INIT_PW;
 uint16_t FrSpeed = ESC_INIT_PW;
 
 /*
-
 la fréquence du PWM est égale à Fclk_IO/(prescaler*2*TOP)
 fréquence désiré = entre 100 et 500Hz
 Comme on veut un maximum de résolution (le plus grand top possible)
@@ -106,7 +111,7 @@ void initializeESC()
 	}
   
   ////delay to make sure the ESC are armed before playing with the PWM
-  //_delay_ms(DELAY_ESC);
+  _delay_ms(DELAY_ESC);
   
   //Timer 4/5 set to 0
   TCNT4 = 0;

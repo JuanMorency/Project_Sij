@@ -199,7 +199,7 @@ ISR(USART0_TX_vect) {
 ISR(TWI_vect) {
 	if(TwiInterruptInitialized)
 	{
-		if(handleFsmI2c() == 0) // I2C read has completed successfully
+		if(handleFsmI2c() == 0) // I2C read/write has completed successfully
 		{			
 			// Update the current values in the interrupt buffers
 			switch(lastRead)

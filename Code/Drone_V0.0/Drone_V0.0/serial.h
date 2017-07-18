@@ -30,12 +30,14 @@
 
 #define RF_SERIAL_SPEED_DIVIDER 50
 #define IMU_SERIAL_SPEED_DIVIDER 500
+#define ESC_SERIAL_SPEED_DIVIDER 20
 
 extern bool serialInitialized;
 extern char buffer[200];
 extern char floatbuff[10];
 extern volatile int RFserialSlowDownCounter;
 extern volatile int IMUserialSlowDownCounter;
+extern volatile int EscSerialSlowDownCounter;
 
 
 void initSerial(unsigned int ubrr);

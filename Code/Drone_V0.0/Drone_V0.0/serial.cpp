@@ -20,6 +20,7 @@ char buffer[200];
 char floatbuff[10];
 volatile int RFserialSlowDownCounter = 0;
 volatile int IMUserialSlowDownCounter = 0;
+volatile int EscSerialSlowDownCounter = 0;
 
 /**
 * @brief initializes the GPIOs for the LCD and clean up the display
