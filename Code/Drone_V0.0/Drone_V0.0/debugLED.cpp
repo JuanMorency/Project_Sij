@@ -42,7 +42,7 @@ void turnDebugLedOff(uint8_t ledNumber)
 	*/
 void turnAllDebugLedOff()
 {
-	PORTC = 0xFF;
+	PORTC = 0x00;
 }
 
 /**
@@ -51,7 +51,7 @@ void turnAllDebugLedOff()
 	*/
 void turnDebugLedOnAndWait(uint8_t ledNumber)
 {
-	PORTC = 0xFF;
+	PORTC |= 1<<ledNumber;
 	while(1);
 }
 

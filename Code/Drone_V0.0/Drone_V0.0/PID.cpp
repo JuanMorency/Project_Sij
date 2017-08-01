@@ -26,6 +26,11 @@ PID::PID(uint8_t pidId, float kp, float ki, float kd)
 	this->kd = kd;
 	adjustmentRaw = 0;
 	adjustmentEsc = 0;
+	desiredAngle = 0;
+	if (pidId == YAW)
+	{
+		desiredAngle = yaw;
+	}
 }
 
 
@@ -67,4 +72,27 @@ void PID::updatePid(float current, float target)
 int16_t PID::getAdjustment()
 {
 	return (int16_t)adjustmentEsc;
+}
+
+void PID::setDesiredAngle(float angle)
+{
+	if(angle >= 180)
+	{
+		desiredAngle = angle - 360;
+	}
+	else if(angle <= -180)
+	{
+		desiredAngle = angle + 360;
+	}
+	else
+	{
+		desiredAngle = angle;		
+	}
+
+
+}
+
+float PID::getDesiredAngle()
+{
+	return desiredAngle;
 }

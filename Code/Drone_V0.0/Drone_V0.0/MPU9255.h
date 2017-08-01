@@ -175,10 +175,12 @@ class MPU9255 {
 		
         int16_t getTemperature();
         XYZ16_TypeDef getRotation();
+		XYZ16_TypeDef getRawRotation();
 		int16_t getRotationX();
 		int16_t getRotationY();
 		int16_t getRotationZ();
         XYZ16_TypeDef getAcceleration();
+		XYZ16_TypeDef getRawAcceleration();
 		int16_t getAccelerationX();
 		int16_t getAccelerationY();
 		int16_t getAccelerationZ();
@@ -186,6 +188,8 @@ class MPU9255 {
 		void setRawAcceleration(XYZ16_TypeDef inputAcc);
 		void setRawRotation(XYZ16_TypeDef inputGyr);
 		void setRawTemperature(uint16_t inputTemp);
+		
+		void measureMeanRawAccelerationAndRotation();
 		
 		
     private:

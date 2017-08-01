@@ -105,13 +105,15 @@ class AK8963 {
         void reset();
 		void readAdjustment();
 		XYZ16_TypeDef getMagneticField();
+		XYZ16_TypeDef getRawMagneticField();
 		int16_t getMagneticFieldX();
 		int16_t getMagneticFieldY();
 		int16_t getMagneticFieldZ();
 		void calculateMag();
 		void updateRawData();
 		void setRawMagneticField(XYZ16_TypeDef inputMag);
-		
+		void measureMeanRawMagneticField();
+				
     private:
         uint8_t devAddr;
         uint8_t buffer[7];
@@ -119,6 +121,7 @@ class AK8963 {
 		//mag is in milliGauss
 		//Earth magnetic field is around 530 milligauss at our location
 		XYZ16_TypeDef mag, magRaw, adjustmentRaw, bias;
+
 };
 
 #endif /* _AK8963_H_ */

@@ -42,7 +42,6 @@ void MPU9255::initialize() {
 	{
 		turnDebugLedOn(1);
 	}
-	
 	writeI2C(devAddr,MPU9255_RA_GYRO_CONFIG, MPU9255_GYRO_FS_1000<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG, MPU9255_ACCEL_FS_2<<3);
 	writeI2C(devAddr,MPU9255_RA_ACCEL_CONFIG_2, MPU9255_DLPF_BW_5); //set low pass filter for acc to 5 Hz bandwidth
@@ -187,6 +186,15 @@ XYZ16_TypeDef MPU9255::getRotation()
 }
 
 /**
+  * @brief  Returns raw gyroscope measurement
+  * @retval XYZ16_TypeDef of the rotation
+  */
+XYZ16_TypeDef MPU9255::getRawRotation()
+{
+	return this->gyrRaw;
+}
+
+/**
   * @brief  Returns X gyroscope measurement
   * @retval int16_t of the rotation
   */
@@ -211,6 +219,16 @@ int16_t MPU9255::getRotationY()
 int16_t MPU9255::getRotationZ()
 {
 	return this->gyr.Z;
+}
+
+
+/**
+  * @brief  Returns accelerometer measurement
+  * @retval XYZ16_TypeDef of the raw accelerometer
+  */
+XYZ16_TypeDef MPU9255::getRawAcceleration()
+{
+	return this->accRaw;
 }
 
 
@@ -275,4 +293,33 @@ int16_t MPU9255::getAccelerationZ()
  void MPU9255::setRawTemperature(uint16_t inputTemp)
 {
 	this->tempRaw = inputTemp;
+}
+
+/**
+  * @brief  Measures the mean acceleration and rotation from 10 samples and stores it in acc/gyr
+  */
+void MPU9255::measureMeanRawAccelerationAndRotation()
+{
+	static int32_t sumAccX = 0, sumAccY = 0, sumAccZ = 0;
+	static int32_t sumRotX = 0, sumRotY = 0, sumRotZ = 0;
+	for(int i = 0; i < 5; i++)
+	{
+		updateRawData();
+	}
+	for(int i = 0; i < 10; i++)
+	{
+		updateRawData();
+		sumAccX += accRaw.X;
+		sumAccY += accRaw.Y;
+		sumAccZ += accRaw.Z;
+		sumRotX += gyrRaw.X;
+		sumRotY += gyrRaw.Y;
+		sumRotZ += gyrRaw.Z;
+	}
+	accRaw.X = sumAccX/10;
+	accRaw.Y = sumAccY/10;
+	accRaw.Z = sumAccZ/10;
+	gyrRaw.X = sumRotX/10;
+	gyrRaw.Y = sumRotY/10;
+	gyrRaw.Z = sumRotZ/10;
 }

@@ -42,6 +42,7 @@ void AK8963::initialize() {
 	bias.X=AK8973_MAG_OFFSET_X;
 	bias.Y=AK8973_MAG_OFFSET_Y;
 	bias.Z=AK8973_MAG_OFFSET_Z;
+	
 	ak8963Initialized = true; 
 }
 
@@ -138,6 +139,15 @@ XYZ16_TypeDef AK8963::getMagneticField()
 }
 
 /**
+  * @brief  Returns the raw magnetic field in an int_16 format. 
+  * the updateRawData must be called before this to ensure the latest data
+  */
+XYZ16_TypeDef AK8963::getRawMagneticField()
+{
+	return this->magRaw;
+}
+
+/**
   * @brief  Returns the X magnetic field in an int_16 format. 
   * the updateRawData must be called before this to ensure the latest data
   */
@@ -186,4 +196,28 @@ void AK8963::calculateMag()
 void AK8963::setRawMagneticField(XYZ16_TypeDef inputMag)
 {
 	this->magRaw = inputMag;
+}
+
+/**
+  * @brief  Measures the mean magnetic field from 10 samples and stores it in mag
+  */
+void AK8963::measureMeanRawMagneticField()
+{
+	static int32_t sumMagX = 0, sumMagY = 0, sumMagZ = 0;
+	//ignore the couple first values
+	for(int i = 0; i < 10; i++)
+	{
+		updateRawData();
+	}
+	for(int i = 0; i < 10; i++)
+	{
+		updateRawData();
+		calculateMag();
+		sumMagX += magRaw.X;
+		sumMagY += magRaw.Y;
+		sumMagZ += magRaw.Z;
+	}
+		magRaw.X = sumMagX/10;
+		magRaw.Y = sumMagY/10;
+		magRaw.Z = sumMagZ/10;
 }

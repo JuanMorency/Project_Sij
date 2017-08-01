@@ -46,8 +46,8 @@ int main()
 	initRF();
 	initializeESC();
 	//initWS2812();
-	initializeI2C();
-	imu.initialize();
+	//initializeI2C();
+	//imu.initialize();
 	initSerial(MYUBRR);
 	startInterrupt();
 	//After everything is initialized, start interrupts
@@ -61,9 +61,9 @@ int main()
 	while(1)
 	{
 		imu.updateImuAndMadgwick();
-
 		if(flagSerial)
 		{
+			
 			flagSerial = false;
 
 			// print IMU sensor values
@@ -74,7 +74,7 @@ int main()
 			//imu.ak8963.getMagneticFieldX(), imu.ak8963.getMagneticFieldY(), imu.ak8963.getMagneticFieldZ(), imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature());
 				
 			//// print quaternions
-			//
+			//sprintf(buffer, " ");
 			//FloatToString(floatbuff, q0);
 			//strcat (buffer,"\t\t q0:");
 			//strcat (buffer,floatbuff);
@@ -102,6 +102,7 @@ int main()
 			//strcat (buffer,floatbuff);
 			//
 			//
+			
 			sprintf(buffer,"yawAdj:%i\tPitchAdj:%i\tRollAdj:%i\t", yawPid.getAdjustment(),
 			pitchPid.getAdjustment(), rollPid.getAdjustment());
 			FloatToString(floatbuff, yaw);
@@ -176,18 +177,17 @@ int main()
 			//strcat (buffer,"\n");
 			//
 			//serialTransmit(buffer);
-			
-			
 		}
 
 		//ESC handler
 		if(flagEsc)
 		{
 			flagEsc = 0;
-			if(RFInitialized)
+			if(flagRfOn)
 			{
 				//calculate the PID adjustments
-				yawPid.updatePid(yaw,getDesiredAngleFromRf(YAW));
+				yawPid.setDesiredAngle(yawPid.getDesiredAngle() + getDesiredAngleFromRf(YAW));	
+				yawPid.updatePid(yaw,yawPid.getDesiredAngle());
 				pitchPid.updatePid(pitch,-getDesiredAngleFromRf(PITCH));
 				rollPid.updatePid(roll,getDesiredAngleFromRf(ROLL));
 	
@@ -222,17 +222,19 @@ int main()
 			}
 			else
 			{
+				//here we will need to implement a safe landing function. For now just send 0 signal to the ESCs
 				escFL.set(ESC_INIT_PW);
 				escBL.set(ESC_INIT_PW);
 				escBR.set(ESC_INIT_PW);
 				escFR.set(ESC_INIT_PW);
 			}
-
-			//escFL.set(ch_3_pw);
-			//escBL.set(ch_3_pw);
-			//escBR.set(ch_3_pw);
-			//escFR.set(ch_3_pw);
+			
+			//escFL.set(ESC_INIT_PW + (ch_3_pw - CHANNEL_3_MIN_PWM)*0.95);
+			//escBL.set(ESC_INIT_PW + (ch_3_pw - CHANNEL_3_MIN_PWM)*1.05);
+			//escBR.set(ESC_INIT_PW + (ch_3_pw - CHANNEL_3_MIN_PWM)*1.05);
+			//escFR.set(ESC_INIT_PW + (ch_3_pw - CHANNEL_3_MIN_PWM)*1);
 		}
+		
 		
 		if(flagWs2812)
 		{
@@ -254,6 +256,22 @@ int main()
 			if (directionUp) i++;
 			else i--;
 		}
-	}
+		
+		//verify is rf is still active and if not turn RFon flag off to send default values to ESC	
+		if(flagRfTimeout)
+		{
+			flagRfTimeout = false;
+			if(rfActivity)
+			{
+				rfActivity = false;  
+				flagRfOn = true;
+			}
+			else
+			{
+				flagRfOn = false;
+			}
+		}
+
+	} //while(1)
 	return 0;
 }

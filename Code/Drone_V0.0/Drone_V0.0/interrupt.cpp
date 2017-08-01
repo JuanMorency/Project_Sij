@@ -5,6 +5,7 @@ volatile bool flagWs2812 = 0;
 volatile bool flagSerial = 0;
 volatile bool flagAk8963Fsm = 0;
 volatile bool flagBmp180Fsm = 0;
+volatile bool flagRfTimeout = 0;
 
 XYZ16_TypeDef currentRawAcc;
 XYZ16_TypeDef currentRawGyr; 
@@ -58,20 +59,23 @@ void startInterrupt()
 	* @brief ISR for reading the pwm from the radio receiver. 
 	*/
 ISR(PCINT1_vect) {
+	rfActivity = true;
 	if(RFInitialized)
 	{
 		handleFSMRF();
-					
-		if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
-		{
-			RFserialSlowDownCounter = 0;
+
+		//// Print the RF values 
+		//// don't delete, useful for setting the range of RF					
+		//if (RFserialSlowDownCounter >= RF_SERIAL_SPEED_DIVIDER)
+		//{
+			//RFserialSlowDownCounter = 0;
 			//sprintf(buffer, "1:%u 2:%u 3:%u 4:%u \n", ch_1_pw, ch_2_pw, ch_3_pw, ch_4_pw);
 			//serialTransmit(buffer);
-		}
-		else
-		{
-			RFserialSlowDownCounter++;
-		}
+		//}
+		//else
+		//{
+			//RFserialSlowDownCounter++;
+		//}
 	}
 }
 
@@ -119,6 +123,7 @@ ISR(TIMER0_COMPA_vect){
 	static unsigned int serialFlagCount;
 	static unsigned int Ak8963FlagCount;
 	static unsigned int Bmp180FlagCount;
+	static unsigned int RfTimeOutCount;
 
 	if(escInitialized == true){
 		if(EscFlagCount >= ESC_PERIOD){
@@ -169,6 +174,18 @@ ISR(TIMER0_COMPA_vect){
 			Bmp180FlagCount++;
 		}
 	}
+
+	if(RFInitialized == true){
+		if(RfTimeOutCount >= RF_TIMEOUT_PERIOD){
+			flagRfTimeout = true;
+			RfTimeOutCount = 0;
+		}
+		else {
+			RfTimeOutCount++;
+		}
+	}
+
+
 }
 
 

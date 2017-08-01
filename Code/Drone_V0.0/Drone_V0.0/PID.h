@@ -15,6 +15,7 @@
 #include "debugLED.h"
 #include "serial.h"
 #include "esc.h"
+#include "MadgwickAHRS.h"
 
 #define ROLL_KP 0.89f
 #define ROLL_KI 0.01f
@@ -38,11 +39,14 @@ class PID
 		uint8_t pidId;
 		void updatePid(float current, float target);
 		int16_t getAdjustment();
+		void setDesiredAngle(float angle);
+		float getDesiredAngle();
 	private:
 		float kp, ki, kd;
 		float integral, error, derivative, lastError;
 		float adjustmentRaw;
 		float adjustmentEsc;
+		float desiredAngle;
 };
 
 

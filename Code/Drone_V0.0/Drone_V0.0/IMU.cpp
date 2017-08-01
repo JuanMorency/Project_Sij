@@ -16,6 +16,65 @@ void IMU::initialize()
 	mpu9255.initialize();
 	ak8963.initialize();
 	bmp180.initialize();
+	
+	//not yet ready
+	// Measure the initial yaw orientation
+	//
+	//mpu9255.measureMeanRawAccelerationAndRotation();
+	//ak8963.measureMeanRawMagneticField();
+	//currentRawAcc = mpu9255.getRawAcceleration();
+	//currentRawGyr = mpu9255.getRawRotation();
+	//currentRawMag = ak8963.getRawMagneticField();
+	//sei();
+	//for(int i = 0; i < 10; i++)
+	//{
+		//mpu9255DataReady = true;
+		//updateImuAndMadgwick();
+		//_delay_ms(1);
+		//ak8963DataReady = true;
+		//updateImuAndMadgwick();
+		//_delay_ms(1);
+		//sprintf(buffer, "test");
+		//FloatToString(floatbuff, deltaTimeMpu9255);
+		//strcat (buffer,"\t\t delta1:");
+		//strcat (buffer,floatbuff);
+		//FloatToString(floatbuff, deltaTimeAk8963);
+		//strcat (buffer,"\t delta2:");
+		//strcat (buffer,floatbuff);
+		//serialTransmit(buffer);
+		//_delay_ms(1);
+	//}
+//
+	////print yaw pitch roll
+//
+	//// print quaternions
+	//sprintf(buffer, " MEAN STARTING:");
+	//FloatToString(floatbuff, q0);
+	//strcat (buffer,"\t\t q0:");
+	//strcat (buffer,floatbuff);
+	//FloatToString(floatbuff, q1);
+	//strcat (buffer,"\t q1:");
+	//strcat (buffer,floatbuff);
+	//FloatToString(floatbuff, q2);
+	//strcat (buffer,"\t q2:");
+	//strcat (buffer,floatbuff);
+	//FloatToString(floatbuff, q3);
+	//strcat (buffer,"\t q3:");
+	//strcat (buffer,floatbuff);
+	//cli();			
+	//sprintf(buffer, " MEAN STARTING:");
+	//FloatToString(floatbuff, roll);
+	//strcat (buffer,"roll:");
+	//strcat (buffer,floatbuff);
+	//FloatToString(floatbuff, pitch);
+	//strcat (buffer,"\t pitch:");
+	//strcat (buffer,floatbuff);
+	//FloatToString(floatbuff, yaw);
+	//strcat (buffer,"\t yaw:");
+	//strcat (buffer,floatbuff);
+	//strcat (buffer,"\n");
+	//serialTransmit(buffer);
+	
 	imuInitialized  = true;
 }
 

@@ -111,7 +111,7 @@ void initializeESC()
 	}
   
   ////delay to make sure the ESC are armed before playing with the PWM
-  _delay_ms(DELAY_ESC);
+  //_delay_ms(DELAY_ESC);
   
   //Timer 4/5 set to 0
   TCNT4 = 0;

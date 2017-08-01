@@ -47,12 +47,15 @@
 // 60 Hz which results in 10 Hz real update frequency
 #define BMP180_PERIOD 131
 
+//50 Hz cannot be faster than the rate at which the 4 channel RF is sent, which is around 500 Hz for now
+#define RF_TIMEOUT_PERIOD 156
 
 extern volatile bool flagEsc;
 extern volatile bool flagWs2812;
 extern volatile bool flagSerial;
 extern volatile bool flagAk8963;
 extern volatile bool flagBmp180;
+extern volatile bool flagRfTimeout;
 
 extern volatile unsigned long timer0OverflowCountAk8963, timer0OverflowCountMpu9255, timer0OverflowCountBmp180;
 extern float deltaTimeAk8963, deltaTimeMpu9255, deltaTimeBmp180; // time taken for the between polls of sensors

@@ -233,6 +233,7 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	/*Send start condition*/
 	I2Cstart();
 	WaitForTWINT();
+	turnDebugLedOn(3);
 	switch ((twst = TW_STATUS))
 	{
 		case TW_REP_START:		/* OK, but should not happen */

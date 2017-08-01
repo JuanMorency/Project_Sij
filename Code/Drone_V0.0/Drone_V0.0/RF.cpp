@@ -3,6 +3,8 @@
 int16_t ch_1_pw = CHANNEL_1_MEAN, ch_2_pw = CHANNEL_2_MEAN, ch_3_pw = CHANNEL_3_MIN_PWM, ch_4_pw = CHANNEL_4_MEAN;
 bool RFInitialized = false;
 AvgTypeDef RF_filter[4]; //one for each channel
+bool flagRfOn = false;
+bool rfActivity = false;
 
 uint8_t channel1OverflowCount = 0, channel2OverflowCount = 0, channel3OverflowCount = 0, channel4OverflowCount = 0;
 /*
@@ -45,7 +47,7 @@ void initRF()
     * @param none
 	* @retval None
 	*/
-void handleFSMRF(void){
+void handleFSMRF(void){	
 	//initialize variables
 	static bool last_ch_1 = false, last_ch_2 = false, last_ch_3 = false, last_ch_4 = false;
 	static uint16_t count_ch_1, count_ch_2, count_ch_3, count_ch_4;
@@ -112,28 +114,64 @@ void handleFSMRF(void){
 
 }
 
-float getDesiredAngleFromRf(uint8_t desiredAngle)
+float getDesiredAngleFromRf(uint8_t angleId)
 {
-	switch(desiredAngle)
+	switch(angleId)
 	{
 		case YAW:
 			if (ch_4_pw > MIN_PWM_DETECT)
 			{
-				return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER;
+				if (ch_4_pw-CHANNEL_4_MEAN > YAW_RF_THRESHOLD)
+				{
+					return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER*DESIRED_YAW_SENSITIVITY_TO_RF_MULTIPLIER;				
+				}
+				else if (ch_4_pw-CHANNEL_4_MEAN < -YAW_RF_THRESHOLD)
+				{
+					return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER*DESIRED_YAW_SENSITIVITY_TO_RF_MULTIPLIER;
+				}
+				else 
+				{
+					return 0;
+				}
 			}
-			else return 0;
+			else 
+			{
+				return 0;
+			}
 			break;
 		case PITCH:
 			if (ch_2_pw > MIN_PWM_DETECT)
-			{
-				return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
+			{			
+				if (ch_2_pw-CHANNEL_2_MEAN > PITCH_RF_THRESHOLD)
+				{
+					return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
+				}
+				else if (ch_2_pw-CHANNEL_2_MEAN < -PITCH_RF_THRESHOLD)
+				{
+					return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
+				}
+				else
+				{
+					return 0;
+				}
 			}
 			else return 0;
 			break;		
 		case ROLL:
 			if (ch_1_pw > MIN_PWM_DETECT)
 			{
-				return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
+				if (ch_1_pw-CHANNEL_1_MEAN > ROLL_RF_THRESHOLD)
+				{
+					return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
+				}
+				else if (ch_1_pw-CHANNEL_1_MEAN < -ROLL_RF_THRESHOLD)
+				{
+					return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
+				}
+				else
+				{
+					return 0;
+				}
 			}
 			else return 0;
 			break;
