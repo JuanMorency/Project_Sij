@@ -1,21 +1,28 @@
-//=====================================================================================================
-// MadgwickAHRS.h
-//=====================================================================================================
-//
-// Implementation of Madgwick's IMU and AHRS algorithms.
-// See: http://www.x-io.co.uk/node/8#open_source_ahrs_and_imu_algorithms
-//
-// Date			Author          Notes
-// 29/09/2011	SOH Madgwick    Initial release
-// 02/10/2011	SOH Madgwick	Optimised for reduced CPU load
-//
-//=====================================================================================================
+/**
+******************************************************************************
+* File Name         : MadgwickAHRS.h
+* Description       : header file for MadgwickAHRS.cpp
+* Author			: SOH Madgwick, Juan Morency Trudel (Adaptation atmega2560 quadcopter)
+* Version           : 1.0.0
+* Date				:   29/09/2011  Initial release
+						02/10/2011 Optimised for reduced CPU load
+******************************************************************************
+*/
+
+
+
 #ifndef MadgwickAHRS_h
 #define MadgwickAHRS_h
 
 #include <math.h>
 #include "debugLED.h"
 #include "interrupt.h"
+
+
+#define PI_FLOAT     3.14159265f
+#define PIBY2_FLOAT  1.5707963f
+
+#define betaDef		0.5f		// 2 * proportional gain
 
 //----------------------------------------------------------------------------------------------------
 // Variable declaration
@@ -30,6 +37,8 @@ extern volatile float roll, pitch, yaw;	// Euler Angles
 //---------------------------------------------------------------------------------------------------
 // Function declarations
 
+
+float invSqrt(float x);
 void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
 void MadgwickAHRSupdateIMU(float ax, float ay, float az, float gx, float gy, float gz);
 void calcEulerAngles(); //in degrees

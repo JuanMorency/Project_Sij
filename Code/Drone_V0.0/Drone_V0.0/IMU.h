@@ -1,3 +1,14 @@
+/**
+******************************************************************************
+* File Name         : IMU.h
+* Description       : header file for IMU.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
+
 #ifndef IMU_H
 #define IMU_H
 

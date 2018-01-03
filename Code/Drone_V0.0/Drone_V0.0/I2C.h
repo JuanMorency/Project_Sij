@@ -32,6 +32,8 @@ uint8_t writeI2C(uint8_t phys_address, uint8_t address, uint8_t data);
 uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t length);
 uint8_t readI2C(uint8_t phys_address, uint8_t address);
 uint8_t handleFsmI2c();
+uint8_t readI2cBq76925(uint8_t phys_address);
+uint8_t writeI2cBq76925(uint8_t phys_address, uint8_t data);
 
 enum
 {

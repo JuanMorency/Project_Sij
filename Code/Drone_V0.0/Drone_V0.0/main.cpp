@@ -3,7 +3,7 @@
 * File Name         : main.cpp
 * Description       : Full sensor acquisition, filtering fusion and PID controller for a 600 mm drone. This software also controls outputs to WS2812B 
 *						LED strips, the motor controllers and serial communication for debugging. This code is meant to work with an atmega2560 and an MPU9255 AHRS.  
-* Author			: Juan Morency Trudel, Simon Poirier.
+* Author			: Juan Morency Trudel, Simon Poirier
 * Version           : 1.0.0
 * Date				: June 2017
 ******************************************************************************
@@ -32,6 +32,14 @@
 
 int main()
 {	
+	//initializeI2C();
+	//PORTC = 0x01;
+	//
+	//readI2cBq76925(0x27<<1);	
+
+	//_delay_ms(100000);
+	
+	
 	//create ESC objects
 	Esc escFL(FR), escBL(BR),escBR(BL), escFR(FL);
 	
@@ -41,38 +49,37 @@ int main()
 	
 	//create IMU object
 	IMU imu;
-		
-	//Initialize modules; comment out to deactivate feature
-	initRF();
-	initializeESC();
-	//initWS2812();
-	//initializeI2C();
-	//imu.initialize();
-	initSerial(MYUBRR);
-	startInterrupt();
-	//After everything is initialized, start interrupts
-	
-	
-	//PID objects
+
+	//create PID objects
 	PID yawPid(YAW,YAW_KP,YAW_KI,YAW_KD);
 	PID pitchPid(PITCH,PITCH_KP,PITCH_KI,PITCH_KD);
 	PID rollPid(ROLL,ROLL_KP,ROLL_KI,ROLL_KD);
+	
+	//Initialize modules; comment out to deactivate feature
+	//initRF();
+	//initializeESC();
+	//initWS2812();
+	initializeI2C();
+	imu.initialize();
+	initSerial(MYUBRR);
+	
+	//After everything is initialized, start interrupts	
+	startInterrupt();
 	
 	while(1)
 	{
 		imu.updateImuAndMadgwick();
 		if(flagSerial)
 		{
-			
 			flagSerial = false;
 
 			// print IMU sensor values
+			//sprintf(buffer, " ");
 			
-			//sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
-			//imu.mpu9255.getAccelerationX(), imu.mpu9255.getAccelerationY(), imu.mpu9255.getAccelerationZ(), 
-			//imu.mpu9255.getRotationX(), imu.mpu9255.getRotationY(), imu.mpu9255.getRotationZ(), 
-			//imu.ak8963.getMagneticFieldX(), imu.ak8963.getMagneticFieldY(), imu.ak8963.getMagneticFieldZ(), imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature());
-				
+			sprintf(buffer, "ACC: x:%i y:%i z:%i\t\tGYR: x:%i y:%i z:%i\t\tMAG: x:%i y:%i z:%i\t\tP:%li A:%li T:%li",
+			imu.mpu9255.getAccelerationX(), imu.mpu9255.getAccelerationY(), imu.mpu9255.getAccelerationZ(), 
+			imu.mpu9255.getRotationX(), imu.mpu9255.getRotationY(), imu.mpu9255.getRotationZ(), 
+			imu.ak8963.getMagneticFieldX(), imu.ak8963.getMagneticFieldY(), imu.ak8963.getMagneticFieldZ(), imu.bmp180.getPressure(), imu.bmp180.getAltitude(), imu.bmp180.getTemperature());
 			//// print quaternions
 			//sprintf(buffer, " ");
 			//FloatToString(floatbuff, q0);
@@ -100,11 +107,10 @@ int main()
 			//FloatToString(floatbuff, yaw);
 			//strcat (buffer,"\t yaw:");
 			//strcat (buffer,floatbuff);
-			//
-			//
 			
-			sprintf(buffer,"yawAdj:%i\tPitchAdj:%i\tRollAdj:%i\t", yawPid.getAdjustment(),
-			pitchPid.getAdjustment(), rollPid.getAdjustment());
+			//sprintf(buffer,"yawAdj:%i\tPitchAdj:%i\tRollAdj:%i\t", yawPid.getAdjustment(),
+			//pitchPid.getAdjustment(), rollPid.getAdjustment());
+			
 			FloatToString(floatbuff, yaw);
 			strcat (buffer,"\tyaw:");
 			strcat (buffer,floatbuff);
@@ -115,54 +121,55 @@ int main()
 			strcat (buffer,"\troll:");
 			strcat (buffer,floatbuff);
 			
-			////Print sensor update rate
-			//
-			//strcat (buffer,"\t\trates: ");
-			////calculate and print the update frequency of AK8963
-			//if (sumAk8963 != 0)
-			//{
-				//FloatToString(floatbuff, (float)sumCountAk8963/sumAk8963);
-				//strcat (buffer,"Mag:");
-				//strcat (buffer,floatbuff);
-			//}
-			//else
-			//{
-				//strcat (buffer,"Mag:Too fast ");
-			//}
-			////reset the counters for update rate calculations
-			//sumCountAk8963 = 0;
-			//sumAk8963 = 0;
-			//
-			//
-			////calculate and print the update frequency of MPU9255
-			//if (sumMpu9255 != 0)
-			//{
-				//FloatToString(floatbuff, (float)sumCountMpu9255/sumMpu9255);
-				//strcat (buffer,"\t Acc: ");
-				//strcat (buffer,floatbuff);
-			//}
-			//else
-			//{
-				//strcat (buffer,"\t Acc:Too fast ");
-			//}
-			////reset the counters for update rate calculations
-			//sumCountMpu9255 = 0;
-			//sumMpu9255 = 0;
-//
-			////calculate and print the update frequency of BMP180
-			//if (sumBmp180 != 0)
-			//{
-				//FloatToString(floatbuff, (float)sumCountBmp180/sumBmp180);
-				//strcat (buffer,"\t Pre:");
-				//strcat (buffer,floatbuff);
-			//}
-			//else
-			//{
-				//strcat (buffer,"\t Pre:Too slow ");
-			//}
-			////reset the counters for update rate calculations
-			//sumCountBmp180 = 0;
-			//sumBmp180 = 0;
+
+			//Print sensor update rate
+			
+			strcat (buffer,"\t\trates: ");
+			//calculate and print the update frequency of AK8963
+			if (sumAk8963 != 0)
+			{
+				FloatToString(floatbuff, (float)sumCountAk8963/sumAk8963);
+				strcat (buffer,"Mag:");
+				strcat (buffer,floatbuff);
+			}
+			else
+			{
+				strcat (buffer,"Mag:Too slow ");
+			}
+			//reset the counters for update rate calculations
+			sumCountAk8963 = 0;
+			sumAk8963 = 0;
+			
+			
+			//calculate and print the update frequency of MPU9255
+			if (sumMpu9255 != 0)
+			{
+				FloatToString(floatbuff, (float)sumCountMpu9255/sumMpu9255);
+				strcat (buffer,"\t Acc: ");
+				strcat (buffer,floatbuff);
+			}
+			else
+			{
+				strcat (buffer,"\t Acc:Too slow ");
+			}
+			//reset the counters for update rate calculations
+			sumCountMpu9255 = 0;
+			sumMpu9255 = 0;
+
+			//calculate and print the update frequency of BMP180
+			if (sumBmp180 != 0)
+			{
+				FloatToString(floatbuff, (float)sumCountBmp180/sumBmp180);
+				strcat (buffer,"\t Pre:");
+				strcat (buffer,floatbuff);
+			}
+			else
+			{
+				strcat (buffer,"\t Pre:Too slow ");
+			}
+			//reset the counters for update rate calculations
+			sumCountBmp180 = 0;
+			sumBmp180 = 0;
 
 			strcat (buffer,"\n");
 			serialTransmit(buffer);

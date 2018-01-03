@@ -1,4 +1,14 @@
-﻿#include "RF.h"
+﻿/**
+******************************************************************************
+* File Name         : RF.cpp
+* Description       : Class for RF receiver interface
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: September 2016
+******************************************************************************
+*/
+
+#include "RF.h"
 
 int16_t ch_1_pw = CHANNEL_1_MEAN, ch_2_pw = CHANNEL_2_MEAN, ch_3_pw = CHANNEL_3_MIN_PWM, ch_4_pw = CHANNEL_4_MEAN;
 bool RFInitialized = false;
@@ -8,10 +18,10 @@ bool rfActivity = false;
 
 uint8_t channel1OverflowCount = 0, channel2OverflowCount = 0, channel3OverflowCount = 0, channel4OverflowCount = 0;
 /*
-Channel du radio controller
-http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
+* Channel of radio controller
+* http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 
-*pinout for radio receiver
+* Pinout for radio receiver
 * J2 = CH4
 * J3 = CH3
 * J4 = CH2
@@ -21,9 +31,7 @@ http://www.rcgroups.com/forums/showthread.php?t=1051701#post12275676
 
 /**
 	* @brief set up PCINT1 to trigger interrupt, set up counter 3 to measure the pulse width of the incoming PWM, and
-	initialize variables used to measure PWM and starts the counter
-    * @param none
-	* @retval None
+	* initialize variables used to measure PWM and starts the counter
 	*/
 void initRF()
 {
@@ -44,8 +52,6 @@ void initRF()
 	* from a rising edge to a falling edge. This pulse width is the important information and is stored in the
 	* ch_x_pw variables. The counter always runs to avoid having issues when 2 channels are triggered at the same time
 	* and overflow protection is implemented. 
-    * @param none
-	* @retval None
 	*/
 void handleFSMRF(void){	
 	//initialize variables
@@ -114,6 +120,11 @@ void handleFSMRF(void){
 
 }
 
+/** 
+ * @brief converts the RF value to a degree angle 
+ * @param angleId : YAW, PITCH or ROLL
+ * @return float of the desired angle in degrees
+ */
 float getDesiredAngleFromRf(uint8_t angleId)
 {
 	switch(angleId)
@@ -121,57 +132,33 @@ float getDesiredAngleFromRf(uint8_t angleId)
 		case YAW:
 			if (ch_4_pw > MIN_PWM_DETECT)
 			{
-				if (ch_4_pw-CHANNEL_4_MEAN > YAW_RF_THRESHOLD)
+				if (ch_4_pw-CHANNEL_4_MEAN > YAW_RF_THRESHOLD || ch_4_pw-CHANNEL_4_MEAN < -YAW_RF_THRESHOLD)
 				{
 					return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER*DESIRED_YAW_SENSITIVITY_TO_RF_MULTIPLIER;				
 				}
-				else if (ch_4_pw-CHANNEL_4_MEAN < -YAW_RF_THRESHOLD)
-				{
-					return (float)(ch_4_pw-CHANNEL_4_MEAN)*CHANNEL_4_MULTIPLIER*DESIRED_YAW_SENSITIVITY_TO_RF_MULTIPLIER;
-				}
-				else 
-				{
-					return 0;
-				}
+				else return 0;
 			}
-			else 
-			{
-				return 0;
-			}
+			else return 0;
 			break;
 		case PITCH:
 			if (ch_2_pw > MIN_PWM_DETECT)
 			{			
-				if (ch_2_pw-CHANNEL_2_MEAN > PITCH_RF_THRESHOLD)
+				if (ch_2_pw-CHANNEL_2_MEAN > PITCH_RF_THRESHOLD || ch_2_pw-CHANNEL_2_MEAN < -PITCH_RF_THRESHOLD)
 				{
 					return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
 				}
-				else if (ch_2_pw-CHANNEL_2_MEAN < -PITCH_RF_THRESHOLD)
-				{
-					return (float)(ch_2_pw-CHANNEL_2_MEAN)*CHANNEL_2_MULTIPLIER;
-				}
-				else
-				{
-					return 0;
-				}
+				else return 0;
 			}
 			else return 0;
-			break;		
+			break;
 		case ROLL:
 			if (ch_1_pw > MIN_PWM_DETECT)
 			{
-				if (ch_1_pw-CHANNEL_1_MEAN > ROLL_RF_THRESHOLD)
+				if (ch_1_pw-CHANNEL_1_MEAN > ROLL_RF_THRESHOLD || ch_1_pw-CHANNEL_1_MEAN < -ROLL_RF_THRESHOLD)
 				{
 					return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
 				}
-				else if (ch_1_pw-CHANNEL_1_MEAN < -ROLL_RF_THRESHOLD)
-				{
-					return (float)(ch_1_pw-CHANNEL_1_MEAN)*CHANNEL_1_MULTIPLIER;
-				}
-				else
-				{
-					return 0;
-				}
+				else return 0;
 			}
 			else return 0;
 			break;

@@ -2,7 +2,7 @@
   ******************************************************************************
 	* File Name         : esc.cpp
 	* Description       : Control of the ESC using counters and wave generation
-	* hardware of the AVR as well as a 10 bit phase correct PWM
+	*						hardware of the AVR as well as a 10 bit phase correct PWM
 	* Author			: Juan Morency Trudel, Simon Poirier
 	* Version           : 1.0.0
 	* Date				: September, 2016

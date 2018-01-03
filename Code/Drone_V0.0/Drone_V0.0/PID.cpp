@@ -10,7 +10,6 @@
 
 #include "PID.h"
 
-
 /** 
  * @brief Default constructor
  * @param pidId: the number identifying the PID
@@ -48,6 +47,7 @@ void PID::updatePid(float current, float target)
 	// Calculate the integral
 	integral = integral + error;
 	//set max integral to avoid too much accumulation when drone does not move
+	// might want to increase this max when the drone is actually flying
 	if(integral >= MAX_PID_INTEGRAL)
 	{
 		integral = MAX_PID_INTEGRAL;
@@ -57,7 +57,6 @@ void PID::updatePid(float current, float target)
 		integral = -MAX_PID_INTEGRAL;
 	}
 
-	
 	// Calculate the derivative
 	derivative = error - lastError;
 	
@@ -69,11 +68,20 @@ void PID::updatePid(float current, float target)
 	adjustmentEsc = adjustmentRaw*ESC_INIT_PW/180;
 }
 
+/** 
+ * @brief Getter function for the adjustment variable
+ * @return int16_t of the adjustmentESC value
+ */
 int16_t PID::getAdjustment()
 {
 	return (int16_t)adjustmentEsc;
 }
 
+/** 
+ * @brief sets the desired angle of the object between -180 and 180 degrees
+ * (converts if lower of higher)
+ * @param angle : desired angle
+ */
 void PID::setDesiredAngle(float angle)
 {
 	if(angle >= 180)
@@ -92,6 +100,10 @@ void PID::setDesiredAngle(float angle)
 
 }
 
+/** 
+ * @brief Getter function for the desired angle
+ * @return float of desired angle
+ */
 float PID::getDesiredAngle()
 {
 	return desiredAngle;

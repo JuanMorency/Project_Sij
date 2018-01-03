@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : typeDef.h
+* Description       : typeDefs used throughout the code. 
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef _TYPEDEF_H_
 #define _TYPEDEF_H_
 

@@ -1,7 +1,7 @@
 /**
   ******************************************************************************
 	* File Name         : serial.h
-	* Description       : methods for full duplex serial communication using USB to UART CH340 chip
+	* Description       : header file for serial.cpp
 	* Author			: Juan Morency Trudel
 	* Version           : 1.0.0
 	* Date				: May 2017

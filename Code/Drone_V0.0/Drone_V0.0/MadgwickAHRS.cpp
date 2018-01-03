@@ -1,28 +1,19 @@
-//=====================================================================================================
-// MadgwickAHRS.c
-//=====================================================================================================
-//
-// Implementation of Madgwick's IMU and AHRS algorithms.
-// See: http://www.x-io.co.uk/node/8#open_source_ahrs_and_imu_algorithms
-//
-// Date			Author          Notes
-// 29/09/2011	SOH Madgwick    Initial release
-// 02/10/2011	SOH Madgwick	Optimised for reduced CPU load
-// 19/02/2012	SOH Madgwick	Magnetometer measurement is normalised
-//
-//=====================================================================================================
-
-//---------------------------------------------------------------------------------------------------
-// Header files
+/**
+******************************************************************************
+* File Name         : MadgwickAHRS.c
+* Description       : Implementation of Madgwick's IMU and AHRS algorithms. 
+						See: http://www.x-io.co.uk/node/8#open_source_ahrs_and_imu_algorithms
+* Author			: SOH Madgwick, Juan Morency Trudel (Adaptation atmega2560 quadcopter)
+* Version           : 1.0.0
+* Date				:   29/09/2011  Initial release
+						02/10/2011 Optimised for reduced CPU load
+						19/02/2012 Magnetometer measurement is normalised
+******************************************************************************
+*/
 
 #include "MadgwickAHRS.h"
 #include <math.h>
 #include "debugLED.h"
-
-//---------------------------------------------------------------------------------------------------
-// Definitions
-
-#define betaDef		0.5f		// 2 * proportional gain
 
 //---------------------------------------------------------------------------------------------------
 // Variable definitions
@@ -33,17 +24,14 @@ volatile float roll = 0.0f, pitch = 0.0f, yaw = 0.0f;
 //following convention was used for yaw pitch roll positive direction: https://en.wikipedia.org/wiki/Flight_dynamics_(fixed-wing_aircraft)
 //same as NASA
 
-//---------------------------------------------------------------------------------------------------
-// Function declarations
 
-float invSqrt(float x);
 
-//====================================================================================================
-// Functions
-
-//---------------------------------------------------------------------------------------------------
-// AHRS algorithm update
-
+/**
+* @brief Updates the quaternions using the Madgwick algorithm with accelerometer, gyroscope and magnetometer readings
+* @param ax, ay, az, 3D acceleration
+* @param gx, gy, gz, 3D rotation
+* @param mx, my, mz, 3D magnetic field
+*/
 void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz) {
 	float recipNorm;
 	float s0, s1, s2, s3;
@@ -139,9 +127,14 @@ void MadgwickAHRSupdate(float ax, float ay, float az, float gx, float gy, float 
 	q3 *= recipNorm;
 }
 
-//---------------------------------------------------------------------------------------------------
-// IMU algorithm update
 
+/**
+* @brief Updates the quaternions using the Madgwick algorithm with accelerometer, gyroscope readings only. 
+		To use when the readings from those 2 sensors are available but the magnetometer has not updated yet
+* @param ax, ay, az, 3D acceleration
+* @param gx, gy, gz, 3D rotation
+* @param mx, my, mz, 3D magnetic field
+*/
 void MadgwickAHRSupdateIMU(float ax, float ay, float az, float gx, float gy, float gz) {
 	float recipNorm;
 	float s0, s1, s2, s3;
@@ -211,9 +204,13 @@ void MadgwickAHRSupdateIMU(float ax, float ay, float az, float gx, float gy, flo
 }
 
 //---------------------------------------------------------------------------------------------------
-// Fast inverse square-root
-// See: http://en.wikipedia.org/wiki/Fast_inverse_square_root
-
+// 
+// 
+/**
+* @brief Fast inverse square-root. See: http://en.wikipedia.org/wiki/Fast_inverse_square_root
+* @param x: value to take the square root of
+* @retval the square rooted value
+*/
 float invSqrt(float x) {
 	float halfx = 0.5f * x;
 	float y = x;
@@ -224,13 +221,9 @@ float invSqrt(float x) {
 	return y;
 }
 
-//====================================================================================================
-// END OF CODE
-//====================================================================================================
-
-
-// atan2 and asin functions here seems to be very slow!! 
-// could find a numerical estimation with faster implementation
+/**
+* @brief calculates the Euler angles from the quaternions
+*/
 void calcEulerAngles(){
 	float ysqr = q2 * q2;
 
@@ -251,11 +244,12 @@ void calcEulerAngles(){
 	yaw = atan2_approximation2(t3, t4)*180.0f / M_PI;
 }
 
-
-
-#define PI_FLOAT     3.14159265f
-#define PIBY2_FLOAT  1.5707963f
-// |error| < 0.005
+/**
+* @brief Approximation of the atan function with error lower than 0.005
+* @param y: numerator of the value to take the arctan of
+* @param x: denominator of the value to take the arctan of
+* @retval arctan of the input fraction
+*/
 float atan2_approximation2( float y, float x )
 {
 	if ( x == 0.0f )

@@ -1,6 +1,6 @@
 ﻿/**
 ******************************************************************************
-* File Name         : I2C.h
+* File Name         : I2C.cpp
 * Description       : methods for I2C communication
 * Author			: Juan Morency Trudel
 * Version           : 1.0.0
@@ -233,7 +233,6 @@ uint8_t readI2C(uint8_t phys_address, uint8_t address, uint8_t *data, uint8_t le
 	/*Send start condition*/
 	I2Cstart();
 	WaitForTWINT();
-	turnDebugLedOn(3);
 	switch ((twst = TW_STATUS))
 	{
 		case TW_REP_START:		/* OK, but should not happen */
@@ -691,4 +690,187 @@ uint8_t handleFsmI2c()
 			break;	
 	}
 	return 9;
+}
+
+
+/**
+	* @brief This methods sends bytes of data to another controller via I2C
+	* @param phys_address: This is the actual physical address (often fixed on hardware) of the device to communicate with (SLA_W)
+	* @param address: Register address on the slave device to write to
+	* @param data: pointer to the data that is to be sent to the slave
+	* @param length: number of bytes to write
+	* @retval uint8_t:  0	success
+	*					1	not in start condition
+	*					2	error in sending physical address, not expected status register
+	*					3	TW_MT_DATA_NACK when sending address
+	*					4	error in sending address, not expected status register
+	*					5	TW_MT_DATA_NACK when sending data
+	*					6	error in sending data, not expected status register
+	*					10	MAX_ITER reached timed out
+	* @note Refer to page 244 of the Atmega for information
+	*/
+uint8_t writeI2cBq76925(uint8_t phys_address, uint8_t data)
+{
+	uint8_t n = 0;
+	
+	restart:
+	if (n++ >= MAX_ITER)
+	{
+		serialTransmit("Slave not responding");
+		return 10;	
+	}
+	begin:
+	I2Cstart();
+	WaitForTWINT();
+	switch ((twst = TW_STATUS))
+	{
+		case TW_REP_START:		/* OK, but should not happen */
+		case TW_START:			/* This is the expected answer */
+			break;
+		case TW_MT_ARB_LOST:	/*  A master must not initiate a stop condition in order to not corrupt the ongoing transfer from the active master. 
+								This will cause a new start condition to be initiated, which will normally be delayed until the currently active master has 
+								released the bus. */
+			goto begin;
+		default:
+			serialTransmit("Start I2C fail \n");
+			return 1;		/* error: not in start condition */
+			  /* NB: do /not/ send stop condition */
+	}
+		
+	TWDR = phys_address; //Load SLA_W into TWDR Register.
+	I2CstartTransmit();
+	WaitForTWINT();
+	switch ((twst = TW_STATUS))
+	{
+		case TW_MT_SLA_ACK:
+			break;
+
+		case TW_MT_SLA_NACK:	/* nack during select: device busy writing */
+			goto restart;
+
+		case TW_MT_ARB_LOST:	/* re-arbitrate */
+			goto begin;
+
+		default:
+			serialTransmit("Invalid phys add");
+			I2Cstop();
+			return 2;
+	}
+
+	
+
+		TWDR = data; //Load DATA into TWDR Register.
+		I2CstartTransmit();
+		WaitForTWINT();
+		switch ((twst = TW_STATUS))
+		{
+			case TW_MT_DATA_ACK:
+				break;
+
+			case TW_MT_DATA_NACK:
+				I2Cstop();
+				return 5;
+			case TW_MT_ARB_LOST:
+				goto begin;
+
+			default:
+				serialTransmit("No Data Ack from Slave");
+				I2Cstop();
+				return 6;
+		}
+		
+	return 0;
+}
+
+/**
+	* @brief This methods receives bytes of data from another device via I2C. 
+	* @param phys_address: This is the actual physical address (often fixed on hardware) of the device to communicate with (SLA_W)
+	* @retval uint8_t: The read byte 
+	* @note Refer to page 244 of the Atmega2560 datasheet for more information
+	*/
+uint8_t readI2cBq76925(uint8_t phys_address)
+{
+		
+	begin:
+	/*Send start condition*/
+	I2Cstart();
+	WaitForTWINT();
+	switch ((twst = TW_STATUS))
+	{
+		case TW_REP_START:		/* OK, but should not happen */
+		case TW_START:
+			break;
+		case TW_MT_ARB_LOST:	/*  A master must not initiate a stop condition in order to not corrupt the ongoing transfer from the active master. 
+								This will cause a new start condition to be initiated, which will normally be delayed until the currently active master has 
+								released the bus. */
+			goto begin;
+		default:
+			turnDebugLedOn(1);	
+	}
+	
+	/* send SLA+R */
+	TWDR = phys_address | TW_READ; //Load SLA_R into TWDR Register.
+	I2CstartTransmit();
+	WaitForTWINT();
+	
+	switch ((twst = TW_STATUS))
+	{
+		case TW_MR_SLA_ACK:
+		turnDebugLedOn(0);
+		break;
+
+		case TW_MR_SLA_NACK:
+		I2Cstop();
+		turnDebugLedOn(2);
+
+		case TW_MR_ARB_LOST:
+		goto begin;
+
+		default:
+		I2Cstop();
+		turnDebugLedOn(3);
+		goto begin;
+	}
+	
+	//
+	///* send repeated start condition */	
+	//I2Cstart(); 
+	//WaitForTWINT();
+	//switch ((twst = TW_STATUS))
+	//{
+		//case TW_START:		// OK, but should not happen
+		//turnDebugLedOn(5);
+		//case TW_REP_START:	// expected
+		//turnDebugLedOn(6);
+			//break;
+//
+		//case TW_MT_ARB_LOST:
+			//goto begin;
+//
+		//default:
+			//serialTransmit("Rs error");
+			//I2Cstop();
+			//return 5;
+	//}	
+		turnDebugLedOn(0);
+		WaitForTWINT();
+		turnDebugLedOn(1);
+		PORTC = TW_STATUS;
+		//switch ((twst = TW_STATUS))
+		//{
+			//case TW_MR_DATA_ACK:
+				//return TWDR;
+				//break;
+			//case TW_MR_DATA_NACK:
+				//return TWDR;
+				//I2Cstop();
+				//turnDebugLedOn(3);
+				//break;
+			//default:
+				//I2Cstop();
+				//turnDebugLedOn(4);
+		//}
+		
+	return 0xFF;
+
 }

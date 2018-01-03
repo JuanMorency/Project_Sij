@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : interrupt.h
+* Description       : header file for interrupt.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
@@ -39,12 +49,12 @@
 // 10 Hertz for now
 #define SERIAL_PERIOD 784
 
-// 100 Hz
+// 100 Hz desired since this is the maximum update rate of this sensor
 //for some unknown reason this had to be slowed down for the actual frequency to be 100
 //#define AK8963_PERIOD 78
 #define AK8963_PERIOD 82
 
-// 60 Hz which results in 10 Hz real update frequency
+// 60 Hz which results in 10 Hz real update frequency (6 cycles of FSM to get data)
 #define BMP180_PERIOD 131
 
 //50 Hz cannot be faster than the rate at which the 4 channel RF is sent, which is around 500 Hz for now

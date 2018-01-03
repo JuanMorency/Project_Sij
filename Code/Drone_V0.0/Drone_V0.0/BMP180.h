@@ -60,9 +60,9 @@
 
 //Other
 #define MSLP						101325          // Mean Sea Level Pressure = 1013.25 hPA (1hPa = 100Pa = 1mbar)
-#define MEAN_PRESSURE_AT_HOME		100200
-#define MEAN_TEMPERATURE_AT_HOME	240
-#define LOCAL_ADS_ALTITUDE			7357			//cm     altitude of 4611 avenue Linton
+#define MEAN_PRESSURE_AT_HOME		100200			// only to set the filter at first to converge faster
+#define MEAN_TEMPERATURE_AT_HOME	240				// only to set the filter at first to converge faster
+#define LOCAL_ADS_ALTITUDE			0			//cm     relative altitude to the starting location
 
 enum
 {

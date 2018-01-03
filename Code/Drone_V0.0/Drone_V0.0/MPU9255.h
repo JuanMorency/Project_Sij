@@ -1,3 +1,13 @@
+/**
+******************************************************************************
+* File Name         : MPU9255.h
+* Description       : header file for MPU9255.cpp
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #ifndef _MPU9255_H_
 #define _MPU9255_H_
 

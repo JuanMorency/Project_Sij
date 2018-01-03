@@ -2,7 +2,7 @@
   ******************************************************************************
 	* File Name         : light_ws2812.cpp
 	* Description       : Method for sending information to LED strips in assembly
-	* Author			: Tim (cpldcpu@gmail.com), Juan Morency Trudel (Adaptation)
+	* Author			: Tim (cpldcpu@gmail.com), Juan Morency Trudel (Adaptation for atmega2560)
 	* Version           : 2.1
 	* Date				: September 6, 2014
 	* License			: GNU GPL v2 (see License.txt)

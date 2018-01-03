@@ -1,8 +1,15 @@
-﻿#include "IMU.h"
+﻿/**
+******************************************************************************
+* File Name         : IMU.cpp
+* Description       : Object for all IMU objects (MPU9255, AK8963, BMP180)
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
 
-int16_t tempRaw;
-uint32_t timer;
-uint8_t i2cData[14];
+#include "IMU.h"
+
 bool imuInitialized  = false;
 uint32_t sumCountAk8963 = 0, sumCountMpu9255 = 0, sumCountBmp180 = 0; // for update freq calculation
 float sumAk8963 = 0.0f, sumMpu9255 = 0.0f, sumBmp180 = 0.0f;        // for update freq calculation
@@ -11,6 +18,10 @@ float sumAk8963 = 0.0f, sumMpu9255 = 0.0f, sumBmp180 = 0.0f;        // for updat
 IMU::IMU()
 {
 }
+
+/**
+	* @brief Initialize the different sensors and also measures the initial yaw orientation
+	*/
 void IMU::initialize()
 {
 	mpu9255.initialize();
@@ -78,6 +89,17 @@ void IMU::initialize()
 	imuInitialized  = true;
 }
 
+/**
+	* @brief Main IMU function that should be called all the time in the main while loop. It updates the values
+			of the sensors, calculates the real values from the raw reading and does the Madgwick algorithm to
+			calculate the Euler angles from the thes IMU readings when the data is ready. The dataReady flags are
+			set in the interrupt.cpp file in the ISR(TWI_vect) when the data is ready. The time since the last
+			update is also measured independently for each sensor to get the effective update rate of each
+			sensor. This is done by dividing sum variable (which is the total time since the last sensor rate 
+			update) by the sumCount variable (which is the number of readings taken since
+			the last sensor rate update). These variables are global and can be used anywhere to measure this
+			update rate. These values must be put to 0 after the rate is taken. 
+	*/
 void IMU::updateImuAndMadgwick()
 {
 	if(ak8963DataReady)

@@ -1,16 +1,28 @@
+/**
+******************************************************************************
+* File Name         : MPU9255.cpp
+* Description       : methods for data acquisition via I2C from the MPU9255
+* Author			: Juan Morency Trudel
+* Version           : 1.0.0
+* Date				: June 2017
+******************************************************************************
+*/
+
 #include "MPU9255.h"
 
 bool mpu9255DataReady = false;
 
 
-/** Default constructor, uses default I2C address.
+/** 
+ * @brief Default constructor, uses default I2C address.
  * @see MPU9255_DEFAULT_ADDRESS
  */
 MPU9255::MPU9255() {
     devAddr = MPU9255_ADDRESS<<1;
 }
 
-/** Specific address constructor.
+/** 
+ * @brief Specific address constructor.
  * @param address I2C address
  * @see MPU9255_DEFAULT_ADDRESS
  * @see MPU9255_ADDRESS_AD0_LOW
@@ -20,7 +32,8 @@ MPU9255::MPU9255(uint8_t address) {
     devAddr = address;
 }
 
-/** Verify the I2C connection.
+/** 
+ * @brief Verify the I2C connection.
  * Make sure the device is connected and responds as expected.
  * @return True if connection is valid, false otherwise
  */
@@ -29,7 +42,8 @@ bool MPU9255::testConnection() {
 	return false;
 }
 
-/** Power on and prepare for general usage.
+/** 
+ * @brief Power on and prepare for general usage.
  * This will activate the device and take it out of sleep mode (which must be done
  * after start-up). This function also sets both the accelerometer and the gyroscope
  * to the appropriate sensitivity and sets
@@ -59,7 +73,7 @@ void MPU9255::initialize() {
 		//accOffset.Y = accOffset.Y>>1;
 		//accOffset.Z = accOffset.Z>>1;
 	//}	
-	//Seems better without offsets of so don't use them
+	//Seems better without offsets so don't use them
 	
 	writeI2C(devAddr,MPU9255_RA_PWR_MGMT_1, 0x02); //Not sleep + clock 20 MHz
 	_delay_ms(10);		
@@ -78,9 +92,7 @@ void MPU9255::initialize() {
 }
 
 /**
-  * @brief  Initializes gyroscopes offset by taking 32 measures and taking a mean
-  * @param  None
-  * @retval None
+  * @brief  Initializes gyroscopes offset by taking 128 measures and taking a mean
   */
 void MPU9255::initGyrOffset()
 {
@@ -111,8 +123,6 @@ void MPU9255::initGyrOffset()
 
 /**
   * @brief  Reads the raw values in the MPU9255 registers and updates the objects variables
-  * @param  None
-  * @retval None
   */
 void MPU9255::updateRawData()
 {
@@ -147,12 +157,9 @@ void MPU9255::updateRawDataInterrupt()
 
 /**
   * @brief  Updates the value of acc and gyr and temp from the last raw values gotten
-  * @param  None
-  * @retval None
   */
 void MPU9255::calculateAccRotTemp()
 {
-	//temp = tempRaw;
 	
 	//in G x10^(-4)
 	acc.X = (int16_t)((int32_t)(accRaw.X)*20000>>15)+ACC_X_OFFSET; //divide by 2^15 which is the max number of int16

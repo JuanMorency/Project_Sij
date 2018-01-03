@@ -205,7 +205,7 @@ void BMP180::CalculateTruePressure(int32_t *pTruePressure)
   */
 void BMP180::LocalpressureAvg()
 {
-	for(uint8_t i = 0; i < 10; i++)
+	for(uint8_t i = 0; i < 20; i++)
 	{
 		//need to double the start command otherwise have some weird results...
 		StartTemperatureMeasurement();
