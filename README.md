@@ -8,3 +8,7 @@ Complete 600 mm Frame Drone Electrical and Sotware Design using:
 - WS2812B LED strips
 - Madgwick Sensor Fusion
 
+PCB was designed using Eagle. 
+
+
+Second iteration of the board with much more processing power for sensor fusion should be considered to continue this project
